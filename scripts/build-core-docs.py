@@ -1,9 +1,14 @@
 """Build the self-contained GitHub Pages documentation from the package README."""
 
+import re
 from html import escape
 from pathlib import Path
 
 from markdown_it import MarkdownIt
+from pygments import highlight
+from pygments.formatters import HtmlFormatter
+from pygments.lexers import get_lexer_by_name
+from pygments.util import ClassNotFound
 
 root = Path(__file__).resolve().parents[1]
 source = (root / "packages/pfd-core/README.md").read_text(encoding="utf-8")
@@ -15,15 +20,49 @@ source = source.replace(
     "python -m pip install ./packages/pfd-core\n# Alternatively: python -m pip install /path/to/pfd_core-0.1.0-py3-none-any.whl",
     "python -m pip install pfd-core",
 )
-md = MarkdownIt("commonmark")
+guide = (root / "packages/pfd-core/GUIDE.md").read_text(encoding="utf-8")
+guide = guide.replace("# Building and using a PFD", "## Building and using a PFD", 1)
+guide = guide.replace("## ", "### ")
+guide = guide.replace("### Building and using a PFD", "## Building and using a PFD", 1)
+guide = guide.replace(
+    "[package README](README.md)",
+    "[package README](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/README.md)",
+)
+source += "\n\n" + guide
+api = (root / "packages/pfd-core/API.md").read_text(encoding="utf-8")
+api = re.sub(r"^# ", "## ", api, count=1, flags=re.MULTILINE)
+api = re.sub(r"^## ", "### ", api, flags=re.MULTILINE)
+api = api.replace("### pfd-core API reference", "## pfd-core API reference", 1)
+source += "\n\n" + api
+source = source.replace(
+    "(API.md)", "(https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/API.md)"
+)
+source = source.replace(
+    "(GUIDE.md)",
+    "(https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GUIDE.md)",
+).replace(
+    "(README.md)",
+    "(https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/README.md)",
+)
+
+
+def highlight_code(code: str, language: str, _attrs: str) -> str:
+    try:
+        lexer = get_lexer_by_name(language or "text")
+    except ClassNotFound:
+        lexer = get_lexer_by_name("text")
+    return highlight(code, lexer, HtmlFormatter(nowrap=True))
+
+
+md = MarkdownIt("commonmark", {"highlight": highlight_code})
 tokens = md.parse(source)
 nav = []
 for i, token in enumerate(tokens):
-    if token.type == "heading_open" and token.tag == "h2":
+    if token.type == "heading_open" and token.tag in ("h2", "h3"):
         title = tokens[i + 1].content
         slug = "-".join(title.lower().split())
         token.attrSet("id", slug)
-        nav.append(f'<a href="#{slug}">{escape(title)}</a>')
+        nav.append(f'<a class="nav-{token.tag}" href="#{slug}">{escape(title)}</a>')
 body = md.renderer.render(tokens, md.options, {})
 page = (
     """<!doctype html>
@@ -36,4 +75,12 @@ page = (
 )
 out = root / "docs/core-site"
 out.mkdir(parents=True, exist_ok=True)
+page = re.sub(r'<section class="reference">.*?</section>', "", page)
+(out / "agent-guide.md").write_text(source, encoding="utf-8")
+page = page.replace(
+    "</main></div></body></html>",
+    '</main></div><button class="view-toggle" type="button" aria-label="Switch to agent view" '
+    'aria-pressed="false" title="Switch to agent view">&lt;/&gt;</button>'
+    '<script src="site.js" defer></script></body></html>',
+)
 (out / "index.html").write_text(page, encoding="utf-8")

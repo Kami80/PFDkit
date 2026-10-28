@@ -1,5 +1,7 @@
 # pfd-core
 
+For step-by-step examples, including compositions and energy streams, see the [PFD guide](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GUIDE.md). The [API reference](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/API.md) covers public models, commands, registry, units and validation. Both are plain Markdown for readers and AI agents.
+
 Typed process flow diagram documents, an extensible equipment registry, quantities, graph commands, and structural validation for teaching and engineering illustrations. Requires Python 3.11+ and Pydantic 2.13+. No browser, Django, numerical solver, paid API, or development tool is required at runtime. Source and this documentation are MIT licensed.
 
 Install from a PFDkit checkout, or install a built wheel independently:

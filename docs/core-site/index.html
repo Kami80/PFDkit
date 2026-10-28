@@ -26,20 +26,75 @@
         <p class="label">DOCUMENTATION · 0.1.0</p>
         <strong>On this page</strong>
         <nav aria-label="Contents">
-          <a href="#create,-connect,-save-and-reload"
+          <a class="nav-h2" href="#create,-connect,-save-and-reload"
             >Create, connect, save and reload</a
-          ><a href="#quantities-and-unknown-values"
+          ><a class="nav-h2" href="#quantities-and-unknown-values"
             >Quantities and unknown values</a
-          ><a href="#validation-and-errors">Validation and errors</a
-          ><a href="#register-a-python-extension">Register a Python extension</a
-          ><a href="#public-model-and-interchange-conventions"
+          ><a class="nav-h2" href="#validation-and-errors"
+            >Validation and errors</a
+          ><a class="nav-h2" href="#register-a-python-extension"
+            >Register a Python extension</a
+          ><a class="nav-h2" href="#public-model-and-interchange-conventions"
             >Public model and interchange conventions</a
+          ><a class="nav-h2" href="#building-and-using-a-pfd"
+            >Building and using a PFD</a
+          ><a class="nav-h3" href="#build-a-process-diagram"
+            >Build a process diagram</a
+          ><a class="nav-h3" href="#discover-equipment-and-ports"
+            >Discover equipment and ports</a
+          ><a class="nav-h3" href="#example:-a-recycle-loop"
+            >Example: a recycle loop</a
+          ><a class="nav-h3" href="#example:-inspect-validation-results"
+            >Example: inspect validation results</a
+          ><a class="nav-h3" href="#example:-preserve-unknown-values"
+            >Example: preserve unknown values</a
+          ><a class="nav-h3" href="#example:-material-composition"
+            >Example: material composition</a
+          ><a class="nav-h3" href="#example:-an-energy-stream"
+            >Example: an energy stream</a
+          ><a class="nav-h3" href="#edit-and-remove-objects"
+            >Edit and remove objects</a
+          ><a class="nav-h3" href="#validate-and-handle-errors"
+            >Validate and handle errors</a
+          ><a class="nav-h3" href="#quantities-and-units"
+            >Quantities and units</a
+          ><a class="nav-h3" href="#interchange-and-boundaries"
+            >Interchange and boundaries</a
+          ><a class="nav-h3" href="#more-detail">More detail</a
+          ><a class="nav-h2" href="#pfd-core-api-reference"
+            >pfd-core API reference</a
+          ><a class="nav-h3" href="#graph-commands">Graph commands</a
+          ><a class="nav-h3" href="#document-and-engineering-models"
+            >Document and engineering models</a
+          ><a class="nav-h3" href="#serialization-and-model-validation"
+            >Serialization and model validation</a
+          ><a class="nav-h3" href="#presentation-and-education"
+            >Presentation and education</a
+          ><a class="nav-h3" href="#equipment-registry">Equipment registry</a
+          ><a class="nav-h3" href="#dimensions-and-units"
+            >Dimensions and units</a
+          ><a class="nav-h3" href="#validation-and-errors"
+            >Validation and errors</a
           >
         </nav>
       </aside>
       <main id="content">
         <div class="eyebrow">PYTHON LIBRARY · VERSION 0.1.0</div>
         <h1>pfd-core</h1>
+        <p>
+          For step-by-step examples, including compositions and energy streams,
+          see the
+          <a
+            href="https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GUIDE.md"
+            >PFD guide</a
+          >. The
+          <a
+            href="https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/API.md"
+            >API reference</a
+          >
+          covers public models, commands, registry, units and validation. Both
+          are plain Markdown for readers and AI agents.
+        </p>
         <p>
           Typed process flow diagram documents, an extensible equipment
           registry, quantities, graph commands, and structural validation for
@@ -49,7 +104,7 @@
           are MIT licensed.
         </p>
         <p>Install the published package from PyPI:</p>
-        <pre><code class="language-sh">python -m pip install pfd-core
+        <pre><code class="language-sh">python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pfd-core
 </code></pre>
         <h2 id="create,-connect,-save-and-reload">
           Create, connect, save and reload
@@ -68,67 +123,67 @@
           keywords, supported views and symbol provenance; those do not imply
           numerical calculations.
         </p>
-        <pre><code class="language-python">from pfd_core import (
-    Document,
-    Endpoint,
-    Quantity,
-    add_equipment,
-    connect,
-    new_document,
-    update_stream,
-    validate_document,
-)
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Document</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">,</span>
+    <span class="n">Quantity</span><span class="p">,</span>
+    <span class="n">add_equipment</span><span class="p">,</span>
+    <span class="n">connect</span><span class="p">,</span>
+    <span class="n">new_document</span><span class="p">,</span>
+    <span class="n">update_stream</span><span class="p">,</span>
+    <span class="n">validate_document</span><span class="p">,</span>
+<span class="p">)</span>
 
-process = new_document(&quot;Illustrative feed heating&quot;)
-for index, (identity, equipment_type, tag) in enumerate(
-    [
-        (&quot;feed&quot;, &quot;feed&quot;, &quot;F-101&quot;),
-        (&quot;pump&quot;, &quot;pump&quot;, &quot;P-101&quot;),
-        (&quot;exchanger&quot;, &quot;heatExchanger&quot;, &quot;E-101&quot;),
-        (&quot;product&quot;, &quot;product&quot;, &quot;PR-101&quot;),
-    ]
-):
-    process = add_equipment(
-        process,
-        equipment_type,
-        id=identity,
-        tag=tag,
-        x=index * 240.0,
-        y=160.0,
-    )
+<span class="n">process</span> <span class="o">=</span> <span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Illustrative feed heating&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="p">(</span><span class="n">identity</span><span class="p">,</span> <span class="n">equipment_type</span><span class="p">,</span> <span class="n">tag</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="s2">&quot;F-101&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="s2">&quot;P-101&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;exchanger&quot;</span><span class="p">,</span> <span class="s2">&quot;heatExchanger&quot;</span><span class="p">,</span> <span class="s2">&quot;E-101&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="s2">&quot;PR-101&quot;</span><span class="p">),</span>
+    <span class="p">]</span>
+<span class="p">):</span>
+    <span class="n">process</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span>
+        <span class="n">process</span><span class="p">,</span>
+        <span class="n">equipment_type</span><span class="p">,</span>
+        <span class="nb">id</span><span class="o">=</span><span class="n">identity</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">,</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">index</span> <span class="o">*</span> <span class="mf">240.0</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="mf">160.0</span><span class="p">,</span>
+    <span class="p">)</span>
 
-for index, (source, outlet, target, inlet) in enumerate(
-    [
-        (&quot;feed&quot;, &quot;out&quot;, &quot;pump&quot;, &quot;in&quot;),
-        (&quot;pump&quot;, &quot;out&quot;, &quot;exchanger&quot;, &quot;tubeIn&quot;),
-        (&quot;exchanger&quot;, &quot;tubeOut&quot;, &quot;product&quot;, &quot;in&quot;),
-    ],
-    1,
-):
-    process = connect(
-        process,
-        Endpoint(equipment_id=source, port_id=outlet),
-        Endpoint(equipment_id=target, port_id=inlet),
-        id=f&quot;stream-{index}&quot;,
-        tag=f&quot;S-{index:03}&quot;,
-    )
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">inlet</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="s2">&quot;in&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="s2">&quot;exchanger&quot;</span><span class="p">,</span> <span class="s2">&quot;tubeIn&quot;</span><span class="p">),</span>
+        <span class="p">(</span><span class="s2">&quot;exchanger&quot;</span><span class="p">,</span> <span class="s2">&quot;tubeOut&quot;</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="mi">1</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="n">process</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+        <span class="n">process</span><span class="p">,</span>
+        <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="n">outlet</span><span class="p">),</span>
+        <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="n">inlet</span><span class="p">),</span>
+        <span class="nb">id</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;stream-</span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;S-</span><span class="si">{</span><span class="n">index</span><span class="si">:</span><span class="s2">03</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
 
-process = update_stream(
-    process,
-    &quot;stream-1&quot;,
-    flow_rate=Quantity(value=1.25, unit=&quot;kg/s&quot;, dimension=&quot;massFlow&quot;),
-    temperature=Quantity(value=None, unit=&quot;degC&quot;, dimension=&quot;temperature&quot;),
-)
-report = validate_document(process)
-assert report.valid
-assert report.physical_checks_performed == []
-print([(item.severity, item.code, item.object_id) for item in report.issues])
-# The unconnected shellIn/shellOut ports produce editable-draft warnings.
+<span class="n">process</span> <span class="o">=</span> <span class="n">update_stream</span><span class="p">(</span>
+    <span class="n">process</span><span class="p">,</span>
+    <span class="s2">&quot;stream-1&quot;</span><span class="p">,</span>
+    <span class="n">flow_rate</span><span class="o">=</span><span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;kg/s&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;massFlow&quot;</span><span class="p">),</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;temperature&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">valid</span>
+<span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">physical_checks_performed</span> <span class="o">==</span> <span class="p">[]</span>
+<span class="nb">print</span><span class="p">([(</span><span class="n">item</span><span class="o">.</span><span class="n">severity</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">object_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">issues</span><span class="p">])</span>
+<span class="c1"># The unconnected shellIn/shellOut ports produce editable-draft warnings.</span>
 
-payload = process.to_json()  # UTF-8-compatible JSON text, camelCase keys
-reopened = Document.model_validate_json(payload)
-assert reopened == process
-assert validate_document(reopened).valid
+<span class="n">payload</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">to_json</span><span class="p">()</span>  <span class="c1"># UTF-8-compatible JSON text, camelCase keys</span>
+<span class="n">reopened</span> <span class="o">=</span> <span class="n">Document</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">reopened</span> <span class="o">==</span> <span class="n">process</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">reopened</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
 </code></pre>
         <p>
           Assign the return value of every graph command: commands copy the
@@ -158,14 +213,14 @@ assert validate_document(reopened).valid
           <code>properties[&quot;power&quot;]</code> and cannot carry material
           flow or composition.
         </p>
-        <pre><code class="language-python">from pfd_core import Quantity, convert_quantity
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Quantity</span><span class="p">,</span> <span class="n">convert_quantity</span>
 
-flow = Quantity(value=1.25, unit=&quot;kg/s&quot;, dimension=&quot;massFlow&quot;)
-assert convert_quantity(flow, &quot;kg/h&quot;).value == 4500.0
-unknown = Quantity(value=None, unit=&quot;degC&quot;, dimension=&quot;temperature&quot;)
-assert convert_quantity(unknown, &quot;K&quot;).value is None
-zero = Quantity(value=0.0, unit=&quot;degC&quot;, dimension=&quot;temperature&quot;)
-assert convert_quantity(zero, &quot;K&quot;).value == 273.15
+<span class="n">flow</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;kg/s&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;massFlow&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="s2">&quot;kg/h&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mf">4500.0</span>
+<span class="n">unknown</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">unknown</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="n">zero</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">zero</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mf">273.15</span>
 </code></pre>
         <p>
           <code>UNITS</code> lists supported units. Dimensions include
@@ -191,17 +246,17 @@ assert convert_quantity(zero, &quot;K&quot;).value == 273.15
           commands. No balances, thermodynamics, equipment sizing or other
           physical calculations are performed.
         </p>
-        <pre><code class="language-python">from pfd_core import GraphValidationError
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">GraphValidationError</span>
 
-try:
-    connect(
-        process,
-        Endpoint(equipment_id=&quot;feed&quot;, port_id=&quot;out&quot;),
-        Endpoint(equipment_id=&quot;pump&quot;, port_id=&quot;power&quot;),
-    )  # A material stream cannot connect to a shaft-power energy port.
-except GraphValidationError as error:
-    assert any(item.code == &quot;stream_kind&quot; for item in error.result.issues)
-assert len(process.engineering.streams) == 3  # Failed command left it intact.
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">connect</span><span class="p">(</span>
+        <span class="n">process</span><span class="p">,</span>
+        <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+        <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">),</span>
+    <span class="p">)</span>  <span class="c1"># A material stream cannot connect to a shaft-power energy port.</span>
+<span class="k">except</span> <span class="n">GraphValidationError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+    <span class="k">assert</span> <span class="nb">any</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="s2">&quot;stream_kind&quot;</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">error</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">issues</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">streams</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>  <span class="c1"># Failed command left it intact.</span>
 </code></pre>
         <p>
           Malformed field values or unsupported
@@ -225,40 +280,40 @@ assert len(process.engineering.streams) == 3  # Failed command left it intact.
           graph/validation call. It does not modify the built-in registry or add
           a browser renderer automatically.
         </p>
-        <pre><code class="language-python">from pydantic import BaseModel, ConfigDict, Field
-from pfd_core import EquipmentRegistry, PortDefinition
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">ConfigDict</span><span class="p">,</span> <span class="n">Field</span>
+<span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">EquipmentRegistry</span><span class="p">,</span> <span class="n">PortDefinition</span>
 
 
-class ValveConfig(BaseModel):
-    model_config = ConfigDict(extra=&quot;allow&quot;, allow_inf_nan=False)
-    opening: float | None = Field(default=None, ge=0, le=1, strict=True)
+<span class="k">class</span> <span class="nc">ValveConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="s2">&quot;allow&quot;</span><span class="p">,</span> <span class="n">allow_inf_nan</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">opening</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ge</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">le</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
-teaching_registry = EquipmentRegistry()
-teaching_registry.register(
-    type=&quot;teachingValve&quot;,
-    name=&quot;Teaching valve&quot;,
-    description=&quot;An illustrative valve with a manually entered opening.&quot;,
-    tag_prefix=&quot;V&quot;,
-    version=&quot;1.0.0&quot;,
-    extension=&quot;example.teaching&quot;,
-    ports=[
-        PortDefinition(id=&quot;in&quot;, name=&quot;Inlet&quot;, direction=&quot;in&quot;, side=&quot;left&quot;),
-        PortDefinition(id=&quot;out&quot;, name=&quot;Outlet&quot;, direction=&quot;out&quot;, side=&quot;right&quot;),
-    ],
-    config_model=ValveConfig,
-)
-valve_process = add_equipment(
-    new_document(&quot;Valve teaching draft&quot;),
-    &quot;teachingValve&quot;,
-    id=&quot;valve-1&quot;,
-    config={&quot;opening&quot;: 0.5},
-    equipment_registry=teaching_registry,
-)
-assert validate_document(valve_process, teaching_registry).valid
-definition = teaching_registry.get(&quot;teachingValve&quot;)
-assert definition.default_config == {&quot;opening&quot;: None}
-assert definition.version == &quot;1.0.0&quot;
+<span class="n">teaching_registry</span> <span class="o">=</span> <span class="n">EquipmentRegistry</span><span class="p">()</span>
+<span class="n">teaching_registry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;teachingValve&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Teaching valve&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;An illustrative valve with a manually entered opening.&quot;</span><span class="p">,</span>
+    <span class="n">tag_prefix</span><span class="o">=</span><span class="s2">&quot;V&quot;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;1.0.0&quot;</span><span class="p">,</span>
+    <span class="n">extension</span><span class="o">=</span><span class="s2">&quot;example.teaching&quot;</span><span class="p">,</span>
+    <span class="n">ports</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">PortDefinition</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Inlet&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">),</span>
+        <span class="n">PortDefinition</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Outlet&quot;</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">config_model</span><span class="o">=</span><span class="n">ValveConfig</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">valve_process</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span>
+    <span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Valve teaching draft&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;teachingValve&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;valve-1&quot;</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;opening&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
+    <span class="n">equipment_registry</span><span class="o">=</span><span class="n">teaching_registry</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">valve_process</span><span class="p">,</span> <span class="n">teaching_registry</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
+<span class="n">definition</span> <span class="o">=</span> <span class="n">teaching_registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;teachingValve&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">definition</span><span class="o">.</span><span class="n">default_config</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;opening&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+<span class="k">assert</span> <span class="n">definition</span><span class="o">.</span><span class="n">version</span> <span class="o">==</span> <span class="s2">&quot;1.0.0&quot;</span>
 </code></pre>
         <p>
           <code>EquipmentRegistry.definitions()</code> provides serializable
@@ -307,48 +362,830 @@ assert definition.version == &quot;1.0.0&quot;
           zeros, stable IDs, units, configuration and layout survive a valid
           save/reload round trip.
         </p>
-        <section class="reference">
-          <h2>API reference</h2>
-          <p>
-            The public package exports the following entry points. The
-            <a
-              href="https://github.com/Kami80/PFDkit/tree/v0.1.0/packages/pfd-core/src/pfd_core"
-              >versioned source</a
-            >
-            contains full signatures and model fields.
-          </p>
-          <ul>
-            <li>
-              <code>new_document</code>, <code>add_equipment</code>,
-              <code>update_equipment</code>, <code>remove_equipment</code>
-            </li>
-            <li>
-              <code>connect</code>, <code>update_stream</code>,
-              <code>remove_stream</code>
-            </li>
-            <li>
-              <code>Document</code>, <code>Equipment</code>,
-              <code>Stream</code>, <code>Endpoint</code>, <code>Quantity</code>
-            </li>
-            <li>
-              <code>validate_document</code>, <code>GraphValidationError</code>,
-              <code>ValidationResult</code>
-            </li>
-            <li>
-              <code>registry</code>, <code>EquipmentRegistry</code>,
-              <code>PortDefinition</code>
-            </li>
-            <li>
-              <code>UNITS</code>, <code>check_quantity</code>,
-              <code>convert_quantity</code>
-            </li>
-          </ul>
-        </section>
+        <h2 id="building-and-using-a-pfd">Building and using a PFD</h2>
+        <p>
+          This guide targets <code>pfd-core</code> 0.1.0 and Python 3.11 or
+          later. Install it with <code>python -m pip install pfd-core</code>.
+          The package models and validates diagrams; it does not draw them or
+          solve process equations. Use the PFDkit editor to view and export
+          diagrams.
+        </p>
+        <h3 id="build-a-process-diagram">Build a process diagram</h3>
+        <p>
+          Create a feed, pump, heat exchanger and product, connect their
+          material ports, enter a flow rate, validate, and save the document.
+          This illustration leaves the exchanger shell circuit unconnected, so
+          validation reports warnings. Every graph command returns a new
+          document: keep its return value. The later editing and error-handling
+          snippets use <code>doc</code> from this example; the other examples
+          are standalone.
+        </p>
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Document</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">,</span>
+    <span class="n">Quantity</span><span class="p">,</span>
+    <span class="n">add_equipment</span><span class="p">,</span>
+    <span class="n">connect</span><span class="p">,</span>
+    <span class="n">new_document</span><span class="p">,</span>
+    <span class="n">update_stream</span><span class="p">,</span>
+    <span class="n">validate_document</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Feed heating&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">kind</span><span class="p">,</span> <span class="n">identity</span><span class="p">,</span> <span class="n">tag</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="s2">&quot;F-101&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="s2">&quot;P-101&quot;</span><span class="p">,</span> <span class="mi">220</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;heatExchanger&quot;</span><span class="p">,</span> <span class="s2">&quot;heater&quot;</span><span class="p">,</span> <span class="s2">&quot;E-101&quot;</span><span class="p">,</span> <span class="mi">440</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="s2">&quot;PR-101&quot;</span><span class="p">,</span> <span class="mi">660</span><span class="p">),</span>
+<span class="p">]:</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">identity</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">identity</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">inlet</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;s1&quot;</span><span class="p">,</span> <span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;s2&quot;</span><span class="p">,</span> <span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="s2">&quot;heater&quot;</span><span class="p">,</span> <span class="s2">&quot;tubeIn&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;s3&quot;</span><span class="p">,</span> <span class="s2">&quot;heater&quot;</span><span class="p">,</span> <span class="s2">&quot;tubeOut&quot;</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="s2">&quot;in&quot;</span><span class="p">),</span>
+<span class="p">]:</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+        <span class="n">doc</span><span class="p">,</span>
+        <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="n">outlet</span><span class="p">),</span>
+        <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="n">inlet</span><span class="p">),</span>
+        <span class="nb">id</span><span class="o">=</span><span class="n">identity</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">update_stream</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;s1&quot;</span><span class="p">,</span> <span class="n">flow_rate</span><span class="o">=</span><span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;kg/s&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;massFlow&quot;</span><span class="p">))</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">finding</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">issues</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">finding</span><span class="o">.</span><span class="n">severity</span><span class="p">,</span> <span class="n">finding</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">finding</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">valid</span>  <span class="c1"># Unconnected exchanger shell ports are warnings.</span>
+<span class="n">Path</span><span class="p">(</span><span class="s2">&quot;feed-heating.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">doc</span><span class="o">.</span><span class="n">to_json</span><span class="p">(),</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<span class="n">loaded</span> <span class="o">=</span> <span class="n">Document</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;feed-heating.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
+</code></pre>
+        <p>
+          Open the JSON file in the PFDkit editor to see its layout. Positions
+          are drawing coordinates, not physical dimensions.
+        </p>
+        <h3 id="discover-equipment-and-ports">Discover equipment and ports</h3>
+        <p>
+          The built-in types are <code>feed</code>, <code>product</code>,
+          <code>pump</code>, <code>heatExchanger</code>, <code>separator</code>,
+          <code>tank</code>, <code>mixer</code>, <code>splitter</code>,
+          <code>column</code>, and <code>reactor</code>. Port IDs and valid
+          configurations differ by type. Inspect the registry rather than
+          guessing:
+        </p>
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">registry</span>
+
+<span class="k">for</span> <span class="n">definition</span> <span class="ow">in</span> <span class="n">registry</span><span class="o">.</span><span class="n">definitions</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">definition</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">port</span> <span class="ow">in</span> <span class="n">definition</span><span class="o">.</span><span class="n">ports</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">port</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span> <span class="n">port</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span> <span class="n">port</span><span class="o">.</span><span class="n">max_connections</span><span class="p">)</span>
+</code></pre>
+        <h3 id="example:-a-recycle-loop">Example: a recycle loop</h3>
+        <p>
+          Process flow loops are allowed. This small example connects a pump
+          outlet back to its inlet and checks the graph:
+        </p>
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">add_equipment</span><span class="p">,</span> <span class="n">connect</span><span class="p">,</span> <span class="n">new_document</span><span class="p">,</span> <span class="n">validate_document</span>
+
+<span class="n">recycle</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Recycle&quot;</span><span class="p">),</span> <span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;pump&quot;</span><span class="p">)</span>
+<span class="n">recycle</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">recycle</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;recycle-stream&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">recycle</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
+</code></pre>
+        <h3 id="example:-inspect-validation-results">
+          Example: inspect validation results
+        </h3>
+        <p>
+          Warnings describe incomplete drafts. Check both the validity flag and
+          each finding when presenting a document to a user:
+        </p>
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">add_equipment</span><span class="p">,</span> <span class="n">new_document</span><span class="p">,</span> <span class="n">validate_document</span>
+
+<span class="n">draft</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Draft&quot;</span><span class="p">),</span> <span class="s2">&quot;heatExchanger&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;hx&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">draft</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Valid:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">valid</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">issues</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">issue</span><span class="o">.</span><span class="n">severity</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">object_id</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Physical calculations:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">physical_checks_performed</span><span class="p">)</span>
+</code></pre>
+        <h3 id="example:-preserve-unknown-values">
+          Example: preserve unknown values
+        </h3>
+        <p>
+          Record a known unit even when the measured value is unavailable. This
+          is different from recording zero:
+        </p>
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Quantity</span><span class="p">,</span> <span class="n">convert_quantity</span>
+
+<span class="n">unknown_temperature</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
+<span class="n">freezing_water</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">unknown_temperature</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span>
+<span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">freezing_water</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mf">273.15</span>
+</code></pre>
+        <p>
+          Material and energy ports cannot be connected to one another;
+          capacities and directions are checked. Recycle loops are supported.
+          For a second exchanger circuit, use its <code>shellIn</code> and
+          <code>shellOut</code> ports.
+        </p>
+        <h3 id="example:-material-composition">
+          Example: material composition
+        </h3>
+        <p>
+          Components belong to the document; fractions reference their stable
+          IDs. This standalone example records a mole composition and molar
+          flow. Composition basis and flow basis are independent declarations:
+          the library does not convert between mole and mass fractions.
+        </p>
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Component</span><span class="p">,</span>
+    <span class="n">ComponentFraction</span><span class="p">,</span>
+    <span class="n">Composition</span><span class="p">,</span>
+    <span class="n">Document</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">,</span>
+    <span class="n">Quantity</span><span class="p">,</span>
+    <span class="n">add_equipment</span><span class="p">,</span>
+    <span class="n">connect</span><span class="p">,</span>
+    <span class="n">new_document</span><span class="p">,</span>
+    <span class="n">update_stream</span><span class="p">,</span>
+    <span class="n">validate_document</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">mixture</span> <span class="o">=</span> <span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Binary feed&quot;</span><span class="p">)</span>
+<span class="c1"># There is no add_component graph command. Copy before editing model collections.</span>
+<span class="n">mixture</span> <span class="o">=</span> <span class="n">mixture</span><span class="o">.</span><span class="n">model_copy</span><span class="p">(</span><span class="n">deep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">mixture</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">components</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Component</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Water&quot;</span><span class="p">,</span> <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;H2O&quot;</span><span class="p">),</span>
+    <span class="n">Component</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="s2">&quot;ethanol&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Ethanol&quot;</span><span class="p">,</span> <span class="n">formula</span><span class="o">=</span><span class="s2">&quot;C2H6O&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+<span class="n">mixture</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">mixture</span><span class="p">,</span> <span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;feed&quot;</span><span class="p">)</span>
+<span class="n">mixture</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">mixture</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">240</span><span class="p">)</span>
+<span class="n">mixture</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">mixture</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;mixture-stream&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">mixture</span> <span class="o">=</span> <span class="n">update_stream</span><span class="p">(</span>
+    <span class="n">mixture</span><span class="p">,</span>
+    <span class="s2">&quot;mixture-stream&quot;</span><span class="p">,</span>
+    <span class="n">flow_basis</span><span class="o">=</span><span class="s2">&quot;molar&quot;</span><span class="p">,</span>
+    <span class="n">flow_rate</span><span class="o">=</span><span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;mol/s&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;molarFlow&quot;</span><span class="p">),</span>
+    <span class="n">composition</span><span class="o">=</span><span class="n">Composition</span><span class="p">(</span>
+        <span class="n">basis</span><span class="o">=</span><span class="s2">&quot;mole&quot;</span><span class="p">,</span>
+        <span class="n">fractions</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">ComponentFraction</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span>
+            <span class="n">ComponentFraction</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s2">&quot;ethanol&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.25</span><span class="p">),</span>
+        <span class="p">],</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">mixture</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
+<span class="k">assert</span> <span class="n">Document</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">mixture</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span> <span class="o">==</span> <span class="n">mixture</span>
+
+<span class="n">partial</span> <span class="o">=</span> <span class="n">update_stream</span><span class="p">(</span>
+    <span class="n">mixture</span><span class="p">,</span>
+    <span class="s2">&quot;mixture-stream&quot;</span><span class="p">,</span>
+    <span class="n">composition</span><span class="o">=</span><span class="n">Composition</span><span class="p">(</span>
+        <span class="n">basis</span><span class="o">=</span><span class="s2">&quot;mole&quot;</span><span class="p">,</span>
+        <span class="n">fractions</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">ComponentFraction</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s2">&quot;water&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mf">0.75</span><span class="p">),</span>
+            <span class="n">ComponentFraction</span><span class="p">(</span><span class="n">component_id</span><span class="o">=</span><span class="s2">&quot;ethanol&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">),</span>
+        <span class="p">],</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">partial</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">valid</span>
+<span class="k">assert</span> <span class="nb">any</span><span class="p">(</span><span class="n">issue</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="s2">&quot;unknown_composition&quot;</span> <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">issues</span><span class="p">)</span>
+</code></pre>
+        <p>
+          Fractions must lie between zero and one. Fully known fractions must
+          sum to one within <code>1e-6</code>; a partially known subtotal cannot
+          exceed <code>1 + 1e-6</code>. Unknown fractions stay
+          <code>None</code>; the validator does not calculate the remainder.
+          Duplicate component references and references to missing components
+          are errors.
+        </p>
+        <h3 id="example:-an-energy-stream">Example: an energy stream</h3>
+        <p>
+          Built-in equipment provides energy inlets (<code>pump.power</code> and
+          <code>reactor.heat</code>), but no energy outlet. A material feed
+          cannot supply an energy connection. This standalone example uses an
+          isolated copy of the built-in registry and adds an illustrative power
+          source. Use that same registry for all graph and validation calls
+          involving the extension.
+        </p>
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Document</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">,</span>
+    <span class="n">PortDefinition</span><span class="p">,</span>
+    <span class="n">Quantity</span><span class="p">,</span>
+    <span class="n">add_equipment</span><span class="p">,</span>
+    <span class="n">connect</span><span class="p">,</span>
+    <span class="n">convert_quantity</span><span class="p">,</span>
+    <span class="n">new_document</span><span class="p">,</span>
+    <span class="n">registry</span><span class="p">,</span>
+    <span class="n">update_stream</span><span class="p">,</span>
+    <span class="n">validate_document</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">PowerSourceConfig</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Manually entered shaft power&quot;</span>
+
+
+<span class="n">energy_registry</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">registry</span><span class="p">)</span>
+<span class="n">energy_registry</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;examplePowerSource&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Power source&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Illustrative energy supply; no performance calculation.&quot;</span><span class="p">,</span>
+    <span class="n">tag_prefix</span><span class="o">=</span><span class="s2">&quot;PW&quot;</span><span class="p">,</span>
+    <span class="n">extension</span><span class="o">=</span><span class="s2">&quot;example.energy&quot;</span><span class="p">,</span>
+    <span class="n">ports</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">PortDefinition</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Power outlet&quot;</span><span class="p">,</span>
+            <span class="n">direction</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;energy&quot;</span><span class="p">,</span>
+            <span class="n">side</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="p">],</span>
+    <span class="n">config_model</span><span class="o">=</span><span class="n">PowerSourceConfig</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">powered</span> <span class="o">=</span> <span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Pump power&quot;</span><span class="p">)</span>
+<span class="n">powered</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span>
+    <span class="n">powered</span><span class="p">,</span>
+    <span class="s2">&quot;examplePowerSource&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;drive&quot;</span><span class="p">,</span>
+    <span class="n">equipment_registry</span><span class="o">=</span><span class="n">energy_registry</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">powered</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span>
+    <span class="n">powered</span><span class="p">,</span>
+    <span class="s2">&quot;pump&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="mi">240</span><span class="p">,</span>
+    <span class="n">equipment_registry</span><span class="o">=</span><span class="n">energy_registry</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">powered</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">powered</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;drive&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">),</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;shaft-power&quot;</span><span class="p">,</span>
+    <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;energy&quot;</span><span class="p">,</span>
+    <span class="n">equipment_registry</span><span class="o">=</span><span class="n">energy_registry</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">powered</span> <span class="o">=</span> <span class="n">update_stream</span><span class="p">(</span>
+    <span class="n">powered</span><span class="p">,</span>
+    <span class="s2">&quot;shaft-power&quot;</span><span class="p">,</span>
+    <span class="n">equipment_registry</span><span class="o">=</span><span class="n">energy_registry</span><span class="p">,</span>
+    <span class="n">properties</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;power&quot;</span><span class="p">:</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;kW&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">)},</span>
+<span class="p">)</span>
+<span class="n">report</span> <span class="o">=</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">powered</span><span class="p">,</span> <span class="n">energy_registry</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">valid</span>  <span class="c1"># The pump&#39;s unconnected material ports are draft warnings.</span>
+<span class="n">power</span> <span class="o">=</span> <span class="n">powered</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">streams</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s2">&quot;power&quot;</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="s2">&quot;W&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mf">5000.0</span>
+<span class="n">loaded</span> <span class="o">=</span> <span class="n">Document</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">powered</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">loaded</span><span class="p">,</span> <span class="n">energy_registry</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
+</code></pre>
+        <p>
+          Energy streams store power in
+          <code>properties[&quot;power&quot;]</code>; leave
+          <code>flow_rate</code> and <code>composition</code> as
+          <code>None</code>. A power value may itself be <code>None</code> when
+          unknown. The model permits an energy stream without a power property,
+          so successful validation does not mean a duty was supplied. Extension
+          definitions are not embedded in the JSON; consumers need a matching
+          registry, and the browser also needs a renderer for custom equipment.
+        </p>
+        <h3 id="edit-and-remove-objects">Edit and remove objects</h3>
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">update_equipment</span><span class="p">,</span> <span class="n">remove_stream</span><span class="p">,</span> <span class="n">remove_equipment</span>
+
+<span class="n">doc</span> <span class="o">=</span> <span class="n">update_equipment</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;P-102&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="s2">&quot;feed&quot;</span><span class="p">})</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">remove_stream</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;s3&quot;</span><span class="p">)</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">remove_equipment</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;heater&quot;</span><span class="p">)</span>  <span class="c1"># Also removes its attached streams and layout.</span>
+</code></pre>
+        <p>
+          Keep stable IDs when updating objects. Tags are human-readable labels
+          and can change. Configuration updates merge with existing
+          configuration; validate configuration against the equipment
+          definition.
+        </p>
+        <h3 id="validate-and-handle-errors">Validate and handle errors</h3>
+        <p>
+          <code>Document.model_validate_json</code> checks the document shape;
+          <code>validate_document</code> checks graph and engineering-data
+          consistency. A valid document can still have warnings. The checks do
+          not prove a design is physically feasible.
+        </p>
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">GraphValidationError</span><span class="p">,</span> <span class="n">connect</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+        <span class="n">doc</span><span class="p">,</span>
+        <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+        <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;power&quot;</span><span class="p">),</span>
+    <span class="p">)</span>
+<span class="k">except</span> <span class="n">GraphValidationError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">exc</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">issues</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">issue</span><span class="o">.</span><span class="n">severity</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+</code></pre>
+        <p>
+          Malformed model data raises Pydantic <code>ValidationError</code>.
+          Missing edit targets raise <code>KeyError</code>; unknown equipment
+          and duplicate IDs can raise <code>ValueError</code>. Failed commands
+          do not mutate their input.
+        </p>
+        <h3 id="quantities-and-units">Quantities and units</h3>
+        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Dimension</span><span class="p">,</span> <span class="n">Quantity</span><span class="p">,</span> <span class="n">convert_quantity</span>
+
+<span class="n">flow</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;kg/h&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="n">Dimension</span><span class="o">.</span><span class="n">MASS_FLOW</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="s2">&quot;kg/s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="n">unknown</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="n">Dimension</span><span class="o">.</span><span class="n">TEMPERATURE</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">unknown</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span>
+</code></pre>
+        <p>
+          An unknown value is <code>None</code>; zero is a measured value. Units
+          are case-sensitive, and incompatible units raise
+          <code>ValueError</code>. <code>UNITS</code> contains the supported
+          units. Temperatures are states and pressures are absolute.
+        </p>
+        <h3 id="interchange-and-boundaries">Interchange and boundaries</h3>
+        <p>
+          <code>doc.to_json()</code> produces the camelCase interchange format.
+          <code>Document.model_validate_json()</code> loads it; always run
+          semantic validation after loading. Schema version 1.0.0 is supported.
+          Extensions in metadata and equipment configuration are preserved;
+          arbitrary unknown model fields are rejected. Numbers must be finite
+          and integers must fit the JavaScript safe-integer range.
+        </p>
+        <p>
+          The document separates engineering information, presentation layout,
+          and educational content. It supports components and compositions,
+          material and energy streams, nested sections, and teaching
+          annotations. The library performs structural and data checks, not
+          thermodynamics, material or energy balances, equipment sizing, or
+          automatic process simulation.
+        </p>
+        <h3 id="more-detail">More detail</h3>
+        <p>
+          The
+          <a
+            href="https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/README.md"
+            >package README</a
+          >
+          contains the quickstart and custom equipment registration. The
+          <a
+            href="https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/API.md"
+            >API reference</a
+          >
+          documents the public models, commands, units, registry and validation
+          reports. The
+          <a
+            href="https://github.com/Kami80/PFDkit/tree/v0.1.0/packages/pfd-core"
+            >source and tests</a
+          >
+          contain additional working examples.
+        </p>
+        <h2 id="pfd-core-api-reference">pfd-core API reference</h2>
+        <p>
+          This reference describes the public exports of
+          <code>pfd_core</code> 0.1.0, with Python 3.11+ and Pydantic 2.13+. See
+          the
+          <a
+            href="https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GUIDE.md"
+            >guide</a
+          >
+          for runnable composition and energy examples and the
+          <a
+            href="https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/README.md"
+            >README</a
+          >
+          for installation and extension registration. Validation checks
+          document consistency; it performs no process simulation or physical
+          calculation.
+        </p>
+        <h3 id="graph-commands">Graph commands</h3>
+        <p>
+          Import these functions from <code>pfd_core</code>. Every command
+          returns a deep copy and leaves its input unchanged, including on
+          failure. Retain the return value. Unless shown otherwise,
+          <code>equipment_registry</code> defaults to the built-in
+          <code>registry</code>.
+        </p>
+        <pre><code class="language-text">new_document(title: str = &quot;Untitled process&quot;) -&gt; Document
+add_equipment(document: Document, type: str, *, id: str | None = None,
+              tag: str | None = None, config: dict | None = None,
+              x: float = 0, y: float = 0,
+              equipment_registry: EquipmentRegistry = registry) -&gt; Document
+connect(document: Document, source: Endpoint, target: Endpoint, *,
+        kind: Literal[&quot;material&quot;, &quot;energy&quot;] = &quot;material&quot;,
+        id: str | None = None, tag: str = &quot;&quot;,
+        equipment_registry: EquipmentRegistry = registry) -&gt; Document
+update_equipment(document: Document, equipment_id: str, *,
+                 tag: str | None = None, config: dict | None = None,
+                 metadata: dict | None = None,
+                 equipment_registry: EquipmentRegistry = registry) -&gt; Document
+update_stream(document: Document, stream_id: str, *,
+              equipment_registry: EquipmentRegistry = registry, **changes) -&gt; Document
+remove_stream(document: Document, stream_id: str) -&gt; Document
+remove_equipment(document: Document, equipment_id: str) -&gt; Document
+</code></pre>
+        <p>
+          <code>new_document</code> creates empty engineering, presentation and
+          education sections and a generated ID.
+          <code>add_equipment</code> requires a registered type, creates a
+          <code>NodeLayout</code>, and generates an ID when omitted. An omitted
+          tag uses the definition's prefix and the first unused number, such as
+          <code>P-001</code>. An omitted config uses the registered defaults; a
+          supplied config is validated but is not filled with defaults in the
+          stored dictionary. IDs must be unique across equipment, streams and
+          components.
+        </p>
+        <p>
+          <code>connect</code> creates a stream between an outlet and an inlet.
+          Both ports must match <code>kind</code> and remain within capacity.
+          Recycle loops, including a self-loop, are allowed. Connections do not
+          propagate properties or solve balances.
+        </p>
+        <p>
+          <code>update_equipment</code> merges config and metadata dictionaries
+          at the top level; it does not recursively merge nested dictionaries.
+          <code>None</code> means leave that argument unchanged.
+          <code>update_stream</code> accepts <code>Stream</code> field names as
+          keyword changes: use Python snake_case names, such as
+          <code>flow_rate</code> and <code>flow_basis</code>. Dictionary fields
+          such as <code>properties</code> and <code>metadata</code> are replaced
+          in full. Set an optional field to <code>None</code> to clear it. Model
+          fields are revalidated before semantic validation.
+        </p>
+        <p>
+          Add/connect/update commands validate the entire resulting document. An
+          existing unrelated semantic error can therefore reject a command.
+          Warnings are accepted. Missing edit/delete targets raise
+          <code>KeyError</code>. Unregistered types and duplicate equipment IDs
+          raise <code>ValueError</code>; model errors raise Pydantic
+          <code>ValidationError</code>; semantic failures raise
+          <code>GraphValidationError</code>.
+        </p>
+        <p>
+          Removal commands do not perform semantic validation.
+          <code>remove_equipment</code> also deletes attached streams and its
+          node layout. Neither removal command repairs section membership,
+          boundary ports or teaching references; update those references and
+          call <code>validate_document</code> afterwards. There are no graph
+          commands for components, sections, annotations or steps: edit a deep
+          copy of their model collections, then revalidate the model and
+          document.
+        </p>
+        <h3 id="document-and-engineering-models">
+          Document and engineering models
+        </h3>
+        <p>
+          All listed models are Pydantic models. Their constructors accept both
+          Python snake_case names and camelCase aliases. Unknown fields are
+          rejected. Collection and dictionary defaults are independent per
+          instance. Numeric values must be finite; integer-valued numbers
+          anywhere in a document must fit ±(2^53−1). Unknown measurements are
+          <code>None</code>, distinct from zero.
+        </p>
+        <p>
+          | Model | Fields and defaults | | ------------------- |
+          ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+          | | <code>Document</code> |
+          <code>schema_version=&quot;1.0.0&quot;</code>, generated
+          <code>id</code>, <code>title=&quot;Untitled process&quot;</code>,
+          <code>metadata={}</code>, <code>engineering=Engineering()</code>,
+          <code>presentation=Presentation()</code>,
+          <code>education=Education()</code> | | <code>Engineering</code> |
+          <code>equipment=[]</code>, <code>streams=[]</code>,
+          <code>components=[]</code>, <code>sections=[]</code> | |
+          <code>Equipment</code> | generated <code>id</code>, required nonempty
+          <code>type</code>, <code>tag=&quot;&quot;</code>,
+          <code>config={}</code>, <code>metadata={}</code> | |
+          <code>Endpoint</code> | required nonempty
+          <code>equipment_id</code> and <code>port_id</code> | |
+          <code>Component</code> | generated <code>id</code>, required nonempty
+          <code>name</code>, optional <code>formula=None</code>,
+          <code>metadata={}</code> | | <code>ComponentFraction</code> | required
+          nonempty <code>component_id</code>, <code>value=None</code> or a
+          number from 0 to 1 | | <code>Composition</code> |
+          <code>basis=&quot;mole&quot;</code> (<code>&quot;mole&quot;</code> or
+          <code>&quot;mass&quot;</code>), <code>fractions=[]</code> | |
+          <code>Quantity</code> | <code>value=None</code> or a finite number,
+          required nonempty <code>unit</code>, required <code>dimension</code> |
+        </p>
+        <p>
+          All generated IDs are UUID strings from
+          <code>new_id() -&gt; str</code>. Explicit model IDs must be nonempty.
+        </p>
+        <p>
+          <code>Stream</code> requires <code>source: Endpoint</code> and
+          <code>target: Endpoint</code>; its remaining fields are:
+        </p>
+        <p>
+          | Field | Type / default | Meaning | | ------------- |
+          ----------------------------------------- |
+          ------------------------------------------------- | | <code>id</code>,
+          <code>tag</code> | generated string, <code>&quot;&quot;</code> |
+          Stable identity and display label | | <code>kind</code> |
+          <code>&quot;material&quot;</code> or <code>&quot;energy&quot;</code>;
+          <code>&quot;material&quot;</code> | Must match both endpoint ports | |
+          <code>flow_basis</code> | <code>&quot;mass&quot;</code>,
+          <code>&quot;molar&quot;</code>, <code>&quot;volume&quot;</code>;
+          <code>&quot;mass&quot;</code> | Selects expected flow-rate dimension |
+          | <code>flow_rate</code> | <code>Quantity | None = None</code> | Mass,
+          molar or volume flow | | <code>temperature</code> |
+          <code>Quantity | None = None</code> | Temperature state | |
+          <code>pressure</code> | <code>Quantity | None = None</code> | Absolute
+          pressure | | <code>composition</code> |
+          <code>Composition | None = None</code> | Fractions referencing
+          document components | | <code>properties</code> |
+          <code>dict[str, Quantity] = {}</code> | Named quantities; energy power
+          uses key <code>&quot;power&quot;</code> | | <code>metadata</code> |
+          <code>dict = {}</code> | JSON extension data |
+        </p>
+        <p>
+          Energy streams reject non-null flow rate and composition. Their
+          <code>properties[&quot;power&quot;]</code>, when present, must have
+          dimension <code>power</code>. Other property keys are checked for
+          valid units but have no prescribed dimension. Temperature and pressure
+          retain their usual dimension checks. Power is not required and
+          sign/physical feasibility is not assessed. Composition references must
+          be unique and exist; all-known fractions sum to one within
+          <code>1e-6</code>, while partial known totals cannot exceed
+          <code>1 + 1e-6</code>. A partial composition produces a warning.
+        </p>
+        <h3 id="serialization-and-model-validation">
+          Serialization and model validation
+        </h3>
+        <p>
+          <code>document.to_json() -&gt; str</code> returns camelCase JSON with
+          sorted object keys, two-space indentation and a trailing newline.
+          Array order is preserved.
+          <code>Document.model_validate_json(text)</code> loads JSON;
+          <code>Document.model_validate(mapping)</code> validates a Python
+          dictionary. Both check shape and numeric portability, but do not check
+          graph semantics. Run <code>validate_document</code> after loading.
+        </p>
+        <p>
+          Use <code>model_dump(mode=&quot;json&quot;, by_alias=True)</code> for
+          interchange dictionaries and
+          <code>Document.model_json_schema(by_alias=True)</code> for JSON
+          Schema. Only schema version <code>1.0.0</code> is accepted.
+          <code>model_copy(deep=True)</code> creates an independent editable
+          copy, but <code>model_copy(update=...)</code> and direct
+          field/collection mutation do not automatically validate updates.
+          Rebuild with
+          <code>Document.model_validate(document.model_dump())</code> before
+          semantic validation when editing directly. Metadata and equipment
+          config preserve JSON extensions; arbitrary extra model fields do not.
+        </p>
+        <h3 id="presentation-and-education">Presentation and education</h3>
+        <p>
+          | Export | Fields and defaults | | -------------- |
+          -----------------------------------------------------------------------
+          | | <code>NodeLayout</code> | <code>x=0</code>, <code>y=0</code>,
+          <code>metadata={}</code>; coordinates are drawing units | |
+          <code>Viewport</code> | <code>x=0</code>, <code>y=0</code>,
+          <code>zoom=1</code>; zoom must be positive | |
+          <code>Presentation</code> |
+          <code>nodes: dict[str, NodeLayout]={}</code>,
+          <code>viewport=Viewport()</code>, <code>metadata={}</code> | |
+          <code>Education</code> | <code>notes=&quot;&quot;</code>,
+          <code>metadata={}</code>, <code>annotations=[]</code>,
+          <code>steps=[]</code> |
+        </p>
+        <p>
+          Node dictionary keys reference equipment IDs. Section and detailed
+          teaching models are available from <code>pfd_core.models</code>,
+          rather than exported from the package root:
+        </p>
+        <p>
+          | Model | Fields and defaults | | ------------------ |
+          ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+          | | <code>ProcessSection</code> | generated <code>id</code>, required
+          <code>name</code>, <code>parent_id=None</code>,
+          <code>equipment_ids=[]</code>, <code>boundary_ports=[]</code> | |
+          <code>BoundaryPort</code> | generated <code>id</code>, required
+          <code>stream_id</code>, <code>internal_endpoint: Endpoint</code>,
+          <code>direction</code> (<code>in</code>/<code>out</code>),
+          <code>kind</code> (<code>material</code>/<code>energy</code>) | |
+          <code>Annotation</code> | generated <code>id</code>,
+          <code>kind=&quot;note&quot;</code>
+          (<code>note</code>/<code>callout</code>/<code>arrow</code>/<code>component</code>),
+          <code>text=&quot;&quot;</code>, <code>target_id=None</code>,
+          <code>x=0</code>, <code>y=0</code>, <code>end_x=None</code>,
+          <code>end_y=None</code>, <code>visible=True</code>,
+          <code>provenance=&quot;conceptual&quot;</code>
+          (<code>conceptual</code>/<code>manual</code>/<code>illustrative</code>/<code>calculated</code>)
+          | | <code>PresentationStep</code> | generated <code>id</code>,
+          <code>title=&quot;Untitled step&quot;</code>,
+          <code>target_ids=[]</code>, <code>reveal_ids=[]</code>,
+          <code>annotation_ids=[]</code>, <code>notes=&quot;&quot;</code>,
+          <code>explorer_id=None</code> |
+        </p>
+        <p>
+          Hierarchy and teaching references are semantically checked. See the
+          repository's
+          <a href="../../docs/process-sections-and-teaching.md"
+            >section and teaching guide</a
+          >
+          for boundary and presentation rules. A provenance label does not cause
+          calculations.
+        </p>
+        <h3 id="equipment-registry">Equipment registry</h3>
+        <p>
+          <code>registry</code> is the shared built-in
+          <code>EquipmentRegistry</code> instance.
+          <code>EquipmentRegistry()</code> creates an empty registry. Keep an
+          independent registry for isolated extensions and pass it to
+          graph/validation calls. The built-in types are <code>feed</code>,
+          <code>product</code>, <code>pump</code>, <code>heatExchanger</code>,
+          <code>separator</code>, <code>tank</code>, <code>mixer</code>,
+          <code>splitter</code>, <code>column</code>, <code>reactor</code>.
+        </p>
+        <p>
+          | Method | Return and behavior | |
+          ------------------------------------------ |
+          -----------------------------------------------------------------------------------------------------------------------------------------
+          | | <code>get(type: str)</code> | A deep copy of
+          <code>EquipmentDefinition</code>; unknown type raises
+          <code>ValueError</code> | | <code>definitions()</code> | List of
+          copied definitions in registration order | |
+          <code>for_equipment(type: str, config: dict)</code> | Copied
+          definition with configuration-specific ports; column feeds, side draws
+          and port offsets reflect the supplied config | |
+          <code>validate_config(type: str, config: dict)</code> |
+          <code>None</code> on success; raises <code>ValueError</code> for
+          unknown type or Pydantic <code>ValidationError</code> for invalid
+          config; does not rewrite the dictionary | |
+          <code>register(*, ...)</code> | <code>None</code>; installs a type and
+          configuration model; duplicate type or duplicate local port IDs raises
+          <code>ValueError</code> |
+        </p>
+        <p>
+          <code>register</code> requires keyword arguments <code>type</code>,
+          <code>name</code>, <code>description</code>, <code>tag_prefix</code>,
+          <code>ports: list[PortDefinition]</code>, and
+          <code>config_model: type[BaseModel]</code>. Optional arguments are
+          <code>version=&quot;1.0.0&quot;</code>,
+          <code>extension=&quot;pfd-core&quot;</code>,
+          <code>category=&quot;Other&quot;</code>, <code>keywords=None</code>,
+          <code>available_views=None</code>, <code>provenance=None</code>,
+          <code>explorer=None</code>. The config model must construct without
+          arguments because registration calls it to obtain defaults. Schema
+          comes from its <code>model_json_schema()</code>. See the README's
+          complete extension example.
+        </p>
+        <p>
+          <code>EquipmentDefinition</code> exposes the arguments above plus
+          <code>config_schema</code> and <code>default_config</code>;
+          <code>available_views</code> defaults to
+          <code>[&quot;pfd&quot;]</code>, keywords to <code>[]</code>, explorer
+          to <code>None</code>. Default provenance identifies PFDkit
+          contributors, MIT licensing and an illustrative original schematic.
+          Definition metadata does not provide a browser renderer or a solver.
+        </p>
+        <p>
+          <code>PortDefinition</code> requires <code>id</code>,
+          <code>name</code>,
+          <code>direction</code> (<code>in</code>/<code>out</code>) and
+          <code>side</code>
+          (<code>left</code>/<code>right</code>/<code>top</code>/<code>bottom</code>).
+          Optional fields are <code>kind=&quot;material&quot;</code>,
+          <code>max_connections=1</code> (integer ≥1),
+          <code>required=True</code>, <code>circuit=None</code>, and
+          <code>offset=0.5</code> (0–1). Port identity is local to an equipment
+          type. Required ports with no connections produce draft warnings.
+          Inspect <code>for_equipment</code> when configuration can add ports;
+          <code>get</code> describes the base definition.
+        </p>
+        <h3 id="dimensions-and-units">Dimensions and units</h3>
+        <p>
+          <code>Dimension</code> is a string enum:
+          <code>MASS_FLOW=&quot;massFlow&quot;</code>,
+          <code>MOLAR_FLOW=&quot;molarFlow&quot;</code>,
+          <code>VOLUME_FLOW=&quot;volumeFlow&quot;</code>,
+          <code>TEMPERATURE=&quot;temperature&quot;</code>,
+          <code>PRESSURE=&quot;pressure&quot;</code>,
+          <code>POWER=&quot;power&quot;</code>,
+          <code>DIMENSIONLESS=&quot;dimensionless&quot;</code>.
+        </p>
+        <p>
+          | Dimension | Supported unit strings | | ----------------- |
+          -------------------------------- | | Mass flow | <code>kg/s</code>,
+          <code>kg/h</code>, <code>g/s</code> | | Molar flow |
+          <code>mol/s</code>, <code>kmol/s</code>, <code>kmol/h</code> | |
+          Volume flow | <code>m3/s</code>, <code>m3/h</code>, <code>L/s</code> |
+          | Temperature | <code>K</code>, <code>degC</code>, <code>degF</code> |
+          | Absolute pressure | <code>Pa</code>, <code>kPa</code>,
+          <code>MPa</code>, <code>bar</code>, <code>atm</code> | | Power |
+          <code>W</code>, <code>kW</code>, <code>MW</code> | | Dimensionless |
+          <code>1</code>, <code>%</code> |
+        </p>
+        <p>
+          <code>UNITS</code> maps those case-sensitive strings to immutable unit
+          records with <code>dimension</code>, <code>scale</code>,
+          <code>offset</code>. Conversion uses
+          <code
+            >(value * source.scale + source.offset - target.offset) /
+            target.scale</code
+          >; temperatures are states, not temperature differences. Gauge
+          pressure and ambiguous abbreviations are unsupported.
+        </p>
+        <p>
+          <code>check_quantity(quantity: Quantity) -&gt; None</code> verifies
+          that the unit exists and matches the declared dimension, raising
+          <code>ValueError</code> otherwise. Construction of a
+          <code>Quantity</code> alone does not perform that check.
+          <code
+            >convert_quantity(quantity: Quantity, target_unit: str) -&gt;
+            Quantity</code
+          >
+          returns a new quantity, preserves unknown <code>None</code>, validates
+          both units and rejects incompatible dimensions with
+          <code>ValueError</code>. It does not convert flow or composition
+          bases.
+        </p>
+        <h3 id="validation-and-errors">Validation and errors</h3>
+        <p>
+          <code
+            >validate_document(document: Document, equipment_registry:
+            EquipmentRegistry = registry) -&gt; ValidationResult</code
+          >
+          checks semantic consistency without modifying the document. It expects
+          a model that has already passed shape validation. Registered config
+          validation, endpoint directions/kinds/capacities, component references
+          and totals, units, layout references, hierarchy and teaching
+          references are checked. Required unconnected ports and unknown
+          composition fractions are warnings.
+        </p>
+        <p>
+          <code>ValidationResult.issues</code> is a list of
+          <code>Finding</code>; <code>valid</code> is a computed boolean that is
+          false if any issue has severity <code>error</code>.
+          <code>checks_performed</code> lists the consistency checks, including
+          <code>process_hierarchy</code> and <code>teaching_references</code>.
+          <code>physical_checks_performed</code> is empty. A valid report can
+          contain warnings and does not establish physical feasibility.
+        </p>
+        <p>
+          <code>Finding</code> has required
+          <code>severity</code>
+          (<code>error</code>/<code>warning</code>/<code>info</code>),
+          <code>code</code>, <code>message</code>, and optional
+          <code>object_id=None</code>, <code>path=&quot;&quot;</code>. Paths
+          identify the affected field, such as <code>composition</code> or
+          <code>properties.power</code>. Use codes and object IDs for
+          programmatic handling; messages are human-readable.
+        </p>
+        <p>
+          Common error codes include <code>duplicate_id</code>,
+          <code>unsupported_equipment</code>,
+          <code>invalid_configuration</code>, <code>missing_equipment</code>,
+          <code>missing_port</code>, <code>port_direction</code>,
+          <code>stream_kind</code>, <code>port_capacity</code>,
+          <code>invalid_unit</code>, <code>quantity_dimension</code>,
+          <code>energy_material_property</code>, <code>missing_component</code>,
+          <code>duplicate_component</code>, <code>composition_sum</code>, and
+          <code>orphan_layout</code>. Common warning codes include
+          <code>duplicate_tag</code>, <code>unconnected_port</code>,
+          <code>unknown_composition</code>, and
+          <code>unsupported_illustration</code>. Hierarchy and teaching
+          validation adds further reference-specific findings.
+        </p>
+        <p>
+          <code>GraphValidationError</code> subclasses <code>ValueError</code>.
+          Its <code>.result</code> contains the complete
+          <code>ValidationResult</code>, including warnings; its message joins
+          error messages. Catch Pydantic <code>ValidationError</code> separately
+          for malformed model data, <code>KeyError</code> for missing command
+          targets, and <code>ValueError</code> for
+          registry/unit/duplicate-equipment-ID failures. Failed graph commands
+          leave the original input intact.
+        </p>
         <footer>
           Built for the PFDkit community · MIT license ·
           <a href="https://github.com/Kami80/PFDkit/issues">Report an issue</a>
         </footer>
       </main>
     </div>
+    <button
+      class="view-toggle"
+      type="button"
+      aria-label="Switch to agent view"
+      aria-pressed="false"
+      title="Switch to agent view"
+    >
+      &lt;/&gt;
+    </button>
+    <script src="site.js" defer></script>
   </body>
 </html>
