@@ -8,6 +8,7 @@
       content="Documentation for the pfd-core Python library"
     />
     <title>pfd-core documentation</title>
+    <script src="theme-init.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -132,8 +133,14 @@
           are MIT licensed.
         </p>
         <p>Install the published package from PyPI:</p>
-        <pre><code class="language-sh">python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pfd-core
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>sh</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-sh">python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pfd-core
 </code></pre>
+        </div>
         <h2 id="create,-connect,-save-and-reload">
           Create, connect, save and reload
         </h2>
@@ -151,7 +158,12 @@
           keywords, supported views and symbol provenance; those do not imply
           numerical calculations.
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Document</span><span class="p">,</span>
     <span class="n">Endpoint</span><span class="p">,</span>
     <span class="n">Quantity</span><span class="p">,</span>
@@ -213,8 +225,13 @@
 <span class="k">assert</span> <span class="n">reopened</span> <span class="o">==</span> <span class="n">process</span>
 <span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">reopened</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>4</b> equipment</span><span><b>3</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
           <svg
             class="process-preview"
             role="img"
@@ -224,7 +241,7 @@
           >
             <defs>
               <marker
-                id="arrow"
+                id="arrow-0"
                 viewBox="0 0 10 10"
                 refX="9"
                 refY="5"
@@ -240,21 +257,21 @@
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              marker-end="url(#arrow)"
+              marker-end="url(#arrow-0)"
             />
             <path
               d="M320 84 H365"
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              marker-end="url(#arrow)"
+              marker-end="url(#arrow-0)"
             />
             <path
               d="M485 84 H530"
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              marker-end="url(#arrow)"
+              marker-end="url(#arrow-0)"
             />
             <rect
               x="35"
@@ -313,6 +330,39 @@
             Document schematic · connections from the executed example; layout
             simplified for readability.
           </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>S-001</td>
+                  <td>feed.out → pump.in</td>
+                  <td>material</td>
+                </tr>
+                <tr>
+                  <td>S-002</td>
+                  <td>pump.out → exchanger.tubeIn</td>
+                  <td>material</td>
+                </tr>
+                <tr>
+                  <td>S-003</td>
+                  <td>exchanger.tubeOut → product.in</td>
+                  <td>material</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <pre class="console">
 [(&#x27;warning&#x27;, &#x27;unconnected_port&#x27;, &#x27;exchanger&#x27;), (&#x27;warning&#x27;, &#x27;unconnected_port&#x27;, &#x27;exchanger&#x27;)]</pre>
         </details>
@@ -344,7 +394,12 @@
           <code>properties[&quot;power&quot;]</code> and cannot carry material
           flow or composition.
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Quantity</span><span class="p">,</span> <span class="n">convert_quantity</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Quantity</span><span class="p">,</span> <span class="n">convert_quantity</span>
 
 <span class="n">flow</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;kg/s&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;massFlow&quot;</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="s2">&quot;kg/h&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mf">4500.0</span>
@@ -353,6 +408,7 @@
 <span class="n">zero</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">zero</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mf">273.15</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
           <pre class="console">
@@ -382,7 +438,12 @@ Completed successfully · all assertions passed.</pre>
           commands. No balances, thermodynamics, equipment sizing or other
           physical calculations are performed.
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">GraphValidationError</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">GraphValidationError</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="n">connect</span><span class="p">(</span>
@@ -394,6 +455,7 @@ Completed successfully · all assertions passed.</pre>
     <span class="k">assert</span> <span class="nb">any</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="s2">&quot;stream_kind&quot;</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">error</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">issues</span><span class="p">)</span>
 <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">streams</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>  <span class="c1"># Failed command left it intact.</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
           <pre class="console">
@@ -421,7 +483,12 @@ Completed successfully · all assertions passed.</pre>
           graph/validation call. It does not modify the built-in registry or add
           a browser renderer automatically.
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">ConfigDict</span><span class="p">,</span> <span class="n">Field</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">ConfigDict</span><span class="p">,</span> <span class="n">Field</span>
 <span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">EquipmentRegistry</span><span class="p">,</span> <span class="n">PortDefinition</span>
 
 
@@ -456,8 +523,13 @@ Completed successfully · all assertions passed.</pre>
 <span class="k">assert</span> <span class="n">definition</span><span class="o">.</span><span class="n">default_config</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;opening&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 <span class="k">assert</span> <span class="n">definition</span><span class="o">.</span><span class="n">version</span> <span class="o">==</span> <span class="s2">&quot;1.0.0&quot;</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>1</b> equipment</span><span><b>0</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
           <svg
             class="process-preview"
             role="img"
@@ -467,7 +539,7 @@ Completed successfully · all assertions passed.</pre>
           >
             <defs>
               <marker
-                id="arrow"
+                id="arrow-1"
                 viewBox="0 0 10 10"
                 refX="9"
                 refY="5"
@@ -564,7 +636,12 @@ Completed successfully · all assertions passed.</pre>
           snippets use <code>doc</code> from this example; the other examples
           are standalone.
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Document</span><span class="p">,</span>
     <span class="n">Endpoint</span><span class="p">,</span>
@@ -606,8 +683,13 @@ Completed successfully · all assertions passed.</pre>
 <span class="n">loaded</span> <span class="o">=</span> <span class="n">Document</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;feed-heating.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
 <span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>4</b> equipment</span><span><b>3</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
           <svg
             class="process-preview"
             role="img"
@@ -617,7 +699,7 @@ Completed successfully · all assertions passed.</pre>
           >
             <defs>
               <marker
-                id="arrow"
+                id="arrow-2"
                 viewBox="0 0 10 10"
                 refX="9"
                 refY="5"
@@ -633,21 +715,21 @@ Completed successfully · all assertions passed.</pre>
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              marker-end="url(#arrow)"
+              marker-end="url(#arrow-2)"
             />
             <path
               d="M320 84 H365"
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              marker-end="url(#arrow)"
+              marker-end="url(#arrow-2)"
             />
             <path
               d="M485 84 H530"
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              marker-end="url(#arrow)"
+              marker-end="url(#arrow-2)"
             />
             <rect
               x="35"
@@ -706,6 +788,39 @@ Completed successfully · all assertions passed.</pre>
             Document schematic · connections from the executed example; layout
             simplified for readability.
           </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>s1</td>
+                  <td>feed.out → pump.in</td>
+                  <td>material</td>
+                </tr>
+                <tr>
+                  <td>s2</td>
+                  <td>pump.out → heater.tubeIn</td>
+                  <td>material</td>
+                </tr>
+                <tr>
+                  <td>s3</td>
+                  <td>heater.tubeOut → product.in</td>
+                  <td>material</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <pre class="console">
 warning unconnected_port Port &#x27;Shell inlet&#x27; is not connected; this is an editable draft.
 warning unconnected_port Port &#x27;Shell outlet&#x27; is not connected; this is an editable draft.</pre>
@@ -723,13 +838,19 @@ warning unconnected_port Port &#x27;Shell outlet&#x27; is not connected; this is
           configurations differ by type. Inspect the registry rather than
           guessing:
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">registry</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">registry</span>
 
 <span class="k">for</span> <span class="n">definition</span> <span class="ow">in</span> <span class="n">registry</span><span class="o">.</span><span class="n">definitions</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">definition</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">port</span> <span class="ow">in</span> <span class="n">definition</span><span class="o">.</span><span class="n">ports</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">port</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span> <span class="n">port</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span> <span class="n">port</span><span class="o">.</span><span class="n">max_connections</span><span class="p">)</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
           <pre class="console">
@@ -780,7 +901,12 @@ heat in energy 1</pre>
           Process flow loops are allowed. This small example connects a pump
           outlet back to its inlet and checks the graph:
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">add_equipment</span><span class="p">,</span> <span class="n">connect</span><span class="p">,</span> <span class="n">new_document</span><span class="p">,</span> <span class="n">validate_document</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">add_equipment</span><span class="p">,</span> <span class="n">connect</span><span class="p">,</span> <span class="n">new_document</span><span class="p">,</span> <span class="n">validate_document</span>
 
 <span class="n">recycle</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Recycle&quot;</span><span class="p">),</span> <span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;pump&quot;</span><span class="p">)</span>
 <span class="n">recycle</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
@@ -791,8 +917,13 @@ heat in energy 1</pre>
 <span class="p">)</span>
 <span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">recycle</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>1</b> equipment</span><span><b>1</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
           <svg
             class="process-preview"
             role="img"
@@ -802,7 +933,7 @@ heat in energy 1</pre>
           >
             <defs>
               <marker
-                id="arrow"
+                id="arrow-3"
                 viewBox="0 0 10 10"
                 refX="9"
                 refY="5"
@@ -818,7 +949,7 @@ heat in energy 1</pre>
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              marker-end="url(#arrow)"
+              marker-end="url(#arrow-3)"
             />
             <rect
               x="35"
@@ -838,6 +969,29 @@ heat in energy 1</pre>
             Document schematic · connections from the executed example; layout
             simplified for readability.
           </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>recycle-stream</td>
+                  <td>pump.out → pump.in</td>
+                  <td>material</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <pre class="console">
 Completed successfully · all assertions passed.</pre>
         </details>
@@ -848,7 +1002,12 @@ Completed successfully · all assertions passed.</pre>
           Warnings describe incomplete drafts. Check both the validity flag and
           each finding when presenting a document to a user:
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">add_equipment</span><span class="p">,</span> <span class="n">new_document</span><span class="p">,</span> <span class="n">validate_document</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">add_equipment</span><span class="p">,</span> <span class="n">new_document</span><span class="p">,</span> <span class="n">validate_document</span>
 
 <span class="n">draft</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Draft&quot;</span><span class="p">),</span> <span class="s2">&quot;heatExchanger&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;hx&quot;</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">draft</span><span class="p">)</span>
@@ -857,8 +1016,13 @@ Completed successfully · all assertions passed.</pre>
     <span class="nb">print</span><span class="p">(</span><span class="n">issue</span><span class="o">.</span><span class="n">severity</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">object_id</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Physical calculations:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">physical_checks_performed</span><span class="p">)</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>1</b> equipment</span><span><b>0</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
           <svg
             class="process-preview"
             role="img"
@@ -868,7 +1032,7 @@ Completed successfully · all assertions passed.</pre>
           >
             <defs>
               <marker
-                id="arrow"
+                id="arrow-4"
                 viewBox="0 0 10 10"
                 refX="9"
                 refY="5"
@@ -912,13 +1076,19 @@ Physical calculations: []</pre>
           Record a known unit even when the measured value is unavailable. This
           is different from recording zero:
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Quantity</span><span class="p">,</span> <span class="n">convert_quantity</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Quantity</span><span class="p">,</span> <span class="n">convert_quantity</span>
 
 <span class="n">unknown_temperature</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
 <span class="n">freezing_water</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">unknown_temperature</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span>
 <span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">freezing_water</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mf">273.15</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
           <pre class="console">
@@ -939,7 +1109,12 @@ Completed successfully · all assertions passed.</pre>
           flow. Composition basis and flow basis are independent declarations:
           the library does not convert between mole and mass fractions.
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Component</span><span class="p">,</span>
     <span class="n">ComponentFraction</span><span class="p">,</span>
     <span class="n">Composition</span><span class="p">,</span>
@@ -999,8 +1174,13 @@ Completed successfully · all assertions passed.</pre>
 <span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">valid</span>
 <span class="k">assert</span> <span class="nb">any</span><span class="p">(</span><span class="n">issue</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="s2">&quot;unknown_composition&quot;</span> <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">issues</span><span class="p">)</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>2</b> equipment</span><span><b>1</b> streams</span
+            ><span><b>2</b> components</span>
+          </div>
           <svg
             class="process-preview"
             role="img"
@@ -1010,7 +1190,7 @@ Completed successfully · all assertions passed.</pre>
           >
             <defs>
               <marker
-                id="arrow"
+                id="arrow-5"
                 viewBox="0 0 10 10"
                 refX="9"
                 refY="5"
@@ -1026,7 +1206,7 @@ Completed successfully · all assertions passed.</pre>
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              marker-end="url(#arrow)"
+              marker-end="url(#arrow-5)"
             />
             <rect
               x="35"
@@ -1059,6 +1239,29 @@ Completed successfully · all assertions passed.</pre>
             Document schematic · connections from the executed example; layout
             simplified for readability.
           </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>mixture-stream</td>
+                  <td>feed.out → product.in</td>
+                  <td>material</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <pre class="console">
 Completed successfully · all assertions passed.</pre>
         </details>
@@ -1079,7 +1282,12 @@ Completed successfully · all assertions passed.</pre>
           source. Use that same registry for all graph and validation calls
           involving the extension.
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">Document</span><span class="p">,</span>
@@ -1153,8 +1361,13 @@ Completed successfully · all assertions passed.</pre>
 <span class="n">loaded</span> <span class="o">=</span> <span class="n">Document</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">powered</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
 <span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">loaded</span><span class="p">,</span> <span class="n">energy_registry</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>2</b> equipment</span><span><b>1</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
           <svg
             class="process-preview"
             role="img"
@@ -1164,7 +1377,7 @@ Completed successfully · all assertions passed.</pre>
           >
             <defs>
               <marker
-                id="arrow"
+                id="arrow-6"
                 viewBox="0 0 10 10"
                 refX="9"
                 refY="5"
@@ -1180,7 +1393,7 @@ Completed successfully · all assertions passed.</pre>
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              marker-end="url(#arrow)"
+              marker-end="url(#arrow-6)"
             />
             <rect
               x="35"
@@ -1213,6 +1426,29 @@ Completed successfully · all assertions passed.</pre>
             Document schematic · connections from the executed example; layout
             simplified for readability.
           </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>shaft-power</td>
+                  <td>drive.out → pump.power</td>
+                  <td>energy</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <pre class="console">
 Completed successfully · all assertions passed.</pre>
         </details>
@@ -1227,14 +1463,24 @@ Completed successfully · all assertions passed.</pre>
           registry, and the browser also needs a renderer for custom equipment.
         </p>
         <h3 id="edit-and-remove-objects">Edit and remove objects</h3>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">update_equipment</span><span class="p">,</span> <span class="n">remove_stream</span><span class="p">,</span> <span class="n">remove_equipment</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">update_equipment</span><span class="p">,</span> <span class="n">remove_stream</span><span class="p">,</span> <span class="n">remove_equipment</span>
 
 <span class="n">doc</span> <span class="o">=</span> <span class="n">update_equipment</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;pump&quot;</span><span class="p">,</span> <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;P-102&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;service&quot;</span><span class="p">:</span> <span class="s2">&quot;feed&quot;</span><span class="p">})</span>
 <span class="n">doc</span> <span class="o">=</span> <span class="n">remove_stream</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;s3&quot;</span><span class="p">)</span>
 <span class="n">doc</span> <span class="o">=</span> <span class="n">remove_equipment</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;heater&quot;</span><span class="p">)</span>  <span class="c1"># Also removes its attached streams and layout.</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>3</b> equipment</span><span><b>1</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
           <svg
             class="process-preview"
             role="img"
@@ -1244,7 +1490,7 @@ Completed successfully · all assertions passed.</pre>
           >
             <defs>
               <marker
-                id="arrow"
+                id="arrow-7"
                 viewBox="0 0 10 10"
                 refX="9"
                 refY="5"
@@ -1260,7 +1506,7 @@ Completed successfully · all assertions passed.</pre>
               fill="none"
               stroke="currentColor"
               stroke-width="2"
-              marker-end="url(#arrow)"
+              marker-end="url(#arrow-7)"
             />
             <rect
               x="35"
@@ -1306,6 +1552,29 @@ Completed successfully · all assertions passed.</pre>
             Document schematic · connections from the executed example; layout
             simplified for readability.
           </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>s1</td>
+                  <td>feed.out → pump.in</td>
+                  <td>material</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <pre class="console">
 Completed successfully · all assertions passed.</pre>
         </details>
@@ -1322,7 +1591,12 @@ Completed successfully · all assertions passed.</pre>
           consistency. A valid document can still have warnings. The checks do
           not prove a design is physically feasible.
         </p>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">GraphValidationError</span><span class="p">,</span> <span class="n">connect</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">GraphValidationError</span><span class="p">,</span> <span class="n">connect</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="n">doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
@@ -1334,6 +1608,7 @@ Completed successfully · all assertions passed.</pre>
     <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">exc</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">issues</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">issue</span><span class="o">.</span><span class="n">severity</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
           <pre class="console">
@@ -1349,13 +1624,19 @@ warning unconnected_port Port &#x27;Material inlet&#x27; is not connected; this 
           do not mutate their input.
         </p>
         <h3 id="quantities-and-units">Quantities and units</h3>
-        <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Dimension</span><span class="p">,</span> <span class="n">Quantity</span><span class="p">,</span> <span class="n">convert_quantity</span>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Dimension</span><span class="p">,</span> <span class="n">Quantity</span><span class="p">,</span> <span class="n">convert_quantity</span>
 
 <span class="n">flow</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">3600</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;kg/h&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="n">Dimension</span><span class="o">.</span><span class="n">MASS_FLOW</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">flow</span><span class="p">,</span> <span class="s2">&quot;kg/s&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mi">1</span>
 <span class="n">unknown</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="n">Dimension</span><span class="o">.</span><span class="n">TEMPERATURE</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">unknown</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span>
 </code></pre>
+        </div>
         <details class="output" open>
           <summary>Executed output</summary>
           <pre class="console">
@@ -1430,7 +1711,12 @@ Completed successfully · all assertions passed.</pre>
           <code>equipment_registry</code> defaults to the built-in
           <code>registry</code>.
         </p>
-        <pre><code class="language-text">new_document(title: str = &quot;Untitled process&quot;) -&gt; Document
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>text</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-text">new_document(title: str = &quot;Untitled process&quot;) -&gt; Document
 add_equipment(document: Document, type: str, *, id: str | None = None,
               tag: str | None = None, config: dict | None = None,
               x: float = 0, y: float = 0,
@@ -1448,6 +1734,7 @@ update_stream(document: Document, stream_id: str, *,
 remove_stream(document: Document, stream_id: str) -&gt; Document
 remove_equipment(document: Document, equipment_id: str) -&gt; Document
 </code></pre>
+        </div>
         <p>
           <code>new_document</code> creates empty engineering, presentation and
           education sections and a generated ID.

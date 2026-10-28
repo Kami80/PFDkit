@@ -97,7 +97,15 @@ fence = md.renderer.rules["fence"]
 
 
 def render_fence(tokens, index, options, env):
-    return fence(tokens, index, options, env) + tokens[index].meta.get("output", "")
+    language = escape(tokens[index].info.strip() or "text")
+    toolbar = f'<div class="code-toolbar"><span>{language}</span><button class="copy-code" type="button">Copy code</button></div>'
+    return (
+        '<div class="code-box">'
+        + toolbar
+        + fence(tokens, index, options, env)
+        + "</div>"
+        + tokens[index].meta.get("output", "")
+    )
 
 
 md.renderer.rules["fence"] = render_fence
@@ -114,6 +122,10 @@ page = (
 out = root / "docs/core-site"
 out.mkdir(parents=True, exist_ok=True)
 page = re.sub(r'<section class="reference">.*?</section>', "", page)
+page = page.replace(
+    '<link rel="stylesheet"',
+    '<script src="theme-init.js"></script><link rel="stylesheet"',
+)
 page = page.replace(
     "<aside>", '<aside id="sidebar" aria-label="Documentation navigation">'
 )
