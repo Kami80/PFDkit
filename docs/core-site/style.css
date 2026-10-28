@@ -325,22 +325,22 @@ pre .p {
   min-height: 40px;
 }
 .process-preview .stream-label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 650;
   paint-order: stroke;
   stroke: var(--surface);
-  stroke-width: 5px;
+  stroke-width: 0;
   stroke-linejoin: round;
 }
 .process-preview .stream-value {
-  font-size: 11px;
-  fill: var(--muted);
+  font-size: 13px;
+  fill: var(--ink);
   paint-order: stroke;
   stroke: var(--surface);
-  stroke-width: 4px;
+  stroke-width: 0;
 }
 .process-preview .equipment-tag {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 .gallery-card {
@@ -354,11 +354,12 @@ pre .p {
   padding-inline: 16px;
 }
 .process-preview text {
-  font: 12px system-ui;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
   fill: var(--ink);
 }
 .process-preview .equipment-kind {
-  font-size: 10px;
+  font-size: 12px;
   fill: var(--muted);
 }
 .preview-caption {

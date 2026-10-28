@@ -128,7 +128,7 @@ for name, document, scope, reference, url in process_gallery():
     svg = re.search(r"<svg.*?</svg>", image).group(0)
     svg = svg.replace(
         "><defs>",
-        "><style>svg{background:#fff;color:#0969bd;--surface:#fff}text{font:12px system-ui;fill:#20242c}.equipment-kind,.stream-value{font-size:11px}.stream-label{font-weight:600}</style><defs>",
+        "><style>svg{background:#fff;color:#0969bd;--surface:#fff;--ink:#20242c;--muted:#536174;--line:#ced8e4}text{font:14px system-ui;fill:#20242c}.equipment-kind{font-size:12px}.stream-value{font-size:13px}.stream-label,.equipment-tag{font-weight:600}</style><defs>",
         1,
     )
     (out / f"{name}.svg").write_text(svg, encoding="utf-8")

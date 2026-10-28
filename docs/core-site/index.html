@@ -263,7 +263,7 @@
           <div class="diagram-tools">
             <button class="diagram-size" aria-pressed="true">
               View actual size</button
-            ><span>Fit overview / scrollable detail</span>
+            ><span>Scaled overview · actual size for readable labels</span>
           </div>
           <div
             class="diagram-scroll fit-diagram"
@@ -273,11 +273,11 @@
           >
             <svg
               class="process-preview"
-              width="1210"
-              height="400"
+              width="1270"
+              height="420"
               role="img"
               aria-label="Illustrative feed heating"
-              viewBox="0 0 1210 400"
+              viewBox="0 0 1270 420"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -294,80 +294,71 @@
                 </marker>
               </defs>
               <path
-                d="M240 200 L270 200 L380 200 L410 200"
+                d="M240 220 L270 220 L400 220 L430 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-0)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="325.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S-001
-              </text>
-              <text
-                class="stream-value"
-                x="325.0"
-                y="195.0"
-                text-anchor="middle"
-              >
-                F=1.25 kg/s · T=? degC
-              </text>
               <path
-                d="M530 200 L560 200 L670 200 L700 200"
+                class="flow-line"
+                d="M240 220 L270 220 L400 220 L430 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-0)"
               />
-              <text
-                class="stream-label"
-                x="615.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S-002
-              </text>
               <path
-                d="M820 200 L850 200 L960 200 L990 200"
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M550 220 L580 220 L710 220 L740 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-0)"
               />
-              <text
-                class="stream-label"
-                x="905.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S-003
-              </text>
+              <path
+                d="M860 220 L890 220 L1020 220 L1050 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M860 220 L890 220 L1020 220 L1050 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-0)"
+              />
               <g
-                transform="translate(120 160)"
+                class="equipment-symbol"
+                transform="translate(120 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
                 <path d="M95 40h25" fill="none" />
               </g>
-              <text class="equipment-tag" x="180" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
                 F-101
               </text>
-              <text class="equipment-kind" x="180" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
                 feed
               </text>
               <g
-                transform="translate(410 160)"
+                class="equipment-symbol"
+                transform="translate(430 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -377,17 +368,18 @@
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="470" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
                 P-101
               </text>
-              <text class="equipment-kind" x="470" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
                 pump
               </text>
               <g
-                transform="translate(700 160)"
+                class="equipment-symbol"
+                transform="translate(740 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -398,17 +390,18 @@
                 />
                 <path d="m56 5 4 5 4-5m-8 65 4 5 4-5" fill="none" />
               </g>
-              <text class="equipment-tag" x="760" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
                 E-101
               </text>
-              <text class="equipment-kind" x="760" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="800" y="344" text-anchor="middle">
                 heatExchanger
               </text>
               <g
-                transform="translate(990 160)"
+                class="equipment-symbol"
+                transform="translate(1050 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -418,23 +411,83 @@
                 />
                 <path d="M0 40h37" fill="none" />
               </g>
-              <text class="equipment-tag" x="1050" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="1110" y="324" text-anchor="middle">
                 PR-101
               </text>
               <text
                 class="equipment-kind"
-                x="1050"
-                y="146"
+                x="1110"
+                y="344"
                 text-anchor="middle"
               >
                 product
               </text>
+              <path
+                class="callout-leader"
+                d="M335.0 220.0 L335.0 150.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="237.0"
+                y="94.0"
+                width="196.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="247.0" y="116.0">S-001</text>
+              <text class="stream-value" x="247.0" y="137.0">
+                F=1.25 kg/s · T=? degC
+              </text>
+              <path
+                class="callout-leader"
+                d="M645.0 220.0 L645.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="615.0"
+                y="171.0"
+                width="60.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="625.0" y="193.0">S-002</text>
+              <path
+                class="callout-leader"
+                d="M955.0 220.0 L955.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="925.0"
+                y="171.0"
+                width="60.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="935.0" y="193.0">S-003</text>
             </svg>
           </div>
           <p class="preview-caption">
             Original PFDkit equipment symbols · solid: material; dashed: energy
-            · ? = entered unknown. Values are illustrative entries, not
-            calculated results.
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
           </p>
           <div
             class="table-scroll"
@@ -643,7 +696,7 @@ Completed successfully · all assertions passed.</pre>
           <div class="diagram-tools">
             <button class="diagram-size" aria-pressed="true">
               View actual size</button
-            ><span>Fit overview / scrollable detail</span>
+            ><span>Scaled overview · actual size for readable labels</span>
           </div>
           <div
             class="diagram-scroll fit-diagram"
@@ -654,10 +707,10 @@ Completed successfully · all assertions passed.</pre>
             <svg
               class="process-preview"
               width="340"
-              height="400"
+              height="420"
               role="img"
               aria-label="Valve teaching draft"
-              viewBox="0 0 340 400"
+              viewBox="0 0 340 420"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -674,10 +727,11 @@ Completed successfully · all assertions passed.</pre>
                 </marker>
               </defs>
               <g
-                transform="translate(120 160)"
+                class="equipment-symbol"
+                transform="translate(120 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -686,18 +740,18 @@ Completed successfully · all assertions passed.</pre>
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="180" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
                 V-001
               </text>
-              <text class="equipment-kind" x="180" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
                 teachingValve
               </text>
             </svg>
           </div>
           <p class="preview-caption">
             Original PFDkit equipment symbols · solid: material; dashed: energy
-            · ? = entered unknown. Values are illustrative entries, not
-            calculated results.
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
           </p>
           <pre class="console">
 Completed successfully · all assertions passed.</pre>
@@ -824,7 +878,7 @@ Completed successfully · all assertions passed.</pre>
           <div class="diagram-tools">
             <button class="diagram-size" aria-pressed="true">
               View actual size</button
-            ><span>Fit overview / scrollable detail</span>
+            ><span>Scaled overview · actual size for readable labels</span>
           </div>
           <div
             class="diagram-scroll fit-diagram"
@@ -834,11 +888,11 @@ Completed successfully · all assertions passed.</pre>
           >
             <svg
               class="process-preview"
-              width="1210"
-              height="400"
+              width="1270"
+              height="420"
               role="img"
               aria-label="Feed heating"
-              viewBox="0 0 1210 400"
+              viewBox="0 0 1270 420"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -855,80 +909,71 @@ Completed successfully · all assertions passed.</pre>
                 </marker>
               </defs>
               <path
-                d="M240 200 L270 200 L380 200 L410 200"
+                d="M240 220 L270 220 L400 220 L430 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-2)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="325.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                s1
-              </text>
-              <text
-                class="stream-value"
-                x="325.0"
-                y="195.0"
-                text-anchor="middle"
-              >
-                F=1.25 kg/s
-              </text>
               <path
-                d="M530 200 L560 200 L670 200 L700 200"
+                class="flow-line"
+                d="M240 220 L270 220 L400 220 L430 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-2)"
               />
-              <text
-                class="stream-label"
-                x="615.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                s2
-              </text>
               <path
-                d="M820 200 L850 200 L960 200 L990 200"
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M550 220 L580 220 L710 220 L740 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-2)"
               />
-              <text
-                class="stream-label"
-                x="905.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                s3
-              </text>
+              <path
+                d="M860 220 L890 220 L1020 220 L1050 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M860 220 L890 220 L1020 220 L1050 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-2)"
+              />
               <g
-                transform="translate(120 160)"
+                class="equipment-symbol"
+                transform="translate(120 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
                 <path d="M95 40h25" fill="none" />
               </g>
-              <text class="equipment-tag" x="180" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
                 F-101
               </text>
-              <text class="equipment-kind" x="180" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
                 feed
               </text>
               <g
-                transform="translate(410 160)"
+                class="equipment-symbol"
+                transform="translate(430 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -938,17 +983,18 @@ Completed successfully · all assertions passed.</pre>
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="470" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
                 P-101
               </text>
-              <text class="equipment-kind" x="470" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
                 pump
               </text>
               <g
-                transform="translate(700 160)"
+                class="equipment-symbol"
+                transform="translate(740 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -959,17 +1005,18 @@ Completed successfully · all assertions passed.</pre>
                 />
                 <path d="m56 5 4 5 4-5m-8 65 4 5 4-5" fill="none" />
               </g>
-              <text class="equipment-tag" x="760" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
                 E-101
               </text>
-              <text class="equipment-kind" x="760" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="800" y="344" text-anchor="middle">
                 heatExchanger
               </text>
               <g
-                transform="translate(990 160)"
+                class="equipment-symbol"
+                transform="translate(1050 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -979,23 +1026,81 @@ Completed successfully · all assertions passed.</pre>
                 />
                 <path d="M0 40h37" fill="none" />
               </g>
-              <text class="equipment-tag" x="1050" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="1110" y="324" text-anchor="middle">
                 PR-101
               </text>
               <text
                 class="equipment-kind"
-                x="1050"
-                y="146"
+                x="1110"
+                y="344"
                 text-anchor="middle"
               >
                 product
               </text>
+              <path
+                class="callout-leader"
+                d="M335.0 220.0 L335.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="281.0"
+                y="150.0"
+                width="108.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="291.0" y="172.0">s1</text>
+              <text class="stream-value" x="291.0" y="193.0">F=1.25 kg/s</text>
+              <path
+                class="callout-leader"
+                d="M645.0 220.0 L645.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="627.0"
+                y="171.0"
+                width="36.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="637.0" y="193.0">s2</text>
+              <path
+                class="callout-leader"
+                d="M955.0 220.0 L955.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="937.0"
+                y="171.0"
+                width="36.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="947.0" y="193.0">s3</text>
             </svg>
           </div>
           <p class="preview-caption">
             Original PFDkit equipment symbols · solid: material; dashed: energy
-            · ? = entered unknown. Values are illustrative entries, not
-            calculated results.
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
           </p>
           <div
             class="table-scroll"
@@ -1140,7 +1245,7 @@ heat in energy 1</pre>
           <div class="diagram-tools">
             <button class="diagram-size" aria-pressed="true">
               View actual size</button
-            ><span>Fit overview / scrollable detail</span>
+            ><span>Scaled overview · actual size for readable labels</span>
           </div>
           <div
             class="diagram-scroll fit-diagram"
@@ -1151,10 +1256,10 @@ heat in energy 1</pre>
             <svg
               class="process-preview"
               width="340"
-              height="400"
+              height="420"
               role="img"
               aria-label="Recycle"
-              viewBox="0 0 340 400"
+              viewBox="0 0 340 420"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -1171,25 +1276,25 @@ heat in energy 1</pre>
                 </marker>
               </defs>
               <path
-                d="M240 200 L270 200 L270 122 L90 122 L90 200 L120 200"
+                d="M240 220 L270 220 L270 274 L90 274 L90 220 L120 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M240 220 L270 220 L270 274 L90 274 L90 220 L120 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-3)"
               />
-              <text
-                class="stream-label"
-                x="180.0"
-                y="102.0"
-                text-anchor="middle"
-              >
-                recycle-stream
-              </text>
               <g
-                transform="translate(120 160)"
+                class="equipment-symbol"
+                transform="translate(120 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -1199,18 +1304,39 @@ heat in energy 1</pre>
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="180" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
                 P-001
               </text>
-              <text class="equipment-kind" x="180" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
                 pump
+              </text>
+              <path
+                class="callout-leader"
+                d="M180.0 274.0 L180.0 164.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="114.0"
+                y="129.0"
+                width="132.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="124.0" y="151.0">
+                recycle-stream
               </text>
             </svg>
           </div>
           <p class="preview-caption">
             Original PFDkit equipment symbols · solid: material; dashed: energy
-            · ? = entered unknown. Values are illustrative entries, not
-            calculated results.
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
           </p>
           <div
             class="table-scroll"
@@ -1271,7 +1397,7 @@ Completed successfully · all assertions passed.</pre>
           <div class="diagram-tools">
             <button class="diagram-size" aria-pressed="true">
               View actual size</button
-            ><span>Fit overview / scrollable detail</span>
+            ><span>Scaled overview · actual size for readable labels</span>
           </div>
           <div
             class="diagram-scroll fit-diagram"
@@ -1282,10 +1408,10 @@ Completed successfully · all assertions passed.</pre>
             <svg
               class="process-preview"
               width="340"
-              height="400"
+              height="420"
               role="img"
               aria-label="Draft"
-              viewBox="0 0 340 400"
+              viewBox="0 0 340 420"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -1302,10 +1428,11 @@ Completed successfully · all assertions passed.</pre>
                 </marker>
               </defs>
               <g
-                transform="translate(120 160)"
+                class="equipment-symbol"
+                transform="translate(120 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -1316,18 +1443,18 @@ Completed successfully · all assertions passed.</pre>
                 />
                 <path d="m56 5 4 5 4-5m-8 65 4 5 4-5" fill="none" />
               </g>
-              <text class="equipment-tag" x="180" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
                 E-001
               </text>
-              <text class="equipment-kind" x="180" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
                 heatExchanger
               </text>
             </svg>
           </div>
           <p class="preview-caption">
             Original PFDkit equipment symbols · solid: material; dashed: energy
-            · ? = entered unknown. Values are illustrative entries, not
-            calculated results.
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
           </p>
           <pre class="console">
 Valid: True
@@ -1452,7 +1579,7 @@ Completed successfully · all assertions passed.</pre>
           <div class="diagram-tools">
             <button class="diagram-size" aria-pressed="true">
               View actual size</button
-            ><span>Fit overview / scrollable detail</span>
+            ><span>Scaled overview · actual size for readable labels</span>
           </div>
           <div
             class="diagram-scroll fit-diagram"
@@ -1462,11 +1589,11 @@ Completed successfully · all assertions passed.</pre>
           >
             <svg
               class="process-preview"
-              width="630"
-              height="400"
+              width="650"
+              height="420"
               role="img"
               aria-label="Binary feed"
-              viewBox="0 0 630 400"
+              viewBox="0 0 650 420"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -1483,50 +1610,43 @@ Completed successfully · all assertions passed.</pre>
                 </marker>
               </defs>
               <path
-                d="M240 200 L270 200 L380 200 L410 200"
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M240 220 L270 220 L400 220 L430 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-5)"
               />
-              <text
-                class="stream-label"
-                x="325.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                mixture-stream
-              </text>
-              <text
-                class="stream-value"
-                x="325.0"
-                y="195.0"
-                text-anchor="middle"
-              >
-                F=2 mol/s
-              </text>
               <g
-                transform="translate(120 160)"
+                class="equipment-symbol"
+                transform="translate(120 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
                 <path d="M95 40h25" fill="none" />
               </g>
-              <text class="equipment-tag" x="180" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
                 F-001
               </text>
-              <text class="equipment-kind" x="180" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
                 feed
               </text>
               <g
-                transform="translate(410 160)"
+                class="equipment-symbol"
+                transform="translate(430 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -1536,18 +1656,40 @@ Completed successfully · all assertions passed.</pre>
                 />
                 <path d="M0 40h37" fill="none" />
               </g>
-              <text class="equipment-tag" x="470" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
                 PR-001
               </text>
-              <text class="equipment-kind" x="470" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
                 product
               </text>
+              <path
+                class="callout-leader"
+                d="M335.0 220.0 L335.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="269.0"
+                y="150.0"
+                width="132.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="279.0" y="172.0">
+                mixture-stream
+              </text>
+              <text class="stream-value" x="279.0" y="193.0">F=2 mol/s</text>
             </svg>
           </div>
           <p class="preview-caption">
             Original PFDkit equipment symbols · solid: material; dashed: energy
-            · ? = entered unknown. Values are illustrative entries, not
-            calculated results.
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
           </p>
           <div
             class="table-scroll"
@@ -1683,7 +1825,7 @@ Completed successfully · all assertions passed.</pre>
           <div class="diagram-tools">
             <button class="diagram-size" aria-pressed="true">
               View actual size</button
-            ><span>Fit overview / scrollable detail</span>
+            ><span>Scaled overview · actual size for readable labels</span>
           </div>
           <div
             class="diagram-scroll fit-diagram"
@@ -1693,11 +1835,11 @@ Completed successfully · all assertions passed.</pre>
           >
             <svg
               class="process-preview"
-              width="630"
-              height="400"
+              width="650"
+              height="420"
               role="img"
               aria-label="Pump power"
-              viewBox="0 0 630 400"
+              viewBox="0 0 650 420"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -1714,34 +1856,26 @@ Completed successfully · all assertions passed.</pre>
                 </marker>
               </defs>
               <path
-                d="M240 200 L270 200 L270 270 L470 270 L470 240"
+                d="M240 220 L270 220 L270 290 L490 290 L490 260"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M240 220 L270 220 L270 290 L490 290 L490 260"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 stroke-dasharray="7 5"
                 marker-end="url(#flow-6)"
               />
-              <text
-                class="stream-label"
-                x="370.0"
-                y="250.0"
-                text-anchor="middle"
-              >
-                shaft-power
-              </text>
-              <text
-                class="stream-value"
-                x="370.0"
-                y="265.0"
-                text-anchor="middle"
-              >
-                Q=5 kW
-              </text>
               <g
-                transform="translate(120 160)"
+                class="equipment-symbol"
+                transform="translate(120 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -1750,17 +1884,18 @@ Completed successfully · all assertions passed.</pre>
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="180" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
                 PW-001
               </text>
-              <text class="equipment-kind" x="180" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
                 examplePowerSource
               </text>
               <g
-                transform="translate(410 160)"
+                class="equipment-symbol"
+                transform="translate(430 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -1770,18 +1905,38 @@ Completed successfully · all assertions passed.</pre>
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="470" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
                 P-001
               </text>
-              <text class="equipment-kind" x="470" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
                 pump
               </text>
+              <path
+                class="callout-leader"
+                d="M270.0 255.0 L284.0 255.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="284.0"
+                y="227.0"
+                width="108.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="294.0" y="249.0">shaft-power</text>
+              <text class="stream-value" x="294.0" y="270.0">Q=5 kW</text>
             </svg>
           </div>
           <p class="preview-caption">
             Original PFDkit equipment symbols · solid: material; dashed: energy
-            · ? = entered unknown. Values are illustrative entries, not
-            calculated results.
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
           </p>
           <div
             class="table-scroll"
@@ -1843,7 +1998,7 @@ Completed successfully · all assertions passed.</pre>
           <div class="diagram-tools">
             <button class="diagram-size" aria-pressed="true">
               View actual size</button
-            ><span>Fit overview / scrollable detail</span>
+            ><span>Scaled overview · actual size for readable labels</span>
           </div>
           <div
             class="diagram-scroll fit-diagram"
@@ -1853,11 +2008,11 @@ Completed successfully · all assertions passed.</pre>
           >
             <svg
               class="process-preview"
-              width="920"
-              height="400"
+              width="960"
+              height="420"
               role="img"
               aria-label="Feed heating"
-              viewBox="0 0 920 400"
+              viewBox="0 0 960 420"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -1874,50 +2029,43 @@ Completed successfully · all assertions passed.</pre>
                 </marker>
               </defs>
               <path
-                d="M240 200 L270 200 L380 200 L410 200"
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M240 220 L270 220 L400 220 L430 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-7)"
               />
-              <text
-                class="stream-label"
-                x="325.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                s1
-              </text>
-              <text
-                class="stream-value"
-                x="325.0"
-                y="195.0"
-                text-anchor="middle"
-              >
-                F=1.25 kg/s
-              </text>
               <g
-                transform="translate(120 160)"
+                class="equipment-symbol"
+                transform="translate(120 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
                 <path d="M95 40h25" fill="none" />
               </g>
-              <text class="equipment-tag" x="180" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
                 F-101
               </text>
-              <text class="equipment-kind" x="180" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
                 feed
               </text>
               <g
-                transform="translate(410 160)"
+                class="equipment-symbol"
+                transform="translate(430 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -1927,17 +2075,18 @@ Completed successfully · all assertions passed.</pre>
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="470" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
                 P-102
               </text>
-              <text class="equipment-kind" x="470" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
                 pump
               </text>
               <g
-                transform="translate(700 160)"
+                class="equipment-symbol"
+                transform="translate(740 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -1947,18 +2096,38 @@ Completed successfully · all assertions passed.</pre>
                 />
                 <path d="M0 40h37" fill="none" />
               </g>
-              <text class="equipment-tag" x="760" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
                 PR-101
               </text>
-              <text class="equipment-kind" x="760" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="800" y="344" text-anchor="middle">
                 product
               </text>
+              <path
+                class="callout-leader"
+                d="M335.0 220.0 L335.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="281.0"
+                y="150.0"
+                width="108.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="291.0" y="172.0">s1</text>
+              <text class="stream-value" x="291.0" y="193.0">F=1.25 kg/s</text>
             </svg>
           </div>
           <p class="preview-caption">
             Original PFDkit equipment symbols · solid: material; dashed: energy
-            · ? = entered unknown. Values are illustrative entries, not
-            calculated results.
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
           </p>
           <div
             class="table-scroll"
@@ -2152,7 +2321,7 @@ python<span class="w"> </span>gallery_processes.py
           <div class="diagram-tools">
             <button class="diagram-size" aria-pressed="true">
               View actual size</button
-            ><span>Fit overview / scrollable detail</span>
+            ><span>Scaled overview · actual size for readable labels</span>
           </div>
           <div
             class="diagram-scroll fit-diagram"
@@ -2162,11 +2331,11 @@ python<span class="w"> </span>gallery_processes.py
           >
             <svg
               class="process-preview"
-              width="1790"
-              height="900"
+              width="1890"
+              height="1040"
               role="img"
               aria-label="Binary distillation · reflux and reboil"
-              viewBox="0 0 1790 900"
+              viewBox="0 0 1890 1040"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -2183,200 +2352,183 @@ python<span class="w"> </span>gallery_processes.py
                 </marker>
               </defs>
               <path
-                d="M240 450 L270 450 L270 446.9230769230769 L380 446.9230769230769 L410 446.9230769230769"
+                d="M240 530 L270 530 L270 526.9230769230769 L400 526.9230769230769 L430 526.9230769230769"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-9)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="325.0"
-                y="426.9230769230769"
-                text-anchor="middle"
-              >
-                S01 Feed
-              </text>
-              <text
-                class="stream-value"
-                x="325.0"
-                y="441.9230769230769"
-                text-anchor="middle"
-              >
-                F=1 kg/s · T=25 degC
-              </text>
               <path
-                d="M470 410 L470 380 L470 200 L670 200 L700 200"
+                class="flow-line"
+                d="M240 530 L270 530 L270 526.9230769230769 L400 526.9230769230769 L430 526.9230769230769"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-9)"
               />
-              <text
-                class="stream-label"
-                x="570.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S02 Vapor
-              </text>
               <path
-                d="M820 200 L850 200 L960 200 L990 200"
+                d="M490 490 L490 460 L490 220 L710 220 L740 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-9)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="905.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S03 Condensate
-              </text>
               <path
-                d="M1110 200 L1140 200 L1250 200 L1280 200"
+                class="flow-line"
+                d="M490 490 L490 460 L490 220 L710 220 L740 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-9)"
               />
-              <text
-                class="stream-label"
-                x="1195.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S04 Liquid
-              </text>
               <path
-                d="M1400 180 L1430 180 L1430 200 L1540 200 L1570 200"
+                d="M860 220 L890 220 L1020 220 L1050 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-9)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="1485.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S05 Distillate
-              </text>
               <path
-                d="M1400 200 L1430 200 L1430 372 L1250 372 L1250 450 L1280 450"
+                class="flow-line"
+                d="M860 220 L890 220 L1020 220 L1050 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-9)"
               />
-              <text
-                class="stream-label"
-                x="1340.0"
-                y="352.0"
-                text-anchor="middle"
-              >
-                S06 Reflux
-              </text>
               <path
-                d="M1400 450 L1430 450 L1430 528 L560 528 L560 430 L530 430"
+                d="M1170 220 L1200 220 L1330 220 L1360 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-9)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="995.0"
-                y="508.0"
-                text-anchor="middle"
-              >
-                S07 Reflux return
-              </text>
               <path
-                d="M470 490 L470 520 L470 700 L670 700 L700 700"
+                class="flow-line"
+                d="M1170 220 L1200 220 L1330 220 L1360 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-9)"
               />
-              <text
-                class="stream-label"
-                x="570.0"
-                y="680.0"
-                text-anchor="middle"
-              >
-                S08 Sump liquid
-              </text>
               <path
-                d="M820 700 L850 700 L960 700 L990 700"
+                d="M1480 200 L1510 200 L1510 220 L1640 220 L1670 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-9)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="905.0"
-                y="680.0"
-                text-anchor="middle"
-              >
-                S09 Reboiled fluid
-              </text>
               <path
-                d="M1110 680 L1140 680 L1140 470 L560 470 L530 470"
+                class="flow-line"
+                d="M1480 200 L1510 200 L1510 220 L1640 220 L1670 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-9)"
               />
-              <text
-                class="stream-label"
-                x="850.0"
-                y="450.0"
-                text-anchor="middle"
-              >
-                S10 Boilup
-              </text>
               <path
-                d="M1110 700 L1140 700 L1250 700 L1280 700"
+                d="M1480 220 L1510 220 L1510 452 L1330 452 L1330 530 L1360 530"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1480 220 L1510 220 L1510 452 L1330 452 L1330 530 L1360 530"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-9)"
               />
-              <text
-                class="stream-label"
-                x="1195.0"
-                y="680.0"
-                text-anchor="middle"
-              >
-                S11 Bottoms
-              </text>
+              <path
+                d="M1480 530 L1510 530 L1510 584 L580 584 L580 510 L550 510"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1480 530 L1510 530 L1510 584 L580 584 L580 510 L550 510"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-9)"
+              />
+              <path
+                d="M490 570 L490 600 L710 600 L710 840 L740 840"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M490 570 L490 600 L710 600 L710 840 L740 840"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-9)"
+              />
+              <path
+                d="M860 840 L890 840 L1020 840 L1050 840"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M860 840 L890 840 L1020 840 L1050 840"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-9)"
+              />
+              <path
+                d="M1170 820 L1200 820 L1200 550 L580 550 L550 550"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1170 820 L1200 820 L1200 550 L580 550 L550 550"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-9)"
+              />
+              <path
+                d="M1170 840 L1200 840 L1330 840 L1360 840"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1170 840 L1200 840 L1330 840 L1360 840"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-9)"
+              />
               <g
-                transform="translate(120 410)"
+                class="equipment-symbol"
+                transform="translate(120 490)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
                 <path d="M95 40h25" fill="none" />
               </g>
-              <text class="equipment-tag" x="180" y="516" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="634" text-anchor="middle">
                 F-101 Feed
               </text>
-              <text class="equipment-kind" x="180" y="396" text-anchor="middle">
+              <text class="equipment-kind" x="180" y="654" text-anchor="middle">
                 feed
               </text>
               <g
-                transform="translate(410 410)"
+                class="equipment-symbol"
+                transform="translate(430 490)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -2393,17 +2545,18 @@ python<span class="w"> </span>gallery_processes.py
                 <path d="M77 60L120 60" fill="none" />
                 <path d="M44 25h25M51 35h25M44 45h25M51 55h25" fill="none" />
               </g>
-              <text class="equipment-tag" x="470" y="516" text-anchor="middle">
+              <text class="equipment-tag" x="490" y="634" text-anchor="middle">
                 C-101 Column
               </text>
-              <text class="equipment-kind" x="470" y="396" text-anchor="middle">
+              <text class="equipment-kind" x="490" y="654" text-anchor="middle">
                 column
               </text>
               <g
-                transform="translate(700 160)"
+                class="equipment-symbol"
+                transform="translate(740 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -2414,17 +2567,18 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="m56 5 4 5 4-5m-8 65 4 5 4-5" fill="none" />
               </g>
-              <text class="equipment-tag" x="760" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
                 E-101 Condenser
               </text>
-              <text class="equipment-kind" x="760" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="800" y="344" text-anchor="middle">
                 heatExchanger
               </text>
               <g
-                transform="translate(990 160)"
+                class="equipment-symbol"
+                transform="translate(1050 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -2438,44 +2592,46 @@ python<span class="w"> </span>gallery_processes.py
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="1050" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="1110" y="324" text-anchor="middle">
                 V-101 Reflux drum
               </text>
               <text
                 class="equipment-kind"
-                x="1050"
-                y="146"
+                x="1110"
+                y="344"
                 text-anchor="middle"
               >
                 tank
               </text>
               <g
-                transform="translate(1280 160)"
+                class="equipment-symbol"
+                transform="translate(1360 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path d="M25 40 85 10v60z" fill="var(--surface)" />
                 <path d="M0 40h25M85 20h35M85 40h35M85 60h35" fill="none" />
               </g>
-              <text class="equipment-tag" x="1340" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="1420" y="324" text-anchor="middle">
                 SP-101 Reflux split
               </text>
               <text
                 class="equipment-kind"
-                x="1340"
-                y="146"
+                x="1420"
+                y="344"
                 text-anchor="middle"
               >
                 splitter
               </text>
               <g
-                transform="translate(1570 160)"
+                class="equipment-symbol"
+                transform="translate(1670 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -2485,22 +2641,23 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="M0 40h37" fill="none" />
               </g>
-              <text class="equipment-tag" x="1630" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="1730" y="324" text-anchor="middle">
                 D-101 Distillate
               </text>
               <text
                 class="equipment-kind"
-                x="1630"
-                y="146"
+                x="1730"
+                y="344"
                 text-anchor="middle"
               >
                 product
               </text>
               <g
-                transform="translate(1280 410)"
+                class="equipment-symbol"
+                transform="translate(1360 490)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -2510,22 +2667,23 @@ python<span class="w"> </span>gallery_processes.py
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="1340" y="516" text-anchor="middle">
+              <text class="equipment-tag" x="1420" y="634" text-anchor="middle">
                 P-101 Reflux pump
               </text>
               <text
                 class="equipment-kind"
-                x="1340"
-                y="396"
+                x="1420"
+                y="654"
                 text-anchor="middle"
               >
                 pump
               </text>
               <g
-                transform="translate(700 660)"
+                class="equipment-symbol"
+                transform="translate(740 800)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -2536,39 +2694,41 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="m56 5 4 5 4-5m-8 65 4 5 4-5" fill="none" />
               </g>
-              <text class="equipment-tag" x="760" y="766" text-anchor="middle">
+              <text class="equipment-tag" x="800" y="944" text-anchor="middle">
                 E-102 Reboiler
               </text>
-              <text class="equipment-kind" x="760" y="646" text-anchor="middle">
+              <text class="equipment-kind" x="800" y="964" text-anchor="middle">
                 heatExchanger
               </text>
               <g
-                transform="translate(990 660)"
+                class="equipment-symbol"
+                transform="translate(1050 800)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path d="M25 40 85 10v60z" fill="var(--surface)" />
                 <path d="M0 40h25M85 20h35M85 40h35M85 60h35" fill="none" />
               </g>
-              <text class="equipment-tag" x="1050" y="766" text-anchor="middle">
+              <text class="equipment-tag" x="1110" y="944" text-anchor="middle">
                 SP-102 Boilup split
               </text>
               <text
                 class="equipment-kind"
-                x="1050"
-                y="646"
+                x="1110"
+                y="964"
                 text-anchor="middle"
               >
                 splitter
               </text>
               <g
-                transform="translate(1280 660)"
+                class="equipment-symbol"
+                transform="translate(1360 800)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -2578,23 +2738,247 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="M0 40h37" fill="none" />
               </g>
-              <text class="equipment-tag" x="1340" y="766" text-anchor="middle">
+              <text class="equipment-tag" x="1420" y="944" text-anchor="middle">
                 B-101 Bottoms
               </text>
               <text
                 class="equipment-kind"
-                x="1340"
-                y="646"
+                x="1420"
+                y="964"
                 text-anchor="middle"
               >
                 product
               </text>
+              <path
+                class="callout-leader"
+                d="M335.0 526.9230769230769 L335.0 456.9230769230769"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="245.0"
+                y="400.9230769230769"
+                width="180.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="255.0" y="422.9230769230769">
+                S01 Feed
+              </text>
+              <text class="stream-value" x="255.0" y="443.9230769230769">
+                F=1 kg/s · T=25 degC
+              </text>
+              <path
+                class="callout-leader"
+                d="M490.0 340.0 L504.0 340.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="504.0"
+                y="322.5"
+                width="92.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="514.0" y="344.5">S02 Vapor</text>
+              <path
+                class="callout-leader"
+                d="M955.0 220.0 L955.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="889.0"
+                y="171.0"
+                width="132.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="899.0" y="193.0">
+                S03 Condensate
+              </text>
+              <path
+                class="callout-leader"
+                d="M1265.0 220.0 L1265.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1215.0"
+                y="171.0"
+                width="100.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1225.0" y="193.0">S04 Liquid</text>
+              <path
+                class="callout-leader"
+                d="M1575.0 220.0 L1575.0 180.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1509.0"
+                y="145.0"
+                width="132.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1519.0" y="167.0">
+                S05 Distillate
+              </text>
+              <path
+                class="callout-leader"
+                d="M1510.0 336.0 L1524.0 336.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1524.0"
+                y="318.5"
+                width="100.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1534.0" y="340.5">S06 Reflux</text>
+              <path
+                class="callout-leader"
+                d="M1045.0 584.0 L1045.0 598.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="967.0"
+                y="598.0"
+                width="156.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="977.0" y="620.0">
+                S07 Reflux return
+              </text>
+              <path
+                class="callout-leader"
+                d="M710.0 720.0 L724.0 720.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="724.0"
+                y="702.5"
+                width="140.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="734.0" y="724.5">
+                S08 Sump liquid
+              </text>
+              <path
+                class="callout-leader"
+                d="M955.0 840.0 L955.0 826.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="873.0"
+                y="791.0"
+                width="164.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="883.0" y="813.0">
+                S09 Reboiled fluid
+              </text>
+              <path
+                class="callout-leader"
+                d="M1200.0 685.0 L1214.0 685.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1214.0"
+                y="667.5"
+                width="100.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1224.0" y="689.5">S10 Boilup</text>
+              <path
+                class="callout-leader"
+                d="M1265.0 840.0 L1265.0 826.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1211.0"
+                y="791.0"
+                width="108.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1221.0" y="813.0">S11 Bottoms</text>
             </svg>
           </div>
           <p class="preview-caption">
             Original PFDkit equipment symbols · solid: material; dashed: energy
-            · ? = entered unknown. Values are illustrative entries, not
-            calculated results.
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
           </p>
           <div
             class="table-scroll"
@@ -2712,7 +3096,7 @@ python<span class="w"> </span>gallery_processes.py
           <div class="diagram-tools">
             <button class="diagram-size" aria-pressed="true">
               View actual size</button
-            ><span>Fit overview / scrollable detail</span>
+            ><span>Scaled overview · actual size for readable labels</span>
           </div>
           <div
             class="diagram-scroll fit-diagram"
@@ -2722,11 +3106,11 @@ python<span class="w"> </span>gallery_processes.py
           >
             <svg
               class="process-preview"
-              width="1790"
-              height="900"
+              width="1890"
+              height="1040"
               role="img"
               aria-label="Ethanol · fermentation and distillation"
-              viewBox="0 0 1790 900"
+              viewBox="0 0 1890 1040"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -2743,155 +3127,141 @@ python<span class="w"> </span>gallery_processes.py
                 </marker>
               </defs>
               <path
-                d="M240 200 L270 200 L380 200 L410 200"
+                d="M240 220 L270 220 L400 220 L430 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-11)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="325.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S01 Sugar feed
-              </text>
-              <text
-                class="stream-value"
-                x="325.0"
-                y="195.0"
-                text-anchor="middle"
-              >
-                F=1 kg/s · T=25 degC
-              </text>
               <path
-                d="M530 200 L560 200 L670 200 L700 200"
+                class="flow-line"
+                d="M240 220 L270 220 L400 220 L430 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-11)"
               />
-              <text
-                class="stream-label"
-                x="615.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S02 Pressurized feed
-              </text>
               <path
-                d="M820 200 L850 200 L960 200 L990 200"
+                d="M550 220 L580 220 L710 220 L740 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-11)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="905.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S03 Conditioned feed
-              </text>
               <path
-                d="M1110 200 L1140 200 L1250 200 L1280 200"
+                class="flow-line"
+                d="M550 220 L580 220 L710 220 L740 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-11)"
               />
-              <text
-                class="stream-label"
-                x="1195.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S04 Fermented broth
-              </text>
               <path
-                d="M1340 160 L1340 130 L1540 130 L1540 200 L1570 200"
+                d="M860 220 L890 220 L1020 220 L1050 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-11)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="1440.0"
-                y="110.0"
-                text-anchor="middle"
-              >
-                S05 CO2-rich gas
-              </text>
               <path
-                d="M1340 240 L1340 270 L1250 270 L1250 446.3636363636364 L1280 446.3636363636364"
+                class="flow-line"
+                d="M860 220 L890 220 L1020 220 L1050 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-11)"
               />
-              <text
-                class="stream-label"
-                x="1295.0"
-                y="250.0"
-                text-anchor="middle"
-              >
-                S06 Degassed broth
-              </text>
               <path
-                d="M1340 410 L1340 380 L1540 380 L1540 450 L1570 450"
+                d="M1170 220 L1200 220 L1330 220 L1360 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-11)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="1440.0"
-                y="360.0"
-                text-anchor="middle"
-              >
-                S07 Ethanol-rich outlet
-              </text>
               <path
-                d="M1340 490 L1340 520 L1340 700 L1540 700 L1570 700"
+                class="flow-line"
+                d="M1170 220 L1200 220 L1330 220 L1360 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-11)"
               />
-              <text
-                class="stream-label"
-                x="1440.0"
-                y="680.0"
-                text-anchor="middle"
-              >
-                S08 Stillage
-              </text>
+              <path
+                d="M1420 180 L1420 150 L1640 150 L1640 220 L1670 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1420 180 L1420 150 L1640 150 L1640 220 L1670 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-11)"
+              />
+              <path
+                d="M1420 260 L1420 290 L1330 290 L1330 526.3636363636364 L1360 526.3636363636364"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1420 260 L1420 290 L1330 290 L1330 526.3636363636364 L1360 526.3636363636364"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-11)"
+              />
+              <path
+                d="M1420 490 L1420 460 L1640 460 L1640 530 L1670 530"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1420 490 L1420 460 L1640 460 L1640 530 L1670 530"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-11)"
+              />
+              <path
+                d="M1420 570 L1420 600 L1624.0 600 L1624.0 840 L1640 840 L1670 840"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1420 570 L1420 600 L1624.0 600 L1624.0 840 L1640 840 L1670 840"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-11)"
+              />
               <g
-                transform="translate(120 160)"
+                class="equipment-symbol"
+                transform="translate(120 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
                 <path d="M95 40h25" fill="none" />
               </g>
-              <text class="equipment-tag" x="180" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
                 F-201 Sugar solution
               </text>
-              <text class="equipment-kind" x="180" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
                 feed
               </text>
               <g
-                transform="translate(410 160)"
+                class="equipment-symbol"
+                transform="translate(430 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -2901,17 +3271,18 @@ python<span class="w"> </span>gallery_processes.py
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="470" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
                 P-201 Feed pump
               </text>
-              <text class="equipment-kind" x="470" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
                 pump
               </text>
               <g
-                transform="translate(700 160)"
+                class="equipment-symbol"
+                transform="translate(740 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -2922,20 +3293,21 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="m56 5 4 5 4-5m-8 65 4 5 4-5" fill="none" />
               </g>
-              <text class="equipment-tag" x="760" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
                 E-201 Feed
               </text>
-              <text class="equipment-tag" x="760" y="282" text-anchor="middle">
+              <text class="equipment-tag" x="800" y="344" text-anchor="middle">
                 conditioning
               </text>
-              <text class="equipment-kind" x="760" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="800" y="364" text-anchor="middle">
                 heatExchanger
               </text>
               <g
-                transform="translate(990 160)"
+                class="equipment-symbol"
+                transform="translate(1050 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -2948,22 +3320,23 @@ python<span class="w"> </span>gallery_processes.py
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="1050" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="1110" y="324" text-anchor="middle">
                 R-201 Fermenter
               </text>
               <text
                 class="equipment-kind"
-                x="1050"
-                y="146"
+                x="1110"
+                y="344"
                 text-anchor="middle"
               >
                 reactor
               </text>
               <g
-                transform="translate(1280 160)"
+                class="equipment-symbol"
+                transform="translate(1360 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -2973,25 +3346,26 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="M0 40h40M60 0v8M60 72v8M44 45h32" fill="none" />
               </g>
-              <text class="equipment-tag" x="1340" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="1420" y="324" text-anchor="middle">
                 V-201 Gas
               </text>
-              <text class="equipment-tag" x="1340" y="282" text-anchor="middle">
+              <text class="equipment-tag" x="1420" y="344" text-anchor="middle">
                 disengagement
               </text>
               <text
                 class="equipment-kind"
-                x="1340"
-                y="146"
+                x="1420"
+                y="364"
                 text-anchor="middle"
               >
                 separator
               </text>
               <g
-                transform="translate(1570 160)"
+                class="equipment-symbol"
+                transform="translate(1670 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -3001,22 +3375,23 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="M0 40h37" fill="none" />
               </g>
-              <text class="equipment-tag" x="1630" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="1730" y="324" text-anchor="middle">
                 G-201 CO2-rich gas
               </text>
               <text
                 class="equipment-kind"
-                x="1630"
-                y="146"
+                x="1730"
+                y="344"
                 text-anchor="middle"
               >
                 product
               </text>
               <g
-                transform="translate(1280 410)"
+                class="equipment-symbol"
+                transform="translate(1360 490)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -3033,22 +3408,23 @@ python<span class="w"> </span>gallery_processes.py
                 <path d="M77 60L120 60" fill="none" />
                 <path d="M44 25h25M51 35h25M44 45h25M51 55h25" fill="none" />
               </g>
-              <text class="equipment-tag" x="1340" y="516" text-anchor="middle">
+              <text class="equipment-tag" x="1420" y="634" text-anchor="middle">
                 C-201 Recovery column
               </text>
               <text
                 class="equipment-kind"
-                x="1340"
-                y="396"
+                x="1420"
+                y="654"
                 text-anchor="middle"
               >
                 column
               </text>
               <g
-                transform="translate(1570 410)"
+                class="equipment-symbol"
+                transform="translate(1670 490)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -3058,22 +3434,23 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="M0 40h37" fill="none" />
               </g>
-              <text class="equipment-tag" x="1630" y="516" text-anchor="middle">
+              <text class="equipment-tag" x="1730" y="634" text-anchor="middle">
                 D-201 Hydrous ethanol
               </text>
               <text
                 class="equipment-kind"
-                x="1630"
-                y="396"
+                x="1730"
+                y="654"
                 text-anchor="middle"
               >
                 product
               </text>
               <g
-                transform="translate(1570 660)"
+                class="equipment-symbol"
+                transform="translate(1670 800)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -3083,23 +3460,194 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="M0 40h37" fill="none" />
               </g>
-              <text class="equipment-tag" x="1630" y="766" text-anchor="middle">
+              <text class="equipment-tag" x="1730" y="944" text-anchor="middle">
                 B-201 Stillage
               </text>
               <text
                 class="equipment-kind"
-                x="1630"
-                y="646"
+                x="1730"
+                y="964"
                 text-anchor="middle"
               >
                 product
+              </text>
+              <path
+                class="callout-leader"
+                d="M335.0 220.0 L335.0 150.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="245.0"
+                y="94.0"
+                width="180.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="255.0" y="116.0">
+                S01 Sugar feed
+              </text>
+              <text class="stream-value" x="255.0" y="137.0">
+                F=1 kg/s · T=25 degC
+              </text>
+              <path
+                class="callout-leader"
+                d="M645.0 220.0 L645.0 150.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="555.0"
+                y="115.0"
+                width="180.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="565.0" y="137.0">
+                S02 Pressurized feed
+              </text>
+              <path
+                class="callout-leader"
+                d="M955.0 220.0 L955.0 150.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="865.0"
+                y="115.0"
+                width="180.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="875.0" y="137.0">
+                S03 Conditioned feed
+              </text>
+              <path
+                class="callout-leader"
+                d="M1265.0 220.0 L1265.0 150.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1179.0"
+                y="115.0"
+                width="172.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1189.0" y="137.0">
+                S04 Fermented broth
+              </text>
+              <path
+                class="callout-leader"
+                d="M1530.0 150.0 L1530.0 136.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1456.0"
+                y="101.0"
+                width="148.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1466.0" y="123.0">
+                S05 CO2-rich gas
+              </text>
+              <path
+                class="callout-leader"
+                d="M1330.0 408.1818181818182 L1344.0 408.1818181818182"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1344.0"
+                y="390.6818181818182"
+                width="164.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1354.0" y="412.6818181818182">
+                S06 Degassed broth
+              </text>
+              <path
+                class="callout-leader"
+                d="M1640.0 495.0 L1640.0 455.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1538.0"
+                y="420.0"
+                width="204.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1548.0" y="442.0">
+                S07 Ethanol-rich outlet
+              </text>
+              <path
+                class="callout-leader"
+                d="M1573.0 600.0 L1573.0 586.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1515.0"
+                y="551.0"
+                width="116.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1525.0" y="573.0">
+                S08 Stillage
               </text>
             </svg>
           </div>
           <p class="preview-caption">
             Original PFDkit equipment symbols · solid: material; dashed: energy
-            · ? = entered unknown. Values are illustrative entries, not
-            calculated results.
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
           </p>
           <div
             class="table-scroll"
@@ -3198,7 +3746,7 @@ python<span class="w"> </span>gallery_processes.py
           <div class="diagram-tools">
             <button class="diagram-size" aria-pressed="true">
               View actual size</button
-            ><span>Fit overview / scrollable detail</span>
+            ><span>Scaled overview · actual size for readable labels</span>
           </div>
           <div
             class="diagram-scroll fit-diagram"
@@ -3208,11 +3756,11 @@ python<span class="w"> </span>gallery_processes.py
           >
             <svg
               class="process-preview"
-              width="2080"
-              height="900"
+              width="2200"
+              height="1040"
               role="img"
               aria-label="Ammonia · synthesis, recovery and recycle"
-              viewBox="0 0 2080 900"
+              viewBox="0 0 2200 1040"
               xmlns="http://www.w3.org/2000/svg"
             >
               <defs>
@@ -3229,190 +3777,176 @@ python<span class="w"> </span>gallery_processes.py
                 </marker>
               </defs>
               <path
-                d="M240 200 L270 200 L270 180 L380 180 L410 180"
+                d="M240 220 L270 220 L270 200 L400 200 L430 200"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-13)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="325.0"
-                y="160.0"
-                text-anchor="middle"
-              >
-                S01 Makeup gas
-              </text>
-              <text
-                class="stream-value"
-                x="325.0"
-                y="175.0"
-                text-anchor="middle"
-              >
-                F=1 kg/s · T=25 degC
-              </text>
               <path
-                d="M530 200 L560 200 L670 200 L700 200"
+                class="flow-line"
+                d="M240 220 L270 220 L270 200 L400 200 L430 200"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-13)"
               />
-              <text
-                class="stream-label"
-                x="615.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S02 Combined feed
-              </text>
               <path
-                d="M820 200 L850 200 L960 200 L990 200"
+                d="M550 220 L580 220 L710 220 L740 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-13)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="905.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S03 Reactor feed
-              </text>
               <path
-                d="M1110 200 L1140 200 L1250 200 L1280 200"
+                class="flow-line"
+                d="M550 220 L580 220 L710 220 L740 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-13)"
               />
-              <text
-                class="stream-label"
-                x="1195.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S04 Reactor effluent
-              </text>
               <path
-                d="M1400 200 L1430 200 L1540 200 L1570 200"
+                d="M860 220 L890 220 L1020 220 L1050 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-13)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="1485.0"
-                y="180.0"
-                text-anchor="middle"
-              >
-                S05 Cooled mixture
-              </text>
               <path
-                d="M1630 240 L1630 270 L1830 270 L1830 450 L1860 450"
+                class="flow-line"
+                d="M860 220 L890 220 L1020 220 L1050 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-13)"
               />
-              <text
-                class="stream-label"
-                x="1730.0"
-                y="250.0"
-                text-anchor="middle"
-              >
-                S06 Ammonia
-              </text>
               <path
-                d="M1630 160 L1630 130 L1540 130 L1540 450 L1570 450"
+                d="M1170 220 L1200 220 L1330 220 L1360 220"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                marker-end="url(#flow-13)"
+                stroke="var(--surface)"
+                stroke-width="8"
               />
-              <text
-                class="stream-label"
-                x="1585.0"
-                y="110.0"
-                text-anchor="middle"
-              >
-                S07 Unreacted gas
-              </text>
               <path
-                d="M1690 430 L1720 430 L1720 278 L380 278 L380 200 L410 200"
+                class="flow-line"
+                d="M1170 220 L1200 220 L1330 220 L1360 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-13)"
               />
-              <text
-                class="stream-label"
-                x="1050.0"
-                y="258.0"
-                text-anchor="middle"
-              >
-                S08 Recycle gas
-              </text>
               <path
-                d="M1690 450 L1720 450 L1720 700 L1830 700 L1860 700"
+                d="M1480 220 L1510 220 L1640 220 L1670 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1480 220 L1510 220 L1640 220 L1670 220"
                 fill="none"
                 stroke="currentColor"
-                stroke-width="2"
+                stroke-width="2.2"
                 marker-end="url(#flow-13)"
               />
-              <text
-                class="stream-label"
-                x="1775.0"
-                y="680.0"
-                text-anchor="middle"
-              >
-                S09 Purge
-              </text>
+              <path
+                d="M1730 260 L1730 290 L1950 290 L1950 530 L1980 530"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1730 260 L1730 290 L1950 290 L1950 530 L1980 530"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-13)"
+              />
+              <path
+                d="M1730 180 L1730 150 L1640 150 L1640 530 L1670 530"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1730 180 L1730 150 L1640 150 L1640 530 L1670 530"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-13)"
+              />
+              <path
+                d="M1790 510 L1820 510 L1820 274 L400 274 L400 220 L430 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1790 510 L1820 510 L1820 274 L400 274 L400 220 L430 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-13)"
+              />
+              <path
+                d="M1790 530 L1820 530 L1820 840 L1950 840 L1980 840"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M1790 530 L1820 530 L1820 840 L1950 840 L1980 840"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-13)"
+              />
               <g
-                transform="translate(120 160)"
+                class="equipment-symbol"
+                transform="translate(120 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
                 <path d="M95 40h25" fill="none" />
               </g>
-              <text class="equipment-tag" x="180" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
                 F-301 Pressurized
               </text>
-              <text class="equipment-tag" x="180" y="282" text-anchor="middle">
+              <text class="equipment-tag" x="180" y="344" text-anchor="middle">
                 H2/N2
               </text>
-              <text class="equipment-kind" x="180" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="180" y="364" text-anchor="middle">
                 feed
               </text>
               <g
-                transform="translate(410 160)"
+                class="equipment-symbol"
+                transform="translate(430 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path d="M35 10 95 40 35 70z" fill="var(--surface)" />
                 <path d="M0 20h35M0 40h35M0 60h35M95 40h25" fill="none" />
               </g>
-              <text class="equipment-tag" x="470" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
                 M-301 Feed mixing
               </text>
-              <text class="equipment-kind" x="470" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
                 mixer
               </text>
               <g
-                transform="translate(700 160)"
+                class="equipment-symbol"
+                transform="translate(740 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -3423,17 +3957,18 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="m56 5 4 5 4-5m-8 65 4 5 4-5" fill="none" />
               </g>
-              <text class="equipment-tag" x="760" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
                 E-301 Feed heater
               </text>
-              <text class="equipment-kind" x="760" y="146" text-anchor="middle">
+              <text class="equipment-kind" x="800" y="344" text-anchor="middle">
                 heatExchanger
               </text>
               <g
-                transform="translate(990 160)"
+                class="equipment-symbol"
+                transform="translate(1050 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -3443,25 +3978,26 @@ python<span class="w"> </span>gallery_processes.py
                   fill="none"
                 />
               </g>
-              <text class="equipment-tag" x="1050" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="1110" y="324" text-anchor="middle">
                 R-301 Synthesis
               </text>
-              <text class="equipment-tag" x="1050" y="282" text-anchor="middle">
+              <text class="equipment-tag" x="1110" y="344" text-anchor="middle">
                 reactor
               </text>
               <text
                 class="equipment-kind"
-                x="1050"
-                y="146"
+                x="1110"
+                y="364"
                 text-anchor="middle"
               >
                 reactor
               </text>
               <g
-                transform="translate(1280 160)"
+                class="equipment-symbol"
+                transform="translate(1360 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -3472,25 +4008,26 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="m56 5 4 5 4-5m-8 65 4 5 4-5" fill="none" />
               </g>
-              <text class="equipment-tag" x="1340" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="1420" y="324" text-anchor="middle">
                 E-302
               </text>
-              <text class="equipment-tag" x="1340" y="282" text-anchor="middle">
+              <text class="equipment-tag" x="1420" y="344" text-anchor="middle">
                 Cooling/condensation
               </text>
               <text
                 class="equipment-kind"
-                x="1340"
-                y="146"
+                x="1420"
+                y="364"
                 text-anchor="middle"
               >
                 heatExchanger
               </text>
               <g
-                transform="translate(1570 160)"
+                class="equipment-symbol"
+                transform="translate(1670 180)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -3500,25 +4037,26 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="M0 40h40M60 0v8M60 72v8M44 45h32" fill="none" />
               </g>
-              <text class="equipment-tag" x="1630" y="266" text-anchor="middle">
+              <text class="equipment-tag" x="1730" y="324" text-anchor="middle">
                 V-301 Ammonia
               </text>
-              <text class="equipment-tag" x="1630" y="282" text-anchor="middle">
+              <text class="equipment-tag" x="1730" y="344" text-anchor="middle">
                 separator
               </text>
               <text
                 class="equipment-kind"
-                x="1630"
-                y="146"
+                x="1730"
+                y="364"
                 text-anchor="middle"
               >
                 separator
               </text>
               <g
-                transform="translate(1860 410)"
+                class="equipment-symbol"
+                transform="translate(1980 490)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -3528,44 +4066,46 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="M0 40h37" fill="none" />
               </g>
-              <text class="equipment-tag" x="1920" y="516" text-anchor="middle">
+              <text class="equipment-tag" x="2040" y="634" text-anchor="middle">
                 P-301 Liquid ammonia
               </text>
               <text
                 class="equipment-kind"
-                x="1920"
-                y="396"
+                x="2040"
+                y="654"
                 text-anchor="middle"
               >
                 product
               </text>
               <g
-                transform="translate(1570 410)"
+                class="equipment-symbol"
+                transform="translate(1670 490)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
                 <path d="M25 40 85 10v60z" fill="var(--surface)" />
                 <path d="M0 40h25M85 20h35M85 40h35M85 60h35" fill="none" />
               </g>
-              <text class="equipment-tag" x="1630" y="516" text-anchor="middle">
+              <text class="equipment-tag" x="1730" y="634" text-anchor="middle">
                 SP-301 Purge split
               </text>
               <text
                 class="equipment-kind"
-                x="1630"
-                y="396"
+                x="1730"
+                y="654"
                 text-anchor="middle"
               >
                 splitter
               </text>
               <g
-                transform="translate(1860 660)"
+                class="equipment-symbol"
+                transform="translate(1980 800)"
                 fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
+                stroke="var(--ink)"
+                stroke-width="2.2"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               >
@@ -3575,23 +4115,211 @@ python<span class="w"> </span>gallery_processes.py
                 />
                 <path d="M0 40h37" fill="none" />
               </g>
-              <text class="equipment-tag" x="1920" y="766" text-anchor="middle">
+              <text class="equipment-tag" x="2040" y="944" text-anchor="middle">
                 G-301 Purge gas
               </text>
               <text
                 class="equipment-kind"
-                x="1920"
-                y="646"
+                x="2040"
+                y="964"
                 text-anchor="middle"
               >
                 product
               </text>
+              <path
+                class="callout-leader"
+                d="M335.0 200.0 L335.0 160.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="245.0"
+                y="104.0"
+                width="180.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="255.0" y="126.0">
+                S01 Makeup gas
+              </text>
+              <text class="stream-value" x="255.0" y="147.0">
+                F=1 kg/s · T=25 degC
+              </text>
+              <path
+                class="callout-leader"
+                d="M645.0 220.0 L645.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="567.0"
+                y="171.0"
+                width="156.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="577.0" y="193.0">
+                S02 Combined feed
+              </text>
+              <path
+                class="callout-leader"
+                d="M955.0 220.0 L955.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="881.0"
+                y="171.0"
+                width="148.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="891.0" y="193.0">
+                S03 Reactor feed
+              </text>
+              <path
+                class="callout-leader"
+                d="M1265.0 220.0 L1265.0 150.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1175.0"
+                y="115.0"
+                width="180.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1185.0" y="137.0">
+                S04 Reactor effluent
+              </text>
+              <path
+                class="callout-leader"
+                d="M1542.5 220.0 L1542.5 150.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1460.5"
+                y="115.0"
+                width="164.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1470.5" y="137.0">
+                S05 Cooled mixture
+              </text>
+              <path
+                class="callout-leader"
+                d="M1895.0 290.0 L1895.0 276.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1841.0"
+                y="241.0"
+                width="108.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1851.0" y="263.0">S06 Ammonia</text>
+              <path
+                class="callout-leader"
+                d="M1707.5 150.0 L1707.5 136.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1629.5"
+                y="101.0"
+                width="156.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1639.5" y="123.0">
+                S07 Unreacted gas
+              </text>
+              <path
+                class="callout-leader"
+                d="M1820.0 392.0 L1806.0 392.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1666.0"
+                y="374.5"
+                width="140.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1676.0" y="396.5">
+                S08 Recycle gas
+              </text>
+              <path
+                class="callout-leader"
+                d="M1820.0 685.0 L1834.0 685.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="1834.0"
+                y="667.5"
+                width="92.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="1844.0" y="689.5">S09 Purge</text>
             </svg>
           </div>
           <p class="preview-caption">
             Original PFDkit equipment symbols · solid: material; dashed: energy
-            · ? = entered unknown. Values are illustrative entries, not
-            calculated results.
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
           </p>
           <div
             class="table-scroll"

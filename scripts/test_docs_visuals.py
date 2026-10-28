@@ -4,6 +4,7 @@ from itertools import pairwise
 from pathlib import Path
 
 from docs_diagram import diagram, values
+from docs_labels import crosses, intersects, place_labels
 from docs_routing import route
 from gallery_processes import process_gallery
 from pfd_core import (
@@ -65,3 +66,22 @@ def test_rendered_streams_have_labels_and_values():
         assert stream.tag in rendered
     assert "F=1 kg/s" in rendered
     assert "T=25 degC" in rendered
+
+
+def test_callouts_do_not_overlap_text_obstacles_or_flow_lines():
+    segments = [((100, 200), (500, 200)), ((100, 240), (500, 240))]
+    entries = [
+        {
+            "title": "S01 Feed",
+            "values": "F=1 kg/s · T=25 degC",
+            "segments": [segments[0]],
+        },
+        {"title": "S02 Product", "values": "P=1 bar", "segments": [segments[1]]},
+    ]
+    obstacles = [(200, 40, 300, 100)]
+    labels, _ = place_labels(entries, obstacles, segments, 700, 400)
+    assert len(labels) == 2
+    assert not intersects(labels[0]["rect"], labels[1]["rect"])
+    for label in labels:
+        assert not any(intersects(label["rect"], box) for box in obstacles)
+        assert not any(crosses(label["rect"], a, b) for a, b in segments)
