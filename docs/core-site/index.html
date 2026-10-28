@@ -94,6 +94,11 @@
                 >Implementation sequence</a
               ><a class="nav-h3" href="#first-addition:-valve"
                 >First addition: valve</a
+              ><a class="nav-h3" href="#check-valve">Check valve</a
+              ><a class="nav-h3" href="#pressure-relief-valve"
+                >Pressure relief valve</a
+              ><a class="nav-h3" href="#pressure-reducing-regulator"
+                >Pressure reducing regulator</a
               >
             </nav>
           </details>
@@ -141,13 +146,14 @@
         <div class="eyebrow">PYTHON LIBRARY · VERSION 0.1.0</div>
         <h1>pfd-core</h1>
         <p>
-          Development update: the repository now includes <code>valve</code> as
-          an eleventh built-in equipment type. PyPI 0.1.0 still provides the
-          original ten. See the
+          Development update: the repository has 14 built-in types, adding
+          <code>valve</code>, <code>checkValve</code>,
+          <code>pressureReliefValve</code> and <code>pressureRegulator</code> to
+          the original ten. PyPI 0.1.0 still provides the original ten. See the
           <a
             href="https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md"
             >equipment catalog and expansion plan</a
-          >; source installation is required for the new valve until the next
+          >; source installation is required for these additions until the next
           release.
         </p>
         <p>
@@ -1238,6 +1244,15 @@ out out material 1
 heat in energy 1
 valve
 in in material 1
+out out material 1
+checkValve
+in in material 1
+out out material 1
+pressureReliefValve
+in in material 1
+out out material 1
+pressureRegulator
+in in material 1
 out out material 1</pre>
         </details>
         <h3 id="example:-a-recycle-loop">Example: a recycle loop</h3>
@@ -2302,12 +2317,15 @@ Completed successfully · all assertions passed.</pre>
         </p>
         <h3 id="available-now">Available now</h3>
         <p>
-          Feed (<code>feed</code>), product (<code>product</code>), pump
-          (<code>pump</code>), heat exchanger (<code>heatExchanger</code>),
-          separator (<code>separator</code>), tank (<code>tank</code>), mixer
+          The development source provides 14 types: feed (<code>feed</code>),
+          product (<code>product</code>), pump (<code>pump</code>), heat
+          exchanger (<code>heatExchanger</code>), separator
+          (<code>separator</code>), tank (<code>tank</code>), mixer
           (<code>mixer</code>), splitter (<code>splitter</code>), column
-          (<code>column</code>), reactor (<code>reactor</code>), and valve
-          (<code>valve</code>).
+          (<code>column</code>), reactor (<code>reactor</code>), valve
+          (<code>valve</code>), check valve (<code>checkValve</code>), pressure
+          relief valve (<code>pressureReliefValve</code>), and pressure reducing
+          regulator (<code>pressureRegulator</code>).
         </p>
         <h3 id="implementation-sequence">Implementation sequence</h3>
         <p>
@@ -2324,9 +2342,9 @@ Completed successfully · all assertions passed.</pre>
             [x] Inline valve: generic, globe, gate, ball, butterfly and needle
             configuration
           </li>
-          <li>[ ] Check valve</li>
-          <li>[ ] Pressure relief valve</li>
-          <li>[ ] Pressure reducing regulator</li>
+          <li>[x] Check valve</li>
+          <li>[x] Pressure relief valve</li>
+          <li>[x] Pressure reducing regulator</li>
           <li>[ ] Flow restriction / orifice</li>
           <li>[ ] Compressor: centrifugal and reciprocating variants</li>
           <li>[ ] Blower</li>
@@ -2623,9 +2641,9 @@ Completed successfully · all assertions passed.</pre>
                 stroke="var(--line)"
               />
               <text class="stream-label" x="239.0" y="116.0">
-                b242f186-a980-45b6-9630-
+                97fc2016-401c-4c2f-9a52-
               </text>
-              <text class="stream-label" x="239.0" y="137.0">8fed13784199</text>
+              <text class="stream-label" x="239.0" y="137.0">bbcca3bb93b5</text>
               <path
                 class="callout-leader"
                 d="M645.0 220.0 L645.0 150.0"
@@ -2645,9 +2663,9 @@ Completed successfully · all assertions passed.</pre>
                 stroke="var(--line)"
               />
               <text class="stream-label" x="549.0" y="116.0">
-                a47a9437-1f8e-44a3-9f22-
+                d8e68586-0385-4bbb-b187-
               </text>
-              <text class="stream-label" x="549.0" y="137.0">964d451cc1c8</text>
+              <text class="stream-label" x="549.0" y="137.0">6ff7e1765e00</text>
             </svg>
           </div>
           <p class="preview-caption">
@@ -2672,13 +2690,13 @@ Completed successfully · all assertions passed.</pre>
               </thead>
               <tbody>
                 <tr>
-                  <td>b242f186-a980-45b6-9630-8fed13784199</td>
+                  <td>97fc2016-401c-4c2f-9a52-bbcca3bb93b5</td>
                   <td>supply.out → valve.in</td>
                   <td>material</td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
-                  <td>a47a9437-1f8e-44a3-9f22-964d451cc1c8</td>
+                  <td>d8e68586-0385-4bbb-b187-6ff7e1765e00</td>
                   <td>valve.out → outlet.in</td>
                   <td>material</td>
                   <td>Not entered</td>
@@ -2696,6 +2714,764 @@ Completed successfully · all assertions passed.</pre>
           is released, install the current source checkout with
           <code>python -m pip install ./packages/pfd-core</code> to run this
           example.
+        </p>
+        <h3 id="check-valve">Check valve</h3>
+        <p>
+          <code>checkValve</code> has material <code>in</code> (left) and
+          <code>out</code> (right) ports. <code>construction</code> accepts
+          <code>swing</code>, <code>lift</code> or <code>wafer</code>; all use
+          the same generic nonreturn symbol. <code>crackingPressurePa</code> is
+          a nonnegative pressure difference in Pa, or <code>None</code>.
+          Directional ports describe the drawing; they do not simulate closure
+          or reverse flow.
+        </p>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">add_equipment</span><span class="p">,</span> <span class="n">connect</span><span class="p">,</span> <span class="n">new_document</span><span class="p">,</span> <span class="n">validate_document</span>
+
+<span class="n">check_doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Check valve&quot;</span><span class="p">),</span> <span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;feed&quot;</span><span class="p">)</span>
+<span class="n">check_doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span>
+    <span class="n">check_doc</span><span class="p">,</span>
+    <span class="s2">&quot;checkValve&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;nrv&quot;</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;construction&quot;</span><span class="p">:</span> <span class="s2">&quot;swing&quot;</span><span class="p">,</span> <span class="s2">&quot;crackingPressurePa&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+<span class="p">)</span>
+<span class="n">check_doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">check_doc</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">check_doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">check_doc</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;nrv&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;Supply&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">check_doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">check_doc</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;nrv&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;Forward path&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">check_doc</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">check_doc</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">equipment</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+</code></pre>
+        </div>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>3</b> equipment</span><span><b>2</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
+          <div class="diagram-tools">
+            <button class="diagram-size" aria-pressed="true">
+              View actual size</button
+            ><span>Scaled overview · actual size for readable labels</span>
+          </div>
+          <div
+            class="diagram-scroll fit-diagram"
+            role="region"
+            tabindex="0"
+            aria-label="Process flow diagram"
+          >
+            <svg
+              class="process-preview"
+              width="960"
+              height="420"
+              role="img"
+              aria-label="Check valve"
+              viewBox="0 0 960 420"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <marker
+                  id="flow-9"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M0 0 10 5 0 10" fill="currentColor" />
+                </marker>
+              </defs>
+              <path
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-9)"
+              />
+              <path
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-9)"
+              />
+              <g
+                class="equipment-symbol"
+                transform="translate(120 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
+                <path d="M95 40h25" fill="none" />
+              </g>
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
+                F-001
+              </text>
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
+                feed
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(430 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M0 40h35M85 40h35M35 20l40 20-40 20z"
+                  fill="var(--surface)"
+                />
+                <path d="M80 18v44M40 18l30-8" fill="none" />
+              </g>
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
+                NRV-001
+              </text>
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
+                checkValve
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(740 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M25 25h53l27 15-27 15H25l12-15z"
+                  fill="var(--surface)"
+                />
+                <path d="M0 40h37" fill="none" />
+              </g>
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
+                PR-001
+              </text>
+              <text class="equipment-kind" x="800" y="344" text-anchor="middle">
+                product
+              </text>
+              <path
+                class="callout-leader"
+                d="M335.0 220.0 L335.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="301.0"
+                y="171.0"
+                width="68.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="311.0" y="193.0">Supply</text>
+              <path
+                class="callout-leader"
+                d="M645.0 220.0 L645.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="587.0"
+                y="171.0"
+                width="116.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="597.0" y="193.0">Forward path</text>
+            </svg>
+          </div>
+          <p class="preview-caption">
+            Original PFDkit equipment symbols · solid: material; dashed: energy
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
+          </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections and entered values"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                  <th>Entered values</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Supply</td>
+                  <td>feed.out → nrv.in</td>
+                  <td>material</td>
+                  <td>Not entered</td>
+                </tr>
+                <tr>
+                  <td>Forward path</td>
+                  <td>nrv.out → product.in</td>
+                  <td>material</td>
+                  <td>Not entered</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="console">
+{&#x27;construction&#x27;: &#x27;swing&#x27;, &#x27;crackingPressurePa&#x27;: None}</pre>
+        </details>
+        <h3 id="pressure-relief-valve">Pressure relief valve</h3>
+        <p>
+          <code>pressureReliefValve</code> uses material <code>in</code> on its
+          bottom (protected side) and <code>out</code> on its right (discharge
+          side). <code>mechanism</code> accepts <code>springLoaded</code> or
+          <code>pilotOperated</code>. Both use a generic spring-relief
+          schematic; pilot-system details are omitted.
+          <code>setPressurePa</code> is an entered absolute pressure in Pa,
+          strictly positive or <code>None</code>. No capacity, opening action,
+          discharge-system calculation or safety adequacy is evaluated. An
+          unknown value is appropriate for an illustrative diagram.
+        </p>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">add_equipment</span><span class="p">,</span> <span class="n">connect</span><span class="p">,</span> <span class="n">new_document</span><span class="p">,</span> <span class="n">validate_document</span>
+
+<span class="n">relief_doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Relief schematic&quot;</span><span class="p">),</span> <span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;protected&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">250</span><span class="p">)</span>
+<span class="n">relief_doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span>
+    <span class="n">relief_doc</span><span class="p">,</span>
+    <span class="s2">&quot;pressureReliefValve&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;psv&quot;</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;mechanism&quot;</span><span class="p">:</span> <span class="s2">&quot;springLoaded&quot;</span><span class="p">,</span> <span class="s2">&quot;setPressurePa&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+<span class="p">)</span>
+<span class="n">relief_doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">relief_doc</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;discharge&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">relief_doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">relief_doc</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;protected&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;psv&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;Protected-side boundary&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">relief_doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">relief_doc</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;psv&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;discharge&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;Discharge boundary&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">relief_doc</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">relief_doc</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">equipment</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+</code></pre>
+        </div>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>3</b> equipment</span><span><b>2</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
+          <div class="diagram-tools">
+            <button class="diagram-size" aria-pressed="true">
+              View actual size</button
+            ><span>Scaled overview · actual size for readable labels</span>
+          </div>
+          <div
+            class="diagram-scroll fit-diagram"
+            role="region"
+            tabindex="0"
+            aria-label="Process flow diagram"
+          >
+            <svg
+              class="process-preview"
+              width="960"
+              height="730"
+              role="img"
+              aria-label="Relief schematic"
+              viewBox="0 0 960 730"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <marker
+                  id="flow-10"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M0 0 10 5 0 10" fill="currentColor" />
+                </marker>
+              </defs>
+              <path
+                d="M240 530 L270 530 L270 290 L490 290 L490 260"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M240 530 L270 530 L270 290 L490 290 L490 260"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-10)"
+              />
+              <path
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-10)"
+              />
+              <g
+                class="equipment-symbol"
+                transform="translate(120 490)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
+                <path d="M95 40h25" fill="none" />
+              </g>
+              <text class="equipment-tag" x="180" y="634" text-anchor="middle">
+                F-001
+              </text>
+              <text class="equipment-kind" x="180" y="654" text-anchor="middle">
+                feed
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(430 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M60 80V55M60 55l30-15H120M45 55h30M60 55V30M60 30l-10-5 20-7-20-7 10-5M45 5h30"
+                  fill="none"
+                />
+              </g>
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
+                PSV-001
+              </text>
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
+                pressureReliefValve
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(740 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M25 25h53l27 15-27 15H25l12-15z"
+                  fill="var(--surface)"
+                />
+                <path d="M0 40h37" fill="none" />
+              </g>
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
+                PR-001
+              </text>
+              <text class="equipment-kind" x="800" y="344" text-anchor="middle">
+                product
+              </text>
+              <path
+                class="callout-leader"
+                d="M270.0 410.0 L284.0 410.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="284.0"
+                y="392.5"
+                width="204.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="294.0" y="414.5">
+                Protected-side boundary
+              </text>
+              <path
+                class="callout-leader"
+                d="M645.0 220.0 L645.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="563.0"
+                y="171.0"
+                width="164.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="573.0" y="193.0">
+                Discharge boundary
+              </text>
+            </svg>
+          </div>
+          <p class="preview-caption">
+            Original PFDkit equipment symbols · solid: material; dashed: energy
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
+          </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections and entered values"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                  <th>Entered values</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Protected-side boundary</td>
+                  <td>protected.out → psv.in</td>
+                  <td>material</td>
+                  <td>Not entered</td>
+                </tr>
+                <tr>
+                  <td>Discharge boundary</td>
+                  <td>psv.out → discharge.in</td>
+                  <td>material</td>
+                  <td>Not entered</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="console">
+{&#x27;mechanism&#x27;: &#x27;springLoaded&#x27;, &#x27;setPressurePa&#x27;: None}</pre>
+        </details>
+        <h3 id="pressure-reducing-regulator">Pressure reducing regulator</h3>
+        <p>
+          <code>pressureRegulator</code> has material <code>in</code> (upstream,
+          left) and <code>out</code> (downstream, right).
+          <code>actuation</code> accepts <code>selfActing</code> or
+          <code>pilotOperated</code>; the generic diaphragm/regulator symbol
+          represents both. <code>outletPressurePa</code> is an entered absolute
+          downstream pressure in Pa, strictly positive or <code>None</code>.
+          Configuration neither establishes an upstream pressure nor solves or
+          controls the stream pressure.
+        </p>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">add_equipment</span><span class="p">,</span> <span class="n">connect</span><span class="p">,</span> <span class="n">new_document</span><span class="p">,</span> <span class="n">validate_document</span>
+
+<span class="n">regulator_doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Pressure regulator&quot;</span><span class="p">),</span> <span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;upstream&quot;</span><span class="p">)</span>
+<span class="n">regulator_doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span>
+    <span class="n">regulator_doc</span><span class="p">,</span>
+    <span class="s2">&quot;pressureRegulator&quot;</span><span class="p">,</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;reg&quot;</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;actuation&quot;</span><span class="p">:</span> <span class="s2">&quot;selfActing&quot;</span><span class="p">,</span> <span class="s2">&quot;outletPressurePa&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+<span class="p">)</span>
+<span class="n">regulator_doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">regulator_doc</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;downstream&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">regulator_doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">regulator_doc</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;upstream&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;reg&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;Upstream&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">regulator_doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">regulator_doc</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;reg&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;downstream&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;Downstream&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">regulator_doc</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">regulator_doc</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">equipment</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+</code></pre>
+        </div>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>3</b> equipment</span><span><b>2</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
+          <div class="diagram-tools">
+            <button class="diagram-size" aria-pressed="true">
+              View actual size</button
+            ><span>Scaled overview · actual size for readable labels</span>
+          </div>
+          <div
+            class="diagram-scroll fit-diagram"
+            role="region"
+            tabindex="0"
+            aria-label="Process flow diagram"
+          >
+            <svg
+              class="process-preview"
+              width="960"
+              height="420"
+              role="img"
+              aria-label="Pressure regulator"
+              viewBox="0 0 960 420"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <marker
+                  id="flow-11"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M0 0 10 5 0 10" fill="currentColor" />
+                </marker>
+              </defs>
+              <path
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-11)"
+              />
+              <path
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-11)"
+              />
+              <g
+                class="equipment-symbol"
+                transform="translate(120 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
+                <path d="M95 40h25" fill="none" />
+              </g>
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
+                F-001
+              </text>
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
+                feed
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(430 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M0 40h30M90 40h30M30 20l60 40V20L30 60z"
+                  fill="var(--surface)"
+                />
+                <path
+                  d="M60 40V18M40 18a20 12 0 0 1 40 0zM100 40V8H80"
+                  fill="none"
+                />
+              </g>
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
+                PCV-001
+              </text>
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
+                pressureRegulator
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(740 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M25 25h53l27 15-27 15H25l12-15z"
+                  fill="var(--surface)"
+                />
+                <path d="M0 40h37" fill="none" />
+              </g>
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
+                PR-001
+              </text>
+              <text class="equipment-kind" x="800" y="344" text-anchor="middle">
+                product
+              </text>
+              <path
+                class="callout-leader"
+                d="M335.0 220.0 L335.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="293.0"
+                y="171.0"
+                width="84.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="303.0" y="193.0">Upstream</text>
+              <path
+                class="callout-leader"
+                d="M645.0 220.0 L645.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="595.0"
+                y="171.0"
+                width="100.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="605.0" y="193.0">Downstream</text>
+            </svg>
+          </div>
+          <p class="preview-caption">
+            Original PFDkit equipment symbols · solid: material; dashed: energy
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
+          </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections and entered values"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                  <th>Entered values</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Upstream</td>
+                  <td>upstream.out → reg.in</td>
+                  <td>material</td>
+                  <td>Not entered</td>
+                </tr>
+                <tr>
+                  <td>Downstream</td>
+                  <td>reg.out → downstream.in</td>
+                  <td>material</td>
+                  <td>Not entered</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="console">
+{&#x27;actuation&#x27;: &#x27;selfActing&#x27;, &#x27;outletPressurePa&#x27;: None}</pre>
+        </details>
+        <p>
+          These three types are also development-source additions and are not
+          included in the published PyPI 0.1.0 package. The next planned
+          equipment is the flow restriction/orifice.
         </p>
         <h2 id="process-gallery">Process gallery</h2>
         <p>
@@ -2773,7 +3549,7 @@ python<span class="w"> </span>gallery_processes.py
             >
               <defs>
                 <marker
-                  id="flow-10"
+                  id="flow-13"
                   viewBox="0 0 10 10"
                   refX="9"
                   refY="5"
@@ -2796,7 +3572,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-10)"
+                marker-end="url(#flow-13)"
               />
               <path
                 d="M490 490 L490 460 L490 220 L710 220 L740 220"
@@ -2810,7 +3586,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-10)"
+                marker-end="url(#flow-13)"
               />
               <path
                 d="M860 220 L890 220 L1020 220 L1050 220"
@@ -2824,7 +3600,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-10)"
+                marker-end="url(#flow-13)"
               />
               <path
                 d="M1170 220 L1200 220 L1330 220 L1360 220"
@@ -2838,7 +3614,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-10)"
+                marker-end="url(#flow-13)"
               />
               <path
                 d="M1480 200 L1510 200 L1510 220 L1640 220 L1670 220"
@@ -2852,7 +3628,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-10)"
+                marker-end="url(#flow-13)"
               />
               <path
                 d="M1480 220 L1510 220 L1510 452 L1330 452 L1330 530 L1360 530"
@@ -2866,7 +3642,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-10)"
+                marker-end="url(#flow-13)"
               />
               <path
                 d="M1480 530 L1510 530 L1510 584 L580 584 L580 510 L550 510"
@@ -2880,7 +3656,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-10)"
+                marker-end="url(#flow-13)"
               />
               <path
                 d="M490 570 L490 600 L710 600 L710 840 L740 840"
@@ -2894,7 +3670,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-10)"
+                marker-end="url(#flow-13)"
               />
               <path
                 d="M860 840 L890 840 L1020 840 L1050 840"
@@ -2908,7 +3684,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-10)"
+                marker-end="url(#flow-13)"
               />
               <path
                 d="M1170 820 L1200 820 L1200 550 L580 550 L550 550"
@@ -2922,7 +3698,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-10)"
+                marker-end="url(#flow-13)"
               />
               <path
                 d="M1170 840 L1200 840 L1330 840 L1360 840"
@@ -2936,7 +3712,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-10)"
+                marker-end="url(#flow-13)"
               />
               <g
                 class="equipment-symbol"
@@ -3548,7 +4324,7 @@ python<span class="w"> </span>gallery_processes.py
             >
               <defs>
                 <marker
-                  id="flow-12"
+                  id="flow-15"
                   viewBox="0 0 10 10"
                   refX="9"
                   refY="5"
@@ -3571,7 +4347,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-12)"
+                marker-end="url(#flow-15)"
               />
               <path
                 d="M550 220 L580 220 L710 220 L740 220"
@@ -3585,7 +4361,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-12)"
+                marker-end="url(#flow-15)"
               />
               <path
                 d="M860 220 L890 220 L1020 220 L1050 220"
@@ -3599,7 +4375,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-12)"
+                marker-end="url(#flow-15)"
               />
               <path
                 d="M1170 220 L1200 220 L1330 220 L1360 220"
@@ -3613,7 +4389,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-12)"
+                marker-end="url(#flow-15)"
               />
               <path
                 d="M1420 180 L1420 150 L1640 150 L1640 220 L1670 220"
@@ -3627,7 +4403,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-12)"
+                marker-end="url(#flow-15)"
               />
               <path
                 d="M1420 260 L1420 290 L1330 290 L1330 526.3636363636364 L1360 526.3636363636364"
@@ -3641,7 +4417,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-12)"
+                marker-end="url(#flow-15)"
               />
               <path
                 d="M1420 490 L1420 460 L1640 460 L1640 530 L1670 530"
@@ -3655,7 +4431,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-12)"
+                marker-end="url(#flow-15)"
               />
               <path
                 d="M1420 570 L1420 600 L1624.0 600 L1624.0 840 L1640 840 L1670 840"
@@ -3669,7 +4445,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-12)"
+                marker-end="url(#flow-15)"
               />
               <g
                 class="equipment-symbol"
@@ -4198,7 +4974,7 @@ python<span class="w"> </span>gallery_processes.py
             >
               <defs>
                 <marker
-                  id="flow-14"
+                  id="flow-17"
                   viewBox="0 0 10 10"
                   refX="9"
                   refY="5"
@@ -4221,7 +4997,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-14)"
+                marker-end="url(#flow-17)"
               />
               <path
                 d="M550 220 L580 220 L710 220 L740 220"
@@ -4235,7 +5011,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-14)"
+                marker-end="url(#flow-17)"
               />
               <path
                 d="M860 220 L890 220 L1020 220 L1050 220"
@@ -4249,7 +5025,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-14)"
+                marker-end="url(#flow-17)"
               />
               <path
                 d="M1170 220 L1200 220 L1330 220 L1360 220"
@@ -4263,7 +5039,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-14)"
+                marker-end="url(#flow-17)"
               />
               <path
                 d="M1480 220 L1510 220 L1640 220 L1670 220"
@@ -4277,7 +5053,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-14)"
+                marker-end="url(#flow-17)"
               />
               <path
                 d="M1730 260 L1730 290 L1950 290 L1950 530 L1980 530"
@@ -4291,7 +5067,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-14)"
+                marker-end="url(#flow-17)"
               />
               <path
                 d="M1730 180 L1730 150 L1640 150 L1640 530 L1670 530"
@@ -4305,7 +5081,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-14)"
+                marker-end="url(#flow-17)"
               />
               <path
                 d="M1790 510 L1820 510 L1820 274 L400 274 L400 220 L430 220"
@@ -4319,7 +5095,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-14)"
+                marker-end="url(#flow-17)"
               />
               <path
                 d="M1790 530 L1820 530 L1820 840 L1950 840 L1980 840"
@@ -4333,7 +5109,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-14)"
+                marker-end="url(#flow-17)"
               />
               <g
                 class="equipment-symbol"

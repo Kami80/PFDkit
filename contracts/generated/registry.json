@@ -1241,5 +1241,249 @@
     "tagPrefix": "V",
     "type": "valve",
     "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Flow control",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "construction": {
+          "default": "swing",
+          "enum": [
+            "swing",
+            "lift",
+            "wafer"
+          ],
+          "title": "Construction",
+          "type": "string"
+        },
+        "crackingPressurePa": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Entered opening differential pressure in Pa; no opening behavior is simulated.",
+          "title": "Crackingpressurepa"
+        }
+      },
+      "title": "CheckValveConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "construction": "swing",
+      "crackingPressurePa": null
+    },
+    "description": "One-way schematic with entered cracking differential; no reverse-flow calculation or dynamic closure.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "nonreturn",
+      "backflow",
+      "check"
+    ],
+    "name": "Check valve",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "NRV",
+    "type": "checkValve",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Flow control",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "mechanism": {
+          "default": "springLoaded",
+          "enum": [
+            "springLoaded",
+            "pilotOperated"
+          ],
+          "title": "Mechanism",
+          "type": "string"
+        },
+        "setPressurePa": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Entered absolute set pressure in Pa; not a sizing or safety verification.",
+          "title": "Setpressurepa"
+        }
+      },
+      "title": "ReliefValveConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "mechanism": "springLoaded",
+      "setPressurePa": null
+    },
+    "description": "Pressure-relief schematic and entered set pressure; no capacity, sizing, discharge-system or safety assessment.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "relief",
+      "pressure",
+      "discharge"
+    ],
+    "name": "Pressure relief valve",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Protected-side inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "bottom"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Discharge outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "PSV",
+    "type": "pressureReliefValve",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Flow control",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "actuation": {
+          "default": "selfActing",
+          "enum": [
+            "selfActing",
+            "pilotOperated"
+          ],
+          "title": "Actuation",
+          "type": "string"
+        },
+        "outletPressurePa": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Entered absolute downstream pressure in Pa; no pressure control is simulated.",
+          "title": "Outletpressurepa"
+        }
+      },
+      "title": "PressureRegulatorConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "actuation": "selfActing",
+      "outletPressurePa": null
+    },
+    "description": "Downstream pressure-regulator schematic with entered outlet pressure; no control or flow solution.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "regulator",
+      "reducing",
+      "pressure"
+    ],
+    "name": "Pressure reducing regulator",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Upstream inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Downstream outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "PCV",
+    "type": "pressureRegulator",
+    "version": "1.0.0"
   }
 ]

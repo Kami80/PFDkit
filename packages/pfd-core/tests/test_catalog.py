@@ -40,6 +40,9 @@ def test_catalog_types_have_metadata_stable_ports_and_roundtrip() -> None:
         "column",
         "reactor",
         "valve",
+        "checkValve",
+        "pressureReliefValve",
+        "pressureRegulator",
     }
     for definition in registry.definitions():
         assert definition.category and definition.description and definition.available_views
@@ -105,5 +108,5 @@ def test_representative_extension_has_its_own_registry_without_builtin_mutation(
     )
     doc = add_equipment(new_document(), "demo.valve", equipment_registry=extensions)
     assert validate_document(doc, extensions).valid
-    assert len(registry.definitions()) == 11
+    assert len(registry.definitions()) == 14
     assert extensions.get("demo.valve").extension == "example"

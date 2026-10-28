@@ -1,6 +1,6 @@
 # pfd-core
 
-Development update: the repository now includes `valve` as an eleventh built-in equipment type. PyPI 0.1.0 still provides the original ten. See the [equipment catalog and expansion plan](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md); source installation is required for the new valve until the next release.
+Development update: the repository has 14 built-in types, adding `valve`, `checkValve`, `pressureReliefValve` and `pressureRegulator` to the original ten. PyPI 0.1.0 still provides the original ten. See the [equipment catalog and expansion plan](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md); source installation is required for these additions until the next release.
 
 Explore the [process gallery](https://kami80.github.io/PFDkit/#process-gallery): distillation, ethanol fermentation and ammonia synthesis, with editable Python, JSON and SVG downloads. [Markdown gallery guide](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GALLERY.md).
 
@@ -497,7 +497,7 @@ This working catalog covers common chemical-process equipment and specialist fam
 
 ### Available now
 
-Feed (`feed`), product (`product`), pump (`pump`), heat exchanger (`heatExchanger`), separator (`separator`), tank (`tank`), mixer (`mixer`), splitter (`splitter`), column (`column`), reactor (`reactor`), and valve (`valve`).
+The development source provides 14 types: feed (`feed`), product (`product`), pump (`pump`), heat exchanger (`heatExchanger`), separator (`separator`), tank (`tank`), mixer (`mixer`), splitter (`splitter`), column (`column`), reactor (`reactor`), valve (`valve`), check valve (`checkValve`), pressure relief valve (`pressureReliefValve`), and pressure reducing regulator (`pressureRegulator`).
 
 ### Implementation sequence
 
@@ -506,9 +506,9 @@ Each unchecked entry is a separate implementation task. Finish its port contract
 #### 1. Flow control and fluid transport
 
 - [x] Inline valve: generic, globe, gate, ball, butterfly and needle configuration
-- [ ] Check valve
-- [ ] Pressure relief valve
-- [ ] Pressure reducing regulator
+- [x] Check valve
+- [x] Pressure relief valve
+- [x] Pressure reducing regulator
 - [ ] Flow restriction / orifice
 - [ ] Compressor: centrifugal and reciprocating variants
 - [ ] Blower
@@ -646,6 +646,104 @@ assert validate_document(valve_doc).valid
 ```
 
 This addition is in the repository development version. The already published `pfd-core==0.1.0` has ten types and does not include the built-in `valve`. Until a new package version is released, install the current source checkout with `python -m pip install ./packages/pfd-core` to run this example.
+
+### Check valve
+
+`checkValve` has material `in` (left) and `out` (right) ports. `construction` accepts `swing`, `lift` or `wafer`; all use the same generic nonreturn symbol. `crackingPressurePa` is a nonnegative pressure difference in Pa, or `None`. Directional ports describe the drawing; they do not simulate closure or reverse flow.
+
+```python
+from pfd_core import Endpoint, add_equipment, connect, new_document, validate_document
+
+check_doc = add_equipment(new_document("Check valve"), "feed", id="feed")
+check_doc = add_equipment(
+    check_doc,
+    "checkValve",
+    id="nrv",
+    x=250,
+    config={"construction": "swing", "crackingPressurePa": None},
+)
+check_doc = add_equipment(check_doc, "product", id="product", x=500)
+check_doc = connect(
+    check_doc,
+    Endpoint(equipment_id="feed", port_id="out"),
+    Endpoint(equipment_id="nrv", port_id="in"),
+    tag="Supply",
+)
+check_doc = connect(
+    check_doc,
+    Endpoint(equipment_id="nrv", port_id="out"),
+    Endpoint(equipment_id="product", port_id="in"),
+    tag="Forward path",
+)
+assert validate_document(check_doc).valid
+print(check_doc.engineering.equipment[1].config)
+```
+
+### Pressure relief valve
+
+`pressureReliefValve` uses material `in` on its bottom (protected side) and `out` on its right (discharge side). `mechanism` accepts `springLoaded` or `pilotOperated`. Both use a generic spring-relief schematic; pilot-system details are omitted. `setPressurePa` is an entered absolute pressure in Pa, strictly positive or `None`. No capacity, opening action, discharge-system calculation or safety adequacy is evaluated. An unknown value is appropriate for an illustrative diagram.
+
+```python
+from pfd_core import Endpoint, add_equipment, connect, new_document, validate_document
+
+relief_doc = add_equipment(new_document("Relief schematic"), "feed", id="protected", y=250)
+relief_doc = add_equipment(
+    relief_doc,
+    "pressureReliefValve",
+    id="psv",
+    x=250,
+    config={"mechanism": "springLoaded", "setPressurePa": None},
+)
+relief_doc = add_equipment(relief_doc, "product", id="discharge", x=500)
+relief_doc = connect(
+    relief_doc,
+    Endpoint(equipment_id="protected", port_id="out"),
+    Endpoint(equipment_id="psv", port_id="in"),
+    tag="Protected-side boundary",
+)
+relief_doc = connect(
+    relief_doc,
+    Endpoint(equipment_id="psv", port_id="out"),
+    Endpoint(equipment_id="discharge", port_id="in"),
+    tag="Discharge boundary",
+)
+assert validate_document(relief_doc).valid
+print(relief_doc.engineering.equipment[1].config)
+```
+
+### Pressure reducing regulator
+
+`pressureRegulator` has material `in` (upstream, left) and `out` (downstream, right). `actuation` accepts `selfActing` or `pilotOperated`; the generic diaphragm/regulator symbol represents both. `outletPressurePa` is an entered absolute downstream pressure in Pa, strictly positive or `None`. Configuration neither establishes an upstream pressure nor solves or controls the stream pressure.
+
+```python
+from pfd_core import Endpoint, add_equipment, connect, new_document, validate_document
+
+regulator_doc = add_equipment(new_document("Pressure regulator"), "feed", id="upstream")
+regulator_doc = add_equipment(
+    regulator_doc,
+    "pressureRegulator",
+    id="reg",
+    x=250,
+    config={"actuation": "selfActing", "outletPressurePa": None},
+)
+regulator_doc = add_equipment(regulator_doc, "product", id="downstream", x=500)
+regulator_doc = connect(
+    regulator_doc,
+    Endpoint(equipment_id="upstream", port_id="out"),
+    Endpoint(equipment_id="reg", port_id="in"),
+    tag="Upstream",
+)
+regulator_doc = connect(
+    regulator_doc,
+    Endpoint(equipment_id="reg", port_id="out"),
+    Endpoint(equipment_id="downstream", port_id="in"),
+    tag="Downstream",
+)
+assert validate_document(regulator_doc).valid
+print(regulator_doc.engineering.equipment[1].config)
+```
+
+These three types are also development-source additions and are not included in the published PyPI 0.1.0 package. The next planned equipment is the flow restriction/orifice.
 
 ## Process gallery
 

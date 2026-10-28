@@ -60,6 +60,36 @@ class ValveConfig(Config):
     opening: float | None = Field(default=None, ge=0, le=1, strict=True)
 
 
+class CheckValveConfig(Config):
+    construction: Literal["swing", "lift", "wafer"] = "swing"
+    crackingPressurePa: float | None = Field(
+        default=None,
+        ge=0,
+        strict=True,
+        description="Entered opening differential pressure in Pa; no opening behavior is simulated.",
+    )
+
+
+class ReliefValveConfig(Config):
+    mechanism: Literal["springLoaded", "pilotOperated"] = "springLoaded"
+    setPressurePa: float | None = Field(
+        default=None,
+        gt=0,
+        strict=True,
+        description="Entered absolute set pressure in Pa; not a sizing or safety verification.",
+    )
+
+
+class PressureRegulatorConfig(Config):
+    actuation: Literal["selfActing", "pilotOperated"] = "selfActing"
+    outletPressurePa: float | None = Field(
+        default=None,
+        gt=0,
+        strict=True,
+        description="Entered absolute downstream pressure in Pa; no pressure control is simulated.",
+    )
+
+
 class ExchangerConfig(Config):
     flowArrangement: Literal["counterCurrent", "coCurrent", "crossFlow"] = "counterCurrent"
     tubePasses: int = Field(default=1, ge=1, le=16, strict=True)
@@ -506,4 +536,41 @@ registry.register(
     keywords=["control", "isolation", "throttling"],
     ports=[port("in", "Inlet", "in", "left"), port("out", "Outlet", "out", "right")],
     config_model=ValveConfig,
+)
+
+registry.register(
+    type="checkValve",
+    name="Check valve",
+    description="One-way schematic with entered cracking differential; no reverse-flow calculation or dynamic closure.",
+    tag_prefix="NRV",
+    category="Flow control",
+    keywords=["nonreturn", "backflow", "check"],
+    ports=[port("in", "Inlet", "in", "left"), port("out", "Outlet", "out", "right")],
+    config_model=CheckValveConfig,
+)
+registry.register(
+    type="pressureReliefValve",
+    name="Pressure relief valve",
+    description="Pressure-relief schematic and entered set pressure; no capacity, sizing, discharge-system or safety assessment.",
+    tag_prefix="PSV",
+    category="Flow control",
+    keywords=["relief", "pressure", "discharge"],
+    ports=[
+        port("in", "Protected-side inlet", "in", "bottom"),
+        port("out", "Discharge outlet", "out", "right"),
+    ],
+    config_model=ReliefValveConfig,
+)
+registry.register(
+    type="pressureRegulator",
+    name="Pressure reducing regulator",
+    description="Downstream pressure-regulator schematic with entered outlet pressure; no control or flow solution.",
+    tag_prefix="PCV",
+    category="Flow control",
+    keywords=["regulator", "reducing", "pressure"],
+    ports=[
+        port("in", "Upstream inlet", "in", "left"),
+        port("out", "Downstream outlet", "out", "right"),
+    ],
+    config_model=PressureRegulatorConfig,
 )

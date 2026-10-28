@@ -71,6 +71,25 @@ export function getSymbol(
         ),
       ];
       break;
+    case "checkValve":
+      shapes = [
+        path("M0 40h35M85 40h35M35 20l40 20-40 20z", "body"),
+        path("M80 18v44M40 18l30-8"),
+      ];
+      break;
+    case "pressureReliefValve":
+      shapes = [
+        path(
+          "M60 80V55M60 55l30-15H120M45 55h30M60 55V30M60 30l-10-5 20-7-20-7 10-5M45 5h30",
+        ),
+      ];
+      break;
+    case "pressureRegulator":
+      shapes = [
+        path("M0 40h30M90 40h30M30 20l60 40V20L30 60z", "body"),
+        path("M60 40V18M40 18a20 12 0 0 1 40 0zM100 40V8H80"),
+      ];
+      break;
     case "valve":
       shapes = [
         path("M0 40h30M90 40h30M30 20l60 40V20L30 60z", "body"),
