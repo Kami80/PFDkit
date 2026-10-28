@@ -1145,5 +1145,101 @@
     "tagPrefix": "R",
     "type": "reactor",
     "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Flow control",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "actuation": {
+          "default": "manual",
+          "enum": [
+            "manual",
+            "pneumatic",
+            "electric"
+          ],
+          "title": "Actuation",
+          "type": "string"
+        },
+        "opening": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Opening"
+        },
+        "valveType": {
+          "default": "generic",
+          "enum": [
+            "generic",
+            "globe",
+            "gate",
+            "ball",
+            "butterfly",
+            "needle"
+          ],
+          "title": "Valvetype",
+          "type": "string"
+        }
+      },
+      "title": "ValveConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "actuation": "manual",
+      "opening": null,
+      "valveType": "generic"
+    },
+    "description": "Inline valve with manually entered opening; no pressure-drop or flow calculation.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "control",
+      "isolation",
+      "throttling"
+    ],
+    "name": "Valve",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "V",
+    "type": "valve",
+    "version": "1.0.0"
   }
 ]

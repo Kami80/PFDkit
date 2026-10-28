@@ -54,6 +54,12 @@ class PumpConfig(Config):
     drive: Literal["electric", "steam", "other"] = "electric"
 
 
+class ValveConfig(Config):
+    valveType: Literal["generic", "globe", "gate", "ball", "butterfly", "needle"] = "generic"
+    actuation: Literal["manual", "pneumatic", "electric"] = "manual"
+    opening: float | None = Field(default=None, ge=0, le=1, strict=True)
+
+
 class ExchangerConfig(Config):
     flowArrangement: Literal["counterCurrent", "coCurrent", "crossFlow"] = "counterCurrent"
     tubePasses: int = Field(default=1, ge=1, le=16, strict=True)
@@ -489,4 +495,15 @@ registry.register(
         port("heat", "Heat input", "in", "bottom", kind="energy", required=False),
     ],
     config_model=ReactorConfig,
+)
+
+registry.register(
+    type="valve",
+    name="Valve",
+    description="Inline valve with manually entered opening; no pressure-drop or flow calculation.",
+    tag_prefix="V",
+    category="Flow control",
+    keywords=["control", "isolation", "throttling"],
+    ports=[port("in", "Inlet", "in", "left"), port("out", "Outlet", "out", "right")],
+    config_model=ValveConfig,
 )

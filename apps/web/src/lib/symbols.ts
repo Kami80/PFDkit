@@ -71,6 +71,12 @@ export function getSymbol(
         ),
       ];
       break;
+    case "valve":
+      shapes = [
+        path("M0 40h30M90 40h30M30 20l60 40V20L30 60z", "body"),
+        path("M60 40V10M44 10h32"),
+      ];
+      break;
     case "heatExchanger":
       shapes = [
         circle(60, 40, 30),

@@ -1,5 +1,7 @@
 # pfd-core
 
+Development update: the repository now includes `valve` as an eleventh built-in equipment type. PyPI 0.1.0 still provides the original ten. See the [equipment catalog and expansion plan](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md); source installation is required for the new valve until the next release.
+
 Explore the [process gallery](https://kami80.github.io/PFDkit/#process-gallery): distillation, ethanol fermentation and ammonia synthesis, with editable Python, JSON and SVG downloads. [Markdown gallery guide](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GALLERY.md).
 
 For step-by-step examples, including compositions and energy streams, see the [PFD guide](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GUIDE.md). The [API reference](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/API.md) covers public models, commands, registry, units and validation. Both are plain Markdown for readers and AI agents.

@@ -129,7 +129,7 @@ describe("command history and references", () => {
 
 describe("shared catalog geometry", () => {
   it("renders every catalog definition with distinct fixed multiport coordinates and no embedded paint", () => {
-    expect(registry).toHaveLength(10);
+    expect(registry).toHaveLength(11);
     for (const definition of registry) {
       const symbol = getSymbol(definition.type, definition.defaultConfig);
       expect(symbol.shapes.length).toBeGreaterThan(0);

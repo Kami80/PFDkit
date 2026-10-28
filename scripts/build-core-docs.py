@@ -34,6 +34,9 @@ guide = guide.replace(
     "[package README](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/README.md)",
 )
 source += "\n\n" + guide
+catalog = (root / "packages/pfd-core/EQUIPMENT.md").read_text(encoding="utf-8")
+catalog = re.sub(r"^(#{1,5}) ", r"#\1 ", catalog, flags=re.MULTILINE)
+source += "\n\n" + catalog
 gallery_markdown = (root / "packages/pfd-core/GALLERY.md").read_text(encoding="utf-8")
 gallery_markdown = re.sub(r"^(#{1,5}) ", r"#\1 ", gallery_markdown, flags=re.MULTILINE)
 source += "\n\n" + gallery_markdown
@@ -78,6 +81,7 @@ for i, token in enumerate(tokens):
         if title in (
             "Building and using a PFD",
             "Process gallery",
+            "Equipment catalog and expansion plan",
             "pfd-core API reference",
         ):
             if group_open:
@@ -86,7 +90,11 @@ for i, token in enumerate(tokens):
                 "Build with Python"
                 if title == "Building and using a PFD"
                 else (
-                    "Process gallery" if title == "Process gallery" else "API reference"
+                    "Equipment catalog"
+                    if title == "Equipment catalog and expansion plan"
+                    else "Process gallery"
+                    if title == "Process gallery"
+                    else "API reference"
                 )
             )
             nav.append(f"<details open><summary>{label}</summary><nav>")

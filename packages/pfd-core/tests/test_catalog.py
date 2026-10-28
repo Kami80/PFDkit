@@ -1,9 +1,11 @@
+import pytest
 from pydantic import BaseModel
 
 from pfd_core import (
     Document,
     Endpoint,
     EquipmentRegistry,
+    GraphValidationError,
     PortDefinition,
     add_equipment,
     connect,
@@ -14,7 +16,18 @@ from pfd_core import (
 )
 
 
-def test_ten_catalog_types_have_metadata_stable_ports_and_roundtrip() -> None:
+def test_valve_config_limits_and_connections():
+    doc = add_equipment(
+        new_document(), "valve", id="v", config={"opening": 0.5, "actuation": "pneumatic"}
+    )
+    assert validate_document(doc).valid
+    assert [p.id for p in registry.get("valve").ports] == ["in", "out"]
+    with pytest.raises(GraphValidationError):
+        update_equipment(doc, "v", config={"opening": 1.1})
+    assert doc.engineering.equipment[0].config["opening"] == 0.5
+
+
+def test_catalog_types_have_metadata_stable_ports_and_roundtrip() -> None:
     assert {item.type for item in registry.definitions()} == {
         "feed",
         "product",
@@ -26,6 +39,7 @@ def test_ten_catalog_types_have_metadata_stable_ports_and_roundtrip() -> None:
         "splitter",
         "column",
         "reactor",
+        "valve",
     }
     for definition in registry.definitions():
         assert definition.category and definition.description and definition.available_views
@@ -91,5 +105,5 @@ def test_representative_extension_has_its_own_registry_without_builtin_mutation(
     )
     doc = add_equipment(new_document(), "demo.valve", equipment_registry=extensions)
     assert validate_document(doc, extensions).valid
-    assert len(registry.definitions()) == 10
+    assert len(registry.definitions()) == 11
     assert extensions.get("demo.valve").extension == "example"
