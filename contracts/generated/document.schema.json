@@ -1,0 +1,697 @@
+{
+  "$defs": {
+    "Annotation": {
+      "additionalProperties": false,
+      "properties": {
+        "endX": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Endx"
+        },
+        "endY": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Endy"
+        },
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "default": "note",
+          "enum": [
+            "note",
+            "callout",
+            "arrow",
+            "component"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "provenance": {
+          "default": "conceptual",
+          "enum": [
+            "conceptual",
+            "manual",
+            "illustrative",
+            "calculated"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "targetId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Targetid"
+        },
+        "text": {
+          "default": "",
+          "title": "Text",
+          "type": "string"
+        },
+        "visible": {
+          "default": true,
+          "title": "Visible",
+          "type": "boolean"
+        },
+        "x": {
+          "default": 0,
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "default": 0,
+          "title": "Y",
+          "type": "number"
+        }
+      },
+      "title": "Annotation",
+      "type": "object"
+    },
+    "BoundaryPort": {
+      "additionalProperties": false,
+      "properties": {
+        "direction": {
+          "enum": [
+            "in",
+            "out"
+          ],
+          "title": "Direction",
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "internalEndpoint": {
+          "$ref": "#/$defs/Endpoint"
+        },
+        "kind": {
+          "enum": [
+            "material",
+            "energy"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "streamId": {
+          "minLength": 1,
+          "title": "Streamid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "streamId",
+        "internalEndpoint",
+        "direction",
+        "kind"
+      ],
+      "title": "BoundaryPort",
+      "type": "object"
+    },
+    "Component": {
+      "additionalProperties": false,
+      "properties": {
+        "formula": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Formula"
+        },
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "Component",
+      "type": "object"
+    },
+    "ComponentFraction": {
+      "additionalProperties": false,
+      "properties": {
+        "componentId": {
+          "minLength": 1,
+          "title": "Componentid",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "componentId"
+      ],
+      "title": "ComponentFraction",
+      "type": "object"
+    },
+    "Composition": {
+      "additionalProperties": false,
+      "properties": {
+        "basis": {
+          "default": "mole",
+          "enum": [
+            "mole",
+            "mass"
+          ],
+          "title": "Basis",
+          "type": "string"
+        },
+        "fractions": {
+          "items": {
+            "$ref": "#/$defs/ComponentFraction"
+          },
+          "title": "Fractions",
+          "type": "array"
+        }
+      },
+      "title": "Composition",
+      "type": "object"
+    },
+    "Dimension": {
+      "enum": [
+        "massFlow",
+        "molarFlow",
+        "volumeFlow",
+        "temperature",
+        "pressure",
+        "power",
+        "dimensionless"
+      ],
+      "title": "Dimension",
+      "type": "string"
+    },
+    "Education": {
+      "additionalProperties": false,
+      "properties": {
+        "annotations": {
+          "items": {
+            "$ref": "#/$defs/Annotation"
+          },
+          "title": "Annotations",
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "notes": {
+          "default": "",
+          "title": "Notes",
+          "type": "string"
+        },
+        "steps": {
+          "items": {
+            "$ref": "#/$defs/PresentationStep"
+          },
+          "title": "Steps",
+          "type": "array"
+        }
+      },
+      "title": "Education",
+      "type": "object"
+    },
+    "Endpoint": {
+      "additionalProperties": false,
+      "properties": {
+        "equipmentId": {
+          "minLength": 1,
+          "title": "Equipmentid",
+          "type": "string"
+        },
+        "portId": {
+          "minLength": 1,
+          "title": "Portid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "equipmentId",
+        "portId"
+      ],
+      "title": "Endpoint",
+      "type": "object"
+    },
+    "Engineering": {
+      "additionalProperties": false,
+      "properties": {
+        "components": {
+          "items": {
+            "$ref": "#/$defs/Component"
+          },
+          "title": "Components",
+          "type": "array"
+        },
+        "equipment": {
+          "items": {
+            "$ref": "#/$defs/Equipment"
+          },
+          "title": "Equipment",
+          "type": "array"
+        },
+        "sections": {
+          "items": {
+            "$ref": "#/$defs/ProcessSection"
+          },
+          "title": "Sections",
+          "type": "array"
+        },
+        "streams": {
+          "items": {
+            "$ref": "#/$defs/Stream"
+          },
+          "title": "Streams",
+          "type": "array"
+        }
+      },
+      "title": "Engineering",
+      "type": "object"
+    },
+    "Equipment": {
+      "additionalProperties": false,
+      "properties": {
+        "config": {
+          "additionalProperties": true,
+          "title": "Config",
+          "type": "object"
+        },
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "tag": {
+          "default": "",
+          "title": "Tag",
+          "type": "string"
+        },
+        "type": {
+          "minLength": 1,
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "title": "Equipment",
+      "type": "object"
+    },
+    "NodeLayout": {
+      "additionalProperties": false,
+      "properties": {
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "x": {
+          "default": 0,
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "default": 0,
+          "title": "Y",
+          "type": "number"
+        }
+      },
+      "title": "NodeLayout",
+      "type": "object"
+    },
+    "Presentation": {
+      "additionalProperties": false,
+      "properties": {
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "nodes": {
+          "additionalProperties": {
+            "$ref": "#/$defs/NodeLayout"
+          },
+          "title": "Nodes",
+          "type": "object"
+        },
+        "viewport": {
+          "$ref": "#/$defs/Viewport"
+        }
+      },
+      "title": "Presentation",
+      "type": "object"
+    },
+    "PresentationStep": {
+      "additionalProperties": false,
+      "properties": {
+        "annotationIds": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Annotationids",
+          "type": "array"
+        },
+        "explorerId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Explorerid"
+        },
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "notes": {
+          "default": "",
+          "title": "Notes",
+          "type": "string"
+        },
+        "revealIds": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Revealids",
+          "type": "array"
+        },
+        "targetIds": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Targetids",
+          "type": "array"
+        },
+        "title": {
+          "default": "Untitled step",
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "title": "PresentationStep",
+      "type": "object"
+    },
+    "ProcessSection": {
+      "additionalProperties": false,
+      "properties": {
+        "boundaryPorts": {
+          "items": {
+            "$ref": "#/$defs/BoundaryPort"
+          },
+          "title": "Boundaryports",
+          "type": "array"
+        },
+        "equipmentIds": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Equipmentids",
+          "type": "array"
+        },
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "minLength": 1,
+          "title": "Name",
+          "type": "string"
+        },
+        "parentId": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Parentid"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "ProcessSection",
+      "type": "object"
+    },
+    "Quantity": {
+      "additionalProperties": false,
+      "properties": {
+        "dimension": {
+          "$ref": "#/$defs/Dimension"
+        },
+        "unit": {
+          "minLength": 1,
+          "title": "Unit",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "unit",
+        "dimension"
+      ],
+      "title": "Quantity",
+      "type": "object"
+    },
+    "Stream": {
+      "additionalProperties": false,
+      "properties": {
+        "composition": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Composition"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "flowBasis": {
+          "default": "mass",
+          "enum": [
+            "mass",
+            "molar",
+            "volume"
+          ],
+          "title": "Flowbasis",
+          "type": "string"
+        },
+        "flowRate": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "default": "material",
+          "enum": [
+            "material",
+            "energy"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "title": "Metadata",
+          "type": "object"
+        },
+        "pressure": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "properties": {
+          "additionalProperties": {
+            "$ref": "#/$defs/Quantity"
+          },
+          "title": "Properties",
+          "type": "object"
+        },
+        "source": {
+          "$ref": "#/$defs/Endpoint"
+        },
+        "tag": {
+          "default": "",
+          "title": "Tag",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/Endpoint"
+        },
+        "temperature": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Quantity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "source",
+        "target"
+      ],
+      "title": "Stream",
+      "type": "object"
+    },
+    "Viewport": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "default": 0,
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "default": 0,
+          "title": "Y",
+          "type": "number"
+        },
+        "zoom": {
+          "default": 1,
+          "exclusiveMinimum": 0,
+          "title": "Zoom",
+          "type": "number"
+        }
+      },
+      "title": "Viewport",
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "education": {
+      "$ref": "#/$defs/Education"
+    },
+    "engineering": {
+      "$ref": "#/$defs/Engineering"
+    },
+    "id": {
+      "minLength": 1,
+      "title": "Id",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "title": "Metadata",
+      "type": "object"
+    },
+    "presentation": {
+      "$ref": "#/$defs/Presentation"
+    },
+    "schemaVersion": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schemaversion",
+      "type": "string"
+    },
+    "title": {
+      "default": "Untitled process",
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "title": "Document",
+  "type": "object"
+}

@@ -1,0 +1,155 @@
+.teaching-panel {
+  padding: 22px;
+  max-height: 78vh;
+  overflow: auto;
+  color: #213440;
+}
+.teaching-panel section {
+  border-top: 1px solid #d4dfe5;
+  padding: 16px 0;
+}
+.teaching-panel h3 {
+  margin: 0 0 12px;
+  font-size: 17px;
+}
+.teaching-panel p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+.teaching-fields {
+  display: flex;
+  gap: 12px;
+}
+.teaching-fields > * {
+  flex: 1;
+}
+.teaching-items {
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+.teaching-items li {
+  padding: 12px;
+  border: 1px solid #d5dfe5;
+  border-radius: 7px;
+  display: grid;
+  gap: 9px;
+}
+.teaching-items li > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.teaching-items small {
+  overflow-wrap: anywhere;
+  color: #4e6472;
+}
+.section-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.section-breadcrumb button {
+  border: 0;
+  background: transparent;
+  color: #11607b;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.section-boundaries {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  z-index: 5;
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #8da3af;
+  border-radius: 6px;
+  max-width: 340px;
+  font-size: 12px;
+}
+.section-boundaries summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.section-boundaries li {
+  margin: 7px 0;
+}
+.lecture-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: #f5f8fa;
+  color: #172f3d;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 12px;
+}
+.lecture-overlay:fullscreen {
+  background: #f5f8fa;
+}
+.lecture-overlay header,
+.lecture-overlay footer {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.lecture-overlay h2 {
+  font-size: clamp(20px, 3vw, 32px);
+  margin: 0;
+  flex: 1;
+}
+.lecture-figure {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  border: 1px solid #c9d6df;
+  background: white;
+}
+.lecture-figure > svg {
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+}
+.lecture-notes {
+  background: #e3edf2;
+  padding: 12px;
+  white-space: pre-wrap;
+  max-height: 22vh;
+  overflow: auto;
+}
+.lecture-overlay button:focus-visible,
+.teaching-panel :focus-visible {
+  outline: 3px solid #156f9c;
+  outline-offset: 3px;
+}
+.lecture-warning {
+  padding: 8px;
+  background: #fff1cc;
+  color: #644200;
+  overflow-wrap: anywhere;
+}
+.editor-shell.is-presenting > :not(.lecture-overlay) {
+  visibility: hidden;
+}
+html[data-theme="dark"] .editor-shell .lecture-overlay p,
+html[data-theme="dark"] .editor-shell .lecture-overlay small,
+html[data-theme="dark"] .editor-shell .section-boundaries small,
+html[data-theme="dark"] .editor-shell .canvas-annotation small {
+  color: #334155;
+}
+@media (prefers-reduced-motion: reduce) {
+  .lecture-overlay * {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

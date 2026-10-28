@@ -1,0 +1,377 @@
+{
+  "education": {
+    "annotations": [],
+    "metadata": {},
+    "notes": "Catalog demonstration only. Unconnected circuits and branches are deliberate draft warnings; no balances or physical calculations have been performed.",
+    "steps": []
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {
+          "description": ""
+        },
+        "id": "catalog-feed",
+        "metadata": {},
+        "tag": "F-001",
+        "type": "feed"
+      },
+      {
+        "config": {
+          "drive": "electric",
+          "efficiency": null
+        },
+        "id": "catalog-pump",
+        "metadata": {},
+        "tag": "P-001",
+        "type": "pump"
+      },
+      {
+        "config": {
+          "baffleCount": 0,
+          "flowArrangement": "counterCurrent",
+          "shellDiameterM": null,
+          "shellPasses": 1,
+          "tubeLengthM": null,
+          "tubePasses": 1
+        },
+        "id": "catalog-heatExchanger",
+        "metadata": {},
+        "tag": "E-001",
+        "type": "heatExchanger"
+      },
+      {
+        "config": {
+          "mixingMethod": "static"
+        },
+        "id": "catalog-mixer",
+        "metadata": {},
+        "tag": "M-001",
+        "type": "mixer"
+      },
+      {
+        "config": {
+          "description": ""
+        },
+        "id": "catalog-splitter",
+        "metadata": {},
+        "tag": "SP-001",
+        "type": "splitter"
+      },
+      {
+        "config": {
+          "orientation": "vertical",
+          "service": "vaporLiquid"
+        },
+        "id": "catalog-separator",
+        "metadata": {},
+        "tag": "V-001",
+        "type": "separator"
+      },
+      {
+        "config": {
+          "orientation": "vertical",
+          "roof": "fixed"
+        },
+        "id": "catalog-tank",
+        "metadata": {},
+        "tag": "TK-001",
+        "type": "tank"
+      },
+      {
+        "config": {
+          "boilupRatio": null,
+          "condenser": "total",
+          "feedStage": 5,
+          "feeds": [],
+          "internals": "trays",
+          "reboiler": "partial",
+          "refluxRatio": null,
+          "service": "distillation",
+          "sideDraws": [],
+          "stageBasis": "theoretical",
+          "stageCount": 10,
+          "stageNumbering": "topDown",
+          "stageProperties": []
+        },
+        "id": "catalog-column",
+        "metadata": {},
+        "tag": "C-001",
+        "type": "column"
+      },
+      {
+        "config": {
+          "operation": "continuous",
+          "reactorType": "stirredTank"
+        },
+        "id": "catalog-reactor",
+        "metadata": {},
+        "tag": "R-001",
+        "type": "reactor"
+      },
+      {
+        "config": {
+          "description": ""
+        },
+        "id": "catalog-product",
+        "metadata": {},
+        "tag": "PR-001",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "catalog-stream-feed",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "catalog-feed",
+          "portId": "out"
+        },
+        "tag": "",
+        "target": {
+          "equipmentId": "catalog-pump",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "catalog-stream-pump",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "catalog-pump",
+          "portId": "out"
+        },
+        "tag": "",
+        "target": {
+          "equipmentId": "catalog-heatExchanger",
+          "portId": "tubeIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "catalog-stream-heatExchanger",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "catalog-heatExchanger",
+          "portId": "tubeOut"
+        },
+        "tag": "",
+        "target": {
+          "equipmentId": "catalog-mixer",
+          "portId": "in1"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "catalog-stream-mixer",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "catalog-mixer",
+          "portId": "out"
+        },
+        "tag": "",
+        "target": {
+          "equipmentId": "catalog-splitter",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "catalog-stream-splitter",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "catalog-splitter",
+          "portId": "out1"
+        },
+        "tag": "",
+        "target": {
+          "equipmentId": "catalog-separator",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "catalog-stream-separator",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "catalog-separator",
+          "portId": "liquidOut"
+        },
+        "tag": "",
+        "target": {
+          "equipmentId": "catalog-tank",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "catalog-stream-tank",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "catalog-tank",
+          "portId": "out"
+        },
+        "tag": "",
+        "target": {
+          "equipmentId": "catalog-column",
+          "portId": "feed"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "catalog-stream-column",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "catalog-column",
+          "portId": "bottoms"
+        },
+        "tag": "",
+        "target": {
+          "equipmentId": "catalog-reactor",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "catalog-stream-reactor",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "catalog-reactor",
+          "portId": "out"
+        },
+        "tag": "",
+        "target": {
+          "equipmentId": "catalog-product",
+          "portId": "in"
+        },
+        "temperature": null
+      }
+    ]
+  },
+  "id": "catalog-demo",
+  "metadata": {},
+  "presentation": {
+    "metadata": {
+      "style": {
+        "preset": "academicColorful",
+        "showLegend": true,
+        "showTitle": true
+      }
+    },
+    "nodes": {
+      "catalog-column": {
+        "metadata": {},
+        "x": 500.0,
+        "y": 320.0
+      },
+      "catalog-feed": {
+        "metadata": {},
+        "x": 60.0,
+        "y": 80.0
+      },
+      "catalog-heatExchanger": {
+        "metadata": {},
+        "x": 500.0,
+        "y": 80.0
+      },
+      "catalog-mixer": {
+        "metadata": {},
+        "x": 720.0,
+        "y": 80.0
+      },
+      "catalog-product": {
+        "metadata": {},
+        "x": 940.0,
+        "y": 320.0
+      },
+      "catalog-pump": {
+        "metadata": {},
+        "x": 280.0,
+        "y": 80.0
+      },
+      "catalog-reactor": {
+        "metadata": {},
+        "x": 720.0,
+        "y": 320.0
+      },
+      "catalog-separator": {
+        "metadata": {},
+        "x": 60.0,
+        "y": 320.0
+      },
+      "catalog-splitter": {
+        "metadata": {},
+        "x": 940.0,
+        "y": 80.0
+      },
+      "catalog-tank": {
+        "metadata": {},
+        "x": 280.0,
+        "y": 320.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Equipment catalog \u2014 editable teaching draft"
+}

@@ -1,0 +1,36 @@
+{
+  "name": "pfdkit",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "apps/web",
+    "packages/contracts"
+  ],
+  "engines": {
+    "node": ">=24 <27",
+    "npm": ">=11"
+  },
+  "packageManager": "npm@11.13.0",
+  "scripts": {
+    "dev": "npm run dev --workspace @pfdkit/web",
+    "build": "npm run build --workspace @pfdkit/web",
+    "start": "npm run start --workspace @pfdkit/web",
+    "lint": "npm run lint --workspace @pfdkit/web",
+    "typecheck": "npm run typecheck --workspace @pfdkit/web",
+    "test": "npm run test --workspace @pfdkit/web",
+    "test:e2e": "npm run test:e2e --workspace @pfdkit/web",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "contract:generate": "python scripts/generate_contract.py && node scripts/generate_types.mjs",
+    "contract:check": "python scripts/generate_contract.py --check && node scripts/generate_types.mjs --check",
+    "core:test": "python -m pytest packages/pfd-core/tests",
+    "core:lint": "python -m ruff check packages/pfd-core scripts",
+    "core:typecheck": "python -m mypy packages/pfd-core/src",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run contract:check && npm run core:lint && npm run core:typecheck && npm run core:test && npm run build"
+  },
+  "devDependencies": {
+    "json-schema-to-typescript": "^15.0.4",
+    "prettier": "^3.6.2"
+  }
+}

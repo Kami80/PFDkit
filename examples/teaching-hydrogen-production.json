@@ -1,0 +1,339 @@
+{
+  "education": {
+    "annotations": [
+      {
+        "endX": null,
+        "endY": null,
+        "id": "hydrogen-production-principle",
+        "kind": "note",
+        "provenance": "conceptual",
+        "targetId": "h-feed",
+        "text": "Electrical energy splits water into hydrogen and oxygen in an electrolyzer. Product circuits are conceptually separate; the generic symbols do not depict cell internals.",
+        "visible": true,
+        "x": 80.0,
+        "y": -40.0
+      },
+      {
+        "endX": null,
+        "endY": null,
+        "id": "hydrogen-production-value-status",
+        "kind": "note",
+        "provenance": "illustrative",
+        "targetId": "h-feed",
+        "text": "First inlet: 25 degC is an arbitrary illustrative entry. Other temperatures remain unknown; no process calculation.",
+        "visible": true,
+        "x": 80.0,
+        "y": 550.0
+      }
+    ],
+    "metadata": {},
+    "notes": "The generic reactor and splitter illustrate logical process roles only. The splitter represents physically separate cell outlets, not downstream separation of a mixed hydrogen/oxygen stream. Electrical supply is described in notes because the current generic reactor heat port is not an electrical-work model. Purification, compression and electrolyte loops are outside scope. No current, voltage, efficiency, production rate or safety design is inferred. The first inlet temperature is an arbitrary illustrative 25 degC entry, not a measured or calculated condition. Other stream temperatures remain unknown.",
+    "steps": [
+      {
+        "annotationIds": [
+          "hydrogen-production-principle"
+        ],
+        "explorerId": null,
+        "id": "hydrogen-production-overview",
+        "notes": "The generic reactor and splitter illustrate logical process roles only. The splitter represents physically separate cell outlets, not downstream separation of a mixed hydrogen/oxygen stream. Electrical supply is described in notes because the current generic reactor heat port is not an electrical-work model. Purification, compression and electrolyte loops are outside scope. No current, voltage, efficiency, production rate or safety design is inferred.",
+        "revealIds": [
+          "h-feed",
+          "h-pump",
+          "h-cell",
+          "h-split",
+          "h-hydrogen",
+          "h-oxygen"
+        ],
+        "targetIds": [
+          "h-feed",
+          "h-pump",
+          "h-cell",
+          "h-split",
+          "h-hydrogen",
+          "h-oxygen"
+        ],
+        "title": "Process overview"
+      },
+      {
+        "annotationIds": [
+          "hydrogen-production-principle"
+        ],
+        "explorerId": null,
+        "id": "hydrogen-production-equipment",
+        "notes": "Electrical energy splits water into hydrogen and oxygen in an electrolyzer. Product circuits are conceptually separate; the generic symbols do not depict cell internals.",
+        "revealIds": [
+          "h-feed",
+          "h-pump",
+          "h-cell",
+          "h-split",
+          "h-hydrogen",
+          "h-oxygen",
+          "hydrogen-production-stream-1",
+          "hydrogen-production-stream-2",
+          "hydrogen-production-stream-3",
+          "hydrogen-production-stream-4",
+          "hydrogen-production-stream-5"
+        ],
+        "targetIds": [
+          "h-feed"
+        ],
+        "title": "Explain the equipment"
+      }
+    ]
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "h-feed",
+        "metadata": {},
+        "tag": "Water supply",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "h-pump",
+        "metadata": {},
+        "tag": "P-501",
+        "type": "pump"
+      },
+      {
+        "config": {
+          "operation": "continuous",
+          "reactorType": "stirredTank"
+        },
+        "id": "h-cell",
+        "metadata": {},
+        "tag": "Electrolyzer (generic reactor symbol)",
+        "type": "reactor"
+      },
+      {
+        "config": {},
+        "id": "h-split",
+        "metadata": {},
+        "tag": "Separate cell outlets (conceptual)",
+        "type": "splitter"
+      },
+      {
+        "config": {},
+        "id": "h-hydrogen",
+        "metadata": {},
+        "tag": "Hydrogen-rich outlet",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "h-oxygen",
+        "metadata": {},
+        "tag": "Oxygen-rich outlet",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "hydrogen-production-stream-1",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Arbitrary illustrative inlet temperature for a unit-entry exercise; not measured or calculated. All other stream temperatures remain unknown.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "h-feed",
+          "portId": "out"
+        },
+        "tag": "Water",
+        "target": {
+          "equipmentId": "h-pump",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 25.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "hydrogen-production-stream-2",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "h-pump",
+          "portId": "out"
+        },
+        "tag": "Cell water feed",
+        "target": {
+          "equipmentId": "h-cell",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "hydrogen-production-stream-3",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "h-cell",
+          "portId": "out"
+        },
+        "tag": "Logical product boundary",
+        "target": {
+          "equipmentId": "h-split",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "hydrogen-production-stream-4",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "h-split",
+          "portId": "out1"
+        },
+        "tag": "Hydrogen circuit",
+        "target": {
+          "equipmentId": "h-hydrogen",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "hydrogen-production-stream-5",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "h-split",
+          "portId": "out2"
+        },
+        "tag": "Oxygen circuit",
+        "target": {
+          "equipmentId": "h-oxygen",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      }
+    ]
+  },
+  "id": "teaching-hydrogen-production",
+  "metadata": {
+    "attribution": {
+      "artwork": "Original PFDkit schematics and teaching text; source illustrations are not reproduced.",
+      "creator": "PFDkit contributors",
+      "license": "MIT",
+      "reviewScope": "Structural references, terminology, configuration and teaching scope; no process design, balances or safety assessment.",
+      "reviewedOn": "2026-10-28"
+    },
+    "example": true,
+    "references": [
+      {
+        "title": "US DOE: Hydrogen Production, Electrolysis",
+        "url": "https://www.energy.gov/cmei/fuels/hydrogen-production-electrolysis"
+      }
+    ],
+    "scope": "The generic reactor and splitter illustrate logical process roles only. The splitter represents physically separate cell outlets, not downstream separation of a mixed hydrogen/oxygen stream. Electrical supply is described in notes because the current generic reactor heat port is not an electrical-work model. Purification, compression and electrolyte loops are outside scope. No current, voltage, efficiency, production rate or safety design is inferred.",
+    "valueStatus": "illustrative"
+  },
+  "presentation": {
+    "metadata": {
+      "style": {
+        "preset": "academicColorful",
+        "showLegend": true,
+        "showTitle": true
+      }
+    },
+    "nodes": {
+      "h-cell": {
+        "metadata": {},
+        "x": 580.0,
+        "y": 140.0
+      },
+      "h-feed": {
+        "metadata": {},
+        "x": 80.0,
+        "y": 140.0
+      },
+      "h-hydrogen": {
+        "metadata": {},
+        "x": 1080.0,
+        "y": 140.0
+      },
+      "h-oxygen": {
+        "metadata": {},
+        "x": 80.0,
+        "y": 440.0
+      },
+      "h-pump": {
+        "metadata": {},
+        "x": 330.0,
+        "y": 140.0
+      },
+      "h-split": {
+        "metadata": {},
+        "x": 830.0,
+        "y": 140.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Hydrogen production: conceptual water electrolysis"
+}

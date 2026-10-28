@@ -1,0 +1,343 @@
+{
+  "education": {
+    "annotations": [
+      {
+        "endX": null,
+        "endY": null,
+        "id": "fermentation-principle",
+        "kind": "note",
+        "provenance": "conceptual",
+        "targetId": "f-feed",
+        "text": "Fermentation can produce ethanol and carbon dioxide from sugar-based feedstocks. The generic reactor illustrates a process role rather than biological design.",
+        "visible": true,
+        "x": 80.0,
+        "y": -40.0
+      },
+      {
+        "endX": null,
+        "endY": null,
+        "id": "fermentation-value-status",
+        "kind": "note",
+        "provenance": "illustrative",
+        "targetId": "f-feed",
+        "text": "First inlet: 25 degC is an arbitrary illustrative entry. Other temperatures remain unknown; no process calculation.",
+        "visible": true,
+        "x": 80.0,
+        "y": 550.0
+      }
+    ],
+    "metadata": {},
+    "notes": "Simplified fermentation block flow using generic reactor/separator symbols. Pretreatment, biology, sterility, nutrients, kinetics, ethanol purification and cooling equipment are outside this lesson. Composition, conversion and productivity remain unknown. The first inlet temperature is an arbitrary illustrative 25 degC entry, not a measured or calculated condition. Other stream temperatures remain unknown.",
+    "steps": [
+      {
+        "annotationIds": [
+          "fermentation-principle"
+        ],
+        "explorerId": null,
+        "id": "fermentation-overview",
+        "notes": "Simplified fermentation block flow using generic reactor/separator symbols. Pretreatment, biology, sterility, nutrients, kinetics, ethanol purification and cooling equipment are outside this lesson. Composition, conversion and productivity remain unknown.",
+        "revealIds": [
+          "f-feed",
+          "f-pump",
+          "f-reactor",
+          "f-separator",
+          "f-gas",
+          "f-broth"
+        ],
+        "targetIds": [
+          "f-feed",
+          "f-pump",
+          "f-reactor",
+          "f-separator",
+          "f-gas",
+          "f-broth"
+        ],
+        "title": "Process overview"
+      },
+      {
+        "annotationIds": [
+          "fermentation-principle"
+        ],
+        "explorerId": null,
+        "id": "fermentation-equipment",
+        "notes": "Fermentation can produce ethanol and carbon dioxide from sugar-based feedstocks. The generic reactor illustrates a process role rather than biological design.",
+        "revealIds": [
+          "f-feed",
+          "f-pump",
+          "f-reactor",
+          "f-separator",
+          "f-gas",
+          "f-broth",
+          "fermentation-stream-1",
+          "fermentation-stream-2",
+          "fermentation-stream-3",
+          "fermentation-stream-4",
+          "fermentation-stream-5"
+        ],
+        "targetIds": [
+          "f-feed"
+        ],
+        "title": "Explain the equipment"
+      }
+    ]
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "f-feed",
+        "metadata": {},
+        "tag": "Sugar solution",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "f-pump",
+        "metadata": {},
+        "tag": "P-301",
+        "type": "pump"
+      },
+      {
+        "config": {
+          "operation": "continuous",
+          "reactorType": "stirredTank"
+        },
+        "id": "f-reactor",
+        "metadata": {},
+        "tag": "Fermenter (conceptual)",
+        "type": "reactor"
+      },
+      {
+        "config": {},
+        "id": "f-separator",
+        "metadata": {},
+        "tag": "Gas disengagement",
+        "type": "separator"
+      },
+      {
+        "config": {},
+        "id": "f-gas",
+        "metadata": {},
+        "tag": "CO2-rich gas",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "f-broth",
+        "metadata": {},
+        "tag": "Ethanol-containing broth",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "fermentation-stream-1",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Arbitrary illustrative inlet temperature for a unit-entry exercise; not measured or calculated. All other stream temperatures remain unknown.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "f-feed",
+          "portId": "out"
+        },
+        "tag": "Sugar feed",
+        "target": {
+          "equipmentId": "f-pump",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 25.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "fermentation-stream-2",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "f-pump",
+          "portId": "out"
+        },
+        "tag": "Pumped feed",
+        "target": {
+          "equipmentId": "f-reactor",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "fermentation-stream-3",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "f-reactor",
+          "portId": "out"
+        },
+        "tag": "Fermentation mixture",
+        "target": {
+          "equipmentId": "f-separator",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "fermentation-stream-4",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "f-separator",
+          "portId": "vaporOut"
+        },
+        "tag": "Gas",
+        "target": {
+          "equipmentId": "f-gas",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "fermentation-stream-5",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "f-separator",
+          "portId": "liquidOut"
+        },
+        "tag": "Broth",
+        "target": {
+          "equipmentId": "f-broth",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      }
+    ]
+  },
+  "id": "teaching-fermentation",
+  "metadata": {
+    "attribution": {
+      "artwork": "Original PFDkit schematics and teaching text; source illustrations are not reproduced.",
+      "creator": "PFDkit contributors",
+      "license": "MIT",
+      "reviewScope": "Structural references, terminology, configuration and teaching scope; no process design, balances or safety assessment.",
+      "reviewedOn": "2026-10-28"
+    },
+    "example": true,
+    "references": [
+      {
+        "title": "US DOE AFDC: Ethanol Production",
+        "url": "https://afdc.energy.gov/fuels/ethanol-production"
+      },
+      {
+        "title": "Wisconsin Energy Institute: Distillation of Ethanol",
+        "url": "https://energy.wisc.edu/education/for-educators/educational-materials/distillation-ethanol"
+      }
+    ],
+    "scope": "Simplified fermentation block flow using generic reactor/separator symbols. Pretreatment, biology, sterility, nutrients, kinetics, ethanol purification and cooling equipment are outside this lesson. Composition, conversion and productivity remain unknown.",
+    "valueStatus": "illustrative"
+  },
+  "presentation": {
+    "metadata": {
+      "style": {
+        "preset": "academicColorful",
+        "showLegend": true,
+        "showTitle": true
+      }
+    },
+    "nodes": {
+      "f-broth": {
+        "metadata": {},
+        "x": 80.0,
+        "y": 440.0
+      },
+      "f-feed": {
+        "metadata": {},
+        "x": 80.0,
+        "y": 140.0
+      },
+      "f-gas": {
+        "metadata": {},
+        "x": 1080.0,
+        "y": 140.0
+      },
+      "f-pump": {
+        "metadata": {},
+        "x": 330.0,
+        "y": 140.0
+      },
+      "f-reactor": {
+        "metadata": {},
+        "x": 580.0,
+        "y": 140.0
+      },
+      "f-separator": {
+        "metadata": {},
+        "x": 830.0,
+        "y": 140.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Fermentation: broth and carbon dioxide recovery"
+}

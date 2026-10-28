@@ -1,0 +1,385 @@
+{
+  "education": {
+    "annotations": [
+      {
+        "endX": null,
+        "endY": null,
+        "id": "water-treatment-principle",
+        "kind": "note",
+        "provenance": "conceptual",
+        "targetId": "w-feed",
+        "text": "Coagulation and flocculation help particles form settleable flocs. Clarified water still needs downstream filtration/disinfection; this lesson does not certify drinking water.",
+        "visible": true,
+        "x": 80.0,
+        "y": -40.0
+      },
+      {
+        "endX": null,
+        "endY": null,
+        "id": "water-treatment-value-status",
+        "kind": "note",
+        "provenance": "illustrative",
+        "targetId": "w-feed",
+        "text": "First inlet: 25 degC is an arbitrary illustrative entry. Other temperatures remain unknown; no process calculation.",
+        "visible": true,
+        "x": 80.0,
+        "y": 550.0
+      }
+    ],
+    "metadata": {},
+    "notes": "Conceptual coagulation, flocculation and settling only. The generic liquid-liquid separator stands in for an unimplemented clarifier; vaporOut is a legacy logical upper-outlet ID, not a vapor-phase claim. Filtration and disinfection are omitted, so the product is not declared potable. No dosing or contaminant-removal calculation. The first inlet temperature is an arbitrary illustrative 25 degC entry, not a measured or calculated condition. Other stream temperatures remain unknown.",
+    "steps": [
+      {
+        "annotationIds": [
+          "water-treatment-principle"
+        ],
+        "explorerId": null,
+        "id": "water-treatment-overview",
+        "notes": "Conceptual coagulation, flocculation and settling only. The generic liquid-liquid separator stands in for an unimplemented clarifier; vaporOut is a legacy logical upper-outlet ID, not a vapor-phase claim. Filtration and disinfection are omitted, so the product is not declared potable. No dosing or contaminant-removal calculation.",
+        "revealIds": [
+          "w-feed",
+          "w-dose",
+          "w-mixer",
+          "w-tank",
+          "w-separator",
+          "w-water",
+          "w-sludge"
+        ],
+        "targetIds": [
+          "w-feed",
+          "w-dose",
+          "w-mixer",
+          "w-tank",
+          "w-separator",
+          "w-water",
+          "w-sludge"
+        ],
+        "title": "Process overview"
+      },
+      {
+        "annotationIds": [
+          "water-treatment-principle"
+        ],
+        "explorerId": null,
+        "id": "water-treatment-equipment",
+        "notes": "Coagulation and flocculation help particles form settleable flocs. Clarified water still needs downstream filtration/disinfection; this lesson does not certify drinking water.",
+        "revealIds": [
+          "w-feed",
+          "w-dose",
+          "w-mixer",
+          "w-tank",
+          "w-separator",
+          "w-water",
+          "w-sludge",
+          "water-treatment-stream-1",
+          "water-treatment-stream-2",
+          "water-treatment-stream-3",
+          "water-treatment-stream-4",
+          "water-treatment-stream-5",
+          "water-treatment-stream-6"
+        ],
+        "targetIds": [
+          "w-feed"
+        ],
+        "title": "Explain the equipment"
+      }
+    ]
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "w-feed",
+        "metadata": {},
+        "tag": "Raw water",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "w-dose",
+        "metadata": {},
+        "tag": "Coagulant feed",
+        "type": "feed"
+      },
+      {
+        "config": {
+          "mixingMethod": "agitated"
+        },
+        "id": "w-mixer",
+        "metadata": {},
+        "tag": "Coagulation mixing",
+        "type": "mixer"
+      },
+      {
+        "config": {
+          "roof": "open"
+        },
+        "id": "w-tank",
+        "metadata": {},
+        "tag": "Flocculation contact (conceptual)",
+        "type": "tank"
+      },
+      {
+        "config": {
+          "service": "liquidLiquid"
+        },
+        "id": "w-separator",
+        "metadata": {},
+        "tag": "Settling (conceptual)",
+        "type": "separator"
+      },
+      {
+        "config": {},
+        "id": "w-water",
+        "metadata": {},
+        "tag": "Clarified water: further treatment required",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "w-sludge",
+        "metadata": {},
+        "tag": "Settled solids / water",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "water-treatment-stream-1",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Arbitrary illustrative inlet temperature for a unit-entry exercise; not measured or calculated. All other stream temperatures remain unknown.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "w-feed",
+          "portId": "out"
+        },
+        "tag": "Raw water",
+        "target": {
+          "equipmentId": "w-mixer",
+          "portId": "in1"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 25.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "water-treatment-stream-2",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "w-dose",
+          "portId": "out"
+        },
+        "tag": "Chemical addition",
+        "target": {
+          "equipmentId": "w-mixer",
+          "portId": "in2"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "water-treatment-stream-3",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "w-mixer",
+          "portId": "out"
+        },
+        "tag": "Mixed water",
+        "target": {
+          "equipmentId": "w-tank",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "water-treatment-stream-4",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "w-tank",
+          "portId": "out"
+        },
+        "tag": "Flocculated water",
+        "target": {
+          "equipmentId": "w-separator",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "water-treatment-stream-5",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "w-separator",
+          "portId": "vaporOut"
+        },
+        "tag": "Upper clarified liquid (not vapor)",
+        "target": {
+          "equipmentId": "w-water",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "water-treatment-stream-6",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "w-separator",
+          "portId": "liquidOut"
+        },
+        "tag": "Settled sludge (conceptual)",
+        "target": {
+          "equipmentId": "w-sludge",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      }
+    ]
+  },
+  "id": "teaching-water-treatment",
+  "metadata": {
+    "attribution": {
+      "artwork": "Original PFDkit schematics and teaching text; source illustrations are not reproduced.",
+      "creator": "PFDkit contributors",
+      "license": "MIT",
+      "reviewScope": "Structural references, terminology, configuration and teaching scope; no process design, balances or safety assessment.",
+      "reviewedOn": "2026-10-28"
+    },
+    "example": true,
+    "references": [
+      {
+        "title": "CDC: How Water Treatment Works",
+        "url": "https://www.cdc.gov/drinking-water/about/how-water-treatment-works.html"
+      }
+    ],
+    "scope": "Conceptual coagulation, flocculation and settling only. The generic liquid-liquid separator stands in for an unimplemented clarifier; vaporOut is a legacy logical upper-outlet ID, not a vapor-phase claim. Filtration and disinfection are omitted, so the product is not declared potable. No dosing or contaminant-removal calculation.",
+    "valueStatus": "illustrative"
+  },
+  "presentation": {
+    "metadata": {
+      "style": {
+        "preset": "academicColorful",
+        "showLegend": true,
+        "showTitle": true
+      }
+    },
+    "nodes": {
+      "w-dose": {
+        "metadata": {},
+        "x": 330.0,
+        "y": 140.0
+      },
+      "w-feed": {
+        "metadata": {},
+        "x": 80.0,
+        "y": 140.0
+      },
+      "w-mixer": {
+        "metadata": {},
+        "x": 580.0,
+        "y": 140.0
+      },
+      "w-separator": {
+        "metadata": {},
+        "x": 1080.0,
+        "y": 140.0
+      },
+      "w-sludge": {
+        "metadata": {},
+        "x": 330.0,
+        "y": 440.0
+      },
+      "w-tank": {
+        "metadata": {},
+        "x": 830.0,
+        "y": 140.0
+      },
+      "w-water": {
+        "metadata": {},
+        "x": 80.0,
+        "y": 440.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Water treatment: coagulation and settling concept"
+}

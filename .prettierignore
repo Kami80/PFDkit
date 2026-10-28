@@ -1,0 +1,9 @@
+node_modules
+.next
+package-lock.json
+contracts/generated
+examples
+PROJECT_PLAN.md
+docs/plan
+.artifacts
+.tools

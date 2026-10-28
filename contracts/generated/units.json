@@ -1,0 +1,112 @@
+{
+  "%": {
+    "dimension": "dimensionless",
+    "offset": 0,
+    "scale": 0.01
+  },
+  "1": {
+    "dimension": "dimensionless",
+    "offset": 0,
+    "scale": 1
+  },
+  "K": {
+    "dimension": "temperature",
+    "offset": 0,
+    "scale": 1
+  },
+  "L/s": {
+    "dimension": "volumeFlow",
+    "offset": 0,
+    "scale": 0.001
+  },
+  "MPa": {
+    "dimension": "pressure",
+    "offset": 0,
+    "scale": 1000000.0
+  },
+  "MW": {
+    "dimension": "power",
+    "offset": 0,
+    "scale": 1000000.0
+  },
+  "Pa": {
+    "dimension": "pressure",
+    "offset": 0,
+    "scale": 1
+  },
+  "W": {
+    "dimension": "power",
+    "offset": 0,
+    "scale": 1
+  },
+  "atm": {
+    "dimension": "pressure",
+    "offset": 0,
+    "scale": 101325
+  },
+  "bar": {
+    "dimension": "pressure",
+    "offset": 0,
+    "scale": 100000.0
+  },
+  "degC": {
+    "dimension": "temperature",
+    "offset": 273.15,
+    "scale": 1
+  },
+  "degF": {
+    "dimension": "temperature",
+    "offset": 255.3722222222222,
+    "scale": 0.5555555555555556
+  },
+  "g/s": {
+    "dimension": "massFlow",
+    "offset": 0,
+    "scale": 0.001
+  },
+  "kPa": {
+    "dimension": "pressure",
+    "offset": 0,
+    "scale": 1000
+  },
+  "kW": {
+    "dimension": "power",
+    "offset": 0,
+    "scale": 1000
+  },
+  "kg/h": {
+    "dimension": "massFlow",
+    "offset": 0,
+    "scale": 0.0002777777777777778
+  },
+  "kg/s": {
+    "dimension": "massFlow",
+    "offset": 0,
+    "scale": 1
+  },
+  "kmol/h": {
+    "dimension": "molarFlow",
+    "offset": 0,
+    "scale": 0.2777777777777778
+  },
+  "kmol/s": {
+    "dimension": "molarFlow",
+    "offset": 0,
+    "scale": 1000
+  },
+  "m3/h": {
+    "dimension": "volumeFlow",
+    "offset": 0,
+    "scale": 0.0002777777777777778
+  },
+  "m3/s": {
+    "dimension": "volumeFlow",
+    "offset": 0,
+    "scale": 1
+  },
+  "mol/s": {
+    "dimension": "molarFlow",
+    "offset": 0,
+    "scale": 1
+  }
+}

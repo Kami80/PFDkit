@@ -1,0 +1,187 @@
+{
+  "education": {
+    "annotations": [],
+    "metadata": {},
+    "notes": "The shell circuit is deliberately incomplete. Values are entered illustrations, not calculated results.",
+    "steps": []
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "feed-1",
+        "metadata": {},
+        "tag": "F-101",
+        "type": "feed"
+      },
+      {
+        "config": {
+          "drive": "electric",
+          "efficiency": 0.78
+        },
+        "id": "pump-1",
+        "metadata": {},
+        "tag": "P-101",
+        "type": "pump"
+      },
+      {
+        "config": {
+          "flowArrangement": "counterCurrent",
+          "shellPasses": 1,
+          "tubePasses": 2
+        },
+        "id": "exchanger-1",
+        "metadata": {},
+        "tag": "E-101",
+        "type": "heatExchanger"
+      },
+      {
+        "config": {},
+        "id": "product-1",
+        "metadata": {},
+        "tag": "PR-101",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 1.23456789012345
+        },
+        "id": "stream-1",
+        "kind": "material",
+        "metadata": {},
+        "pressure": {
+          "dimension": "pressure",
+          "unit": "bar",
+          "value": 0.0
+        },
+        "properties": {},
+        "source": {
+          "equipmentId": "feed-1",
+          "portId": "out"
+        },
+        "tag": "S-001",
+        "target": {
+          "equipmentId": "pump-1",
+          "portId": "power"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 1.23456789012345
+        },
+        "id": "stream-2",
+        "kind": "material",
+        "metadata": {},
+        "pressure": {
+          "dimension": "pressure",
+          "unit": "bar",
+          "value": 0.0
+        },
+        "properties": {},
+        "source": {
+          "equipmentId": "pump-1",
+          "portId": "out"
+        },
+        "tag": "S-002",
+        "target": {
+          "equipmentId": "exchanger-1",
+          "portId": "tubeIn"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 1.23456789012345
+        },
+        "id": "stream-3",
+        "kind": "material",
+        "metadata": {},
+        "pressure": {
+          "dimension": "pressure",
+          "unit": "bar",
+          "value": 0.0
+        },
+        "properties": {},
+        "source": {
+          "equipmentId": "exchanger-1",
+          "portId": "tubeOut"
+        },
+        "tag": "S-003",
+        "target": {
+          "equipmentId": "product-1",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      }
+    ]
+  },
+  "id": "example-feed-pump-exchanger",
+  "metadata": {
+    "attribution": {
+      "creator": "PFDkit contributors",
+      "license": "MIT"
+    },
+    "example": true
+  },
+  "presentation": {
+    "metadata": {},
+    "nodes": {
+      "exchanger-1": {
+        "metadata": {},
+        "x": 480.0,
+        "y": 160.0
+      },
+      "feed-1": {
+        "metadata": {},
+        "x": 0.0,
+        "y": 160.0
+      },
+      "product-1": {
+        "metadata": {},
+        "x": 720.0,
+        "y": 160.0
+      },
+      "pump-1": {
+        "metadata": {},
+        "x": 240.0,
+        "y": 160.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Feed heating process"
+}

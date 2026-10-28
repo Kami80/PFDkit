@@ -1,0 +1,434 @@
+{
+  "education": {
+    "annotations": [
+      {
+        "endX": null,
+        "endY": null,
+        "id": "heat-exchanger-network-principle",
+        "kind": "note",
+        "provenance": "conceptual",
+        "targetId": "n-e1",
+        "text": "Separate tube and shell circuits transfer heat through walls without material mixing. Multi-pass paths reverse locally and are not everywhere purely countercurrent.",
+        "visible": true,
+        "x": 80.0,
+        "y": -40.0
+      },
+      {
+        "endX": null,
+        "endY": null,
+        "id": "heat-exchanger-network-value-status",
+        "kind": "note",
+        "provenance": "illustrative",
+        "targetId": "n-feed",
+        "text": "First inlet: 25 degC is an arbitrary illustrative entry. Other temperatures remain unknown; no process calculation.",
+        "visible": true,
+        "x": 80.0,
+        "y": 550.0
+      }
+    ],
+    "metadata": {},
+    "notes": "Two exchangers in series with independently connected shell circuits. Tube/shell colors identify circuits rather than assumed hot/cold roles. Except for the explicitly illustrative first-inlet temperature exercise, temperatures and flows remain unknown. Passes/baffles are illustrative specifications, not exchanger sizing or pinch analysis. The first inlet temperature is an arbitrary illustrative 25 degC entry, not a measured or calculated condition. Other stream temperatures remain unknown.",
+    "steps": [
+      {
+        "annotationIds": [
+          "heat-exchanger-network-principle"
+        ],
+        "explorerId": null,
+        "id": "heat-exchanger-network-overview",
+        "notes": "Two exchangers in series with independently connected shell circuits. Tube/shell colors identify circuits rather than assumed hot/cold roles. Except for the explicitly illustrative first-inlet temperature exercise, temperatures and flows remain unknown. Passes/baffles are illustrative specifications, not exchanger sizing or pinch analysis.",
+        "revealIds": [
+          "n-feed",
+          "n-e1",
+          "n-e2",
+          "n-product",
+          "n-u1",
+          "n-u1out",
+          "n-u2",
+          "n-u2out"
+        ],
+        "targetIds": [
+          "n-feed",
+          "n-e1",
+          "n-e2",
+          "n-product",
+          "n-u1",
+          "n-u1out",
+          "n-u2",
+          "n-u2out"
+        ],
+        "title": "Process overview"
+      },
+      {
+        "annotationIds": [
+          "heat-exchanger-network-principle"
+        ],
+        "explorerId": "n-e1",
+        "id": "heat-exchanger-network-equipment",
+        "notes": "Separate tube and shell circuits transfer heat through walls without material mixing. Multi-pass paths reverse locally and are not everywhere purely countercurrent.",
+        "revealIds": [
+          "n-feed",
+          "n-e1",
+          "n-e2",
+          "n-product",
+          "n-u1",
+          "n-u1out",
+          "n-u2",
+          "n-u2out",
+          "heat-exchanger-network-stream-1",
+          "heat-exchanger-network-stream-2",
+          "heat-exchanger-network-stream-3",
+          "heat-exchanger-network-stream-4",
+          "heat-exchanger-network-stream-5",
+          "heat-exchanger-network-stream-6",
+          "heat-exchanger-network-stream-7"
+        ],
+        "targetIds": [
+          "n-e1"
+        ],
+        "title": "Explain the equipment"
+      }
+    ]
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "n-feed",
+        "metadata": {},
+        "tag": "Process feed",
+        "type": "feed"
+      },
+      {
+        "config": {
+          "baffleCount": 4,
+          "flowArrangement": "counterCurrent",
+          "shellDiameterM": null,
+          "shellPasses": 2,
+          "tubeLengthM": null,
+          "tubePasses": 4
+        },
+        "id": "n-e1",
+        "metadata": {},
+        "tag": "E-601",
+        "type": "heatExchanger"
+      },
+      {
+        "config": {
+          "baffleCount": 6,
+          "flowArrangement": "coCurrent",
+          "shellPasses": 1,
+          "tubePasses": 2
+        },
+        "id": "n-e2",
+        "metadata": {},
+        "tag": "E-602",
+        "type": "heatExchanger"
+      },
+      {
+        "config": {},
+        "id": "n-product",
+        "metadata": {},
+        "tag": "Process product",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "n-u1",
+        "metadata": {},
+        "tag": "Utility A in",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "n-u1out",
+        "metadata": {},
+        "tag": "Utility A out",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "n-u2",
+        "metadata": {},
+        "tag": "Utility B in",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "n-u2out",
+        "metadata": {},
+        "tag": "Utility B out",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "heat-exchanger-network-stream-1",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Arbitrary illustrative inlet temperature for a unit-entry exercise; not measured or calculated. All other stream temperatures remain unknown.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "n-feed",
+          "portId": "out"
+        },
+        "tag": "Process inlet",
+        "target": {
+          "equipmentId": "n-e1",
+          "portId": "tubeIn"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 25.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "heat-exchanger-network-stream-2",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "n-e1",
+          "portId": "tubeOut"
+        },
+        "tag": "Inter-exchanger process",
+        "target": {
+          "equipmentId": "n-e2",
+          "portId": "tubeIn"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "heat-exchanger-network-stream-3",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "n-e2",
+          "portId": "tubeOut"
+        },
+        "tag": "Process outlet",
+        "target": {
+          "equipmentId": "n-product",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "heat-exchanger-network-stream-4",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "n-u1",
+          "portId": "out"
+        },
+        "tag": "Utility A supply",
+        "target": {
+          "equipmentId": "n-e1",
+          "portId": "shellIn"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "heat-exchanger-network-stream-5",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "n-e1",
+          "portId": "shellOut"
+        },
+        "tag": "Utility A return",
+        "target": {
+          "equipmentId": "n-u1out",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "heat-exchanger-network-stream-6",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "n-u2",
+          "portId": "out"
+        },
+        "tag": "Utility B supply",
+        "target": {
+          "equipmentId": "n-e2",
+          "portId": "shellIn"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "heat-exchanger-network-stream-7",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "n-e2",
+          "portId": "shellOut"
+        },
+        "tag": "Utility B return",
+        "target": {
+          "equipmentId": "n-u2out",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      }
+    ]
+  },
+  "id": "teaching-heat-exchanger-network",
+  "metadata": {
+    "attribution": {
+      "artwork": "Original PFDkit schematics and teaching text; source illustrations are not reproduced.",
+      "creator": "PFDkit contributors",
+      "license": "MIT",
+      "reviewScope": "Structural references, terminology, configuration and teaching scope; no process design, balances or safety assessment.",
+      "reviewedOn": "2026-10-28"
+    },
+    "example": true,
+    "references": [
+      {
+        "title": "US DOE Fundamentals Handbook: Heat Transfer",
+        "url": "https://www.energy.gov/documents/doe-hdbk-1012-92vol2"
+      }
+    ],
+    "scope": "Two exchangers in series with independently connected shell circuits. Tube/shell colors identify circuits rather than assumed hot/cold roles. Except for the explicitly illustrative first-inlet temperature exercise, temperatures and flows remain unknown. Passes/baffles are illustrative specifications, not exchanger sizing or pinch analysis.",
+    "valueStatus": "illustrative"
+  },
+  "presentation": {
+    "metadata": {
+      "style": {
+        "preset": "academicColorful",
+        "showLegend": true,
+        "showTitle": true
+      }
+    },
+    "nodes": {
+      "n-e1": {
+        "metadata": {},
+        "x": 330.0,
+        "y": 140.0
+      },
+      "n-e2": {
+        "metadata": {},
+        "x": 580.0,
+        "y": 140.0
+      },
+      "n-feed": {
+        "metadata": {},
+        "x": 80.0,
+        "y": 140.0
+      },
+      "n-product": {
+        "metadata": {},
+        "x": 830.0,
+        "y": 140.0
+      },
+      "n-u1": {
+        "metadata": {},
+        "x": 1080.0,
+        "y": 140.0
+      },
+      "n-u1out": {
+        "metadata": {},
+        "x": 80.0,
+        "y": 440.0
+      },
+      "n-u2": {
+        "metadata": {},
+        "x": 330.0,
+        "y": 440.0
+      },
+      "n-u2out": {
+        "metadata": {},
+        "x": 580.0,
+        "y": 440.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Heat-exchanger network: two independent utility circuits"
+}

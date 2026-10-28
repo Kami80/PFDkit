@@ -1,0 +1,38 @@
+{
+  "education": {
+    "annotations": [],
+    "metadata": {},
+    "notes": "",
+    "steps": []
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {
+          "drive": "electric",
+          "efficiency": 0.78
+        },
+        "id": "pump-1",
+        "metadata": {},
+        "tag": "P-101",
+        "type": "pump"
+      }
+    ],
+    "sections": [],
+    "streams": []
+  },
+  "id": "draft-1",
+  "metadata": {},
+  "presentation": {
+    "metadata": {},
+    "nodes": {},
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Incomplete draft"
+}

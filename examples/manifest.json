@@ -1,0 +1,107 @@
+[
+  {
+    "codes": [
+      "unconnected_port"
+    ],
+    "file": "valid-process.json",
+    "valid": true
+  },
+  {
+    "codes": [
+      "unconnected_port"
+    ],
+    "file": "incomplete-draft.json",
+    "valid": true
+  },
+  {
+    "codes": [],
+    "file": "recycle.json",
+    "valid": true
+  },
+  {
+    "codes": [
+      "stream_kind",
+      "unconnected_port"
+    ],
+    "file": "energy-material-mismatch.json",
+    "valid": false
+  },
+  {
+    "codes": [
+      "missing_equipment",
+      "unconnected_port"
+    ],
+    "file": "broken-reference.json",
+    "valid": false
+  },
+  {
+    "codes": [
+      "unsupported_version"
+    ],
+    "file": "unsupported-version.json",
+    "valid": false
+  },
+  {
+    "codes": [
+      "unconnected_port",
+      "unsupported_equipment"
+    ],
+    "file": "unknown-equipment.json",
+    "valid": false
+  },
+  {
+    "codes": [
+      "composition_sum",
+      "unconnected_port",
+      "unknown_composition"
+    ],
+    "file": "partial-composition-overflow.json",
+    "valid": false
+  },
+  {
+    "codes": [
+      "unconnected_port"
+    ],
+    "file": "integral-float-configuration.json",
+    "valid": true
+  },
+  {
+    "codes": [
+      "schema_error"
+    ],
+    "file": "unsafe-integer.json",
+    "valid": false
+  },
+  {
+    "codes": [
+      "unconnected_port"
+    ],
+    "file": "catalog-demo.json",
+    "valid": true
+  },
+  {
+    "codes": [],
+    "file": "teaching-distillation.json",
+    "valid": true
+  },
+  {
+    "codes": [],
+    "file": "teaching-fermentation.json",
+    "valid": true
+  },
+  {
+    "codes": [],
+    "file": "teaching-water-treatment.json",
+    "valid": true
+  },
+  {
+    "codes": [],
+    "file": "teaching-hydrogen-production.json",
+    "valid": true
+  },
+  {
+    "codes": [],
+    "file": "teaching-heat-exchanger-network.json",
+    "valid": true
+  }
+]

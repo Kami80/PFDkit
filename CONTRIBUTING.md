@@ -1,0 +1,29 @@
+# Contributing to PFDkit
+
+Follow the setup in [README](README.md), create a focused branch, and describe the behavior, engineering assumptions, and verification in your pull request. Run `npm run check`, `npm run test:e2e`, and `npm run format:check` before submitting. Python changes additionally use `python -m ruff format packages/pfd-core scripts`.
+
+Python owns the document contract. Change its models and registry first, run `npm run contract:generate`, and commit both the source change and generated results. CI checks regenerated output without relying on Git history. Do not hand-edit `contracts/generated`. Add representative fixtures and matching expected validation codes when behavior changes. Structural validation is not evidence of physical validity.
+
+`package-lock.json` locks the npm workspace dependency graph; use `npm ci` on clean checkouts. `requirements-dev.lock` pins the full Python contributor environment. `pfd-core` publishes a compatible Pydantic range for independent consumers. When updating Python dependencies, resolve the pinned lock together and verify both CI Python versions. Do not commit `.env`, credentials, virtual environments, local caches, screenshots, browser traces, or generated build output. Project-local `.tools` and `.artifacts` are ignored.
+
+All text is UTF-8 with LF line endings. Prettier formats frontend code, documentation, and configuration; Ruff formats and lints Python. Configuration and generated changes should remain reviewable.
+
+Use the project virtual environment for Python tools and installations. The web app's `AGENTS.md` additionally requires reading relevant installed Next.js guides before web changes. Build the canvas and exports from the shared declarative geometry; changing a symbol's ports must keep registry, handle and export coordinates aligned. Drawing styles remain in presentation data, and history/copy/paste must preserve unknown metadata while remapping documented object references. Test real mouse handles as well as the keyboard connection controls.
+
+Persistence changes need dirty-project switching, stale-tab conflict, quota/unavailable storage and recovery checks. Explorer changes need actual pass counts, flow direction and stable external stream references. Inspect exported SVG/PNG outside the editor, including long/escaped labels, bounds and transparency. See [the catalog extension guide](docs/equipment-catalog.md), [editing conventions](docs/editing-workflow.md), and [first-release scope](docs/first-release.md).
+
+M3 extensions also need Python/TypeScript parity for dynamic ports, section boundaries and teaching references. Exercise connected-port rejection, nested template remapping and presentation entry/exit without engineering or history changes. Inspect PDF output for vector content, physical page dimensions, readable labels and supported font characters. See [explorer authoring](docs/explorer-authoring.md) and [sections and teaching](docs/process-sections-and-teaching.md).
+
+## Licensing and attribution
+
+Contributors retain copyright in their contributions and license original source contributions under the repository's MIT license. Original examples and documentation are also contributed under MIT unless a file explicitly declares another compatible content license. Add the creator, source URL, license, and modifications to `metadata.attribution` for imported educational examples; preserve that metadata when adapting them. Do not submit third-party figures, textbook passages, logos, or datasets without a compatible license or permission. The source-code license does not relicense third-party content. No copyright assignment or transfer is required.
+
+We welcome issue reports describing the operating system, tool versions, reproducible document, expected result, and actual result. Remove private process information before sharing a document. Follow the [code of conduct](CODE_OF_CONDUCT.md).
+
+## Platform contributions
+
+Use the root virtual environment and install `apps/api/requirements.lock` alongside `requirements-dev.lock`. Read the [API permission matrix](apps/api/README.md), [operations guide](docs/platform-operations.md) and [release procedure](docs/platform-release.md). Backend changes require PostgreSQL integration tests, `makemigrations --check --dry-run`, and Ruff checks/formatting of `apps/api` as well as the core/scripts. Never replace PostgreSQL tests with SQLite. New migrations must preserve existing private projects and the immutable-revision trigger. Tests use an isolated `test_` database and a CREATEDB-capable test role.
+
+For platform browser checks, start the API with an isolated database, set `PFDKIT_API_ORIGIN` before starting/building the web app and enable `PFDKIT_PLATFORM_E2E=1`. Exercise owner/nonowner/anonymous access, stale saves, recovery drafts, public revision pinning and reuse credit. The default guest workflows remain useful without accounts or paid services.
+
+Public library contributions require explicit CC BY 4.0 or CC0 1.0 content permission, creator credit, source URL where applicable and a modification notice for adapted work. This selection governs the published diagram; MIT source-code licensing does not override content rights. Equipment symbols, explanatory text and third-party assets retain their declared rights. Missing or unclear rights block curation/publication until clarified. Submit a native JSON example and explain engineering assumptions, units, reference validity, teaching goals and limitations. Review private/hidden notes and visible annotations before publication, and check exports and template duplication. Maintainers can seed reviewed fixtures privately, deliberately publish new imports and withdraw disputed entries without modifying owners' private originals. Report unsuitable material through the publication report action or an issue with the public URL; omit private diagrams and account information.

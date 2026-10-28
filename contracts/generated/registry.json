@@ -1,0 +1,1149 @@
+[
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Boundaries",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "title": "TerminalConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "description": ""
+    },
+    "description": "Material entering the process boundary.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "source",
+      "inlet",
+      "boundary"
+    ],
+    "name": "Feed",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Material outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "F",
+    "type": "feed",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Fluid transport",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "drive": {
+          "default": "electric",
+          "enum": [
+            "electric",
+            "steam",
+            "other"
+          ],
+          "title": "Drive",
+          "type": "string"
+        },
+        "efficiency": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "maximum": 1,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Efficiency"
+        }
+      },
+      "title": "PumpConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "drive": "electric",
+      "efficiency": null
+    },
+    "description": "Transfers a liquid; entered values are illustrative, not solved.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "liquid",
+      "pressure",
+      "centrifugal"
+    ],
+    "name": "Pump",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Suction",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Discharge",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      },
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "power",
+        "kind": "energy",
+        "maxConnections": 1,
+        "name": "Shaft power",
+        "offset": 0.5,
+        "required": false,
+        "side": "bottom"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "P",
+    "type": "pump",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd",
+      "explorer"
+    ],
+    "category": "Heat transfer",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "baffleCount": {
+          "default": 0,
+          "maximum": 12,
+          "minimum": 0,
+          "title": "Bafflecount",
+          "type": "integer"
+        },
+        "flowArrangement": {
+          "default": "counterCurrent",
+          "enum": [
+            "counterCurrent",
+            "coCurrent",
+            "crossFlow"
+          ],
+          "title": "Flowarrangement",
+          "type": "string"
+        },
+        "shellDiameterM": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Shelldiameterm"
+        },
+        "shellPasses": {
+          "default": 1,
+          "maximum": 8,
+          "minimum": 1,
+          "title": "Shellpasses",
+          "type": "integer"
+        },
+        "tubeLengthM": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tubelengthm"
+        },
+        "tubePasses": {
+          "default": 1,
+          "maximum": 16,
+          "minimum": 1,
+          "title": "Tubepasses",
+          "type": "integer"
+        }
+      },
+      "title": "ExchangerConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "baffleCount": 0,
+      "flowArrangement": "counterCurrent",
+      "shellDiameterM": null,
+      "shellPasses": 1,
+      "tubeLengthM": null,
+      "tubePasses": 1
+    },
+    "description": "Separate tube and shell material circuits; no mixing is implied.",
+    "explorer": {
+      "components": {
+        "baffles": "Alternating segmental guides; schematic spacing is not a mechanical design.",
+        "shell": "Housing surrounding the tube bundle.",
+        "tubeBundle": "Separate tube flow circuit, drawn as one representative path per pass.",
+        "tubeSheet": "Separates tube headers from the shell circuit."
+      },
+      "principle": "Separate tube and shell circuits exchange thermal energy through tube walls. Passes reverse a circuit locally; baffles guide the shell circuit. No heat duty, pressure drop or outlet temperature is calculated.",
+      "references": [
+        {
+          "title": "DOE Fundamentals Handbook, Heat Transfer, heat exchangers",
+          "url": "https://www.energy.gov/documents/doe-hdbk-1012-92vol2"
+        }
+      ],
+      "valueStatus": "manual",
+      "views": [
+        "symbol",
+        "detail",
+        "education"
+      ]
+    },
+    "extension": "pfd-core",
+    "keywords": [
+      "exchanger",
+      "shell",
+      "tube",
+      "cooler",
+      "heater"
+    ],
+    "name": "Heat exchanger",
+    "ports": [
+      {
+        "circuit": "tube",
+        "direction": "in",
+        "id": "tubeIn",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Tube inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": "tube",
+        "direction": "out",
+        "id": "tubeOut",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Tube outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      },
+      {
+        "circuit": "shell",
+        "direction": "in",
+        "id": "shellIn",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Shell inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "top"
+      },
+      {
+        "circuit": "shell",
+        "direction": "out",
+        "id": "shellOut",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Shell outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "bottom"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "E",
+    "type": "heatExchanger",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Boundaries",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "title": "TerminalConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "description": ""
+    },
+    "description": "Material leaving the process boundary.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "sink",
+      "outlet",
+      "boundary"
+    ],
+    "name": "Product",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Material inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "PR",
+    "type": "product",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Separation",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "orientation": {
+          "default": "vertical",
+          "enum": [
+            "vertical",
+            "horizontal"
+          ],
+          "title": "Orientation",
+          "type": "string"
+        },
+        "service": {
+          "default": "vaporLiquid",
+          "enum": [
+            "vaporLiquid",
+            "liquidLiquid"
+          ],
+          "title": "Service",
+          "type": "string"
+        }
+      },
+      "title": "SeparatorConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "orientation": "vertical",
+      "service": "vaporLiquid"
+    },
+    "description": "Separates two material outlet phases; no phase-equilibrium calculation is performed.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "flash",
+      "drum",
+      "vapor",
+      "liquid"
+    ],
+    "name": "Separator",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Feed inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "vaporOut",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Upper phase outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "top"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "liquidOut",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Lower phase outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "bottom"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "V",
+    "type": "separator",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Storage",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "orientation": {
+          "default": "vertical",
+          "enum": [
+            "vertical",
+            "horizontal"
+          ],
+          "title": "Orientation",
+          "type": "string"
+        },
+        "roof": {
+          "default": "fixed",
+          "enum": [
+            "fixed",
+            "open"
+          ],
+          "title": "Roof",
+          "type": "string"
+        }
+      },
+      "title": "TankConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "orientation": "vertical",
+      "roof": "fixed"
+    },
+    "description": "Material storage with a stable inlet, outlet and optional vent.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "vessel",
+      "storage",
+      "reservoir"
+    ],
+    "name": "Tank",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Material inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Material outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "vent",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Vent outlet",
+        "offset": 0.5,
+        "required": false,
+        "side": "top"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "TK",
+    "type": "tank",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Mixing and splitting",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "mixingMethod": {
+          "default": "static",
+          "enum": [
+            "static",
+            "agitated"
+          ],
+          "title": "Mixingmethod",
+          "type": "string"
+        }
+      },
+      "title": "MixerConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "mixingMethod": "static"
+    },
+    "description": "Three fixed material inlets and one outlet. The third inlet is optional; no mixing balance is solved.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "combine",
+      "blend",
+      "junction"
+    ],
+    "name": "Mixer",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in1",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Inlet 1",
+        "offset": 0.25,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in2",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Inlet 2",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in3",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Inlet 3",
+        "offset": 0.75,
+        "required": false,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Mixed outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "M",
+    "type": "mixer",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Mixing and splitting",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "description": {
+          "default": "",
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "title": "SplitterConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "description": ""
+    },
+    "description": "One inlet and three fixed material outlets. The third outlet is optional; split fractions are not calculated.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "divide",
+      "branch",
+      "junction"
+    ],
+    "name": "Splitter",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Material inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out1",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Outlet 1",
+        "offset": 0.25,
+        "required": true,
+        "side": "right"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out2",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Outlet 2",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out3",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Outlet 3",
+        "offset": 0.75,
+        "required": false,
+        "side": "right"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "SP",
+    "type": "splitter",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd",
+      "explorer"
+    ],
+    "category": "Separation",
+    "configSchema": {
+      "$defs": {
+        "SideDraw": {
+          "additionalProperties": false,
+          "properties": {
+            "phase": {
+              "default": "liquid",
+              "enum": [
+                "liquid",
+                "vapor"
+              ],
+              "title": "Phase",
+              "type": "string"
+            },
+            "portId": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+              "title": "Portid",
+              "type": "string"
+            },
+            "stage": {
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Stage",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "portId",
+            "stage"
+          ],
+          "title": "SideDraw",
+          "type": "object"
+        },
+        "StageCondition": {
+          "additionalProperties": false,
+          "properties": {
+            "pressurePa": {
+              "anyOf": [
+                {
+                  "minimum": 0,
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Pressurepa"
+            },
+            "stage": {
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Stage",
+              "type": "integer"
+            },
+            "status": {
+              "default": "manual",
+              "enum": [
+                "manual",
+                "illustrative"
+              ],
+              "title": "Status",
+              "type": "string"
+            },
+            "temperatureK": {
+              "anyOf": [
+                {
+                  "exclusiveMinimum": 0,
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Temperaturek"
+            }
+          },
+          "required": [
+            "stage"
+          ],
+          "title": "StageCondition",
+          "type": "object"
+        },
+        "StageConnection": {
+          "additionalProperties": false,
+          "properties": {
+            "portId": {
+              "minLength": 1,
+              "pattern": "^[A-Za-z][A-Za-z0-9_-]*$",
+              "title": "Portid",
+              "type": "string"
+            },
+            "stage": {
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Stage",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "portId",
+            "stage"
+          ],
+          "title": "StageConnection",
+          "type": "object"
+        }
+      },
+      "additionalProperties": true,
+      "properties": {
+        "boilupRatio": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Boilupratio"
+        },
+        "condenser": {
+          "default": "total",
+          "enum": [
+            "total",
+            "partial",
+            "none"
+          ],
+          "title": "Condenser",
+          "type": "string"
+        },
+        "feedStage": {
+          "default": 5,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Feedstage",
+          "type": "integer"
+        },
+        "feeds": {
+          "items": {
+            "$ref": "#/$defs/StageConnection"
+          },
+          "maxItems": 12,
+          "title": "Feeds",
+          "type": "array"
+        },
+        "internals": {
+          "default": "trays",
+          "enum": [
+            "trays",
+            "packing"
+          ],
+          "title": "Internals",
+          "type": "string"
+        },
+        "reboiler": {
+          "default": "partial",
+          "enum": [
+            "partial",
+            "total",
+            "none"
+          ],
+          "title": "Reboiler",
+          "type": "string"
+        },
+        "refluxRatio": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Refluxratio"
+        },
+        "service": {
+          "default": "distillation",
+          "enum": [
+            "distillation",
+            "absorption",
+            "stripping"
+          ],
+          "title": "Service",
+          "type": "string"
+        },
+        "sideDraws": {
+          "items": {
+            "$ref": "#/$defs/SideDraw"
+          },
+          "maxItems": 12,
+          "title": "Sidedraws",
+          "type": "array"
+        },
+        "stageBasis": {
+          "default": "theoretical",
+          "enum": [
+            "actual",
+            "theoretical"
+          ],
+          "title": "Stagebasis",
+          "type": "string"
+        },
+        "stageCount": {
+          "default": 10,
+          "maximum": 100,
+          "minimum": 1,
+          "title": "Stagecount",
+          "type": "integer"
+        },
+        "stageNumbering": {
+          "default": "topDown",
+          "enum": [
+            "topDown",
+            "bottomUp"
+          ],
+          "title": "Stagenumbering",
+          "type": "string"
+        },
+        "stageProperties": {
+          "items": {
+            "$ref": "#/$defs/StageCondition"
+          },
+          "maxItems": 100,
+          "title": "Stageproperties",
+          "type": "array"
+        }
+      },
+      "title": "ColumnConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "boilupRatio": null,
+      "condenser": "total",
+      "feedStage": 5,
+      "feeds": [],
+      "internals": "trays",
+      "reboiler": "partial",
+      "refluxRatio": null,
+      "service": "distillation",
+      "sideDraws": [],
+      "stageBasis": "theoretical",
+      "stageCount": 10,
+      "stageNumbering": "topDown",
+      "stageProperties": []
+    },
+    "description": "Separation column with feed, overhead and bottoms ports; optional reflux and boilup inlets keep their identities.",
+    "explorer": {
+      "components": {
+        "condenser": "Total: condenses the overhead vapor; partial: also permits a vapor product.",
+        "reboiler": "Partial: returns vapor while retaining a liquid bottoms stream; total: vaporizes the supplied liquid.",
+        "sideDraws": "Additional stable logical ports located at declared stages.",
+        "stages": "Numbered contacting locations; numbering changes labels but keeps feed and draw stage identities explicit."
+      },
+      "principle": "Vapor rises and liquid descends through contacting stages. Reflux returns liquid; boilup returns vapor. Declared stages exclude the external condenser and reboiler in every arrangement. Actual trays and theoretical equilibrium stages are different conventions; no efficiency conversion is performed. Packed columns show conceptual stages rather than physical tray plates.",
+      "references": [
+        {
+          "title": "ETH Zurich Hyper-TVT, distillation, non-standard arrangements and stage efficiency",
+          "url": "https://www.hyper-tvt.ethz.ch/distillation-page.html"
+        }
+      ],
+      "valueStatus": "manual",
+      "views": [
+        "symbol",
+        "detail",
+        "education"
+      ]
+    },
+    "extension": "pfd-core",
+    "keywords": [
+      "distillation",
+      "absorption",
+      "stripping",
+      "tower"
+    ],
+    "name": "Column",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "feed",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Feed inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "overhead",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Overhead outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "top"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "bottoms",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Bottoms outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "bottom"
+      },
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "reflux",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Reflux inlet",
+        "offset": 0.25,
+        "required": false,
+        "side": "right"
+      },
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "boilup",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Boilup inlet",
+        "offset": 0.75,
+        "required": false,
+        "side": "right"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "C",
+    "type": "column",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Reaction",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "operation": {
+          "default": "continuous",
+          "enum": [
+            "continuous",
+            "batch"
+          ],
+          "title": "Operation",
+          "type": "string"
+        },
+        "reactorType": {
+          "default": "stirredTank",
+          "enum": [
+            "stirredTank",
+            "plugFlow"
+          ],
+          "title": "Reactortype",
+          "type": "string"
+        }
+      },
+      "title": "ReactorConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "operation": "continuous",
+      "reactorType": "stirredTank"
+    },
+    "description": "Illustrative stirred-tank or plug-flow reactor. Kinetics, conversion and heat duty are not calculated.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "reaction",
+      "cstr",
+      "pfr",
+      "vessel"
+    ],
+    "name": "Reactor",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Feed inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Product outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      },
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "heat",
+        "kind": "energy",
+        "maxConnections": 1,
+        "name": "Heat input",
+        "offset": 0.5,
+        "required": false,
+        "side": "bottom"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "R",
+    "type": "reactor",
+    "version": "1.0.0"
+  }
+]

@@ -1,0 +1,14 @@
+# API runtime, pinned separately from the independent Python library.
+Django==5.2.18
+django-ninja==1.7.1
+asgiref==3.13.0
+sqlparse==0.6.0
+tzdata==2026.5
+psycopg[binary]==3.3.6
+gunicorn==23.0.0; sys_platform != "win32"
+packaging==26.2
+annotated-types==0.7.0
+pydantic==2.13.4
+pydantic-core==2.46.4
+typing-extensions==4.16.0
+typing-inspection==0.4.2

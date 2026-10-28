@@ -1,0 +1,53 @@
+# Document contract 1.0.0
+
+`pfd-core` is authoritative. `Document.model_json_schema(by_alias=True)` generates draft 2020-12 JSON Schema. `npm run contract:generate` writes schema, equipment registry, supported unit definitions, shared fixtures and TypeScript. The normalized schema marks model fields as present for generated browser types; the import schema accepts documented Python defaults. CI runs `npm run contract:check` to detect stale assets without modifying them. The browser imports the local `@pfdkit/contracts` workspace package.
+
+## Envelope and ownership
+
+| Section                                    | Persisted responsibility                                                                     |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| `schemaVersion`, `id`, `title`, `metadata` | Format identity, stable document identity, display title, extensible document metadata       |
+| `engineering.equipment`                    | Stable equipment ID, registry type, editable tag, shared configuration, metadata             |
+| `engineering.streams`                      | Stable stream ID, kind, endpoints, label, quantities, composition, properties, metadata      |
+| `engineering.components`                   | Component identities, names, optional formula, metadata                                      |
+| `engineering.sections`                     | Nested section identities, direct equipment membership and crossing-stream boundary mappings |
+| `presentation`                             | Node coordinates keyed by equipment ID, viewport, presentation metadata                      |
+| `education`                                | Teaching notes, typed annotations, saved presentation steps and educational metadata         |
+
+Equipment configuration belongs to engineering data, so changing a layout never changes a pump efficiency or exchanger pass count. All future explorer views must read that same configuration. Selection and panel visibility are transient UI state. Equipment tags and stream labels are editable display names; object and port IDs are references and stay stable when labels change.
+
+Each stream endpoint is `{equipmentId, portId}`. Port IDs are local to an equipment definition. The registry provides direction, material/energy kind, connection capacity, circuit, side, required status and display name. The exchanger has distinct `tubeIn`, `tubeOut`, `shellIn`, `shellOut` ports; no mixing between circuits is implied. Every layout key must refer to existing equipment. Deleting equipment removes its attached streams and layout atomically.
+
+## Serialization and defaults
+
+The native format is UTF-8 JSON using camelCase keys. Saved output has sorted object keys, two-space indentation, a trailing newline, and preserved array ordering. Numbers use finite IEEE 754 double precision. Any integer-valued number must be within ±9,007,199,254,740,991; use strings in extension metadata for arbitrary precision identifiers or quantities. Conversion to another unit may introduce normal floating point rounding. Neither runtime substitutes zero for an unknown value.
+
+A quantity is `{value: number | null, unit: string, dimension: string}`. A null quantity means no quantity is supplied; a quantity with `value: null` can preserve a known unit with an unknown value. Entered zero remains zero. Unit names are explicit and case-sensitive (`K`, `degC`, `degF`, `bar`, `kg/s`, `m3/h`, `kW`, etc.); ambiguous gauge-pressure strings are rejected. Pressure values use absolute pressure; temperatures represent states. A stream's `flowBasis` selects mass, molar, or volume flow dimensions. Composition uses mass or mole fractions tied to component IDs; complete known fractions sum to one within `1e-6`, and known partial fractions cannot exceed one. Energy streams carry `properties.power`, a power quantity, and cannot carry material flow or composition.
+
+Omitted fields with declared defaults are normalized on import: empty collections/metadata/configuration, default viewport, null measurements, default enum values, and generated IDs where permitted by Python. Canonical saved documents contain these normalized model fields. Validation does not fill or rewrite equipment configuration; newly created equipment receives registry defaults from the editor. Explicit nulls are accepted only where the schema permits them. Integer configuration values may be written as 2 or 2.0; numeric strings and booleans are rejected for these integer fields. Numeric strings and unknown top-level/model fields are rejected. Python's snake_case attribute API is an implementation convenience; interoperable JSON uses the generated camelCase schema.
+
+Open extension points are the documented `metadata` maps and equipment `config`. Unknown JSON values inside them are preserved, including nested objects, lists, booleans and null. Known configuration keys still follow their registered configuration schema. Metadata can include `attribution` with creator, source, license and modifications. Unknown engineering/model keys outside these extension points are rejected rather than silently dropped.
+
+## M2 presentation and local project conventions
+
+The native envelope remains `1.0.0`; M1 documents import without migration. M2 reserves `presentation.metadata.style` for style subformat `version: 1` and `presentation.metadata.objectStyles` for overrides keyed by equipment/stream ID. Global settings include preset, background, font, label size, line width, title/legend visibility and color-independent cues. Object overrides include stroke, fill, text color, line width and label appearance. Python preserves this JSON without depending on website styling. The browser resolver checks supported colors/fonts/ranges for rendering while native saving retains unknown metadata; changing a known setting merges rather than discards unknown extension fields.
+
+Copy/paste remaps equipment/stream IDs, endpoint references, layout keys and reserved object-style keys. Component identities are reused when identical, or remapped when they collide with different target objects. Unknown metadata is copied without guessing which arbitrary strings might be references. Deletion removes attached streams, layouts and their known style entries. Reconnection retains stream identity, values and metadata and validates occupancy with the previous connection replaced.
+
+Selection, clipboard, history and interface appearance are transient browser state. Browser projects and recovery snapshots wrap the same native JSON with a separately versioned local record, writer identity and revision. Storage wrappers are local implementation data; JSON export remains the portable editable document. Browser storage is origin-specific and can be disabled or cleared, so export native backups. See [the release guide](first-release.md) for autosave, conflicts and recovery behavior.
+
+## Validation and compatibility
+
+The browser uses AJV 2020 with type coercion disabled, then performs semantic checks mirroring Python: identity uniqueness, known equipment/configuration, references, port directions and kinds, port capacities, unit dimensions, composition and layout references. A report contains `valid`, findings (`severity`, stable `code`, `message`, `objectId`, `path`), named `checksPerformed`, and `physicalChecksPerformed: []`.
+
+Unconnected required ports and unknown composition fractions are warnings, so incomplete drafts can be imported and saved. Missing equipment or ports, wrong connection kinds, over-capacity ports, bad units/configuration, invalid composition and orphan layout references are errors. Recycle loops are allowed. This contract does not validate process feasibility, calculate balances, predict phase, perform thermodynamics or size equipment.
+
+Import is transactional: parse JSON, check supported version and schema, normalize defaults, run semantic checks, and replace the active editor document only if no error remains. Failures retain the previous document. Version `1.0.0` is currently the only supported version. `parseDocument` is the compatibility/migration entry point; it rejects unsupported versions with `unsupported_version` and an explanation. Additive M3 fields normalize to empty collections when absent; no version conversion or destructive equipment migration is performed. An older application that forbids unknown fields cannot open a current extended document. Unknown equipment types preserve their data in the supplied JSON but cannot become an editable active document until the matching registry extension is installed. Extensions must declare type, version, source, ports and configuration schema in Python, then regenerate browser assets.
+
+## M3 sections and saved lessons
+
+`engineering.sections` contains typed parent/child containment, disjoint direct equipment membership and explicit boundary mappings to the canonical stream graph. Four nested levels are supported. Every crossing stream maps once per crossed section; its original endpoints, quantities and identity remain authoritative. Python and TypeScript reject recursive containment, missing references, excessive depth and inconsistent boundary mappings while allowing process recycle streams.
+
+`education.annotations` stores typed text, coordinates, optional targets, visibility and conceptual/manual/illustrative/calculated provenance. `education.steps` stores stable equipment, stream, section and annotation references, reveal schedules, notes and optional supported explorer targets. Deleted teaching targets remain editable warnings. Active step, revealed objects, fullscreen and lecture-note visibility remain transient interface state. See [the detailed section and teaching contract](process-sections-and-teaching.md) and [explorer configuration conventions](explorer-authoring.md).
+
+The `examples/manifest.json` declares validity and stable finding codes. Python and browser tests consume every listed fixture, including a valid process, draft, recycle, material/energy mismatch, broken reference, unsupported version, unknown equipment, partial-composition overflow, an unsafe integer and integral-float configuration values. Wording can differ while codes and accept/reject behavior agree. Schema failures use `schema_error` in the browser and Pydantic `ValidationError` in Python; unsupported version is classified before browser schema validation for a useful error. `npm run test` and `npm run core:test` verify the fixtures; `npm run contract:check` verifies generated assets.

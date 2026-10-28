@@ -1,0 +1,83 @@
+{
+  "education": {
+    "annotations": [],
+    "metadata": {},
+    "notes": "The shell circuit is deliberately incomplete. Values are entered illustrations, not calculated results.",
+    "steps": []
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {
+          "drive": "electric",
+          "efficiency": 0.78
+        },
+        "id": "pump-1",
+        "metadata": {},
+        "tag": "P-101",
+        "type": "pump"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 1.23456789012345
+        },
+        "id": "stream-1",
+        "kind": "material",
+        "metadata": {},
+        "pressure": {
+          "dimension": "pressure",
+          "unit": "bar",
+          "value": 0.0
+        },
+        "properties": {},
+        "source": {
+          "equipmentId": "pump-1",
+          "portId": "out"
+        },
+        "tag": "S-001",
+        "target": {
+          "equipmentId": "pump-1",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      }
+    ]
+  },
+  "id": "example-feed-pump-exchanger",
+  "metadata": {
+    "attribution": {
+      "creator": "PFDkit contributors",
+      "license": "MIT"
+    },
+    "example": true
+  },
+  "presentation": {
+    "metadata": {},
+    "nodes": {
+      "pump-1": {
+        "metadata": {},
+        "x": 1.25,
+        "y": 2.5
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Feed heating process"
+}

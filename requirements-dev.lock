@@ -1,0 +1,24 @@
+# Pinned contributor/CI environment for Python 3.11–3.14. Install pfd-core separately with --no-deps.
+annotated-types==0.7.0
+ast-serialize==0.13.1
+build==1.5.0
+colorama==0.4.6; sys_platform == "win32"
+editables==0.6
+hatchling==1.32.4
+iniconfig==2.3.0
+librt==0.16.0
+mypy==2.4.0
+mypy-extensions==1.1.0
+packaging==26.2
+pathspec==1.1.1
+pluggy==1.6.0
+pydantic==2.13.4
+pydantic-core==2.46.4
+pyproject-hooks==1.2.0
+Pygments==2.15.1
+pytest==9.1.1
+ruff==0.17.2
+tomlkit==0.15.2
+trove-classifiers==2026.9.21.13
+typing-extensions==4.16.0
+typing-inspection==0.4.2

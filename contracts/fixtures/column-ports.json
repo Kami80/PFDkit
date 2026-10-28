@@ -1,0 +1,813 @@
+[
+  {
+    "name": "default",
+    "config": {},
+    "valid": true,
+    "ports": [
+      {
+        "id": "feed",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed inlet",
+        "offset": 0.45454545454545453
+      },
+      {
+        "id": "overhead",
+        "side": "top",
+        "direction": "out",
+        "name": "Overhead outlet",
+        "offset": 0.5
+      },
+      {
+        "id": "bottoms",
+        "side": "bottom",
+        "direction": "out",
+        "name": "Bottoms outlet",
+        "offset": 0.5
+      },
+      {
+        "id": "reflux",
+        "side": "right",
+        "direction": "in",
+        "name": "Reflux inlet",
+        "offset": 0.25
+      },
+      {
+        "id": "boilup",
+        "side": "right",
+        "direction": "in",
+        "name": "Boilup inlet",
+        "offset": 0.75
+      }
+    ]
+  },
+  {
+    "name": "float stages and mixed same-stage ports",
+    "config": {
+      "stageCount": 10.0,
+      "feedStage": 5.0,
+      "feeds": [
+        {
+          "portId": "z_feed",
+          "stage": 5.0
+        },
+        {
+          "portId": "A_feed",
+          "stage": 5.0
+        }
+      ],
+      "sideDraws": [
+        {
+          "portId": "draw_V",
+          "stage": 5.0,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_L",
+          "stage": 5.0,
+          "phase": "liquid"
+        }
+      ]
+    },
+    "valid": true,
+    "ports": [
+      {
+        "id": "feed",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed inlet",
+        "offset": 0.5295454545454545
+      },
+      {
+        "id": "overhead",
+        "side": "top",
+        "direction": "out",
+        "name": "Overhead outlet",
+        "offset": 0.5
+      },
+      {
+        "id": "bottoms",
+        "side": "bottom",
+        "direction": "out",
+        "name": "Bottoms outlet",
+        "offset": 0.5
+      },
+      {
+        "id": "reflux",
+        "side": "right",
+        "direction": "in",
+        "name": "Reflux inlet",
+        "offset": 0.25
+      },
+      {
+        "id": "boilup",
+        "side": "right",
+        "direction": "in",
+        "name": "Boilup inlet",
+        "offset": 0.75
+      },
+      {
+        "id": "z_feed",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.6045454545454545
+      },
+      {
+        "id": "A_feed",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.45454545454545453
+      },
+      {
+        "id": "draw_V",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.5295454545454545
+      },
+      {
+        "id": "draw_L",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.45454545454545453
+      }
+    ]
+  },
+  {
+    "name": "maximum same-stage density",
+    "config": {
+      "stageCount": 10,
+      "feeds": [
+        {
+          "portId": "Feed_A",
+          "stage": 5
+        },
+        {
+          "portId": "feed_1",
+          "stage": 5
+        },
+        {
+          "portId": "feed_2",
+          "stage": 5
+        },
+        {
+          "portId": "feed_3",
+          "stage": 5
+        },
+        {
+          "portId": "feed_4",
+          "stage": 5
+        },
+        {
+          "portId": "feed_5",
+          "stage": 5
+        },
+        {
+          "portId": "feed_6",
+          "stage": 5
+        },
+        {
+          "portId": "feed_7",
+          "stage": 5
+        },
+        {
+          "portId": "feed_8",
+          "stage": 5
+        },
+        {
+          "portId": "feed_9",
+          "stage": 5
+        },
+        {
+          "portId": "feed_10",
+          "stage": 5
+        },
+        {
+          "portId": "feed_11",
+          "stage": 5
+        }
+      ],
+      "sideDraws": [
+        {
+          "portId": "Draw_Z",
+          "stage": 5,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_1",
+          "stage": 5,
+          "phase": "liquid"
+        },
+        {
+          "portId": "draw_2",
+          "stage": 5,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_3",
+          "stage": 5,
+          "phase": "liquid"
+        },
+        {
+          "portId": "draw_4",
+          "stage": 5,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_5",
+          "stage": 5,
+          "phase": "liquid"
+        },
+        {
+          "portId": "draw_6",
+          "stage": 5,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_7",
+          "stage": 5,
+          "phase": "liquid"
+        },
+        {
+          "portId": "draw_8",
+          "stage": 5,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_9",
+          "stage": 5,
+          "phase": "liquid"
+        },
+        {
+          "portId": "draw_10",
+          "stage": 5,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_11",
+          "stage": 5,
+          "phase": "liquid"
+        }
+      ]
+    },
+    "valid": true,
+    "ports": [
+      {
+        "id": "feed",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed inlet",
+        "offset": 0.16250000000000026
+      },
+      {
+        "id": "overhead",
+        "side": "top",
+        "direction": "out",
+        "name": "Overhead outlet",
+        "offset": 0.5
+      },
+      {
+        "id": "bottoms",
+        "side": "bottom",
+        "direction": "out",
+        "name": "Bottoms outlet",
+        "offset": 0.5
+      },
+      {
+        "id": "reflux",
+        "side": "right",
+        "direction": "in",
+        "name": "Reflux inlet",
+        "offset": 0.012500000000000261
+      },
+      {
+        "id": "boilup",
+        "side": "right",
+        "direction": "in",
+        "name": "Boilup inlet",
+        "offset": 0.9875
+      },
+      {
+        "id": "Feed_A",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.08750000000000026
+      },
+      {
+        "id": "feed_1",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.23750000000000027
+      },
+      {
+        "id": "feed_2",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.4625000000000003
+      },
+      {
+        "id": "feed_3",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.5375000000000003
+      },
+      {
+        "id": "feed_4",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.6125000000000003
+      },
+      {
+        "id": "feed_5",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.6875000000000002
+      },
+      {
+        "id": "feed_6",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.7625000000000002
+      },
+      {
+        "id": "feed_7",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.8375000000000001
+      },
+      {
+        "id": "feed_8",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.9125000000000001
+      },
+      {
+        "id": "feed_9",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.9875
+      },
+      {
+        "id": "feed_10",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.3125000000000003
+      },
+      {
+        "id": "feed_11",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 5",
+        "offset": 0.3875000000000003
+      },
+      {
+        "id": "Draw_Z",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.08750000000000026
+      },
+      {
+        "id": "draw_1",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.16250000000000026
+      },
+      {
+        "id": "draw_2",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.3875000000000003
+      },
+      {
+        "id": "draw_3",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.4625000000000003
+      },
+      {
+        "id": "draw_4",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.5375000000000003
+      },
+      {
+        "id": "draw_5",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.6125000000000003
+      },
+      {
+        "id": "draw_6",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.6875000000000002
+      },
+      {
+        "id": "draw_7",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.7625000000000002
+      },
+      {
+        "id": "draw_8",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.8375000000000001
+      },
+      {
+        "id": "draw_9",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.9125000000000001
+      },
+      {
+        "id": "draw_10",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.23750000000000027
+      },
+      {
+        "id": "draw_11",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 5",
+        "offset": 0.3125000000000003
+      }
+    ]
+  },
+  {
+    "name": "maximum density numbering reversed",
+    "config": {
+      "stageCount": 10,
+      "stageNumbering": "bottomUp",
+      "feedStage": 6,
+      "feeds": [
+        {
+          "portId": "Feed_A",
+          "stage": 6
+        },
+        {
+          "portId": "feed_1",
+          "stage": 6
+        },
+        {
+          "portId": "feed_2",
+          "stage": 6
+        },
+        {
+          "portId": "feed_3",
+          "stage": 6
+        },
+        {
+          "portId": "feed_4",
+          "stage": 6
+        },
+        {
+          "portId": "feed_5",
+          "stage": 6
+        },
+        {
+          "portId": "feed_6",
+          "stage": 6
+        },
+        {
+          "portId": "feed_7",
+          "stage": 6
+        },
+        {
+          "portId": "feed_8",
+          "stage": 6
+        },
+        {
+          "portId": "feed_9",
+          "stage": 6
+        },
+        {
+          "portId": "feed_10",
+          "stage": 6
+        },
+        {
+          "portId": "feed_11",
+          "stage": 6
+        }
+      ],
+      "sideDraws": [
+        {
+          "portId": "Draw_Z",
+          "stage": 6,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_1",
+          "stage": 6,
+          "phase": "liquid"
+        },
+        {
+          "portId": "draw_2",
+          "stage": 6,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_3",
+          "stage": 6,
+          "phase": "liquid"
+        },
+        {
+          "portId": "draw_4",
+          "stage": 6,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_5",
+          "stage": 6,
+          "phase": "liquid"
+        },
+        {
+          "portId": "draw_6",
+          "stage": 6,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_7",
+          "stage": 6,
+          "phase": "liquid"
+        },
+        {
+          "portId": "draw_8",
+          "stage": 6,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_9",
+          "stage": 6,
+          "phase": "liquid"
+        },
+        {
+          "portId": "draw_10",
+          "stage": 6,
+          "phase": "vapor"
+        },
+        {
+          "portId": "draw_11",
+          "stage": 6,
+          "phase": "liquid"
+        }
+      ]
+    },
+    "valid": true,
+    "ports": [
+      {
+        "id": "feed",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed inlet",
+        "offset": 0.16250000000000026
+      },
+      {
+        "id": "overhead",
+        "side": "top",
+        "direction": "out",
+        "name": "Overhead outlet",
+        "offset": 0.5
+      },
+      {
+        "id": "bottoms",
+        "side": "bottom",
+        "direction": "out",
+        "name": "Bottoms outlet",
+        "offset": 0.5
+      },
+      {
+        "id": "reflux",
+        "side": "right",
+        "direction": "in",
+        "name": "Reflux inlet",
+        "offset": 0.012500000000000261
+      },
+      {
+        "id": "boilup",
+        "side": "right",
+        "direction": "in",
+        "name": "Boilup inlet",
+        "offset": 0.9875
+      },
+      {
+        "id": "Feed_A",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.08750000000000026
+      },
+      {
+        "id": "feed_1",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.23750000000000027
+      },
+      {
+        "id": "feed_2",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.4625000000000003
+      },
+      {
+        "id": "feed_3",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.5375000000000003
+      },
+      {
+        "id": "feed_4",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.6125000000000003
+      },
+      {
+        "id": "feed_5",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.6875000000000002
+      },
+      {
+        "id": "feed_6",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.7625000000000002
+      },
+      {
+        "id": "feed_7",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.8375000000000001
+      },
+      {
+        "id": "feed_8",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.9125000000000001
+      },
+      {
+        "id": "feed_9",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.9875
+      },
+      {
+        "id": "feed_10",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.3125000000000003
+      },
+      {
+        "id": "feed_11",
+        "side": "left",
+        "direction": "in",
+        "name": "Feed at stage 6",
+        "offset": 0.3875000000000003
+      },
+      {
+        "id": "Draw_Z",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.08750000000000026
+      },
+      {
+        "id": "draw_1",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.16250000000000026
+      },
+      {
+        "id": "draw_2",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.3875000000000003
+      },
+      {
+        "id": "draw_3",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.4625000000000003
+      },
+      {
+        "id": "draw_4",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.5375000000000003
+      },
+      {
+        "id": "draw_5",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.6125000000000003
+      },
+      {
+        "id": "draw_6",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.6875000000000002
+      },
+      {
+        "id": "draw_7",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.7625000000000002
+      },
+      {
+        "id": "draw_8",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.8375000000000001
+      },
+      {
+        "id": "draw_9",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.9125000000000001
+      },
+      {
+        "id": "draw_10",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.23750000000000027
+      },
+      {
+        "id": "draw_11",
+        "side": "right",
+        "direction": "out",
+        "name": "Side draw at stage 6",
+        "offset": 0.3125000000000003
+      }
+    ]
+  },
+  {
+    "name": "reserved fixed port",
+    "config": {
+      "feeds": [
+        {
+          "portId": "reflux",
+          "stage": 5
+        }
+      ]
+    },
+    "valid": false
+  },
+  {
+    "name": "fractional stage",
+    "config": {
+      "feeds": [
+        {
+          "portId": "fractional",
+          "stage": 2.5
+        }
+      ]
+    },
+    "valid": false
+  }
+]

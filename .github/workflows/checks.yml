@@ -1,0 +1,75 @@
+name: Checks
+
+on: [push, pull_request]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: pfdkit
+          POSTGRES_PASSWORD: ci-only-password
+          POSTGRES_DB: pfdkit_ci
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U pfdkit -d pfdkit_ci"
+          --health-interval 5s --health-timeout 5s --health-retries 12
+    env:
+      DATABASE_URL: postgresql://pfdkit:ci-only-password@127.0.0.1:5432/pfdkit_ci
+      DJANGO_DEBUG: "true"
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1,testserver
+      PFDKIT_API_ORIGIN: http://127.0.0.1:8000
+      PFDKIT_PLATFORM_E2E: "1"
+    strategy:
+      matrix:
+        python: ["3.11", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - run: |
+          python -m venv .venv
+          echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
+      - run: python -m pip install -r requirements-dev.lock -r apps/api/requirements.lock
+      - run: python -m pip install --no-deps --no-build-isolation -e packages/pfd-core
+      - run: npm ci
+      - run: npm run check
+      - run: npm run format:check
+      - run: python -m ruff check apps/api
+      - run: python -m ruff format --check packages/pfd-core scripts apps/api
+      - run: python apps/api/manage.py migrate --noinput
+      - run: python apps/api/manage.py makemigrations --check --dry-run
+      - run: python apps/api/manage.py test platform_api --noinput
+      - name: Verify backup and isolated restoration
+        run: |
+          docker exec ${{ job.services.postgres.id }} pg_dump --version
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-17
+          python scripts/platform_restore_check.py --pg-bin /usr/lib/postgresql/17/bin
+      - run: python -m build --no-isolation packages/pfd-core
+      - run: npx playwright install --with-deps chromium
+      - name: Start platform API for browser workflows
+        run: |
+          python apps/api/manage.py runserver 127.0.0.1:8000 --noreload > .artifacts-api.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8000/api/health; then exit 0; fi
+            sleep 1
+          done
+          cat .artifacts-api.log
+          exit 1
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-${{ matrix.python }}
+          path: |
+            apps/web/test-results
+            .artifacts-api.log

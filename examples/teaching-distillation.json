@@ -1,0 +1,366 @@
+{
+  "education": {
+    "annotations": [
+      {
+        "endX": null,
+        "endY": null,
+        "id": "distillation-principle",
+        "kind": "note",
+        "provenance": "conceptual",
+        "targetId": "d-column",
+        "text": "Vapor rises and liquid descends. Two feeds and a liquid side draw retain distinct stable ports at explicit stages.",
+        "visible": true,
+        "x": 80.0,
+        "y": -40.0
+      },
+      {
+        "endX": null,
+        "endY": null,
+        "id": "distillation-value-status",
+        "kind": "note",
+        "provenance": "illustrative",
+        "targetId": "d-feed",
+        "text": "First inlet: 25 degC is an arbitrary illustrative entry. Other temperatures remain unknown; no process calculation.",
+        "visible": true,
+        "x": 80.0,
+        "y": 550.0
+      }
+    ],
+    "metadata": {},
+    "notes": "Conceptual distillation lesson. Declared stages exclude condenser/reboiler. Unknown conditions and ratios are intentional; no VLE, reflux, duty, purity or stage-efficiency calculation is performed. The first inlet temperature is an arbitrary illustrative 25 degC entry, not a measured or calculated condition. Other stream temperatures remain unknown.",
+    "steps": [
+      {
+        "annotationIds": [
+          "distillation-principle"
+        ],
+        "explorerId": null,
+        "id": "distillation-overview",
+        "notes": "Conceptual distillation lesson. Declared stages exclude condenser/reboiler. Unknown conditions and ratios are intentional; no VLE, reflux, duty, purity or stage-efficiency calculation is performed.",
+        "revealIds": [
+          "d-feed",
+          "d-feed2",
+          "d-column",
+          "d-distillate",
+          "d-bottoms",
+          "d-side"
+        ],
+        "targetIds": [
+          "d-feed",
+          "d-feed2",
+          "d-column",
+          "d-distillate",
+          "d-bottoms",
+          "d-side"
+        ],
+        "title": "Process overview"
+      },
+      {
+        "annotationIds": [
+          "distillation-principle"
+        ],
+        "explorerId": "d-column",
+        "id": "distillation-equipment",
+        "notes": "Vapor rises and liquid descends. Two feeds and a liquid side draw retain distinct stable ports at explicit stages.",
+        "revealIds": [
+          "d-feed",
+          "d-feed2",
+          "d-column",
+          "d-distillate",
+          "d-bottoms",
+          "d-side",
+          "distillation-stream-1",
+          "distillation-stream-2",
+          "distillation-stream-3",
+          "distillation-stream-4",
+          "distillation-stream-5"
+        ],
+        "targetIds": [
+          "d-column"
+        ],
+        "title": "Explain the equipment"
+      }
+    ]
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "d-feed",
+        "metadata": {},
+        "tag": "Fresh feed",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "d-feed2",
+        "metadata": {},
+        "tag": "Second feed",
+        "type": "feed"
+      },
+      {
+        "config": {
+          "boilupRatio": null,
+          "condenser": "total",
+          "feedStage": 6,
+          "feeds": [
+            {
+              "portId": "secondFeed",
+              "stage": 9
+            }
+          ],
+          "reboiler": "partial",
+          "refluxRatio": null,
+          "sideDraws": [
+            {
+              "phase": "liquid",
+              "portId": "liquidDraw",
+              "stage": 4
+            }
+          ],
+          "stageBasis": "theoretical",
+          "stageCount": 12,
+          "stageNumbering": "topDown",
+          "stageProperties": [
+            {
+              "pressurePa": null,
+              "stage": 6,
+              "status": "illustrative",
+              "temperatureK": null
+            }
+          ]
+        },
+        "id": "d-column",
+        "metadata": {},
+        "tag": "C-201",
+        "type": "column"
+      },
+      {
+        "config": {},
+        "id": "d-distillate",
+        "metadata": {},
+        "tag": "Distillate",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "d-bottoms",
+        "metadata": {},
+        "tag": "Bottoms",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "d-side",
+        "metadata": {},
+        "tag": "Side product",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "distillation-stream-1",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Arbitrary illustrative inlet temperature for a unit-entry exercise; not measured or calculated. All other stream temperatures remain unknown.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "d-feed",
+          "portId": "out"
+        },
+        "tag": "Feed A",
+        "target": {
+          "equipmentId": "d-column",
+          "portId": "feed"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 25.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "distillation-stream-2",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "d-feed2",
+          "portId": "out"
+        },
+        "tag": "Feed B",
+        "target": {
+          "equipmentId": "d-column",
+          "portId": "secondFeed"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "distillation-stream-3",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "d-column",
+          "portId": "overhead"
+        },
+        "tag": "Overhead",
+        "target": {
+          "equipmentId": "d-distillate",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "distillation-stream-4",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "d-column",
+          "portId": "bottoms"
+        },
+        "tag": "Bottoms",
+        "target": {
+          "equipmentId": "d-bottoms",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "distillation-stream-5",
+        "kind": "material",
+        "metadata": {
+          "explanation": "Unknown by default; no process calculation performed.",
+          "valueStatus": "illustrative"
+        },
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "d-column",
+          "portId": "liquidDraw"
+        },
+        "tag": "Liquid side draw",
+        "target": {
+          "equipmentId": "d-side",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": null
+        }
+      }
+    ]
+  },
+  "id": "teaching-distillation",
+  "metadata": {
+    "attribution": {
+      "artwork": "Original PFDkit schematics and teaching text; source illustrations are not reproduced.",
+      "creator": "PFDkit contributors",
+      "license": "MIT",
+      "reviewScope": "Structural references, terminology, configuration and teaching scope; no process design, balances or safety assessment.",
+      "reviewedOn": "2026-10-28"
+    },
+    "example": true,
+    "references": [
+      {
+        "title": "ETH Zurich Hyper-TVT: Distillation",
+        "url": "https://www.hyper-tvt.ethz.ch/distillation-page.html"
+      }
+    ],
+    "scope": "Conceptual distillation lesson. Declared stages exclude condenser/reboiler. Unknown conditions and ratios are intentional; no VLE, reflux, duty, purity or stage-efficiency calculation is performed.",
+    "valueStatus": "illustrative"
+  },
+  "presentation": {
+    "metadata": {
+      "style": {
+        "preset": "academicColorful",
+        "showLegend": true,
+        "showTitle": true
+      }
+    },
+    "nodes": {
+      "d-bottoms": {
+        "metadata": {},
+        "x": 1080.0,
+        "y": 140.0
+      },
+      "d-column": {
+        "metadata": {},
+        "x": 580.0,
+        "y": 140.0
+      },
+      "d-distillate": {
+        "metadata": {},
+        "x": 830.0,
+        "y": 140.0
+      },
+      "d-feed": {
+        "metadata": {},
+        "x": 80.0,
+        "y": 140.0
+      },
+      "d-feed2": {
+        "metadata": {},
+        "x": 330.0,
+        "y": 140.0
+      },
+      "d-side": {
+        "metadata": {},
+        "x": 80.0,
+        "y": 440.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Distillation: multiple feeds and a side draw"
+}
