@@ -80,11 +80,23 @@ header {
   border-bottom: 1px solid var(--line);
 }
 .brand {
+  display: inline-block;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.04em;
   color: var(--ink);
   text-decoration: none;
+}
+.brand-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  border-radius: 7px;
+}
+main > p {
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
 }
 .brand span {
   color: var(--accent);

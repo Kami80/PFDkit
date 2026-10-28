@@ -165,6 +165,13 @@ out = root / "docs/core-site"
 out.mkdir(parents=True, exist_ok=True)
 page = re.sub(r'<section class="reference">.*?</section>', "", page)
 page = page.replace(
+    "</head>", '<link rel="icon" type="image/svg+xml" href="icon.svg"></head>'
+)
+page = page.replace(
+    '<a class="brand" href="#top">',
+    '<a class="brand" href="#top"><img class="brand-icon" src="icon.svg" width="28" height="28" alt="">',
+)
+page = page.replace(
     '<link rel="stylesheet"',
     '<script src="theme-init.js"></script><link rel="stylesheet"',
 )
