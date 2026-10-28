@@ -1,0 +1,320 @@
+{
+  "education": {
+    "annotations": [],
+    "metadata": {},
+    "notes": "Sugar-solution boundary through fermentation, gas disengagement and hydrous-ethanol recovery. Column condenser/reboiler are represented by column configuration; feedstock preparation, dehydration and coproduct finishing are outside scope. Illustrative input values; no mass/energy balance or thermodynamic calculation.",
+    "steps": []
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "sugar",
+        "metadata": {},
+        "tag": "F-201 Sugar solution",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "pump",
+        "metadata": {},
+        "tag": "P-201 Feed pump",
+        "type": "pump"
+      },
+      {
+        "config": {},
+        "id": "cooler",
+        "metadata": {},
+        "tag": "E-201 Feed conditioning",
+        "type": "heatExchanger"
+      },
+      {
+        "config": {},
+        "id": "fermenter",
+        "metadata": {},
+        "tag": "R-201 Fermenter",
+        "type": "reactor"
+      },
+      {
+        "config": {},
+        "id": "separator",
+        "metadata": {},
+        "tag": "V-201 Gas disengagement",
+        "type": "separator"
+      },
+      {
+        "config": {},
+        "id": "gas",
+        "metadata": {},
+        "tag": "G-201 CO2-rich gas",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "column",
+        "metadata": {},
+        "tag": "C-201 Recovery column",
+        "type": "column"
+      },
+      {
+        "config": {},
+        "id": "ethanol",
+        "metadata": {},
+        "tag": "D-201 Hydrous ethanol",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "stillage",
+        "metadata": {},
+        "tag": "B-201 Stillage",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 1.0
+        },
+        "id": "S01",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "sugar",
+          "portId": "out"
+        },
+        "tag": "S01 Sugar feed",
+        "target": {
+          "equipmentId": "pump",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 25.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S02",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "pump",
+          "portId": "out"
+        },
+        "tag": "S02 Pressurized feed",
+        "target": {
+          "equipmentId": "cooler",
+          "portId": "tubeIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S03",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "cooler",
+          "portId": "tubeOut"
+        },
+        "tag": "S03 Conditioned feed",
+        "target": {
+          "equipmentId": "fermenter",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S04",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "fermenter",
+          "portId": "out"
+        },
+        "tag": "S04 Fermented broth",
+        "target": {
+          "equipmentId": "separator",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S05",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "separator",
+          "portId": "vaporOut"
+        },
+        "tag": "S05 CO2-rich gas",
+        "target": {
+          "equipmentId": "gas",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S06",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "separator",
+          "portId": "liquidOut"
+        },
+        "tag": "S06 Degassed broth",
+        "target": {
+          "equipmentId": "column",
+          "portId": "feed"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S07",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "column",
+          "portId": "overhead"
+        },
+        "tag": "S07 Ethanol-rich outlet",
+        "target": {
+          "equipmentId": "ethanol",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S08",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "column",
+          "portId": "bottoms"
+        },
+        "tag": "S08 Stillage",
+        "target": {
+          "equipmentId": "stillage",
+          "portId": "in"
+        },
+        "temperature": null
+      }
+    ]
+  },
+  "id": "gallery-ethanol",
+  "metadata": {
+    "attribution": {
+      "artwork": "Original PFDkit vector artwork; references support process concepts, not entered values.",
+      "creator": "PFDkit contributors",
+      "license": "MIT"
+    },
+    "references": [
+      {
+        "title": "US DOE \u00b7 Ethanol production",
+        "url": "https://afdc.energy.gov/fuels/ethanol-production"
+      }
+    ],
+    "scope": "Sugar-solution boundary through fermentation, gas disengagement and hydrous-ethanol recovery. Column condenser/reboiler are represented by column configuration; feedstock preparation, dehydration and coproduct finishing are outside scope.",
+    "valueStatus": "Illustrative input values; no mass/energy balance or thermodynamic calculation."
+  },
+  "presentation": {
+    "metadata": {},
+    "nodes": {
+      "column": {
+        "metadata": {},
+        "x": 1200.0,
+        "y": 250.0
+      },
+      "cooler": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 0.0
+      },
+      "ethanol": {
+        "metadata": {},
+        "x": 1500.0,
+        "y": 250.0
+      },
+      "fermenter": {
+        "metadata": {},
+        "x": 900.0,
+        "y": 0.0
+      },
+      "gas": {
+        "metadata": {},
+        "x": 1500.0,
+        "y": 0.0
+      },
+      "pump": {
+        "metadata": {},
+        "x": 300.0,
+        "y": 0.0
+      },
+      "separator": {
+        "metadata": {},
+        "x": 1200.0,
+        "y": 0.0
+      },
+      "stillage": {
+        "metadata": {},
+        "x": 1500.0,
+        "y": 500.0
+      },
+      "sugar": {
+        "metadata": {},
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Ethanol \u00b7 fermentation and distillation"
+}

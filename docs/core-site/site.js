@@ -64,6 +64,14 @@ status.className = "sr-only";
 status.setAttribute("role", "status");
 document.body.append(status);
 document.addEventListener("click", async (event) => {
+  const size = event.target.closest(".diagram-size");
+  if (size) {
+    const fitted =
+      size.parentElement.nextElementSibling.classList.toggle("fit-diagram");
+    size.setAttribute("aria-pressed", String(fitted));
+    size.textContent = fitted ? "View actual size" : "Fit to width";
+    return;
+  }
   const copy = event.target.closest(".copy-code, .copy-markdown");
   if (!copy) return;
   try {

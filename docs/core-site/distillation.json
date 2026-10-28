@@ -1,0 +1,397 @@
+{
+  "education": {
+    "annotations": [],
+    "metadata": {},
+    "notes": "Feed-to-products separation train with explicit reflux and reboil paths. The splitter represents the conceptual vapor/liquid withdrawal from a partial reboiler; it does not calculate phase separation. Utility circuits and controls are omitted. Illustrative input values; no mass/energy balance or thermodynamic calculation.",
+    "steps": []
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "feed",
+        "metadata": {},
+        "tag": "F-101 Feed",
+        "type": "feed"
+      },
+      {
+        "config": {
+          "feedStage": 6,
+          "stageCount": 12
+        },
+        "id": "column",
+        "metadata": {},
+        "tag": "C-101 Column",
+        "type": "column"
+      },
+      {
+        "config": {},
+        "id": "condenser",
+        "metadata": {},
+        "tag": "E-101 Condenser",
+        "type": "heatExchanger"
+      },
+      {
+        "config": {
+          "orientation": "horizontal"
+        },
+        "id": "drum",
+        "metadata": {},
+        "tag": "V-101 Reflux drum",
+        "type": "tank"
+      },
+      {
+        "config": {},
+        "id": "split",
+        "metadata": {},
+        "tag": "SP-101 Reflux split",
+        "type": "splitter"
+      },
+      {
+        "config": {},
+        "id": "distillate",
+        "metadata": {},
+        "tag": "D-101 Distillate",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "reflux",
+        "metadata": {},
+        "tag": "P-101 Reflux pump",
+        "type": "pump"
+      },
+      {
+        "config": {},
+        "id": "reboiler",
+        "metadata": {},
+        "tag": "E-102 Reboiler",
+        "type": "heatExchanger"
+      },
+      {
+        "config": {},
+        "id": "bottom-split",
+        "metadata": {},
+        "tag": "SP-102 Boilup split",
+        "type": "splitter"
+      },
+      {
+        "config": {},
+        "id": "bottoms",
+        "metadata": {},
+        "tag": "B-101 Bottoms",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 1.0
+        },
+        "id": "S01",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "feed",
+          "portId": "out"
+        },
+        "tag": "S01 Feed",
+        "target": {
+          "equipmentId": "column",
+          "portId": "feed"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 25.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S02",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "column",
+          "portId": "overhead"
+        },
+        "tag": "S02 Vapor",
+        "target": {
+          "equipmentId": "condenser",
+          "portId": "tubeIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S03",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "condenser",
+          "portId": "tubeOut"
+        },
+        "tag": "S03 Condensate",
+        "target": {
+          "equipmentId": "drum",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S04",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "drum",
+          "portId": "out"
+        },
+        "tag": "S04 Liquid",
+        "target": {
+          "equipmentId": "split",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S05",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "split",
+          "portId": "out1"
+        },
+        "tag": "S05 Distillate",
+        "target": {
+          "equipmentId": "distillate",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S06",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "split",
+          "portId": "out2"
+        },
+        "tag": "S06 Reflux",
+        "target": {
+          "equipmentId": "reflux",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S07",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "reflux",
+          "portId": "out"
+        },
+        "tag": "S07 Reflux return",
+        "target": {
+          "equipmentId": "column",
+          "portId": "reflux"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S08",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "column",
+          "portId": "bottoms"
+        },
+        "tag": "S08 Sump liquid",
+        "target": {
+          "equipmentId": "reboiler",
+          "portId": "tubeIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S09",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "reboiler",
+          "portId": "tubeOut"
+        },
+        "tag": "S09 Reboiled fluid",
+        "target": {
+          "equipmentId": "bottom-split",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S10",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "bottom-split",
+          "portId": "out1"
+        },
+        "tag": "S10 Boilup",
+        "target": {
+          "equipmentId": "column",
+          "portId": "boilup"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S11",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "bottom-split",
+          "portId": "out2"
+        },
+        "tag": "S11 Bottoms",
+        "target": {
+          "equipmentId": "bottoms",
+          "portId": "in"
+        },
+        "temperature": null
+      }
+    ]
+  },
+  "id": "gallery-binary distillation",
+  "metadata": {
+    "attribution": {
+      "artwork": "Original PFDkit vector artwork; references support process concepts, not entered values.",
+      "creator": "PFDkit contributors",
+      "license": "MIT"
+    },
+    "references": [
+      {
+        "title": "ETH Zurich \u00b7 Distillation",
+        "url": "https://www.hyper-tvt.ethz.ch/distillation-page.html"
+      }
+    ],
+    "scope": "Feed-to-products separation train with explicit reflux and reboil paths. The splitter represents the conceptual vapor/liquid withdrawal from a partial reboiler; it does not calculate phase separation. Utility circuits and controls are omitted.",
+    "valueStatus": "Illustrative input values; no mass/energy balance or thermodynamic calculation."
+  },
+  "presentation": {
+    "metadata": {},
+    "nodes": {
+      "bottom-split": {
+        "metadata": {},
+        "x": 900.0,
+        "y": 500.0
+      },
+      "bottoms": {
+        "metadata": {},
+        "x": 1200.0,
+        "y": 500.0
+      },
+      "column": {
+        "metadata": {},
+        "x": 300.0,
+        "y": 250.0
+      },
+      "condenser": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 0.0
+      },
+      "distillate": {
+        "metadata": {},
+        "x": 1500.0,
+        "y": 0.0
+      },
+      "drum": {
+        "metadata": {},
+        "x": 900.0,
+        "y": 0.0
+      },
+      "feed": {
+        "metadata": {},
+        "x": 0.0,
+        "y": 250.0
+      },
+      "reboiler": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 500.0
+      },
+      "reflux": {
+        "metadata": {},
+        "x": 1200.0,
+        "y": 250.0
+      },
+      "split": {
+        "metadata": {},
+        "x": 1200.0,
+        "y": 0.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Binary distillation \u00b7 reflux and reboil"
+}

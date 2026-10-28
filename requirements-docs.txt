@@ -1,0 +1,4 @@
+# Install alongside pfd-core; Node dependencies come from npm ci.
+markdown-it-py==4.2.0
+mdurl==0.1.2
+Pygments==2.15.1

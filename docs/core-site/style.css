@@ -292,10 +292,66 @@ pre .p {
   font-size: 12px;
 }
 .process-preview {
-  width: 100%;
-  min-height: 140px;
+  width: auto;
+  max-width: none;
+  min-height: 0;
   color: var(--accent);
   display: block;
+}
+.diagram-scroll {
+  overflow: auto;
+  padding: 16px;
+  border-block: 1px solid var(--line);
+  background: var(--surface);
+}
+.diagram-scroll.fit-diagram svg {
+  width: 100%;
+  height: auto;
+}
+.diagram-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.diagram-tools button {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 12px;
+  min-height: 40px;
+}
+.process-preview .stream-label {
+  font-size: 12px;
+  font-weight: 650;
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+.process-preview .stream-value {
+  font-size: 11px;
+  fill: var(--muted);
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 4px;
+}
+.process-preview .equipment-tag {
+  font-size: 12px;
+  font-weight: 600;
+}
+.gallery-card {
+  margin: 24px 0 48px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.gallery-card > .agent-toolbar {
+  padding-inline: 16px;
 }
 .process-preview text {
   font: 12px system-ui;

@@ -1,0 +1,342 @@
+{
+  "education": {
+    "annotations": [],
+    "metadata": {},
+    "notes": "Simplified Haber\u2013Bosch synthesis-loop boundary with cooling, ammonia recovery, purge and recycle. Upstream hydrogen/nitrogen production, fresh-gas compression, recycle circulator, refrigeration details and utilities are omitted. No conversion or operating pressure is inferred. Illustrative input values; no mass/energy balance or thermodynamic calculation.",
+    "steps": []
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "feed",
+        "metadata": {},
+        "tag": "F-301 Pressurized H2/N2",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "mixer",
+        "metadata": {},
+        "tag": "M-301 Feed mixing",
+        "type": "mixer"
+      },
+      {
+        "config": {},
+        "id": "heater",
+        "metadata": {},
+        "tag": "E-301 Feed heater",
+        "type": "heatExchanger"
+      },
+      {
+        "config": {
+          "reactorType": "plugFlow"
+        },
+        "id": "reactor",
+        "metadata": {},
+        "tag": "R-301 Synthesis reactor",
+        "type": "reactor"
+      },
+      {
+        "config": {},
+        "id": "cooler",
+        "metadata": {},
+        "tag": "E-302 Cooling/condensation",
+        "type": "heatExchanger"
+      },
+      {
+        "config": {},
+        "id": "separator",
+        "metadata": {},
+        "tag": "V-301 Ammonia separator",
+        "type": "separator"
+      },
+      {
+        "config": {},
+        "id": "ammonia",
+        "metadata": {},
+        "tag": "P-301 Liquid ammonia",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "splitter",
+        "metadata": {},
+        "tag": "SP-301 Purge split",
+        "type": "splitter"
+      },
+      {
+        "config": {},
+        "id": "purge",
+        "metadata": {},
+        "tag": "G-301 Purge gas",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 1.0
+        },
+        "id": "S01",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "feed",
+          "portId": "out"
+        },
+        "tag": "S01 Makeup gas",
+        "target": {
+          "equipmentId": "mixer",
+          "portId": "in1"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 25.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S02",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "mixer",
+          "portId": "out"
+        },
+        "tag": "S02 Combined feed",
+        "target": {
+          "equipmentId": "heater",
+          "portId": "tubeIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S03",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "heater",
+          "portId": "tubeOut"
+        },
+        "tag": "S03 Reactor feed",
+        "target": {
+          "equipmentId": "reactor",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S04",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "reactor",
+          "portId": "out"
+        },
+        "tag": "S04 Reactor effluent",
+        "target": {
+          "equipmentId": "cooler",
+          "portId": "tubeIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S05",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "cooler",
+          "portId": "tubeOut"
+        },
+        "tag": "S05 Cooled mixture",
+        "target": {
+          "equipmentId": "separator",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S06",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "separator",
+          "portId": "liquidOut"
+        },
+        "tag": "S06 Ammonia",
+        "target": {
+          "equipmentId": "ammonia",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S07",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "separator",
+          "portId": "vaporOut"
+        },
+        "tag": "S07 Unreacted gas",
+        "target": {
+          "equipmentId": "splitter",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S08",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "splitter",
+          "portId": "out1"
+        },
+        "tag": "S08 Recycle gas",
+        "target": {
+          "equipmentId": "mixer",
+          "portId": "in2"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S09",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "splitter",
+          "portId": "out2"
+        },
+        "tag": "S09 Purge",
+        "target": {
+          "equipmentId": "purge",
+          "portId": "in"
+        },
+        "temperature": null
+      }
+    ]
+  },
+  "id": "gallery-ammonia",
+  "metadata": {
+    "attribution": {
+      "artwork": "Original PFDkit vector artwork; references support process concepts, not entered values.",
+      "creator": "PFDkit contributors",
+      "license": "MIT"
+    },
+    "references": [
+      {
+        "title": "US DOE \u00b7 Ammonia synthesis",
+        "url": "https://www.energy.gov/sites/default/files/2021-05/052721-h2iqhour_0.pdf"
+      }
+    ],
+    "scope": "Simplified Haber\u2013Bosch synthesis-loop boundary with cooling, ammonia recovery, purge and recycle. Upstream hydrogen/nitrogen production, fresh-gas compression, recycle circulator, refrigeration details and utilities are omitted. No conversion or operating pressure is inferred.",
+    "valueStatus": "Illustrative input values; no mass/energy balance or thermodynamic calculation."
+  },
+  "presentation": {
+    "metadata": {},
+    "nodes": {
+      "ammonia": {
+        "metadata": {},
+        "x": 1800.0,
+        "y": 250.0
+      },
+      "cooler": {
+        "metadata": {},
+        "x": 1200.0,
+        "y": 0.0
+      },
+      "feed": {
+        "metadata": {},
+        "x": 0.0,
+        "y": 0.0
+      },
+      "heater": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 0.0
+      },
+      "mixer": {
+        "metadata": {},
+        "x": 300.0,
+        "y": 0.0
+      },
+      "purge": {
+        "metadata": {},
+        "x": 1800.0,
+        "y": 500.0
+      },
+      "reactor": {
+        "metadata": {},
+        "x": 900.0,
+        "y": 0.0
+      },
+      "separator": {
+        "metadata": {},
+        "x": 1500.0,
+        "y": 0.0
+      },
+      "splitter": {
+        "metadata": {},
+        "x": 1500.0,
+        "y": 250.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Ammonia \u00b7 synthesis, recovery and recycle"
+}

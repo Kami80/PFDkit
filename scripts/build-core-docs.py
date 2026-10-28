@@ -6,7 +6,9 @@ import tempfile
 from html import escape
 from pathlib import Path
 
-from docs_preview import example_output
+from docs_diagram import diagram
+from docs_preview import document_output, example_output
+from gallery_processes import process_gallery
 from markdown_it import MarkdownIt
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
@@ -32,6 +34,9 @@ guide = guide.replace(
     "[package README](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/README.md)",
 )
 source += "\n\n" + guide
+gallery_markdown = (root / "packages/pfd-core/GALLERY.md").read_text(encoding="utf-8")
+gallery_markdown = re.sub(r"^(#{1,5}) ", r"#\1 ", gallery_markdown, flags=re.MULTILINE)
+source += "\n\n" + gallery_markdown
 api = (root / "packages/pfd-core/API.md").read_text(encoding="utf-8")
 api = re.sub(r"^# ", "## ", api, count=1, flags=re.MULTILINE)
 api = re.sub(r"^## ", "### ", api, flags=re.MULTILINE)
@@ -70,13 +75,19 @@ for i, token in enumerate(tokens):
         if seen[slug] > 1:
             slug += f"-{seen[slug]}"
         token.attrSet("id", slug)
-        if title in ("Building and using a PFD", "pfd-core API reference"):
+        if title in (
+            "Building and using a PFD",
+            "Process gallery",
+            "pfd-core API reference",
+        ):
             if group_open:
                 nav.append("</nav></details>")
             label = (
                 "Build with Python"
                 if title == "Building and using a PFD"
-                else "API reference"
+                else (
+                    "Process gallery" if title == "Process gallery" else "API reference"
+                )
             )
             nav.append(f"<details open><summary>{label}</summary><nav>")
             group_open = True
@@ -110,6 +121,29 @@ def render_fence(tokens, index, options, env):
 
 md.renderer.rules["fence"] = render_fence
 body = md.renderer.render(tokens, md.options, {})
+out = root / "docs/core-site"
+for name, document, scope, reference, url in process_gallery():
+    (out / f"{name}.json").write_text(document.to_json(), encoding="utf-8")
+    image = diagram(document)
+    svg = re.search(r"<svg.*?</svg>", image).group(0)
+    svg = svg.replace(
+        "><defs>",
+        "><style>svg{background:#fff;color:#0969bd;--surface:#fff}text{font:12px system-ui;fill:#20242c}.equipment-kind,.stream-value{font-size:11px}.stream-label{font-weight:600}</style><defs>",
+        1,
+    )
+    (out / f"{name}.svg").write_text(svg, encoding="utf-8")
+    links = f'<div class="agent-toolbar"><a href="{name}.svg" target="_blank" rel="noopener">Open full-size SVG ↗</a><a href="{name}.json" download>Download PFD JSON</a><a href="gallery_processes.py" download>Python source</a></div>'
+    body = body.replace(
+        f"<!-- gallery-{name} -->",
+        '<section class="gallery-card">'
+        + links
+        + document_output(document)
+        + "</section>",
+    )
+(out / "gallery_processes.py").write_text(
+    (root / "scripts/gallery_processes.py").read_text(encoding="utf-8"),
+    encoding="utf-8",
+)
 page = (
     """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Documentation for the pfd-core Python library"><title>pfd-core documentation</title><link rel="stylesheet" href="style.css"></head>
@@ -137,7 +171,13 @@ page = page.replace(
     '<nav aria-label="Project links">',
     '<nav aria-label="Project links"><button id="theme-toggle" aria-label="Switch to midnight theme">◐</button>',
 )
-(out / "agent-guide.md").write_text(source, encoding="utf-8")
+agent_source = source
+for name, *_ in process_gallery():
+    agent_source = agent_source.replace(
+        f"<!-- gallery-{name} -->",
+        f"[PFD JSON](https://kami80.github.io/PFDkit/{name}.json) · [SVG](https://kami80.github.io/PFDkit/{name}.svg) · [Python source](https://kami80.github.io/PFDkit/gallery_processes.py)",
+    )
+(out / "agent-guide.md").write_text(agent_source, encoding="utf-8")
 page = page.replace(
     "</main></div></body></html>",
     '</main></div><button class="view-toggle" type="button" aria-label="Switch to agent view" '
