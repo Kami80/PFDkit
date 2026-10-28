@@ -1,6 +1,6 @@
 # Equipment catalog and symbol extensions
 
-The development source provides 14 original, MIT-licensed schematics attributed to **PFDkit contributors**. PyPI 0.1.0 still has the original ten; the four flow-control additions require a source installation until the next release. They are teaching-oriented process symbols, not certified ISO, ISA or P&ID drawings. No symbol implies a balance, sizing, phase-equilibrium or reaction calculation. The [living catalog](../packages/pfd-core/EQUIPMENT.md) tracks subsequent additions.
+The development source provides 16 equipment types with original, MIT-licensed schematics attributed to **PFDkit contributors**. PyPI 0.1.0 still has the original ten; later additions require a source installation until the next release. They are teaching-oriented process symbols, not certified ISO, ISA or P&ID drawings. No symbol implies a balance, sizing, phase-equilibrium or reaction calculation. The [living catalog](../packages/pfd-core/EQUIPMENT.md) tracks subsequent additions.
 
 ## Coordinates and rendering
 
@@ -28,6 +28,8 @@ Ports declare a stable ID, direction, kind, side and fractional offset along tha
 Unconnected required ports produce draft warnings. Mixer/splitter connection counts are fixed in this release; configuration changes retain all four IDs. There is no automatic distribution of flow. The separator's upper/lower phase labels remain valid for either declared service.
 
 ## Adding an equipment extension
+
+`flowRestriction` adds fixed restriction/orifice configuration (entered bore in metres, differential pressure in Pa) and material `in`/`out` ports. `compressor` provides centrifugal/reciprocating artwork, material `in`/`out`, and an optional bottom energy `power` inlet. Its entered efficiency and absolute outlet pressure are metadata for illustration, not a thermodynamic solution. Tested restriction and compression/aftercooling examples are in the living catalog.
 
 The development catalog also includes `valve`, `checkValve`, `pressureReliefValve` and `pressureRegulator`, each with one material `in` and one `out`. Relief inlet geometry is bottom-facing; the other three inlets face left. All outlets face right. Their generic original artwork is shared across subtypes. The living catalog documents fields, units, limitations and executed examples. The original catalog-demo fixture below retains the original ten symbols.
 

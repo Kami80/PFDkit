@@ -1,6 +1,6 @@
 # pfd-core
 
-Development update: the repository has 14 built-in types, adding `valve`, `checkValve`, `pressureReliefValve` and `pressureRegulator` to the original ten. PyPI 0.1.0 still provides the original ten. See the [equipment catalog and expansion plan](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md); source installation is required for these additions until the next release.
+Development update: the repository has 16 built-in types, adding `valve`, `checkValve`, `pressureReliefValve`, `pressureRegulator`, `flowRestriction` and `compressor` to the original ten. PyPI 0.1.0 still provides the original ten. See the [equipment catalog and expansion plan](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md); source installation is required for these additions until the next release.
 
 Explore the [process gallery](https://kami80.github.io/PFDkit/#process-gallery): distillation, ethanol fermentation and ammonia synthesis, with editable Python, JSON and SVG downloads. [Markdown gallery guide](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GALLERY.md).
 
@@ -497,7 +497,7 @@ This working catalog covers common chemical-process equipment and specialist fam
 
 ### Available now
 
-The development source provides 14 types: feed (`feed`), product (`product`), pump (`pump`), heat exchanger (`heatExchanger`), separator (`separator`), tank (`tank`), mixer (`mixer`), splitter (`splitter`), column (`column`), reactor (`reactor`), valve (`valve`), check valve (`checkValve`), pressure relief valve (`pressureReliefValve`), and pressure reducing regulator (`pressureRegulator`).
+The development source provides 16 types: feed (`feed`), product (`product`), pump (`pump`), heat exchanger (`heatExchanger`), separator (`separator`), tank (`tank`), mixer (`mixer`), splitter (`splitter`), column (`column`), reactor (`reactor`), valve (`valve`), check valve (`checkValve`), pressure relief valve (`pressureReliefValve`), pressure reducing regulator (`pressureRegulator`), flow restriction/orifice (`flowRestriction`), and compressor (`compressor`).
 
 ### Implementation sequence
 
@@ -509,8 +509,8 @@ Each unchecked entry is a separate implementation task. Finish its port contract
 - [x] Check valve
 - [x] Pressure relief valve
 - [x] Pressure reducing regulator
-- [ ] Flow restriction / orifice
-- [ ] Compressor: centrifugal and reciprocating variants
+- [x] Flow restriction / orifice
+- [x] Compressor: centrifugal and reciprocating variants
 - [ ] Blower
 - [ ] Fan
 - [ ] Vacuum pump
@@ -743,7 +743,148 @@ assert validate_document(regulator_doc).valid
 print(regulator_doc.engineering.equipment[1].config)
 ```
 
-These three types are also development-source additions and are not included in the published PyPI 0.1.0 package. The next planned equipment is the flow restriction/orifice.
+These three types are also development-source additions and are not included in the published PyPI 0.1.0 package.
+
+### Flow restriction / orifice
+
+`flowRestriction` provides material `in` (left) and `out` (right). `restrictionType` accepts `orificePlate` or `fixedRestriction`; both use the same generic plate symbol. `boreDiameterM` is a positive entered diameter in metres, or `None`. `pressureDropPa` is a nonnegative entered differential in Pa, or `None`. Flow is not calculated from these fields; geometry is not sized, and no cavitation, choking or measurement correction is inferred.
+
+This self-contained PFD uses arbitrary illustrative pressure entries. Equipment configuration and stream properties are separate: changing the entered drop does not modify the outlet pressure.
+
+```python
+from pfd_core import (
+    Document,
+    Endpoint,
+    Quantity,
+    add_equipment,
+    connect,
+    new_document,
+    update_stream,
+    validate_document,
+)
+
+restriction_doc = new_document("Illustrative orifice restriction")
+for identity, kind, x in [
+    ("supply", "feed", 0),
+    ("orifice", "flowRestriction", 250),
+    ("outlet", "product", 500),
+]:
+    config = (
+        {"restrictionType": "orificePlate", "boreDiameterM": None, "pressureDropPa": 1000.0}
+        if kind == "flowRestriction"
+        else None
+    )
+    restriction_doc = add_equipment(restriction_doc, kind, id=identity, x=x, config=config)
+restriction_doc = connect(
+    restriction_doc,
+    Endpoint(equipment_id="supply", port_id="out"),
+    Endpoint(equipment_id="orifice", port_id="in"),
+    id="restriction-in",
+    tag="Upstream",
+)
+restriction_doc = connect(
+    restriction_doc,
+    Endpoint(equipment_id="orifice", port_id="out"),
+    Endpoint(equipment_id="outlet", port_id="in"),
+    id="restriction-out",
+    tag="Downstream",
+)
+restriction_doc = update_stream(
+    restriction_doc,
+    "restriction-in",
+    pressure=Quantity(value=100000, unit="Pa", dimension="pressure"),
+)
+restriction_doc = update_stream(
+    restriction_doc,
+    "restriction-out",
+    pressure=Quantity(value=99000, unit="Pa", dimension="pressure"),
+)
+assert validate_document(restriction_doc).valid
+assert Document.model_validate_json(restriction_doc.to_json()) == restriction_doc
+print(restriction_doc.engineering.equipment[1].config)
+```
+
+### Compressor: centrifugal
+
+`compressor` has material `in` (left suction) and `out` (right discharge), plus an optional energy `power` inlet on the bottom. `machineType` is `centrifugal` or `reciprocating`, with distinct symbols. `drive` is `electric`, `steam` or `other`. `isentropicEfficiency` is an entered fraction greater than zero and at most one, or `None`. `outletPressurePa` is an entered positive absolute pressure in Pa, or `None`.
+
+This gas compression/aftercooling illustration uses arbitrary manually entered inlet and outlet pressures. No power, temperature rise, surge, gas suitability, stage performance or cooling duty is calculated. The unconnected exchanger shell circuit is an allowed draft warning. The optional compressor shaft-power port may remain unconnected; use an energy stream to represent it when a suitable energy source extension is registered.
+
+```python
+from pfd_core import (
+    Document,
+    Endpoint,
+    Quantity,
+    add_equipment,
+    connect,
+    new_document,
+    update_stream,
+    validate_document,
+)
+
+compressor_doc = new_document("Illustrative centrifugal compression and aftercooling")
+for identity, kind, x in [
+    ("gas", "feed", 0),
+    ("compressor", "compressor", 250),
+    ("aftercooler", "heatExchanger", 500),
+    ("product", "product", 750),
+]:
+    config = (
+        {
+            "machineType": "centrifugal",
+            "drive": "electric",
+            "isentropicEfficiency": None,
+            "outletPressurePa": 200000.0,
+        }
+        if kind == "compressor"
+        else None
+    )
+    compressor_doc = add_equipment(compressor_doc, kind, id=identity, x=x, config=config)
+for stream_id, source, outlet, target, inlet, tag in [
+    ("suction", "gas", "out", "compressor", "in", "Suction gas"),
+    ("discharge", "compressor", "out", "aftercooler", "tubeIn", "Discharge gas"),
+    ("cooled", "aftercooler", "tubeOut", "product", "in", "Aftercooled gas"),
+]:
+    compressor_doc = connect(
+        compressor_doc,
+        Endpoint(equipment_id=source, port_id=outlet),
+        Endpoint(equipment_id=target, port_id=inlet),
+        id=stream_id,
+        tag=tag,
+    )
+compressor_doc = update_stream(
+    compressor_doc, "suction", pressure=Quantity(value=100000, unit="Pa", dimension="pressure")
+)
+compressor_doc = update_stream(
+    compressor_doc,
+    "discharge",
+    pressure=Quantity(value=200000, unit="Pa", dimension="pressure"),
+    temperature=Quantity(value=None, unit="K", dimension="temperature"),
+)
+assert validate_document(compressor_doc).valid
+assert validate_document(compressor_doc).physical_checks_performed == []
+assert Document.model_validate_json(compressor_doc.to_json()) == compressor_doc
+print(compressor_doc.engineering.equipment[1].config)
+```
+
+### Compressor: reciprocating
+
+This continuation changes the compressor subtype while retaining its ports, stream identities, entered conditions and connections. It uses `compressor_doc` from the preceding example. The source document is unchanged by the graph command.
+
+```python
+from pfd_core import update_equipment, validate_document
+
+reciprocating_doc = update_equipment(
+    compressor_doc, "compressor", config={"machineType": "reciprocating"}
+)
+reciprocating_doc.title = "Illustrative reciprocating compression and aftercooling"
+assert validate_document(reciprocating_doc).valid
+assert compressor_doc.engineering.equipment[1].config["machineType"] == "centrifugal"
+assert reciprocating_doc.engineering.streams == compressor_doc.engineering.streams
+print(reciprocating_doc.engineering.equipment[1].config)
+```
+
+Flow restriction and compressor are development-source additions; PyPI 0.1.0 does not include them. Install from the source checkout until the next release. The next planned equipment is the blower, followed by the fan.
 
 ## Process gallery
 

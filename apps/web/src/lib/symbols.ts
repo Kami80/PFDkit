@@ -71,11 +71,26 @@ export function getSymbol(
         ),
       ];
       break;
+    case "flowRestriction":
+      shapes = [path("M0 40h55M65 40h55M55 12v18m0 20v18M65 12v18m0 20v18")];
+      break;
     case "checkValve":
       shapes = [
         path("M0 40h35M85 40h35M35 20l40 20-40 20z", "body"),
         path("M80 18v44M40 18l30-8"),
       ];
+      break;
+    case "compressor":
+      shapes =
+        config.machineType === "reciprocating"
+          ? [
+              path("M30 18h60v44H30z", "body"),
+              path("M0 40h30M90 40h30M55 18v44M55 40h25M60 62v18"),
+            ]
+          : [
+              circle(60, 40, 30),
+              path("M0 40h30M90 40h30M40 20l40 10v20L40 60zM60 70v10"),
+            ];
       break;
     case "pressureReliefValve":
       shapes = [

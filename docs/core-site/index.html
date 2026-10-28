@@ -99,6 +99,12 @@
                 >Pressure relief valve</a
               ><a class="nav-h3" href="#pressure-reducing-regulator"
                 >Pressure reducing regulator</a
+              ><a class="nav-h3" href="#flow-restriction-/-orifice"
+                >Flow restriction / orifice</a
+              ><a class="nav-h3" href="#compressor:-centrifugal"
+                >Compressor: centrifugal</a
+              ><a class="nav-h3" href="#compressor:-reciprocating"
+                >Compressor: reciprocating</a
               >
             </nav>
           </details>
@@ -146,10 +152,11 @@
         <div class="eyebrow">PYTHON LIBRARY · VERSION 0.1.0</div>
         <h1>pfd-core</h1>
         <p>
-          Development update: the repository has 14 built-in types, adding
+          Development update: the repository has 16 built-in types, adding
           <code>valve</code>, <code>checkValve</code>,
-          <code>pressureReliefValve</code> and <code>pressureRegulator</code> to
-          the original ten. PyPI 0.1.0 still provides the original ten. See the
+          <code>pressureReliefValve</code>, <code>pressureRegulator</code>,
+          <code>flowRestriction</code> and <code>compressor</code> to the
+          original ten. PyPI 0.1.0 still provides the original ten. See the
           <a
             href="https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md"
             >equipment catalog and expansion plan</a
@@ -1253,7 +1260,14 @@ in in material 1
 out out material 1
 pressureRegulator
 in in material 1
-out out material 1</pre>
+out out material 1
+flowRestriction
+in in material 1
+out out material 1
+compressor
+in in material 1
+out out material 1
+power in energy 1</pre>
         </details>
         <h3 id="example:-a-recycle-loop">Example: a recycle loop</h3>
         <p>
@@ -2317,15 +2331,17 @@ Completed successfully · all assertions passed.</pre>
         </p>
         <h3 id="available-now">Available now</h3>
         <p>
-          The development source provides 14 types: feed (<code>feed</code>),
+          The development source provides 16 types: feed (<code>feed</code>),
           product (<code>product</code>), pump (<code>pump</code>), heat
           exchanger (<code>heatExchanger</code>), separator
           (<code>separator</code>), tank (<code>tank</code>), mixer
           (<code>mixer</code>), splitter (<code>splitter</code>), column
           (<code>column</code>), reactor (<code>reactor</code>), valve
           (<code>valve</code>), check valve (<code>checkValve</code>), pressure
-          relief valve (<code>pressureReliefValve</code>), and pressure reducing
-          regulator (<code>pressureRegulator</code>).
+          relief valve (<code>pressureReliefValve</code>), pressure reducing
+          regulator (<code>pressureRegulator</code>), flow restriction/orifice
+          (<code>flowRestriction</code>), and compressor
+          (<code>compressor</code>).
         </p>
         <h3 id="implementation-sequence">Implementation sequence</h3>
         <p>
@@ -2345,8 +2361,8 @@ Completed successfully · all assertions passed.</pre>
           <li>[x] Check valve</li>
           <li>[x] Pressure relief valve</li>
           <li>[x] Pressure reducing regulator</li>
-          <li>[ ] Flow restriction / orifice</li>
-          <li>[ ] Compressor: centrifugal and reciprocating variants</li>
+          <li>[x] Flow restriction / orifice</li>
+          <li>[x] Compressor: centrifugal and reciprocating variants</li>
           <li>[ ] Blower</li>
           <li>[ ] Fan</li>
           <li>[ ] Vacuum pump</li>
@@ -2641,9 +2657,9 @@ Completed successfully · all assertions passed.</pre>
                 stroke="var(--line)"
               />
               <text class="stream-label" x="239.0" y="116.0">
-                97fc2016-401c-4c2f-9a52-
+                15284a44-d4e3-485b-b2fd-
               </text>
-              <text class="stream-label" x="239.0" y="137.0">bbcca3bb93b5</text>
+              <text class="stream-label" x="239.0" y="137.0">004441285cf2</text>
               <path
                 class="callout-leader"
                 d="M645.0 220.0 L645.0 150.0"
@@ -2654,18 +2670,20 @@ Completed successfully · all assertions passed.</pre>
               />
               <rect
                 class="stream-callout"
-                x="539.0"
+                x="559.0"
                 y="94.0"
-                width="212.0"
+                width="172.0"
                 height="56.0"
                 rx="7"
                 fill="var(--surface)"
                 stroke="var(--line)"
               />
-              <text class="stream-label" x="549.0" y="116.0">
-                d8e68586-0385-4bbb-b187-
+              <text class="stream-label" x="569.0" y="116.0">
+                50053fcd-8d27-44af-
               </text>
-              <text class="stream-label" x="549.0" y="137.0">6ff7e1765e00</text>
+              <text class="stream-label" x="569.0" y="137.0">
+                bce6-3d649d3f899f
+              </text>
             </svg>
           </div>
           <p class="preview-caption">
@@ -2690,13 +2708,13 @@ Completed successfully · all assertions passed.</pre>
               </thead>
               <tbody>
                 <tr>
-                  <td>97fc2016-401c-4c2f-9a52-bbcca3bb93b5</td>
+                  <td>15284a44-d4e3-485b-b2fd-004441285cf2</td>
                   <td>supply.out → valve.in</td>
                   <td>material</td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
-                  <td>d8e68586-0385-4bbb-b187-6ff7e1765e00</td>
+                  <td>50053fcd-8d27-44af-bce6-3d649d3f899f</td>
                   <td>valve.out → outlet.in</td>
                   <td>material</td>
                   <td>Not entered</td>
@@ -3470,8 +3488,961 @@ Completed successfully · all assertions passed.</pre>
         </details>
         <p>
           These three types are also development-source additions and are not
-          included in the published PyPI 0.1.0 package. The next planned
-          equipment is the flow restriction/orifice.
+          included in the published PyPI 0.1.0 package.
+        </p>
+        <h3 id="flow-restriction-/-orifice">Flow restriction / orifice</h3>
+        <p>
+          <code>flowRestriction</code> provides material <code>in</code> (left)
+          and <code>out</code> (right). <code>restrictionType</code> accepts
+          <code>orificePlate</code> or <code>fixedRestriction</code>; both use
+          the same generic plate symbol. <code>boreDiameterM</code> is a
+          positive entered diameter in metres, or <code>None</code>.
+          <code>pressureDropPa</code> is a nonnegative entered differential in
+          Pa, or <code>None</code>. Flow is not calculated from these fields;
+          geometry is not sized, and no cavitation, choking or measurement
+          correction is inferred.
+        </p>
+        <p>
+          This self-contained PFD uses arbitrary illustrative pressure entries.
+          Equipment configuration and stream properties are separate: changing
+          the entered drop does not modify the outlet pressure.
+        </p>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Document</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">,</span>
+    <span class="n">Quantity</span><span class="p">,</span>
+    <span class="n">add_equipment</span><span class="p">,</span>
+    <span class="n">connect</span><span class="p">,</span>
+    <span class="n">new_document</span><span class="p">,</span>
+    <span class="n">update_stream</span><span class="p">,</span>
+    <span class="n">validate_document</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">restriction_doc</span> <span class="o">=</span> <span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Illustrative orifice restriction&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">identity</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;supply&quot;</span><span class="p">,</span> <span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;orifice&quot;</span><span class="p">,</span> <span class="s2">&quot;flowRestriction&quot;</span><span class="p">,</span> <span class="mi">250</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;outlet&quot;</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+<span class="p">]:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">{</span><span class="s2">&quot;restrictionType&quot;</span><span class="p">:</span> <span class="s2">&quot;orificePlate&quot;</span><span class="p">,</span> <span class="s2">&quot;boreDiameterM&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;pressureDropPa&quot;</span><span class="p">:</span> <span class="mf">1000.0</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;flowRestriction&quot;</span>
+        <span class="k">else</span> <span class="kc">None</span>
+    <span class="p">)</span>
+    <span class="n">restriction_doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">restriction_doc</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">identity</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+<span class="n">restriction_doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">restriction_doc</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;supply&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;orifice&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;restriction-in&quot;</span><span class="p">,</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;Upstream&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">restriction_doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+    <span class="n">restriction_doc</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;orifice&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;out&quot;</span><span class="p">),</span>
+    <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="s2">&quot;outlet&quot;</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="s2">&quot;in&quot;</span><span class="p">),</span>
+    <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;restriction-out&quot;</span><span class="p">,</span>
+    <span class="n">tag</span><span class="o">=</span><span class="s2">&quot;Downstream&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">restriction_doc</span> <span class="o">=</span> <span class="n">update_stream</span><span class="p">(</span>
+    <span class="n">restriction_doc</span><span class="p">,</span>
+    <span class="s2">&quot;restriction-in&quot;</span><span class="p">,</span>
+    <span class="n">pressure</span><span class="o">=</span><span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Pa&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;pressure&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">restriction_doc</span> <span class="o">=</span> <span class="n">update_stream</span><span class="p">(</span>
+    <span class="n">restriction_doc</span><span class="p">,</span>
+    <span class="s2">&quot;restriction-out&quot;</span><span class="p">,</span>
+    <span class="n">pressure</span><span class="o">=</span><span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">99000</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Pa&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;pressure&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">restriction_doc</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
+<span class="k">assert</span> <span class="n">Document</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">restriction_doc</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span> <span class="o">==</span> <span class="n">restriction_doc</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">restriction_doc</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">equipment</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+</code></pre>
+        </div>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>3</b> equipment</span><span><b>2</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
+          <div class="diagram-tools">
+            <button class="diagram-size" aria-pressed="true">
+              View actual size</button
+            ><span>Scaled overview · actual size for readable labels</span>
+          </div>
+          <div
+            class="diagram-scroll fit-diagram"
+            role="region"
+            tabindex="0"
+            aria-label="Process flow diagram"
+          >
+            <svg
+              class="process-preview"
+              width="960"
+              height="420"
+              role="img"
+              aria-label="Illustrative orifice restriction"
+              viewBox="0 0 960 420"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <marker
+                  id="flow-12"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M0 0 10 5 0 10" fill="currentColor" />
+                </marker>
+              </defs>
+              <path
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-12)"
+              />
+              <path
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-12)"
+              />
+              <g
+                class="equipment-symbol"
+                transform="translate(120 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
+                <path d="M95 40h25" fill="none" />
+              </g>
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
+                F-001
+              </text>
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
+                feed
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(430 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M0 40h55M65 40h55M55 12v18m0 20v18M65 12v18m0 20v18"
+                  fill="none"
+                />
+              </g>
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
+                RO-001
+              </text>
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
+                flowRestriction
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(740 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M25 25h53l27 15-27 15H25l12-15z"
+                  fill="var(--surface)"
+                />
+                <path d="M0 40h37" fill="none" />
+              </g>
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
+                PR-001
+              </text>
+              <text class="equipment-kind" x="800" y="344" text-anchor="middle">
+                product
+              </text>
+              <path
+                class="callout-leader"
+                d="M335.0 220.0 L335.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="281.0"
+                y="150.0"
+                width="108.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="291.0" y="172.0">Upstream</text>
+              <text class="stream-value" x="291.0" y="193.0">P=100000 Pa</text>
+              <path
+                class="callout-leader"
+                d="M645.0 220.0 L645.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="595.0"
+                y="150.0"
+                width="100.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="605.0" y="172.0">Downstream</text>
+              <text class="stream-value" x="605.0" y="193.0">P=99000 Pa</text>
+            </svg>
+          </div>
+          <p class="preview-caption">
+            Original PFDkit equipment symbols · solid: material; dashed: energy
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
+          </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections and entered values"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                  <th>Entered values</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Upstream</td>
+                  <td>supply.out → orifice.in</td>
+                  <td>material</td>
+                  <td>P=100000 Pa</td>
+                </tr>
+                <tr>
+                  <td>Downstream</td>
+                  <td>orifice.out → outlet.in</td>
+                  <td>material</td>
+                  <td>P=99000 Pa</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="console">
+{&#x27;restrictionType&#x27;: &#x27;orificePlate&#x27;, &#x27;boreDiameterM&#x27;: None, &#x27;pressureDropPa&#x27;: 1000.0}</pre>
+        </details>
+        <h3 id="compressor:-centrifugal">Compressor: centrifugal</h3>
+        <p>
+          <code>compressor</code> has material <code>in</code> (left suction)
+          and <code>out</code> (right discharge), plus an optional energy
+          <code>power</code> inlet on the bottom. <code>machineType</code> is
+          <code>centrifugal</code> or <code>reciprocating</code>, with distinct
+          symbols. <code>drive</code> is <code>electric</code>,
+          <code>steam</code> or <code>other</code>.
+          <code>isentropicEfficiency</code> is an entered fraction greater than
+          zero and at most one, or <code>None</code>.
+          <code>outletPressurePa</code> is an entered positive absolute pressure
+          in Pa, or <code>None</code>.
+        </p>
+        <p>
+          This gas compression/aftercooling illustration uses arbitrary manually
+          entered inlet and outlet pressures. No power, temperature rise, surge,
+          gas suitability, stage performance or cooling duty is calculated. The
+          unconnected exchanger shell circuit is an allowed draft warning. The
+          optional compressor shaft-power port may remain unconnected; use an
+          energy stream to represent it when a suitable energy source extension
+          is registered.
+        </p>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Document</span><span class="p">,</span>
+    <span class="n">Endpoint</span><span class="p">,</span>
+    <span class="n">Quantity</span><span class="p">,</span>
+    <span class="n">add_equipment</span><span class="p">,</span>
+    <span class="n">connect</span><span class="p">,</span>
+    <span class="n">new_document</span><span class="p">,</span>
+    <span class="n">update_stream</span><span class="p">,</span>
+    <span class="n">validate_document</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">compressor_doc</span> <span class="o">=</span> <span class="n">new_document</span><span class="p">(</span><span class="s2">&quot;Illustrative centrifugal compression and aftercooling&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">identity</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;gas&quot;</span><span class="p">,</span> <span class="s2">&quot;feed&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;compressor&quot;</span><span class="p">,</span> <span class="s2">&quot;compressor&quot;</span><span class="p">,</span> <span class="mi">250</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;aftercooler&quot;</span><span class="p">,</span> <span class="s2">&quot;heatExchanger&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="mi">750</span><span class="p">),</span>
+<span class="p">]:</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;machineType&quot;</span><span class="p">:</span> <span class="s2">&quot;centrifugal&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;drive&quot;</span><span class="p">:</span> <span class="s2">&quot;electric&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;isentropicEfficiency&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s2">&quot;outletPressurePa&quot;</span><span class="p">:</span> <span class="mf">200000.0</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="n">kind</span> <span class="o">==</span> <span class="s2">&quot;compressor&quot;</span>
+        <span class="k">else</span> <span class="kc">None</span>
+    <span class="p">)</span>
+    <span class="n">compressor_doc</span> <span class="o">=</span> <span class="n">add_equipment</span><span class="p">(</span><span class="n">compressor_doc</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">identity</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">stream_id</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">outlet</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">inlet</span><span class="p">,</span> <span class="n">tag</span> <span class="ow">in</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;suction&quot;</span><span class="p">,</span> <span class="s2">&quot;gas&quot;</span><span class="p">,</span> <span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="s2">&quot;compressor&quot;</span><span class="p">,</span> <span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="s2">&quot;Suction gas&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;discharge&quot;</span><span class="p">,</span> <span class="s2">&quot;compressor&quot;</span><span class="p">,</span> <span class="s2">&quot;out&quot;</span><span class="p">,</span> <span class="s2">&quot;aftercooler&quot;</span><span class="p">,</span> <span class="s2">&quot;tubeIn&quot;</span><span class="p">,</span> <span class="s2">&quot;Discharge gas&quot;</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;cooled&quot;</span><span class="p">,</span> <span class="s2">&quot;aftercooler&quot;</span><span class="p">,</span> <span class="s2">&quot;tubeOut&quot;</span><span class="p">,</span> <span class="s2">&quot;product&quot;</span><span class="p">,</span> <span class="s2">&quot;in&quot;</span><span class="p">,</span> <span class="s2">&quot;Aftercooled gas&quot;</span><span class="p">),</span>
+<span class="p">]:</span>
+    <span class="n">compressor_doc</span> <span class="o">=</span> <span class="n">connect</span><span class="p">(</span>
+        <span class="n">compressor_doc</span><span class="p">,</span>
+        <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="n">source</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="n">outlet</span><span class="p">),</span>
+        <span class="n">Endpoint</span><span class="p">(</span><span class="n">equipment_id</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">port_id</span><span class="o">=</span><span class="n">inlet</span><span class="p">),</span>
+        <span class="nb">id</span><span class="o">=</span><span class="n">stream_id</span><span class="p">,</span>
+        <span class="n">tag</span><span class="o">=</span><span class="n">tag</span><span class="p">,</span>
+    <span class="p">)</span>
+<span class="n">compressor_doc</span> <span class="o">=</span> <span class="n">update_stream</span><span class="p">(</span>
+    <span class="n">compressor_doc</span><span class="p">,</span> <span class="s2">&quot;suction&quot;</span><span class="p">,</span> <span class="n">pressure</span><span class="o">=</span><span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Pa&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;pressure&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">compressor_doc</span> <span class="o">=</span> <span class="n">update_stream</span><span class="p">(</span>
+    <span class="n">compressor_doc</span><span class="p">,</span>
+    <span class="s2">&quot;discharge&quot;</span><span class="p">,</span>
+    <span class="n">pressure</span><span class="o">=</span><span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">200000</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;Pa&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;pressure&quot;</span><span class="p">),</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;K&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;temperature&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">compressor_doc</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">compressor_doc</span><span class="p">)</span><span class="o">.</span><span class="n">physical_checks_performed</span> <span class="o">==</span> <span class="p">[]</span>
+<span class="k">assert</span> <span class="n">Document</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">compressor_doc</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span> <span class="o">==</span> <span class="n">compressor_doc</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">compressor_doc</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">equipment</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+</code></pre>
+        </div>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>4</b> equipment</span><span><b>3</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
+          <div class="diagram-tools">
+            <button class="diagram-size" aria-pressed="true">
+              View actual size</button
+            ><span>Scaled overview · actual size for readable labels</span>
+          </div>
+          <div
+            class="diagram-scroll fit-diagram"
+            role="region"
+            tabindex="0"
+            aria-label="Process flow diagram"
+          >
+            <svg
+              class="process-preview"
+              width="1270"
+              height="420"
+              role="img"
+              aria-label="Illustrative centrifugal compression and aftercooling"
+              viewBox="0 0 1270 420"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <marker
+                  id="flow-13"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M0 0 10 5 0 10" fill="currentColor" />
+                </marker>
+              </defs>
+              <path
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-13)"
+              />
+              <path
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-13)"
+              />
+              <path
+                d="M860 220 L890 220 L1020 220 L1050 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M860 220 L890 220 L1020 220 L1050 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-13)"
+              />
+              <g
+                class="equipment-symbol"
+                transform="translate(120 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
+                <path d="M95 40h25" fill="none" />
+              </g>
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
+                F-001
+              </text>
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
+                feed
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(430 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="60" cy="40" r="30" fill="var(--surface)" />
+                <path
+                  d="M0 40h30M90 40h30M40 20l40 10v20L40 60zM60 70v10"
+                  fill="none"
+                />
+              </g>
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
+                K-001
+              </text>
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
+                compressor
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(740 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="60" cy="40" r="30" fill="var(--surface)" />
+                <path
+                  d="M0 40h37l12-15 17 30 13-15h41M60 0v10M60 70v10"
+                  fill="none"
+                />
+                <path d="m56 5 4 5 4-5m-8 65 4 5 4-5" fill="none" />
+              </g>
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
+                E-001
+              </text>
+              <text class="equipment-kind" x="800" y="344" text-anchor="middle">
+                heatExchanger
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(1050 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M25 25h53l27 15-27 15H25l12-15z"
+                  fill="var(--surface)"
+                />
+                <path d="M0 40h37" fill="none" />
+              </g>
+              <text class="equipment-tag" x="1110" y="324" text-anchor="middle">
+                PR-001
+              </text>
+              <text
+                class="equipment-kind"
+                x="1110"
+                y="344"
+                text-anchor="middle"
+              >
+                product
+              </text>
+              <path
+                class="callout-leader"
+                d="M335.0 220.0 L335.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="281.0"
+                y="150.0"
+                width="108.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="291.0" y="172.0">Suction gas</text>
+              <text class="stream-value" x="291.0" y="193.0">P=100000 Pa</text>
+              <path
+                class="callout-leader"
+                d="M645.0 220.0 L645.0 150.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="559.0"
+                y="94.0"
+                width="172.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="569.0" y="116.0">
+                Discharge gas
+              </text>
+              <text class="stream-value" x="569.0" y="137.0">
+                T=? K · P=200000 Pa
+              </text>
+              <path
+                class="callout-leader"
+                d="M955.0 220.0 L955.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="885.0"
+                y="171.0"
+                width="140.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="895.0" y="193.0">
+                Aftercooled gas
+              </text>
+            </svg>
+          </div>
+          <p class="preview-caption">
+            Original PFDkit equipment symbols · solid: material; dashed: energy
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
+          </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections and entered values"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                  <th>Entered values</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Suction gas</td>
+                  <td>gas.out → compressor.in</td>
+                  <td>material</td>
+                  <td>P=100000 Pa</td>
+                </tr>
+                <tr>
+                  <td>Discharge gas</td>
+                  <td>compressor.out → aftercooler.tubeIn</td>
+                  <td>material</td>
+                  <td>T=? K · P=200000 Pa</td>
+                </tr>
+                <tr>
+                  <td>Aftercooled gas</td>
+                  <td>aftercooler.tubeOut → product.in</td>
+                  <td>material</td>
+                  <td>Not entered</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="console">
+{&#x27;machineType&#x27;: &#x27;centrifugal&#x27;, &#x27;drive&#x27;: &#x27;electric&#x27;, &#x27;isentropicEfficiency&#x27;: None, &#x27;outletPressurePa&#x27;: 200000.0}</pre>
+        </details>
+        <h3 id="compressor:-reciprocating">Compressor: reciprocating</h3>
+        <p>
+          This continuation changes the compressor subtype while retaining its
+          ports, stream identities, entered conditions and connections. It uses
+          <code>compressor_doc</code> from the preceding example. The source
+          document is unchanged by the graph command.
+        </p>
+        <div class="code-box">
+          <div class="code-toolbar">
+            <span>python</span
+            ><button class="copy-code" type="button">Copy code</button>
+          </div>
+          <pre><code class="language-python"><span class="kn">from</span> <span class="nn">pfd_core</span> <span class="kn">import</span> <span class="n">update_equipment</span><span class="p">,</span> <span class="n">validate_document</span>
+
+<span class="n">reciprocating_doc</span> <span class="o">=</span> <span class="n">update_equipment</span><span class="p">(</span>
+    <span class="n">compressor_doc</span><span class="p">,</span> <span class="s2">&quot;compressor&quot;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;machineType&quot;</span><span class="p">:</span> <span class="s2">&quot;reciprocating&quot;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">reciprocating_doc</span><span class="o">.</span><span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Illustrative reciprocating compression and aftercooling&quot;</span>
+<span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">reciprocating_doc</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
+<span class="k">assert</span> <span class="n">compressor_doc</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">equipment</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;machineType&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;centrifugal&quot;</span>
+<span class="k">assert</span> <span class="n">reciprocating_doc</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">streams</span> <span class="o">==</span> <span class="n">compressor_doc</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">streams</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">reciprocating_doc</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">equipment</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">config</span><span class="p">)</span>
+</code></pre>
+        </div>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <div class="stats">
+            <span><b>4</b> equipment</span><span><b>3</b> streams</span
+            ><span><b>0</b> components</span>
+          </div>
+          <div class="diagram-tools">
+            <button class="diagram-size" aria-pressed="true">
+              View actual size</button
+            ><span>Scaled overview · actual size for readable labels</span>
+          </div>
+          <div
+            class="diagram-scroll fit-diagram"
+            role="region"
+            tabindex="0"
+            aria-label="Process flow diagram"
+          >
+            <svg
+              class="process-preview"
+              width="1270"
+              height="420"
+              role="img"
+              aria-label="Illustrative reciprocating compression and aftercooling"
+              viewBox="0 0 1270 420"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <marker
+                  id="flow-14"
+                  viewBox="0 0 10 10"
+                  refX="9"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M0 0 10 5 0 10" fill="currentColor" />
+                </marker>
+              </defs>
+              <path
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M240 220 L270 220 L400 220 L430 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-14)"
+              />
+              <path
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M550 220 L580 220 L710 220 L740 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-14)"
+              />
+              <path
+                d="M860 220 L890 220 L1020 220 L1050 220"
+                fill="none"
+                stroke="var(--surface)"
+                stroke-width="8"
+              />
+              <path
+                class="flow-line"
+                d="M860 220 L890 220 L1020 220 L1050 220"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                marker-end="url(#flow-14)"
+              />
+              <g
+                class="equipment-symbol"
+                transform="translate(120 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M15 25h53l27 15-27 15H15z" fill="var(--surface)" />
+                <path d="M95 40h25" fill="none" />
+              </g>
+              <text class="equipment-tag" x="180" y="324" text-anchor="middle">
+                F-001
+              </text>
+              <text class="equipment-kind" x="180" y="344" text-anchor="middle">
+                feed
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(430 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M30 18h60v44H30z" fill="var(--surface)" />
+                <path
+                  d="M0 40h30M90 40h30M55 18v44M55 40h25M60 62v18"
+                  fill="none"
+                />
+              </g>
+              <text class="equipment-tag" x="490" y="324" text-anchor="middle">
+                K-001
+              </text>
+              <text class="equipment-kind" x="490" y="344" text-anchor="middle">
+                compressor
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(740 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="60" cy="40" r="30" fill="var(--surface)" />
+                <path
+                  d="M0 40h37l12-15 17 30 13-15h41M60 0v10M60 70v10"
+                  fill="none"
+                />
+                <path d="m56 5 4 5 4-5m-8 65 4 5 4-5" fill="none" />
+              </g>
+              <text class="equipment-tag" x="800" y="324" text-anchor="middle">
+                E-001
+              </text>
+              <text class="equipment-kind" x="800" y="344" text-anchor="middle">
+                heatExchanger
+              </text>
+              <g
+                class="equipment-symbol"
+                transform="translate(1050 180)"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M25 25h53l27 15-27 15H25l12-15z"
+                  fill="var(--surface)"
+                />
+                <path d="M0 40h37" fill="none" />
+              </g>
+              <text class="equipment-tag" x="1110" y="324" text-anchor="middle">
+                PR-001
+              </text>
+              <text
+                class="equipment-kind"
+                x="1110"
+                y="344"
+                text-anchor="middle"
+              >
+                product
+              </text>
+              <path
+                class="callout-leader"
+                d="M335.0 220.0 L335.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="281.0"
+                y="150.0"
+                width="108.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="291.0" y="172.0">Suction gas</text>
+              <text class="stream-value" x="291.0" y="193.0">P=100000 Pa</text>
+              <path
+                class="callout-leader"
+                d="M645.0 220.0 L645.0 150.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="559.0"
+                y="94.0"
+                width="172.0"
+                height="56.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="569.0" y="116.0">
+                Discharge gas
+              </text>
+              <text class="stream-value" x="569.0" y="137.0">
+                T=? K · P=200000 Pa
+              </text>
+              <path
+                class="callout-leader"
+                d="M955.0 220.0 L955.0 206.0"
+                fill="none"
+                stroke="var(--muted)"
+                stroke-width="1"
+                stroke-dasharray="3 3"
+              />
+              <rect
+                class="stream-callout"
+                x="885.0"
+                y="171.0"
+                width="140.0"
+                height="35.0"
+                rx="7"
+                fill="var(--surface)"
+                stroke="var(--line)"
+              />
+              <text class="stream-label" x="895.0" y="193.0">
+                Aftercooled gas
+              </text>
+            </svg>
+          </div>
+          <p class="preview-caption">
+            Original PFDkit equipment symbols · solid: material; dashed: energy
+            · dotted leaders: stream labels; gaps: line crossings · ? = entered
+            unknown. Values are illustrative entries, not calculated results.
+          </p>
+          <div
+            class="table-scroll"
+            role="region"
+            tabindex="0"
+            aria-label="Stream connections and entered values"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>Stream</th>
+                  <th>Source → target</th>
+                  <th>Kind</th>
+                  <th>Entered values</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Suction gas</td>
+                  <td>gas.out → compressor.in</td>
+                  <td>material</td>
+                  <td>P=100000 Pa</td>
+                </tr>
+                <tr>
+                  <td>Discharge gas</td>
+                  <td>compressor.out → aftercooler.tubeIn</td>
+                  <td>material</td>
+                  <td>T=? K · P=200000 Pa</td>
+                </tr>
+                <tr>
+                  <td>Aftercooled gas</td>
+                  <td>aftercooler.tubeOut → product.in</td>
+                  <td>material</td>
+                  <td>Not entered</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pre class="console">
+{&#x27;machineType&#x27;: &#x27;reciprocating&#x27;, &#x27;drive&#x27;: &#x27;electric&#x27;, &#x27;isentropicEfficiency&#x27;: None, &#x27;outletPressurePa&#x27;: 200000.0}</pre>
+        </details>
+        <p>
+          Flow restriction and compressor are development-source additions; PyPI
+          0.1.0 does not include them. Install from the source checkout until
+          the next release. The next planned equipment is the blower, followed
+          by the fan.
         </p>
         <h2 id="process-gallery">Process gallery</h2>
         <p>
@@ -3549,7 +4520,7 @@ python<span class="w"> </span>gallery_processes.py
             >
               <defs>
                 <marker
-                  id="flow-13"
+                  id="flow-16"
                   viewBox="0 0 10 10"
                   refX="9"
                   refY="5"
@@ -3572,7 +4543,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-13)"
+                marker-end="url(#flow-16)"
               />
               <path
                 d="M490 490 L490 460 L490 220 L710 220 L740 220"
@@ -3586,7 +4557,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-13)"
+                marker-end="url(#flow-16)"
               />
               <path
                 d="M860 220 L890 220 L1020 220 L1050 220"
@@ -3600,7 +4571,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-13)"
+                marker-end="url(#flow-16)"
               />
               <path
                 d="M1170 220 L1200 220 L1330 220 L1360 220"
@@ -3614,7 +4585,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-13)"
+                marker-end="url(#flow-16)"
               />
               <path
                 d="M1480 200 L1510 200 L1510 220 L1640 220 L1670 220"
@@ -3628,7 +4599,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-13)"
+                marker-end="url(#flow-16)"
               />
               <path
                 d="M1480 220 L1510 220 L1510 452 L1330 452 L1330 530 L1360 530"
@@ -3642,7 +4613,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-13)"
+                marker-end="url(#flow-16)"
               />
               <path
                 d="M1480 530 L1510 530 L1510 584 L580 584 L580 510 L550 510"
@@ -3656,7 +4627,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-13)"
+                marker-end="url(#flow-16)"
               />
               <path
                 d="M490 570 L490 600 L710 600 L710 840 L740 840"
@@ -3670,7 +4641,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-13)"
+                marker-end="url(#flow-16)"
               />
               <path
                 d="M860 840 L890 840 L1020 840 L1050 840"
@@ -3684,7 +4655,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-13)"
+                marker-end="url(#flow-16)"
               />
               <path
                 d="M1170 820 L1200 820 L1200 550 L580 550 L550 550"
@@ -3698,7 +4669,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-13)"
+                marker-end="url(#flow-16)"
               />
               <path
                 d="M1170 840 L1200 840 L1330 840 L1360 840"
@@ -3712,7 +4683,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-13)"
+                marker-end="url(#flow-16)"
               />
               <g
                 class="equipment-symbol"
@@ -4324,7 +5295,7 @@ python<span class="w"> </span>gallery_processes.py
             >
               <defs>
                 <marker
-                  id="flow-15"
+                  id="flow-18"
                   viewBox="0 0 10 10"
                   refX="9"
                   refY="5"
@@ -4347,7 +5318,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-15)"
+                marker-end="url(#flow-18)"
               />
               <path
                 d="M550 220 L580 220 L710 220 L740 220"
@@ -4361,7 +5332,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-15)"
+                marker-end="url(#flow-18)"
               />
               <path
                 d="M860 220 L890 220 L1020 220 L1050 220"
@@ -4375,7 +5346,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-15)"
+                marker-end="url(#flow-18)"
               />
               <path
                 d="M1170 220 L1200 220 L1330 220 L1360 220"
@@ -4389,7 +5360,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-15)"
+                marker-end="url(#flow-18)"
               />
               <path
                 d="M1420 180 L1420 150 L1640 150 L1640 220 L1670 220"
@@ -4403,7 +5374,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-15)"
+                marker-end="url(#flow-18)"
               />
               <path
                 d="M1420 260 L1420 290 L1330 290 L1330 526.3636363636364 L1360 526.3636363636364"
@@ -4417,7 +5388,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-15)"
+                marker-end="url(#flow-18)"
               />
               <path
                 d="M1420 490 L1420 460 L1640 460 L1640 530 L1670 530"
@@ -4431,7 +5402,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-15)"
+                marker-end="url(#flow-18)"
               />
               <path
                 d="M1420 570 L1420 600 L1624.0 600 L1624.0 840 L1640 840 L1670 840"
@@ -4445,7 +5416,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-15)"
+                marker-end="url(#flow-18)"
               />
               <g
                 class="equipment-symbol"
@@ -4974,7 +5945,7 @@ python<span class="w"> </span>gallery_processes.py
             >
               <defs>
                 <marker
-                  id="flow-17"
+                  id="flow-20"
                   viewBox="0 0 10 10"
                   refX="9"
                   refY="5"
@@ -4997,7 +5968,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-17)"
+                marker-end="url(#flow-20)"
               />
               <path
                 d="M550 220 L580 220 L710 220 L740 220"
@@ -5011,7 +5982,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-17)"
+                marker-end="url(#flow-20)"
               />
               <path
                 d="M860 220 L890 220 L1020 220 L1050 220"
@@ -5025,7 +5996,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-17)"
+                marker-end="url(#flow-20)"
               />
               <path
                 d="M1170 220 L1200 220 L1330 220 L1360 220"
@@ -5039,7 +6010,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-17)"
+                marker-end="url(#flow-20)"
               />
               <path
                 d="M1480 220 L1510 220 L1640 220 L1670 220"
@@ -5053,7 +6024,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-17)"
+                marker-end="url(#flow-20)"
               />
               <path
                 d="M1730 260 L1730 290 L1950 290 L1950 530 L1980 530"
@@ -5067,7 +6038,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-17)"
+                marker-end="url(#flow-20)"
               />
               <path
                 d="M1730 180 L1730 150 L1640 150 L1640 530 L1670 530"
@@ -5081,7 +6052,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-17)"
+                marker-end="url(#flow-20)"
               />
               <path
                 d="M1790 510 L1820 510 L1820 274 L400 274 L400 220 L430 220"
@@ -5095,7 +6066,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-17)"
+                marker-end="url(#flow-20)"
               />
               <path
                 d="M1790 530 L1820 530 L1820 840 L1950 840 L1980 840"
@@ -5109,7 +6080,7 @@ python<span class="w"> </span>gallery_processes.py
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2.2"
-                marker-end="url(#flow-17)"
+                marker-end="url(#flow-20)"
               />
               <g
                 class="equipment-symbol"

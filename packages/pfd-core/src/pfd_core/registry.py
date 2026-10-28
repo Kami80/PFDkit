@@ -60,6 +60,40 @@ class ValveConfig(Config):
     opening: float | None = Field(default=None, ge=0, le=1, strict=True)
 
 
+class FlowRestrictionConfig(Config):
+    restrictionType: Literal["orificePlate", "fixedRestriction"] = "orificePlate"
+    boreDiameterM: float | None = Field(
+        default=None,
+        gt=0,
+        strict=True,
+        description="Entered bore diameter in metres; no restriction sizing.",
+    )
+    pressureDropPa: float | None = Field(
+        default=None,
+        ge=0,
+        strict=True,
+        description="Entered differential pressure in Pa; not calculated from flow.",
+    )
+
+
+class CompressorConfig(Config):
+    machineType: Literal["centrifugal", "reciprocating"] = "centrifugal"
+    drive: Literal["electric", "steam", "other"] = "electric"
+    isentropicEfficiency: float | None = Field(
+        default=None,
+        gt=0,
+        le=1,
+        strict=True,
+        description="Entered efficiency fraction; no power or outlet-temperature calculation.",
+    )
+    outletPressurePa: float | None = Field(
+        default=None,
+        gt=0,
+        strict=True,
+        description="Entered absolute outlet pressure in Pa; does not overwrite stream properties.",
+    )
+
+
 class CheckValveConfig(Config):
     construction: Literal["swing", "lift", "wafer"] = "swing"
     crackingPressurePa: float | None = Field(
@@ -573,4 +607,29 @@ registry.register(
         port("out", "Downstream outlet", "out", "right"),
     ],
     config_model=PressureRegulatorConfig,
+)
+
+registry.register(
+    type="flowRestriction",
+    name="Flow restriction / orifice",
+    description="Fixed restriction with entered bore and differential pressure; no flow, pressure-drop or sizing calculation.",
+    tag_prefix="RO",
+    category="Flow control",
+    keywords=["orifice", "restriction", "pressure drop"],
+    ports=[port("in", "Inlet", "in", "left"), port("out", "Outlet", "out", "right")],
+    config_model=FlowRestrictionConfig,
+)
+registry.register(
+    type="compressor",
+    name="Compressor",
+    description="Gas compressor schematic with entered efficiency and outlet pressure; no thermodynamic, surge, power or temperature solution.",
+    tag_prefix="K",
+    category="Fluid transport",
+    keywords=["gas", "compression", "centrifugal", "reciprocating"],
+    ports=[
+        port("in", "Suction", "in", "left"),
+        port("out", "Discharge", "out", "right"),
+        port("power", "Shaft power", "in", "bottom", kind="energy", required=False),
+    ],
+    config_model=CompressorConfig,
 )

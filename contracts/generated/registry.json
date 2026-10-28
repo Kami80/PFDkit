@@ -1485,5 +1485,221 @@
     "tagPrefix": "PCV",
     "type": "pressureRegulator",
     "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Flow control",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "boreDiameterM": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Entered bore diameter in metres; no restriction sizing.",
+          "title": "Borediameterm"
+        },
+        "pressureDropPa": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Entered differential pressure in Pa; not calculated from flow.",
+          "title": "Pressuredroppa"
+        },
+        "restrictionType": {
+          "default": "orificePlate",
+          "enum": [
+            "orificePlate",
+            "fixedRestriction"
+          ],
+          "title": "Restrictiontype",
+          "type": "string"
+        }
+      },
+      "title": "FlowRestrictionConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "boreDiameterM": null,
+      "pressureDropPa": null,
+      "restrictionType": "orificePlate"
+    },
+    "description": "Fixed restriction with entered bore and differential pressure; no flow, pressure-drop or sizing calculation.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "orifice",
+      "restriction",
+      "pressure drop"
+    ],
+    "name": "Flow restriction / orifice",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Inlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Outlet",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "RO",
+    "type": "flowRestriction",
+    "version": "1.0.0"
+  },
+  {
+    "availableViews": [
+      "pfd"
+    ],
+    "category": "Fluid transport",
+    "configSchema": {
+      "additionalProperties": true,
+      "properties": {
+        "drive": {
+          "default": "electric",
+          "enum": [
+            "electric",
+            "steam",
+            "other"
+          ],
+          "title": "Drive",
+          "type": "string"
+        },
+        "isentropicEfficiency": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "maximum": 1,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Entered efficiency fraction; no power or outlet-temperature calculation.",
+          "title": "Isentropicefficiency"
+        },
+        "machineType": {
+          "default": "centrifugal",
+          "enum": [
+            "centrifugal",
+            "reciprocating"
+          ],
+          "title": "Machinetype",
+          "type": "string"
+        },
+        "outletPressurePa": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Entered absolute outlet pressure in Pa; does not overwrite stream properties.",
+          "title": "Outletpressurepa"
+        }
+      },
+      "title": "CompressorConfig",
+      "type": "object"
+    },
+    "defaultConfig": {
+      "drive": "electric",
+      "isentropicEfficiency": null,
+      "machineType": "centrifugal",
+      "outletPressurePa": null
+    },
+    "description": "Gas compressor schematic with entered efficiency and outlet pressure; no thermodynamic, surge, power or temperature solution.",
+    "explorer": null,
+    "extension": "pfd-core",
+    "keywords": [
+      "gas",
+      "compression",
+      "centrifugal",
+      "reciprocating"
+    ],
+    "name": "Compressor",
+    "ports": [
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "in",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Suction",
+        "offset": 0.5,
+        "required": true,
+        "side": "left"
+      },
+      {
+        "circuit": null,
+        "direction": "out",
+        "id": "out",
+        "kind": "material",
+        "maxConnections": 1,
+        "name": "Discharge",
+        "offset": 0.5,
+        "required": true,
+        "side": "right"
+      },
+      {
+        "circuit": null,
+        "direction": "in",
+        "id": "power",
+        "kind": "energy",
+        "maxConnections": 1,
+        "name": "Shaft power",
+        "offset": 0.5,
+        "required": false,
+        "side": "bottom"
+      }
+    ],
+    "provenance": {
+      "author": "PFDkit contributors",
+      "license": "MIT",
+      "source": "Original PFDkit schematic; illustrative, not a claim of ISO/ISA compliance."
+    },
+    "tagPrefix": "K",
+    "type": "compressor",
+    "version": "1.0.0"
   }
 ]
