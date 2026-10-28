@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Documentation for the pfd-core Python library"><title>pfd-core documentation</title><link rel="stylesheet" href="style.css"></head>
+<body><a class="skip" href="#content">Skip to content</a><header><a class="brand" href="#top">PFD<span>kit</span> <small> / pfd-core</small></a><nav aria-label="Project links"><a href="https://pypi.org/project/pfd-core/">PyPI ↗</a><a href="https://github.com/Kami80/PFDkit">GitHub ↗</a></nav></header><div class="layout" id="top"><aside><p class="label">DOCUMENTATION · 0.1.0</p><strong>On this page</strong><nav aria-label="Contents"><a href="#create,-connect,-save-and-reload">Create, connect, save and reload</a><a href="#quantities-and-unknown-values">Quantities and unknown values</a><a href="#validation-and-errors">Validation and errors</a><a href="#register-a-python-extension">Register a Python extension</a><a href="#public-model-and-interchange-conventions">Public model and interchange conventions</a></nav></aside><main id="content"><div class="eyebrow">PYTHON LIBRARY · VERSION 0.1.0</div><h1>pfd-core</h1>
+<p>Typed process flow diagram documents, an extensible equipment registry, quantities, graph commands, and structural validation for teaching and engineering illustrations. Requires Python 3.11+ and Pydantic 2.13+. No browser, Django, numerical solver, paid API, or development tool is required at runtime. Source and this documentation are MIT licensed.</p>
+<p>Install the published package from PyPI:</p>
+<pre><code class="language-sh">python -m pip install pfd-core
+</code></pre>
+<h2 id="create,-connect,-save-and-reload">Create, connect, save and reload</h2>
+<p>The built-in registry provides <code>feed</code>, <code>product</code>, <code>pump</code>, <code>heatExchanger</code>, <code>separator</code>, <code>tank</code>, <code>mixer</code>, <code>splitter</code>, <code>column</code> and <code>reactor</code>. The quickstart below uses the first four process roles. IDs identify objects; editable tags identify them to the reader. Ports have stable local IDs, a direction, a material/energy kind, a connection capacity and optional drawing-side offsets. Mixer and splitter ports have fixed identities, including an optional third branch. The exchanger's tube and shell circuits are distinct. Definitions also expose category, keywords, supported views and symbol provenance; those do not imply numerical calculations.</p>
+<pre><code class="language-python">from pfd_core import (
+    Document,
+    Endpoint,
+    Quantity,
+    add_equipment,
+    connect,
+    new_document,
+    update_stream,
+    validate_document,
+)
+
+process = new_document(&quot;Illustrative feed heating&quot;)
+for index, (identity, equipment_type, tag) in enumerate(
+    [
+        (&quot;feed&quot;, &quot;feed&quot;, &quot;F-101&quot;),
+        (&quot;pump&quot;, &quot;pump&quot;, &quot;P-101&quot;),
+        (&quot;exchanger&quot;, &quot;heatExchanger&quot;, &quot;E-101&quot;),
+        (&quot;product&quot;, &quot;product&quot;, &quot;PR-101&quot;),
+    ]
+):
+    process = add_equipment(
+        process,
+        equipment_type,
+        id=identity,
+        tag=tag,
+        x=index * 240.0,
+        y=160.0,
+    )
+
+for index, (source, outlet, target, inlet) in enumerate(
+    [
+        (&quot;feed&quot;, &quot;out&quot;, &quot;pump&quot;, &quot;in&quot;),
+        (&quot;pump&quot;, &quot;out&quot;, &quot;exchanger&quot;, &quot;tubeIn&quot;),
+        (&quot;exchanger&quot;, &quot;tubeOut&quot;, &quot;product&quot;, &quot;in&quot;),
+    ],
+    1,
+):
+    process = connect(
+        process,
+        Endpoint(equipment_id=source, port_id=outlet),
+        Endpoint(equipment_id=target, port_id=inlet),
+        id=f&quot;stream-{index}&quot;,
+        tag=f&quot;S-{index:03}&quot;,
+    )
+
+process = update_stream(
+    process,
+    &quot;stream-1&quot;,
+    flow_rate=Quantity(value=1.25, unit=&quot;kg/s&quot;, dimension=&quot;massFlow&quot;),
+    temperature=Quantity(value=None, unit=&quot;degC&quot;, dimension=&quot;temperature&quot;),
+)
+report = validate_document(process)
+assert report.valid
+assert report.physical_checks_performed == []
+print([(item.severity, item.code, item.object_id) for item in report.issues])
+# The unconnected shellIn/shellOut ports produce editable-draft warnings.
+
+payload = process.to_json()  # UTF-8-compatible JSON text, camelCase keys
+reopened = Document.model_validate_json(payload)
+assert reopened == process
+assert validate_document(reopened).valid
+</code></pre>
+<p>Assign the return value of every graph command: commands copy the document and leave the input intact. <code>add_equipment</code> also creates layout coordinates. <code>update_equipment</code> merges supplied configuration/metadata with existing values. <code>remove_equipment</code> removes attached streams and its layout; <code>remove_stream</code> removes one connection. Recycle loops are allowed. <code>Document.model_validate_json</code> checks the envelope and field types; call <code>validate_document</code> afterwards to check references, ports and registered equipment semantics.</p>
+<h2 id="quantities-and-unknown-values">Quantities and unknown values</h2>
+<p><code>None</code> is an unknown measurement, never an implicit zero. A null quantity means no quantity was supplied; a <code>Quantity(value=None, ...)</code> preserves a known dimension/unit while its value remains unknown. Numeric zero is an entered value. A stream's <code>flow_basis</code> (<code>mass</code>, <code>molar</code>, <code>volume</code>) selects its flow-rate dimension. Composition supports mole or mass fractions referencing component IDs. Fully known fractions must sum to one within <code>1e-6</code>; known partial fractions cannot exceed one. Energy streams use a power quantity in <code>properties[&quot;power&quot;]</code> and cannot carry material flow or composition.</p>
+<pre><code class="language-python">from pfd_core import Quantity, convert_quantity
+
+flow = Quantity(value=1.25, unit=&quot;kg/s&quot;, dimension=&quot;massFlow&quot;)
+assert convert_quantity(flow, &quot;kg/h&quot;).value == 4500.0
+unknown = Quantity(value=None, unit=&quot;degC&quot;, dimension=&quot;temperature&quot;)
+assert convert_quantity(unknown, &quot;K&quot;).value is None
+zero = Quantity(value=0.0, unit=&quot;degC&quot;, dimension=&quot;temperature&quot;)
+assert convert_quantity(zero, &quot;K&quot;).value == 273.15
+</code></pre>
+<p><code>UNITS</code> lists supported units. Dimensions include mass/molar/volume flow, temperature, pressure, power and dimensionless quantities. Temperatures represent states and include offset conversion; pressures are absolute. Unit strings are case-sensitive. Unknown units, ambiguous names such as gauge-pressure abbreviations, and incompatible dimensions raise <code>ValueError</code> from <code>check_quantity</code> or <code>convert_quantity</code>. No phase or physical feasibility is inferred from entered values.</p>
+<h2 id="validation-and-errors">Validation and errors</h2>
+<p><code>validate_document</code> returns a <code>ValidationResult</code> with <code>valid</code>, <code>issues</code>, <code>checks_performed</code> and <code>physical_checks_performed</code>. Each finding has severity (<code>error</code>, <code>warning</code>, <code>info</code>), a stable code, message, optional object ID and path. Checks cover identities, registered configuration, references, port directions/kinds/capacities, units, composition and draft completeness. Warnings permit incomplete diagrams; errors reject graph commands. No balances, thermodynamics, equipment sizing or other physical calculations are performed.</p>
+<pre><code class="language-python">from pfd_core import GraphValidationError
+
+try:
+    connect(
+        process,
+        Endpoint(equipment_id=&quot;feed&quot;, port_id=&quot;out&quot;),
+        Endpoint(equipment_id=&quot;pump&quot;, port_id=&quot;power&quot;),
+    )  # A material stream cannot connect to a shaft-power energy port.
+except GraphValidationError as error:
+    assert any(item.code == &quot;stream_kind&quot; for item in error.result.issues)
+assert len(process.engineering.streams) == 3  # Failed command left it intact.
+</code></pre>
+<p>Malformed field values or unsupported <code>schemaVersion</code> values raise Pydantic <code>ValidationError</code> when constructing/loading models. <code>GraphValidationError</code> exposes a semantic report through <code>.result</code>. Registry lookups and adding an unregistered type raise <code>ValueError</code>; semantic document validation instead reports <code>unsupported_equipment</code>. Missing update/delete targets raise <code>KeyError</code>; duplicate IDs supplied to <code>add_equipment</code> raise <code>ValueError</code>. Loading unknown equipment preserves its model data, but callers must reject semantic errors before treating the document as editable.</p>
+<h2 id="register-a-python-extension">Register a Python extension</h2>
+<p>Extensions declare type, version, source, tag prefix, stable ports and a Pydantic configuration model. Configuration fields need defaults because registration constructs a default configuration. This example uses an independent registry; pass that registry to every applicable graph/validation call. It does not modify the built-in registry or add a browser renderer automatically.</p>
+<pre><code class="language-python">from pydantic import BaseModel, ConfigDict, Field
+from pfd_core import EquipmentRegistry, PortDefinition
+
+
+class ValveConfig(BaseModel):
+    model_config = ConfigDict(extra=&quot;allow&quot;, allow_inf_nan=False)
+    opening: float | None = Field(default=None, ge=0, le=1, strict=True)
+
+
+teaching_registry = EquipmentRegistry()
+teaching_registry.register(
+    type=&quot;teachingValve&quot;,
+    name=&quot;Teaching valve&quot;,
+    description=&quot;An illustrative valve with a manually entered opening.&quot;,
+    tag_prefix=&quot;V&quot;,
+    version=&quot;1.0.0&quot;,
+    extension=&quot;example.teaching&quot;,
+    ports=[
+        PortDefinition(id=&quot;in&quot;, name=&quot;Inlet&quot;, direction=&quot;in&quot;, side=&quot;left&quot;),
+        PortDefinition(id=&quot;out&quot;, name=&quot;Outlet&quot;, direction=&quot;out&quot;, side=&quot;right&quot;),
+    ],
+    config_model=ValveConfig,
+)
+valve_process = add_equipment(
+    new_document(&quot;Valve teaching draft&quot;),
+    &quot;teachingValve&quot;,
+    id=&quot;valve-1&quot;,
+    config={&quot;opening&quot;: 0.5},
+    equipment_registry=teaching_registry,
+)
+assert validate_document(valve_process, teaching_registry).valid
+definition = teaching_registry.get(&quot;teachingValve&quot;)
+assert definition.default_config == {&quot;opening&quot;: None}
+assert definition.version == &quot;1.0.0&quot;
+</code></pre>
+<p><code>EquipmentRegistry.definitions()</code> provides serializable definitions and configuration schemas; <code>validate_config(type, config)</code> checks a configuration without filling defaults or rewriting the supplied dictionary. Duplicate registered types and duplicate port IDs raise <code>ValueError</code>. To share an extension with the PFDkit browser, register it in the authoritative Python source, regenerate contract assets and provide an equipment renderer before importing its documents.</p>
+<h2 id="public-model-and-interchange-conventions">Public model and interchange conventions</h2>
+<p>The public package exports <code>Document</code>, engineering models (<code>Equipment</code>, <code>Stream</code>, <code>Component</code>, <code>Composition</code>, <code>Endpoint</code>, <code>Quantity</code>, <code>Dimension</code>), layout/education models, registry definitions, validation reports, graph commands, unit helpers and <code>new_id</code>. Python attributes use snake_case; <code>.to_json()</code> and <code>.model_dump(mode=&quot;json&quot;, by_alias=True)</code> use the camelCase interchange format. <code>Document.model_json_schema(by_alias=True)</code> produces the JSON Schema. Version <code>1.0.0</code> is supported; no migration from another version is implemented.</p>
+<p>Engineering data, presentation layout and education notes are separate sections of one document. Equipment configuration is shared engineering data rather than a drawing property. <code>metadata</code> dictionaries and equipment <code>config</code> preserve agreed JSON extension values; other unknown model fields are rejected. Store attribution as metadata such as creator/source/license when adapting educational examples.</p>
+<p>JSON numbers must be finite IEEE 754 double values. All integer-valued numbers, including extension metadata, must fit ±9,007,199,254,740,991 for browser interchange. Use strings for arbitrary-precision identifiers or metadata. NaN/infinity and unsafe integers are rejected. Serialization sorts object keys, preserves array ordering, uses two-space indentation and adds a trailing newline. Nulls, entered zeros, stable IDs, units, configuration and layout survive a valid save/reload round trip.</p>
+<section class="reference"><h2>API reference</h2><p>The public package exports the following entry points. The <a href="https://github.com/Kami80/PFDkit/tree/v0.1.0/packages/pfd-core/src/pfd_core">versioned source</a> contains full signatures and model fields.</p><ul><li><code>new_document</code>, <code>add_equipment</code>, <code>update_equipment</code>, <code>remove_equipment</code></li><li><code>connect</code>, <code>update_stream</code>, <code>remove_stream</code></li><li><code>Document</code>, <code>Equipment</code>, <code>Stream</code>, <code>Endpoint</code>, <code>Quantity</code></li><li><code>validate_document</code>, <code>GraphValidationError</code>, <code>ValidationResult</code></li><li><code>registry</code>, <code>EquipmentRegistry</code>, <code>PortDefinition</code></li><li><code>UNITS</code>, <code>check_quantity</code>, <code>convert_quantity</code></li></ul></section><footer>Built for the PFDkit community · MIT license · <a href="https://github.com/Kami80/PFDkit/issues">Report an issue</a></footer></main></div></body></html>
