@@ -1,3 +1,50 @@
+const themeButton = document.querySelector("#theme-toggle");
+const sidebarButton = document.querySelector("#sidebar-toggle");
+let storedTheme;
+try {
+  storedTheme = localStorage.getItem("pfd-docs-theme");
+} catch {}
+function setTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  themeButton.setAttribute(
+    "aria-label",
+    theme === "midnight" ? "Switch to light theme" : "Switch to midnight theme",
+  );
+  themeButton.title = theme === "midnight" ? "Light theme" : "Midnight theme";
+}
+setTheme(
+  storedTheme ||
+    (matchMedia("(prefers-color-scheme: dark)").matches ? "midnight" : "light"),
+);
+themeButton.addEventListener("click", () => {
+  const next =
+    document.documentElement.dataset.theme === "midnight"
+      ? "light"
+      : "midnight";
+  setTheme(next);
+  try {
+    localStorage.setItem("pfd-docs-theme", next);
+  } catch {}
+});
+function setSidebar(closed) {
+  document.body.classList.toggle("sidebar-closed", closed);
+  sidebarButton.setAttribute("aria-expanded", String(!closed));
+  sidebarButton.title = closed ? "Open navigation" : "Close navigation";
+}
+setSidebar(matchMedia("(max-width: 850px)").matches);
+sidebarButton.addEventListener("click", () =>
+  setSidebar(!document.body.classList.contains("sidebar-closed")),
+);
+document.querySelector("#sidebar").addEventListener("click", (event) => {
+  if (event.target.closest("a") && matchMedia("(max-width: 850px)").matches)
+    setSidebar(true);
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    setSidebar(true);
+    sidebarButton.focus();
+  }
+});
 const button = document.querySelector(".view-toggle");
 const main = document.querySelector("main");
 const original = main.innerHTML;

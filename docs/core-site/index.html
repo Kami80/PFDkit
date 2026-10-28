@@ -13,69 +13,97 @@
   <body>
     <a class="skip" href="#content">Skip to content</a>
     <header>
-      <a class="brand" href="#top"
+      <button
+        id="sidebar-toggle"
+        aria-controls="sidebar"
+        aria-expanded="true"
+        aria-label="Toggle navigation"
+      >
+        ☰</button
+      ><a class="brand" href="#top"
         >PFD<span>kit</span> <small> / pfd-core</small></a
       >
       <nav aria-label="Project links">
-        <a href="https://pypi.org/project/pfd-core/">PyPI ↗</a
+        <button id="theme-toggle" aria-label="Switch to midnight theme">
+          ◐</button
+        ><a href="https://pypi.org/project/pfd-core/">PyPI ↗</a
         ><a href="https://github.com/Kami80/PFDkit">GitHub ↗</a>
       </nav>
     </header>
     <div class="layout" id="top">
-      <aside>
+      <aside id="sidebar" aria-label="Documentation navigation">
         <p class="label">DOCUMENTATION · 0.1.0</p>
         <strong>On this page</strong>
         <nav aria-label="Contents">
-          <a class="nav-h2" href="#create,-connect,-save-and-reload"
-            >Create, connect, save and reload</a
-          ><a class="nav-h2" href="#quantities-and-unknown-values"
-            >Quantities and unknown values</a
-          ><a class="nav-h2" href="#validation-and-errors"
-            >Validation and errors</a
-          ><a class="nav-h2" href="#register-a-python-extension"
-            >Register a Python extension</a
-          ><a class="nav-h2" href="#public-model-and-interchange-conventions"
-            >Public model and interchange conventions</a
-          ><a class="nav-h2" href="#building-and-using-a-pfd"
-            >Building and using a PFD</a
-          ><a class="nav-h3" href="#build-a-process-diagram"
-            >Build a process diagram</a
-          ><a class="nav-h3" href="#discover-equipment-and-ports"
-            >Discover equipment and ports</a
-          ><a class="nav-h3" href="#example:-a-recycle-loop"
-            >Example: a recycle loop</a
-          ><a class="nav-h3" href="#example:-inspect-validation-results"
-            >Example: inspect validation results</a
-          ><a class="nav-h3" href="#example:-preserve-unknown-values"
-            >Example: preserve unknown values</a
-          ><a class="nav-h3" href="#example:-material-composition"
-            >Example: material composition</a
-          ><a class="nav-h3" href="#example:-an-energy-stream"
-            >Example: an energy stream</a
-          ><a class="nav-h3" href="#edit-and-remove-objects"
-            >Edit and remove objects</a
-          ><a class="nav-h3" href="#validate-and-handle-errors"
-            >Validate and handle errors</a
-          ><a class="nav-h3" href="#quantities-and-units"
-            >Quantities and units</a
-          ><a class="nav-h3" href="#interchange-and-boundaries"
-            >Interchange and boundaries</a
-          ><a class="nav-h3" href="#more-detail">More detail</a
-          ><a class="nav-h2" href="#pfd-core-api-reference"
-            >pfd-core API reference</a
-          ><a class="nav-h3" href="#graph-commands">Graph commands</a
-          ><a class="nav-h3" href="#document-and-engineering-models"
-            >Document and engineering models</a
-          ><a class="nav-h3" href="#serialization-and-model-validation"
-            >Serialization and model validation</a
-          ><a class="nav-h3" href="#presentation-and-education"
-            >Presentation and education</a
-          ><a class="nav-h3" href="#equipment-registry">Equipment registry</a
-          ><a class="nav-h3" href="#dimensions-and-units"
-            >Dimensions and units</a
-          ><a class="nav-h3" href="#validation-and-errors"
-            >Validation and errors</a
-          >
+          <details open>
+            <summary>Getting started</summary>
+            <nav>
+              <a class="nav-h2" href="#create,-connect,-save-and-reload"
+                >Create, connect, save and reload</a
+              ><a class="nav-h2" href="#quantities-and-unknown-values"
+                >Quantities and unknown values</a
+              ><a class="nav-h2" href="#validation-and-errors"
+                >Validation and errors</a
+              ><a class="nav-h2" href="#register-a-python-extension"
+                >Register a Python extension</a
+              ><a
+                class="nav-h2"
+                href="#public-model-and-interchange-conventions"
+                >Public model and interchange conventions</a
+              >
+            </nav>
+          </details>
+          <details open>
+            <summary>Build with Python</summary>
+            <nav>
+              <a class="nav-h2" href="#building-and-using-a-pfd"
+                >Building and using a PFD</a
+              ><a class="nav-h3" href="#build-a-process-diagram"
+                >Build a process diagram</a
+              ><a class="nav-h3" href="#discover-equipment-and-ports"
+                >Discover equipment and ports</a
+              ><a class="nav-h3" href="#example:-a-recycle-loop"
+                >Example: a recycle loop</a
+              ><a class="nav-h3" href="#example:-inspect-validation-results"
+                >Example: inspect validation results</a
+              ><a class="nav-h3" href="#example:-preserve-unknown-values"
+                >Example: preserve unknown values</a
+              ><a class="nav-h3" href="#example:-material-composition"
+                >Example: material composition</a
+              ><a class="nav-h3" href="#example:-an-energy-stream"
+                >Example: an energy stream</a
+              ><a class="nav-h3" href="#edit-and-remove-objects"
+                >Edit and remove objects</a
+              ><a class="nav-h3" href="#validate-and-handle-errors"
+                >Validate and handle errors</a
+              ><a class="nav-h3" href="#quantities-and-units"
+                >Quantities and units</a
+              ><a class="nav-h3" href="#interchange-and-boundaries"
+                >Interchange and boundaries</a
+              ><a class="nav-h3" href="#more-detail">More detail</a>
+            </nav>
+          </details>
+          <details open>
+            <summary>API reference</summary>
+            <nav>
+              <a class="nav-h2" href="#pfd-core-api-reference"
+                >pfd-core API reference</a
+              ><a class="nav-h3" href="#graph-commands">Graph commands</a
+              ><a class="nav-h3" href="#document-and-engineering-models"
+                >Document and engineering models</a
+              ><a class="nav-h3" href="#serialization-and-model-validation"
+                >Serialization and model validation</a
+              ><a class="nav-h3" href="#presentation-and-education"
+                >Presentation and education</a
+              ><a class="nav-h3" href="#equipment-registry"
+                >Equipment registry</a
+              ><a class="nav-h3" href="#dimensions-and-units"
+                >Dimensions and units</a
+              ><a class="nav-h3" href="#validation-and-errors-2"
+                >Validation and errors</a
+              >
+            </nav>
+          </details>
         </nav>
       </aside>
       <main id="content">
@@ -185,6 +213,109 @@
 <span class="k">assert</span> <span class="n">reopened</span> <span class="o">==</span> <span class="n">process</span>
 <span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">reopened</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <svg
+            class="process-preview"
+            role="img"
+            aria-label="Schematic of Illustrative feed heating"
+            viewBox="0 0 660 175"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path d="M0 0 10 5 0 10" fill="currentColor" />
+              </marker>
+            </defs>
+            <path
+              d="M155 84 H200"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              marker-end="url(#arrow)"
+            />
+            <path
+              d="M320 84 H365"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              marker-end="url(#arrow)"
+            />
+            <path
+              d="M485 84 H530"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              marker-end="url(#arrow)"
+            />
+            <rect
+              x="35"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="95" y="81" text-anchor="middle">F-101</text>
+            <text class="equipment-kind" x="95" y="99" text-anchor="middle">
+              feed
+            </text>
+            <rect
+              x="200"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="260" y="81" text-anchor="middle">P-101</text>
+            <text class="equipment-kind" x="260" y="99" text-anchor="middle">
+              pump
+            </text>
+            <rect
+              x="365"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="425" y="81" text-anchor="middle">E-101</text>
+            <text class="equipment-kind" x="425" y="99" text-anchor="middle">
+              heatExchanger
+            </text>
+            <rect
+              x="530"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="590" y="81" text-anchor="middle">PR-101</text>
+            <text class="equipment-kind" x="590" y="99" text-anchor="middle">
+              product
+            </text>
+          </svg>
+          <p class="preview-caption">
+            Document schematic · connections from the executed example; layout
+            simplified for readability.
+          </p>
+          <pre class="console">
+[(&#x27;warning&#x27;, &#x27;unconnected_port&#x27;, &#x27;exchanger&#x27;), (&#x27;warning&#x27;, &#x27;unconnected_port&#x27;, &#x27;exchanger&#x27;)]</pre>
+        </details>
         <p>
           Assign the return value of every graph command: commands copy the
           document and leave the input intact. <code>add_equipment</code> also
@@ -222,6 +353,11 @@
 <span class="n">zero</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="s2">&quot;temperature&quot;</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">zero</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mf">273.15</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <pre class="console">
+Completed successfully · all assertions passed.</pre>
+        </details>
         <p>
           <code>UNITS</code> lists supported units. Dimensions include
           mass/molar/volume flow, temperature, pressure, power and dimensionless
@@ -258,6 +394,11 @@
     <span class="k">assert</span> <span class="nb">any</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="s2">&quot;stream_kind&quot;</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">error</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">issues</span><span class="p">)</span>
 <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">process</span><span class="o">.</span><span class="n">engineering</span><span class="o">.</span><span class="n">streams</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>  <span class="c1"># Failed command left it intact.</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <pre class="console">
+Completed successfully · all assertions passed.</pre>
+        </details>
         <p>
           Malformed field values or unsupported
           <code>schemaVersion</code> values raise Pydantic
@@ -315,6 +456,49 @@
 <span class="k">assert</span> <span class="n">definition</span><span class="o">.</span><span class="n">default_config</span> <span class="o">==</span> <span class="p">{</span><span class="s2">&quot;opening&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
 <span class="k">assert</span> <span class="n">definition</span><span class="o">.</span><span class="n">version</span> <span class="o">==</span> <span class="s2">&quot;1.0.0&quot;</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <svg
+            class="process-preview"
+            role="img"
+            aria-label="Schematic of Valve teaching draft"
+            viewBox="0 0 660 175"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path d="M0 0 10 5 0 10" fill="currentColor" />
+              </marker>
+            </defs>
+            <rect
+              x="35"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="95" y="81" text-anchor="middle">V-001</text>
+            <text class="equipment-kind" x="95" y="99" text-anchor="middle">
+              teachingValve
+            </text>
+          </svg>
+          <p class="preview-caption">
+            Document schematic · connections from the executed example; layout
+            simplified for readability.
+          </p>
+          <pre class="console">
+Completed successfully · all assertions passed.</pre>
+        </details>
         <p>
           <code>EquipmentRegistry.definitions()</code> provides serializable
           definitions and configuration schemas;
@@ -422,6 +606,110 @@
 <span class="n">loaded</span> <span class="o">=</span> <span class="n">Document</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;feed-heating.json&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
 <span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <svg
+            class="process-preview"
+            role="img"
+            aria-label="Schematic of Feed heating"
+            viewBox="0 0 660 175"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path d="M0 0 10 5 0 10" fill="currentColor" />
+              </marker>
+            </defs>
+            <path
+              d="M155 84 H200"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              marker-end="url(#arrow)"
+            />
+            <path
+              d="M320 84 H365"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              marker-end="url(#arrow)"
+            />
+            <path
+              d="M485 84 H530"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              marker-end="url(#arrow)"
+            />
+            <rect
+              x="35"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="95" y="81" text-anchor="middle">F-101</text>
+            <text class="equipment-kind" x="95" y="99" text-anchor="middle">
+              feed
+            </text>
+            <rect
+              x="200"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="260" y="81" text-anchor="middle">P-101</text>
+            <text class="equipment-kind" x="260" y="99" text-anchor="middle">
+              pump
+            </text>
+            <rect
+              x="365"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="425" y="81" text-anchor="middle">E-101</text>
+            <text class="equipment-kind" x="425" y="99" text-anchor="middle">
+              heatExchanger
+            </text>
+            <rect
+              x="530"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="590" y="81" text-anchor="middle">PR-101</text>
+            <text class="equipment-kind" x="590" y="99" text-anchor="middle">
+              product
+            </text>
+          </svg>
+          <p class="preview-caption">
+            Document schematic · connections from the executed example; layout
+            simplified for readability.
+          </p>
+          <pre class="console">
+warning unconnected_port Port &#x27;Shell inlet&#x27; is not connected; this is an editable draft.
+warning unconnected_port Port &#x27;Shell outlet&#x27; is not connected; this is an editable draft.</pre>
+        </details>
         <p>
           Open the JSON file in the PFDkit editor to see its layout. Positions
           are drawing coordinates, not physical dimensions.
@@ -442,6 +730,51 @@
     <span class="k">for</span> <span class="n">port</span> <span class="ow">in</span> <span class="n">definition</span><span class="o">.</span><span class="n">ports</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">port</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">port</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span> <span class="n">port</span><span class="o">.</span><span class="n">kind</span><span class="p">,</span> <span class="n">port</span><span class="o">.</span><span class="n">max_connections</span><span class="p">)</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <pre class="console">
+feed
+out out material 1
+pump
+in in material 1
+out out material 1
+power in energy 1
+heatExchanger
+tubeIn in material 1
+tubeOut out material 1
+shellIn in material 1
+shellOut out material 1
+product
+in in material 1
+separator
+in in material 1
+vaporOut out material 1
+liquidOut out material 1
+tank
+in in material 1
+out out material 1
+vent out material 1
+mixer
+in1 in material 1
+in2 in material 1
+in3 in material 1
+out out material 1
+splitter
+in in material 1
+out1 out material 1
+out2 out material 1
+out3 out material 1
+column
+feed in material 1
+overhead out material 1
+bottoms out material 1
+reflux in material 1
+boilup in material 1
+reactor
+in in material 1
+out out material 1
+heat in energy 1</pre>
+        </details>
         <h3 id="example:-a-recycle-loop">Example: a recycle loop</h3>
         <p>
           Process flow loops are allowed. This small example connects a pump
@@ -458,6 +791,56 @@
 <span class="p">)</span>
 <span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">recycle</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <svg
+            class="process-preview"
+            role="img"
+            aria-label="Schematic of Recycle"
+            viewBox="0 0 660 175"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path d="M0 0 10 5 0 10" fill="currentColor" />
+              </marker>
+            </defs>
+            <path
+              d="M155 84 H175 V36 H19 V84 H35"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              marker-end="url(#arrow)"
+            />
+            <rect
+              x="35"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="95" y="81" text-anchor="middle">P-001</text>
+            <text class="equipment-kind" x="95" y="99" text-anchor="middle">
+              pump
+            </text>
+          </svg>
+          <p class="preview-caption">
+            Document schematic · connections from the executed example; layout
+            simplified for readability.
+          </p>
+          <pre class="console">
+Completed successfully · all assertions passed.</pre>
+        </details>
         <h3 id="example:-inspect-validation-results">
           Example: inspect validation results
         </h3>
@@ -474,6 +857,54 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">issue</span><span class="o">.</span><span class="n">severity</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">object_id</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Physical calculations:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">physical_checks_performed</span><span class="p">)</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <svg
+            class="process-preview"
+            role="img"
+            aria-label="Schematic of Draft"
+            viewBox="0 0 660 175"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path d="M0 0 10 5 0 10" fill="currentColor" />
+              </marker>
+            </defs>
+            <rect
+              x="35"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="95" y="81" text-anchor="middle">E-001</text>
+            <text class="equipment-kind" x="95" y="99" text-anchor="middle">
+              heatExchanger
+            </text>
+          </svg>
+          <p class="preview-caption">
+            Document schematic · connections from the executed example; layout
+            simplified for readability.
+          </p>
+          <pre class="console">
+Valid: True
+warning unconnected_port hx ports.tubeIn
+warning unconnected_port hx ports.tubeOut
+warning unconnected_port hx ports.shellIn
+warning unconnected_port hx ports.shellOut
+Physical calculations: []</pre>
+        </details>
         <h3 id="example:-preserve-unknown-values">
           Example: preserve unknown values
         </h3>
@@ -488,6 +919,11 @@
 <span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">unknown_temperature</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span>
 <span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">freezing_water</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">==</span> <span class="mf">273.15</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <pre class="console">
+Completed successfully · all assertions passed.</pre>
+        </details>
         <p>
           Material and energy ports cannot be connected to one another;
           capacities and directions are checked. Recycle loops are supported.
@@ -563,6 +999,69 @@
 <span class="k">assert</span> <span class="n">report</span><span class="o">.</span><span class="n">valid</span>
 <span class="k">assert</span> <span class="nb">any</span><span class="p">(</span><span class="n">issue</span><span class="o">.</span><span class="n">code</span> <span class="o">==</span> <span class="s2">&quot;unknown_composition&quot;</span> <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">report</span><span class="o">.</span><span class="n">issues</span><span class="p">)</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <svg
+            class="process-preview"
+            role="img"
+            aria-label="Schematic of Binary feed"
+            viewBox="0 0 660 175"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path d="M0 0 10 5 0 10" fill="currentColor" />
+              </marker>
+            </defs>
+            <path
+              d="M155 84 H200"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              marker-end="url(#arrow)"
+            />
+            <rect
+              x="35"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="95" y="81" text-anchor="middle">F-001</text>
+            <text class="equipment-kind" x="95" y="99" text-anchor="middle">
+              feed
+            </text>
+            <rect
+              x="200"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="260" y="81" text-anchor="middle">PR-001</text>
+            <text class="equipment-kind" x="260" y="99" text-anchor="middle">
+              product
+            </text>
+          </svg>
+          <p class="preview-caption">
+            Document schematic · connections from the executed example; layout
+            simplified for readability.
+          </p>
+          <pre class="console">
+Completed successfully · all assertions passed.</pre>
+        </details>
         <p>
           Fractions must lie between zero and one. Fully known fractions must
           sum to one within <code>1e-6</code>; a partially known subtotal cannot
@@ -654,6 +1153,69 @@
 <span class="n">loaded</span> <span class="o">=</span> <span class="n">Document</span><span class="o">.</span><span class="n">model_validate_json</span><span class="p">(</span><span class="n">powered</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
 <span class="k">assert</span> <span class="n">validate_document</span><span class="p">(</span><span class="n">loaded</span><span class="p">,</span> <span class="n">energy_registry</span><span class="p">)</span><span class="o">.</span><span class="n">valid</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <svg
+            class="process-preview"
+            role="img"
+            aria-label="Schematic of Pump power"
+            viewBox="0 0 660 175"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path d="M0 0 10 5 0 10" fill="currentColor" />
+              </marker>
+            </defs>
+            <path
+              d="M155 84 H200"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              marker-end="url(#arrow)"
+            />
+            <rect
+              x="35"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="95" y="81" text-anchor="middle">PW-001</text>
+            <text class="equipment-kind" x="95" y="99" text-anchor="middle">
+              examplePowerSource
+            </text>
+            <rect
+              x="200"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="260" y="81" text-anchor="middle">P-001</text>
+            <text class="equipment-kind" x="260" y="99" text-anchor="middle">
+              pump
+            </text>
+          </svg>
+          <p class="preview-caption">
+            Document schematic · connections from the executed example; layout
+            simplified for readability.
+          </p>
+          <pre class="console">
+Completed successfully · all assertions passed.</pre>
+        </details>
         <p>
           Energy streams store power in
           <code>properties[&quot;power&quot;]</code>; leave
@@ -671,6 +1233,82 @@
 <span class="n">doc</span> <span class="o">=</span> <span class="n">remove_stream</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;s3&quot;</span><span class="p">)</span>
 <span class="n">doc</span> <span class="o">=</span> <span class="n">remove_equipment</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="s2">&quot;heater&quot;</span><span class="p">)</span>  <span class="c1"># Also removes its attached streams and layout.</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <svg
+            class="process-preview"
+            role="img"
+            aria-label="Schematic of Feed heating"
+            viewBox="0 0 660 175"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <marker
+                id="arrow"
+                viewBox="0 0 10 10"
+                refX="9"
+                refY="5"
+                markerWidth="6"
+                markerHeight="6"
+                orient="auto-start-reverse"
+              >
+                <path d="M0 0 10 5 0 10" fill="currentColor" />
+              </marker>
+            </defs>
+            <path
+              d="M155 84 H200"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              marker-end="url(#arrow)"
+            />
+            <rect
+              x="35"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="95" y="81" text-anchor="middle">F-101</text>
+            <text class="equipment-kind" x="95" y="99" text-anchor="middle">
+              feed
+            </text>
+            <rect
+              x="200"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="260" y="81" text-anchor="middle">P-102</text>
+            <text class="equipment-kind" x="260" y="99" text-anchor="middle">
+              pump
+            </text>
+            <rect
+              x="365"
+              y="58"
+              width="120"
+              height="52"
+              rx="12"
+              fill="var(--surface)"
+              stroke="currentColor"
+            />
+            <text x="425" y="81" text-anchor="middle">PR-101</text>
+            <text class="equipment-kind" x="425" y="99" text-anchor="middle">
+              product
+            </text>
+          </svg>
+          <p class="preview-caption">
+            Document schematic · connections from the executed example; layout
+            simplified for readability.
+          </p>
+          <pre class="console">
+Completed successfully · all assertions passed.</pre>
+        </details>
         <p>
           Keep stable IDs when updating objects. Tags are human-readable labels
           and can change. Configuration updates merge with existing
@@ -696,6 +1334,14 @@
     <span class="k">for</span> <span class="n">issue</span> <span class="ow">in</span> <span class="n">exc</span><span class="o">.</span><span class="n">result</span><span class="o">.</span><span class="n">issues</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">issue</span><span class="o">.</span><span class="n">severity</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">issue</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <pre class="console">
+error stream_kind A material stream cannot connect to a energy port.
+error port_capacity Port &#x27;out&#x27; permits 1 connection(s), received 2.
+warning unconnected_port Port &#x27;Discharge&#x27; is not connected; this is an editable draft.
+warning unconnected_port Port &#x27;Material inlet&#x27; is not connected; this is an editable draft.</pre>
+        </details>
         <p>
           Malformed model data raises Pydantic <code>ValidationError</code>.
           Missing edit targets raise <code>KeyError</code>; unknown equipment
@@ -710,6 +1356,11 @@
 <span class="n">unknown</span> <span class="o">=</span> <span class="n">Quantity</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;degC&quot;</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="n">Dimension</span><span class="o">.</span><span class="n">TEMPERATURE</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">convert_quantity</span><span class="p">(</span><span class="n">unknown</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span>
 </code></pre>
+        <details class="output" open>
+          <summary>Executed output</summary>
+          <pre class="console">
+Completed successfully · all assertions passed.</pre>
+        </details>
         <p>
           An unknown value is <code>None</code>; zero is a measured value. Units
           are case-sensitive, and incompatible units raise
@@ -1114,7 +1765,7 @@ remove_equipment(document: Document, equipment_id: str) -&gt; Document
           <code>ValueError</code>. It does not convert flow or composition
           bases.
         </p>
-        <h3 id="validation-and-errors">Validation and errors</h3>
+        <h3 id="validation-and-errors-2">Validation and errors</h3>
         <p>
           <code
             >validate_document(document: Document, equipment_registry:

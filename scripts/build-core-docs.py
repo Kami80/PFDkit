@@ -1,9 +1,12 @@
 """Build the self-contained GitHub Pages documentation from the package README."""
 
+import os
 import re
+import tempfile
 from html import escape
 from pathlib import Path
 
+from docs_preview import example_output
 from markdown_it import MarkdownIt
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
@@ -56,13 +59,48 @@ def highlight_code(code: str, language: str, _attrs: str) -> str:
 
 md = MarkdownIt("commonmark", {"highlight": highlight_code})
 tokens = md.parse(source)
-nav = []
+nav = ["<details open><summary>Getting started</summary><nav>"]
+group_open = True
+seen = {}
 for i, token in enumerate(tokens):
     if token.type == "heading_open" and token.tag in ("h2", "h3"):
         title = tokens[i + 1].content
         slug = "-".join(title.lower().split())
+        seen[slug] = seen.get(slug, 0) + 1
+        if seen[slug] > 1:
+            slug += f"-{seen[slug]}"
         token.attrSet("id", slug)
+        if title in ("Building and using a PFD", "pfd-core API reference"):
+            if group_open:
+                nav.append("</nav></details>")
+            label = (
+                "Build with Python"
+                if title == "Building and using a PFD"
+                else "API reference"
+            )
+            nav.append(f"<details open><summary>{label}</summary><nav>")
+            group_open = True
         nav.append(f'<a class="nav-{token.tag}" href="#{slug}">{escape(title)}</a>')
+if group_open:
+    nav.append("</nav></details>")
+namespace = {"__name__": "__main__"}
+previous = Path.cwd()
+with tempfile.TemporaryDirectory(prefix="pfd-docs-") as directory:
+    os.chdir(directory)
+    try:
+        for token in tokens:
+            if token.type == "fence" and token.info.strip() == "python":
+                token.meta["output"] = example_output(token.content, namespace)
+    finally:
+        os.chdir(previous)
+fence = md.renderer.rules["fence"]
+
+
+def render_fence(tokens, index, options, env):
+    return fence(tokens, index, options, env) + tokens[index].meta.get("output", "")
+
+
+md.renderer.rules["fence"] = render_fence
 body = md.renderer.render(tokens, md.options, {})
 page = (
     """<!doctype html>
@@ -76,6 +114,17 @@ page = (
 out = root / "docs/core-site"
 out.mkdir(parents=True, exist_ok=True)
 page = re.sub(r'<section class="reference">.*?</section>', "", page)
+page = page.replace(
+    "<aside>", '<aside id="sidebar" aria-label="Documentation navigation">'
+)
+page = page.replace(
+    "<header>",
+    '<header><button id="sidebar-toggle" aria-controls="sidebar" aria-expanded="true" aria-label="Toggle navigation">☰</button>',
+)
+page = page.replace(
+    '<nav aria-label="Project links">',
+    '<nav aria-label="Project links"><button id="theme-toggle" aria-label="Switch to midnight theme">◐</button>',
+)
 (out / "agent-guide.md").write_text(source, encoding="utf-8")
 page = page.replace(
     "</main></div></body></html>",
