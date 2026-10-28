@@ -534,29 +534,39 @@
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>S-001</td>
-                  <td>feed.out → pump.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">feed.out → pump.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>F=1.25 kg/s · T=? degC</td>
                 </tr>
                 <tr>
                   <td>S-002</td>
-                  <td>pump.out → exchanger.tubeIn</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >pump.out → exchanger.tubeIn</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S-003</td>
-                  <td>exchanger.tubeOut → product.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >exchanger.tubeOut → product.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>
@@ -1147,29 +1157,39 @@ Completed successfully · all assertions passed.</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>s1</td>
-                  <td>feed.out → pump.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">feed.out → pump.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>F=1.25 kg/s</td>
                 </tr>
                 <tr>
                   <td>s2</td>
-                  <td>pump.out → heater.tubeIn</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >pump.out → heater.tubeIn</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>s3</td>
-                  <td>heater.tubeOut → product.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >heater.tubeOut → product.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>
@@ -1402,17 +1422,19 @@ power in energy 1</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>recycle-stream</td>
-                  <td>pump.out → pump.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">pump.out → pump.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>
@@ -1755,17 +1777,19 @@ Completed successfully · all assertions passed.</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>mixture-stream</td>
-                  <td>feed.out → product.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">feed.out → product.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>F=2 mol/s · mole: water=0.75, ethanol=?</td>
                 </tr>
               </tbody>
@@ -2002,17 +2026,19 @@ Completed successfully · all assertions passed.</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>shaft-power</td>
-                  <td>drive.out → pump.power</td>
-                  <td>energy</td>
+                  <td>
+                    <code class="connection-label">drive.out → pump.power</code>
+                  </td>
+                  <td><span class="stream-kind">energy</span></td>
                   <td>Q=5 kW</td>
                 </tr>
               </tbody>
@@ -2193,17 +2219,19 @@ Completed successfully · all assertions passed.</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>s1</td>
-                  <td>feed.out → pump.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">feed.out → pump.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>F=1.25 kg/s</td>
                 </tr>
               </tbody>
@@ -2657,9 +2685,9 @@ Completed successfully · all assertions passed.</pre>
                 stroke="var(--line)"
               />
               <text class="stream-label" x="239.0" y="116.0">
-                15284a44-d4e3-485b-b2fd-
+                f0c39c9c-8ff1-479a-ae9b-
               </text>
-              <text class="stream-label" x="239.0" y="137.0">004441285cf2</text>
+              <text class="stream-label" x="239.0" y="137.0">4f191266d833</text>
               <path
                 class="callout-leader"
                 d="M645.0 220.0 L645.0 150.0"
@@ -2670,20 +2698,18 @@ Completed successfully · all assertions passed.</pre>
               />
               <rect
                 class="stream-callout"
-                x="559.0"
+                x="539.0"
                 y="94.0"
-                width="172.0"
+                width="212.0"
                 height="56.0"
                 rx="7"
                 fill="var(--surface)"
                 stroke="var(--line)"
               />
-              <text class="stream-label" x="569.0" y="116.0">
-                50053fcd-8d27-44af-
+              <text class="stream-label" x="549.0" y="116.0">
+                6faf2aff-942e-4680-8624-
               </text>
-              <text class="stream-label" x="569.0" y="137.0">
-                bce6-3d649d3f899f
-              </text>
+              <text class="stream-label" x="549.0" y="137.0">45b953c55d48</text>
             </svg>
           </div>
           <p class="preview-caption">
@@ -2700,23 +2726,27 @@ Completed successfully · all assertions passed.</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>15284a44-d4e3-485b-b2fd-004441285cf2</td>
-                  <td>supply.out → valve.in</td>
-                  <td>material</td>
+                  <td>f0c39c9c-8ff1-479a-ae9b-4f191266d833</td>
+                  <td>
+                    <code class="connection-label">supply.out → valve.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
-                  <td>50053fcd-8d27-44af-bce6-3d649d3f899f</td>
-                  <td>valve.out → outlet.in</td>
-                  <td>material</td>
+                  <td>6faf2aff-942e-4680-8624-45b953c55d48</td>
+                  <td>
+                    <code class="connection-label">valve.out → outlet.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>
@@ -2956,23 +2986,27 @@ Completed successfully · all assertions passed.</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Supply</td>
-                  <td>feed.out → nrv.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">feed.out → nrv.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>Forward path</td>
-                  <td>nrv.out → product.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">nrv.out → product.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>
@@ -3209,23 +3243,27 @@ Completed successfully · all assertions passed.</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Protected-side boundary</td>
-                  <td>protected.out → psv.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">protected.out → psv.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>Discharge boundary</td>
-                  <td>psv.out → discharge.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">psv.out → discharge.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>
@@ -3461,23 +3499,29 @@ Completed successfully · all assertions passed.</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Upstream</td>
-                  <td>upstream.out → reg.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">upstream.out → reg.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>Downstream</td>
-                  <td>reg.out → downstream.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >reg.out → downstream.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>
@@ -3746,23 +3790,31 @@ Completed successfully · all assertions passed.</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Upstream</td>
-                  <td>supply.out → orifice.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >supply.out → orifice.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>P=100000 Pa</td>
                 </tr>
                 <tr>
                   <td>Downstream</td>
-                  <td>orifice.out → outlet.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >orifice.out → outlet.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>P=99000 Pa</td>
                 </tr>
               </tbody>
@@ -4103,29 +4155,41 @@ Completed successfully · all assertions passed.</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Suction gas</td>
-                  <td>gas.out → compressor.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >gas.out → compressor.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>P=100000 Pa</td>
                 </tr>
                 <tr>
                   <td>Discharge gas</td>
-                  <td>compressor.out → aftercooler.tubeIn</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >compressor.out → aftercooler.tubeIn</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>T=? K · P=200000 Pa</td>
                 </tr>
                 <tr>
                   <td>Aftercooled gas</td>
-                  <td>aftercooler.tubeOut → product.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >aftercooler.tubeOut → product.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>
@@ -4407,29 +4471,41 @@ Completed successfully · all assertions passed.</pre>
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>Suction gas</td>
-                  <td>gas.out → compressor.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >gas.out → compressor.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>P=100000 Pa</td>
                 </tr>
                 <tr>
                   <td>Discharge gas</td>
-                  <td>compressor.out → aftercooler.tubeIn</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >compressor.out → aftercooler.tubeIn</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>T=? K · P=200000 Pa</td>
                 </tr>
                 <tr>
                   <td>Aftercooled gas</td>
-                  <td>aftercooler.tubeOut → product.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >aftercooler.tubeOut → product.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>
@@ -5169,77 +5245,115 @@ python<span class="w"> </span>gallery_processes.py
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>S01 Feed</td>
-                  <td>feed.out → column.feed</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">feed.out → column.feed</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>F=1 kg/s · T=25 degC</td>
                 </tr>
                 <tr>
                   <td>S02 Vapor</td>
-                  <td>column.overhead → condenser.tubeIn</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >column.overhead → condenser.tubeIn</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S03 Condensate</td>
-                  <td>condenser.tubeOut → drum.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >condenser.tubeOut → drum.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S04 Liquid</td>
-                  <td>drum.out → split.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">drum.out → split.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S05 Distillate</td>
-                  <td>split.out1 → distillate.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >split.out1 → distillate.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S06 Reflux</td>
-                  <td>split.out2 → reflux.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">split.out2 → reflux.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S07 Reflux return</td>
-                  <td>reflux.out → column.reflux</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >reflux.out → column.reflux</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S08 Sump liquid</td>
-                  <td>column.bottoms → reboiler.tubeIn</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >column.bottoms → reboiler.tubeIn</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S09 Reboiled fluid</td>
-                  <td>reboiler.tubeOut → bottom-split.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >reboiler.tubeOut → bottom-split.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S10 Boilup</td>
-                  <td>bottom-split.out1 → column.boilup</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >bottom-split.out1 → column.boilup</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S11 Bottoms</td>
-                  <td>bottom-split.out2 → bottoms.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >bottom-split.out2 → bottoms.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>
@@ -5838,59 +5952,89 @@ python<span class="w"> </span>gallery_processes.py
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>S01 Sugar feed</td>
-                  <td>sugar.out → pump.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">sugar.out → pump.in</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>F=1 kg/s · T=25 degC</td>
                 </tr>
                 <tr>
                   <td>S02 Pressurized feed</td>
-                  <td>pump.out → cooler.tubeIn</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >pump.out → cooler.tubeIn</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S03 Conditioned feed</td>
-                  <td>cooler.tubeOut → fermenter.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >cooler.tubeOut → fermenter.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S04 Fermented broth</td>
-                  <td>fermenter.out → separator.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >fermenter.out → separator.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S05 CO2-rich gas</td>
-                  <td>separator.vaporOut → gas.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >separator.vaporOut → gas.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S06 Degassed broth</td>
-                  <td>separator.liquidOut → column.feed</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >separator.liquidOut → column.feed</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S07 Ethanol-rich outlet</td>
-                  <td>column.overhead → ethanol.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >column.overhead → ethanol.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S08 Stillage</td>
-                  <td>column.bottoms → stillage.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >column.bottoms → stillage.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>
@@ -6510,65 +6654,99 @@ python<span class="w"> </span>gallery_processes.py
             <table>
               <thead>
                 <tr>
-                  <th>Stream</th>
-                  <th>Source → target</th>
-                  <th>Kind</th>
-                  <th>Entered values</th>
+                  <th scope="col">Stream</th>
+                  <th scope="col">Source → target</th>
+                  <th scope="col">Kind</th>
+                  <th scope="col">Entered values</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>S01 Makeup gas</td>
-                  <td>feed.out → mixer.in1</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label">feed.out → mixer.in1</code>
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>F=1 kg/s · T=25 degC</td>
                 </tr>
                 <tr>
                   <td>S02 Combined feed</td>
-                  <td>mixer.out → heater.tubeIn</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >mixer.out → heater.tubeIn</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S03 Reactor feed</td>
-                  <td>heater.tubeOut → reactor.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >heater.tubeOut → reactor.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S04 Reactor effluent</td>
-                  <td>reactor.out → cooler.tubeIn</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >reactor.out → cooler.tubeIn</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S05 Cooled mixture</td>
-                  <td>cooler.tubeOut → separator.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >cooler.tubeOut → separator.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S06 Ammonia</td>
-                  <td>separator.liquidOut → ammonia.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >separator.liquidOut → ammonia.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S07 Unreacted gas</td>
-                  <td>separator.vaporOut → splitter.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >separator.vaporOut → splitter.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S08 Recycle gas</td>
-                  <td>splitter.out1 → mixer.in2</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >splitter.out1 → mixer.in2</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
                 <tr>
                   <td>S09 Purge</td>
-                  <td>splitter.out2 → purge.in</td>
-                  <td>material</td>
+                  <td>
+                    <code class="connection-label"
+                      >splitter.out2 → purge.in</code
+                    >
+                  </td>
+                  <td><span class="stream-kind">material</span></td>
                   <td>Not entered</td>
                 </tr>
               </tbody>

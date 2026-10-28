@@ -25,10 +25,10 @@ def document_output(
     )
     result += diagram(doc, equipment_registry)
     if doc.engineering.streams:
-        result += '<div class="table-scroll" role="region" tabindex="0" aria-label="Stream connections and entered values"><table><thead><tr><th>Stream</th><th>Source → target</th><th>Kind</th><th>Entered values</th></tr></thead><tbody>'
+        result += '<div class="table-scroll" role="region" tabindex="0" aria-label="Stream connections and entered values"><table><thead><tr><th scope="col">Stream</th><th scope="col">Source → target</th><th scope="col">Kind</th><th scope="col">Entered values</th></tr></thead><tbody>'
         for stream in doc.engineering.streams:
             connection = f"{stream.source.equipment_id}.{stream.source.port_id} → {stream.target.equipment_id}.{stream.target.port_id}"
-            result += f"<tr><td>{escape(stream.tag or stream.id)}</td><td>{escape(connection)}</td><td>{escape(stream.kind)}</td><td>{escape(values(stream)) or 'Not entered'}</td></tr>"
+            result += f'<tr><td>{escape(stream.tag or stream.id)}</td><td><code class="connection-label">{escape(connection)}</code></td><td><span class="stream-kind">{escape(stream.kind)}</span></td><td>{escape(values(stream)) or "Not entered"}</td></tr>'
         result += "</tbody></table></div>"
     return result
 
