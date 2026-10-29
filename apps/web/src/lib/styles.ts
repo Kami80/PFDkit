@@ -2,6 +2,7 @@ import type { Document } from "./contract";
 
 export type DiagramStyle = {
   version: 1;
+  symbolSet: "legacy" | "precision" | "teaching";
   preset:
     | "engineeringClassic"
     | "academicColorful"
@@ -25,6 +26,7 @@ export type ObjectStyle = {
 };
 export const DEFAULT_STYLE: DiagramStyle = {
   version: 1,
+  symbolSet: "legacy",
   preset: "engineeringClassic",
   background: "#ffffff",
   fontFamily: "Arial",
@@ -54,6 +56,10 @@ export function getDiagramStyle(document: Document): DiagramStyle {
   const raw = record(document.presentation.metadata.style);
   return {
     version: 1,
+    symbolSet:
+      raw.symbolSet === "precision" || raw.symbolSet === "teaching"
+        ? raw.symbolSet
+        : "legacy",
     preset: ["academicColorful", "minimalScientific", "presentation"].includes(
       String(raw.preset),
     )
@@ -98,6 +104,9 @@ export function resolveObjectStyle(
   const diagram = getDiagramStyle(document);
   const colorful =
     diagram.preset === "academicColorful" || diagram.preset === "presentation";
+  const darkSymbolCanvas =
+    diagram.symbolSet !== "legacy" &&
+    diagramTextColor(diagram.background) === "#f1f5f9";
   const palette: Record<string, string> = {
     feed: "#0369a1",
     product: "#0369a1",
@@ -112,11 +121,13 @@ export function resolveObjectStyle(
     material: "#0369a1",
     energy: "#b45309",
   };
-  const base = colorful
-    ? palette[typeOrKind] || "#334155"
-    : diagram.preset === "minimalScientific"
-      ? "#111111"
-      : "#263746";
+  const base = darkSymbolCanvas
+    ? "#f1f5f9"
+    : colorful
+      ? palette[typeOrKind] || "#334155"
+      : diagram.preset === "minimalScientific"
+        ? "#111111"
+        : "#263746";
   const accessible: Record<string, string> = {
     feed: "#0369a1",
     product: "#0369a1",
@@ -137,9 +148,14 @@ export function resolveObjectStyle(
   return {
     stroke: hex(
       overrides.stroke,
-      colorful && diagram.colorblind ? accessible[typeOrKind] || base : base,
+      colorful && diagram.colorblind && !darkSymbolCanvas
+        ? accessible[typeOrKind] || base
+        : base,
     ),
-    fill: hex(overrides.fill, colorful ? "#f1f5f9" : "#ffffff"),
+    fill: hex(
+      overrides.fill,
+      darkSymbolCanvas ? "#101a2d" : colorful ? "#f1f5f9" : "#ffffff",
+    ),
     textColor: hex(overrides.textColor, diagramTextColor(diagram.background)),
     lineWidth: bounded(overrides.lineWidth, diagram.lineWidth, 0.5, 8),
     fontSize: bounded(overrides.fontSize, diagram.fontSize, 8, 32),
@@ -162,6 +178,13 @@ export function diagramTextColor(background: string): string {
   if (Math.max(dark, light) >= 4.5)
     return dark >= light ? "#172b3a" : "#f1f5f9";
   return luminance > 0.179 ? "#000000" : "#ffffff";
+}
+
+export function symbolAccent(style: DiagramStyle, stroke = "#263746"): string {
+  if (style.preset === "minimalScientific") return stroke;
+  return diagramTextColor(style.background) === "#f1f5f9"
+    ? "#74dbe4"
+    : "#006b80";
 }
 
 export function stylePatch(

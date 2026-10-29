@@ -28,7 +28,11 @@ vm.runInNewContext(code, context);
 const result = {};
 for (const item of input) {
   ports = item.ports;
-  const symbol = context.exports.getSymbol(item.type, item.config);
+  const symbol = context.exports.getSymbol(
+    item.type,
+    item.config,
+    item.symbolSet,
+  );
   if (item.type === "teachingValve")
     symbol.shapes = [
       {

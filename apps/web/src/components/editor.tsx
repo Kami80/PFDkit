@@ -59,6 +59,7 @@ import { Button } from "./ui/button";
 import {
   diagramTextColor,
   getDiagramStyle,
+  symbolAccent,
   resolveObjectStyle,
 } from "@/lib/styles";
 import { ProjectLibrary } from "./project-library";
@@ -732,7 +733,11 @@ function EditorWorkspace() {
                 aria-label={`Add ${definition.name}`}
               >
                 <span className={`palette-symbol symbol-${definition.type}`}>
-                  <EquipmentSymbol type={definition.type} />
+                  <EquipmentSymbol
+                    type={definition.type}
+                    symbolSet={diagramStyle.symbolSet}
+                    paint={{ accent: symbolAccent(diagramStyle) }}
+                  />
                 </span>
                 <span>
                   <strong>{definition.name}</strong>

@@ -1,5 +1,13 @@
 # pfd-core
 
+## Equipment artwork styles
+
+The PFDkit editor's **Diagram style → Equipment symbols** control offers the original artwork plus **Precision Blueprint** and **Teaching Cross-Section**. The selected style is saved with the diagram and used in SVG, PNG and PDF exports. Both choices cover the 16 built-in types. Logical ports and stream connections are unchanged. These are original illustrative symbols, not certified standards artwork.
+
+[![Precision Blueprint symbol preview](https://kami80.github.io/PFDkit/symbol-precision.svg)](https://kami80.github.io/PFDkit/symbol-precision.svg)
+
+[![Teaching Cross-Section symbol preview](https://kami80.github.io/PFDkit/symbol-teaching.svg)](https://kami80.github.io/PFDkit/symbol-teaching.svg)
+
 Development update: the repository has 16 built-in types, adding `valve`, `checkValve`, `pressureReliefValve`, `pressureRegulator`, `flowRestriction` and `compressor` to the original ten. PyPI 0.1.0 still provides the original ten. See the [equipment catalog and expansion plan](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md); source installation is required for these additions until the next release.
 
 Explore the [process gallery](https://kami80.github.io/PFDkit/#process-gallery): distillation, ethanol fermentation and ammonia synthesis, with editable Python, JSON and SVG downloads. [Markdown gallery guide](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GALLERY.md).

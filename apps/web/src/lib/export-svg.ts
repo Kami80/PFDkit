@@ -16,6 +16,7 @@ import {
 import {
   diagramTextColor,
   getDiagramStyle,
+  symbolAccent,
   resolveObjectStyle,
 } from "./styles";
 import { escapeXml } from "./exchanger-geometry";
@@ -243,7 +244,7 @@ export function diagramSvg(
   }
   for (const item of equipment) {
     const { x, y } = origin(item),
-      symbol = getSymbol(item.type, item.config),
+      symbol = getSymbol(item.type, item.config, style.symbolSet),
       paint = resolveObjectStyle(document, item.id, item.type);
     const labelWidth = textWidth(item.tag, paint.fontSize);
     rectangles.push({
@@ -259,7 +260,7 @@ export function diagramSvg(
             .map(([key, value]) => `${key}="${escapeXml(value)}"`)
             .join(
               " ",
-            )} fill="${shape.fill === "body" ? paint.fill : "none"}" stroke="${shape.stroke ? paint.stroke : "none"}" stroke-width="${paint.lineWidth}" stroke-linecap="round" stroke-linejoin="round"/>`,
+            )} fill="${shape.fill === "body" ? paint.fill : "none"}" stroke="${shape.stroke ? (shape.accent ? symbolAccent(style, paint.stroke) : paint.stroke) : "none"}" stroke-width="${paint.lineWidth}" stroke-linecap="round" stroke-linejoin="round"/>`,
       )
       .join("");
     nodes.push(

@@ -15,21 +15,34 @@ import {
   NODE_WIDTH,
   SYMBOL_OFFSET_X,
   SYMBOL_OFFSET_Y,
+  type SymbolSet,
 } from "@/lib/symbols";
-import { resolveObjectStyle } from "@/lib/styles";
+import {
+  diagramTextColor,
+  getDiagramStyle,
+  resolveObjectStyle,
+  symbolAccent,
+} from "@/lib/styles";
 import { useEditorStore } from "@/lib/editor-store";
 
-type Paint = { stroke?: string; fill?: string; lineWidth?: number };
+type Paint = {
+  stroke?: string;
+  fill?: string;
+  lineWidth?: number;
+  accent?: string;
+};
 export function EquipmentSymbol({
   type,
   config = {},
   paint = {},
+  symbolSet = "legacy",
 }: {
   type: string;
   config?: Record<string, unknown>;
   paint?: Paint;
+  symbolSet?: SymbolSet;
 }) {
-  const symbol = getSymbol(type, config);
+  const symbol = getSymbol(type, config, symbolSet);
   return (
     <svg
       viewBox={`0 0 ${symbol.width} ${symbol.height}`}
@@ -46,7 +59,11 @@ export function EquipmentSymbol({
             shape.fill === "body"
               ? (paint.fill ?? "var(--symbol-fill)")
               : "none",
-          stroke: shape.stroke ? (paint.stroke ?? "currentColor") : "none",
+          stroke: shape.stroke
+            ? shape.accent
+              ? (paint.accent ?? "#006b80")
+              : (paint.stroke ?? "currentColor")
+            : "none",
         }),
       )}
     </svg>
@@ -68,6 +85,10 @@ function EquipmentNodeComponent({
     updateNodeInternals(equipment.id);
   }, [equipment.id, equipment.config, updateNodeInternals]);
   const document = useEditorStore((state) => state.document);
+  const diagram = getDiagramStyle(document);
+  const darkCard =
+    diagram.symbolSet !== "legacy" &&
+    diagramTextColor(diagram.background) === "#f1f5f9";
   const definition = definitions.find((item) => item.type === equipment.type);
   const style = resolveObjectStyle(document, equipment.id, equipment.type);
   const symbol = getSymbol(equipment.type, equipment.config);
@@ -80,6 +101,7 @@ function EquipmentNodeComponent({
         height: NODE_HEIGHT,
         fontFamily: style.fontFamily,
         color: style.stroke,
+        background: darkCard ? (selected ? "#23374c" : "#101a2d") : undefined,
       }}
     >
       <span
@@ -106,7 +128,11 @@ function EquipmentNodeComponent({
         <EquipmentSymbol
           type={equipment.type}
           config={equipment.config}
-          paint={style}
+          paint={{
+            ...style,
+            accent: symbolAccent(diagram, style.stroke),
+          }}
+          symbolSet={diagram.symbolSet}
         />
         {equipmentPorts(equipment.type, equipment.config).map((port) => (
           <Handle

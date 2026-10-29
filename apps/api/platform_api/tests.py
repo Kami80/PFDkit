@@ -221,7 +221,7 @@ class ApiTestCase(TestCase):
         raw["education"]["steps"] = [{"id": "step", "notes": secret, "annotationIds": ["hidden"]}]
         raw["presentation"]["metadata"] = {
             "private": secret,
-            "style": {"preset": "academicColorful", "secret": secret},
+            "style": {"preset": "academicColorful", "symbolSet": "teaching", "secret": secret},
             "objectStyles": {"feed-1": {"fill": "#ffffff", "secret": secret}},
         }
         for item in raw["engineering"]["equipment"]:
@@ -236,6 +236,9 @@ class ApiTestCase(TestCase):
         ]
         project = self.create(raw)
         publication = self.publish(project)
+        self.assertEqual(
+            publication["document"]["presentation"]["metadata"]["style"]["symbolSet"], "teaching"
+        )
         for endpoint in [
             f"/api/library/{publication['id']}",
             f"/api/library/{publication['id']}/document",

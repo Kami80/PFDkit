@@ -169,6 +169,22 @@ export function StylePanel({ onClose }: { onClose?: () => void }) {
         )}
       </div>
       <label>
+        Equipment symbols
+        <select
+          aria-label="Equipment symbols"
+          value={style.symbolSet}
+          onChange={(event) =>
+            patch({
+              symbolSet: event.target.value as DiagramStyle["symbolSet"],
+            })
+          }
+        >
+          <option value="legacy">Original</option>
+          <option value="precision">Precision Blueprint</option>
+          <option value="teaching">Teaching Cross-Section</option>
+        </select>
+      </label>
+      <label>
         Preset
         <select
           aria-label="Style preset"

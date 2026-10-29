@@ -46,7 +46,9 @@
           <details open>
             <summary>Getting started</summary>
             <nav>
-              <a class="nav-h2" href="#create,-connect,-save-and-reload"
+              <a class="nav-h2" href="#equipment-artwork-styles"
+                >Equipment artwork styles</a
+              ><a class="nav-h2" href="#create,-connect,-save-and-reload"
                 >Create, connect, save and reload</a
               ><a class="nav-h2" href="#quantities-and-unknown-values"
                 >Quantities and unknown values</a
@@ -158,6 +160,31 @@
       <main id="content">
         <div class="eyebrow">PYTHON LIBRARY · VERSION 0.1.0</div>
         <h1>pfd-core</h1>
+        <h2 id="equipment-artwork-styles">Equipment artwork styles</h2>
+        <p>
+          The PFDkit editor's
+          <strong>Diagram style → Equipment symbols</strong> control offers the
+          original artwork plus <strong>Precision Blueprint</strong> and
+          <strong>Teaching Cross-Section</strong>. The selected style is saved
+          with the diagram and used in SVG, PNG and PDF exports. Both choices
+          cover the 16 built-in types. Logical ports and stream connections are
+          unchanged. These are original illustrative symbols, not certified
+          standards artwork.
+        </p>
+        <p>
+          <a href="symbol-precision.svg"
+            ><img
+              src="symbol-precision.svg"
+              alt="Precision Blueprint symbol preview"
+          /></a>
+        </p>
+        <p>
+          <a href="symbol-teaching.svg"
+            ><img
+              src="symbol-teaching.svg"
+              alt="Teaching Cross-Section symbol preview"
+          /></a>
+        </p>
         <p>
           Development update: the repository has 16 built-in types, adding
           <code>valve</code>, <code>checkValve</code>,
@@ -2692,9 +2719,9 @@ Completed successfully · all assertions passed.</pre>
                 stroke="var(--line)"
               />
               <text class="stream-label" x="239.0" y="116.0">
-                a987adf2-0b18-4db7-acc8-
+                b93dfad5-8979-498c-b75b-
               </text>
-              <text class="stream-label" x="239.0" y="137.0">b5154fe855c3</text>
+              <text class="stream-label" x="239.0" y="137.0">e76afe70d180</text>
               <path
                 class="callout-leader"
                 d="M645.0 220.0 L645.0 150.0"
@@ -2705,18 +2732,18 @@ Completed successfully · all assertions passed.</pre>
               />
               <rect
                 class="stream-callout"
-                x="539.0"
+                x="527.0"
                 y="94.0"
-                width="212.0"
+                width="236.0"
                 height="56.0"
                 rx="7"
                 fill="var(--surface)"
                 stroke="var(--line)"
               />
-              <text class="stream-label" x="549.0" y="116.0">
-                18f5ca7d-3184-4492-a713-
+              <text class="stream-label" x="537.0" y="116.0">656ab4ff-</text>
+              <text class="stream-label" x="537.0" y="137.0">
+                da55-4e9e-8466-b5f6a0bf265d
               </text>
-              <text class="stream-label" x="549.0" y="137.0">e24462a24b70</text>
             </svg>
           </div>
           <p class="preview-caption">
@@ -2741,7 +2768,7 @@ Completed successfully · all assertions passed.</pre>
               </thead>
               <tbody>
                 <tr>
-                  <td>a987adf2-0b18-4db7-acc8-b5154fe855c3</td>
+                  <td>b93dfad5-8979-498c-b75b-e76afe70d180</td>
                   <td>
                     <code class="connection-label">supply.out → valve.in</code>
                   </td>
@@ -2749,7 +2776,7 @@ Completed successfully · all assertions passed.</pre>
                   <td>Not entered</td>
                 </tr>
                 <tr>
-                  <td>18f5ca7d-3184-4492-a713-e24462a24b70</td>
+                  <td>656ab4ff-da55-4e9e-8466-b5f6a0bf265d</td>
                   <td>
                     <code class="connection-label">valve.out → outlet.in</code>
                   </td>

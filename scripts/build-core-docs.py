@@ -10,6 +10,7 @@ from docs_diagram import diagram
 from docs_preview import document_output, example_output
 from gallery_processes import process_gallery
 from markdown_it import MarkdownIt
+from pfd_core import add_equipment, new_document, registry
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_lexer_by_name
@@ -21,6 +22,7 @@ source = source.replace(
     "Install from a PFDkit checkout, or install a built wheel independently:",
     "Install the published package from PyPI:",
 )
+source = source.replace("https://kami80.github.io/PFDkit/symbol-", "symbol-")
 source = source.replace(
     "python -m pip install ./packages/pfd-core\n# Alternatively: python -m pip install /path/to/pfd_core-0.1.0-py3-none-any.whl",
     "python -m pip install pfd-core",
@@ -148,6 +150,22 @@ for name, document, scope, reference, url in process_gallery():
         + document_output(document)
         + "</section>",
     )
+for symbol_set in ("precision", "teaching"):
+    demo = new_document("Equipment symbol styles")
+    for i, definition in enumerate(registry.definitions()):
+        demo = add_equipment(
+            demo, definition.type, id=definition.type, x=(i % 4) * 250, y=(i // 4) * 250
+        )
+    demo.presentation.metadata["style"] = {"symbolSet": symbol_set}
+    svg = re.search(
+        r"<svg.*?</svg>", diagram(demo, horizontal_spacing=210, vertical_spacing=220)
+    ).group(0)
+    svg = svg.replace(
+        "><defs>",
+        "><style>svg{background:#fff;color:#0969bd;--surface:#fff;--ink:#20242c;--muted:#536174;--line:#ced8e4;--teaching-accent:#006b80}text{font:14px system-ui;fill:#20242c}.equipment-kind{font-size:12px}.equipment-tag{font-weight:600}</style><defs>",
+        1,
+    )
+    (out / f"symbol-{symbol_set}.svg").write_text(svg, encoding="utf-8")
 (out / "gallery_processes.py").write_text(
     (root / "scripts/gallery_processes.py").read_text(encoding="utf-8"),
     encoding="utf-8",

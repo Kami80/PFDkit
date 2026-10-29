@@ -43,7 +43,13 @@ def values(stream, *, composition=True) -> str:
     return " · ".join(entries)
 
 
-def diagram(doc: Document, equipment_registry: EquipmentRegistry = registry) -> str:
+def diagram(
+    doc: Document,
+    equipment_registry: EquipmentRegistry = registry,
+    *,
+    horizontal_spacing: int = 310,
+    vertical_spacing: int = 310,
+) -> str:
     if not doc.engineering.equipment:
         return '<p class="empty-output">Empty document created.</p>'
     definitions = []
@@ -57,6 +63,9 @@ def diagram(doc: Document, equipment_registry: EquipmentRegistry = registry) -> 
                 "id": item.id,
                 "type": item.type,
                 "config": item.config,
+                "symbolSet": doc.presentation.metadata.get("style", {}).get(
+                    "symbolSet", "legacy"
+                ),
                 "ports": [p.model_dump() for p in ports],
             }
         )
@@ -80,11 +89,16 @@ def diagram(doc: Document, equipment_registry: EquipmentRegistry = registry) -> 
     if unique:
         xs, ys = sorted({p[0] for p in raw}), sorted({p[1] for p in raw})
         positions = {
-            e.id: (120 + xs.index(p[0]) * 310, 180 + ys.index(p[1]) * 310)
+            e.id: (
+                120 + xs.index(p[0]) * horizontal_spacing,
+                180 + ys.index(p[1]) * vertical_spacing,
+            )
             for e, p in zip(items, raw, strict=True)
         }
     else:
-        positions = {e.id: (120 + i * 310, 180) for i, e in enumerate(items)}
+        positions = {
+            e.id: (120 + i * horizontal_spacing, 180) for i, e in enumerate(items)
+        }
     max_x = max(x for x, _ in positions.values()) + 220
     max_y = max(y for _, y in positions.values()) + 240
     marker = f"flow-{next(_ids)}"
@@ -161,7 +175,8 @@ def diagram(doc: Document, equipment_registry: EquipmentRegistry = registry) -> 
                 for key, value in shape["attrs"].items()
             )
             fill = "var(--surface)" if shape["fill"] == "body" else "none"
-            parts.append(f'<{shape["tag"]} {attrs} fill="{fill}"/>')
+            accent = ' stroke="var(--teaching-accent)"' if shape.get("accent") else ""
+            parts.append(f'<{shape["tag"]} {attrs} fill="{fill}"{accent}/>')
         parts.append("</g>")
         for line_index, line in enumerate(names[item.id]):
             parts.append(

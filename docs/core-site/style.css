@@ -7,6 +7,7 @@
   --line: #dde2eb;
   --accent: #0969bd;
   --glass: rgba(255, 255, 255, 0.85);
+  --teaching-accent: #006b80;
   font:
     100%/1.65 -apple-system,
     BlinkMacSystemFont,
@@ -22,6 +23,7 @@
   --line: #27344d;
   --accent: #90c4ff;
   --glass: rgba(12, 21, 39, 0.9);
+  --teaching-accent: #74dbe4;
 }
 * {
   box-sizing: border-box;
@@ -215,6 +217,13 @@ main > p,
 main > ul,
 main > ol {
   max-width: 720px;
+}
+main img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
 }
 h1 {
   font-size: clamp(36px, 4vw, 54px);

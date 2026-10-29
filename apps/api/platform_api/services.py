@@ -168,6 +168,7 @@ def public_document(raw, attribution):
     permitted_style = {
         "version",
         "preset",
+        "symbolSet",
         "background",
         "fontFamily",
         "fontSize",
