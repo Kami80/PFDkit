@@ -1,0 +1,625 @@
+{
+  "education": {
+    "annotations": [],
+    "metadata": {},
+    "notes": "Sixteen illustrative stages with two feeds, vapor and liquid side draws, external total condenser, reflux drum and partial reboiler. Cooling and steam utility connections are explicit; duties, feed conditions and utility flows are entered examples, not calculated results. Illustrative input values; no mass/energy balance or thermodynamic calculation.",
+    "steps": []
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "feed1",
+        "metadata": {},
+        "tag": "F-401 Main feed",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "feed2",
+        "metadata": {},
+        "tag": "F-402 Side feed",
+        "type": "feed"
+      },
+      {
+        "config": {
+          "feedStage": 10,
+          "feeds": [
+            {
+              "portId": "side-feed",
+              "stage": 6
+            }
+          ],
+          "sideDraws": [
+            {
+              "phase": "vapor",
+              "portId": "vapor-draw",
+              "stage": 4
+            },
+            {
+              "phase": "liquid",
+              "portId": "liquid-draw",
+              "stage": 12
+            }
+          ],
+          "stageCount": 16
+        },
+        "id": "column",
+        "metadata": {},
+        "tag": "C-401 Column",
+        "type": "column"
+      },
+      {
+        "config": {},
+        "id": "vapor",
+        "metadata": {},
+        "tag": "P-401 Vapor draw",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "liquid",
+        "metadata": {},
+        "tag": "P-402 Liquid draw",
+        "type": "product"
+      },
+      {
+        "config": {
+          "dutyW": 20000,
+          "mode": "total"
+        },
+        "id": "cond",
+        "metadata": {},
+        "tag": "E-401 Total condenser",
+        "type": "condenser"
+      },
+      {
+        "config": {
+          "orientation": "horizontal"
+        },
+        "id": "drum",
+        "metadata": {},
+        "tag": "V-401 Reflux drum",
+        "type": "tank"
+      },
+      {
+        "config": {},
+        "id": "split",
+        "metadata": {},
+        "tag": "SP-401 Reflux split",
+        "type": "splitter"
+      },
+      {
+        "config": {},
+        "id": "distillate",
+        "metadata": {},
+        "tag": "D-401 Distillate",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "reflux",
+        "metadata": {},
+        "tag": "P-403 Reflux pump",
+        "type": "pump"
+      },
+      {
+        "config": {
+          "dutyW": 25000,
+          "mode": "partial"
+        },
+        "id": "reboiler",
+        "metadata": {},
+        "tag": "E-402 Partial reboiler",
+        "type": "reboiler"
+      },
+      {
+        "config": {},
+        "id": "bottoms",
+        "metadata": {},
+        "tag": "B-401 Bottoms",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "cw",
+        "metadata": {},
+        "tag": "U-401 Cooling water",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "cwout",
+        "metadata": {},
+        "tag": "U-402 Cooling return",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "steam",
+        "metadata": {},
+        "tag": "U-403 Steam",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "condensate",
+        "metadata": {},
+        "tag": "U-404 Condensate",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 1.0
+        },
+        "id": "S01",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "feed1",
+          "portId": "out"
+        },
+        "tag": "S01 Main feed",
+        "target": {
+          "equipmentId": "column",
+          "portId": "feed"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 25.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S02",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "feed2",
+          "portId": "out"
+        },
+        "tag": "S02 Side feed",
+        "target": {
+          "equipmentId": "column",
+          "portId": "side-feed"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 50.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S03",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "column",
+          "portId": "vapor-draw"
+        },
+        "tag": "S03 Vapor draw",
+        "target": {
+          "equipmentId": "vapor",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S04",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "column",
+          "portId": "liquid-draw"
+        },
+        "tag": "S04 Liquid draw",
+        "target": {
+          "equipmentId": "liquid",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S05",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "column",
+          "portId": "overhead"
+        },
+        "tag": "S05 Overhead vapor",
+        "target": {
+          "equipmentId": "cond",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S06",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "cond",
+          "portId": "liquidOut"
+        },
+        "tag": "S06 Condensate",
+        "target": {
+          "equipmentId": "drum",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S07",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "drum",
+          "portId": "out"
+        },
+        "tag": "S07 Drum liquid",
+        "target": {
+          "equipmentId": "split",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S08",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "split",
+          "portId": "out1"
+        },
+        "tag": "S08 Distillate",
+        "target": {
+          "equipmentId": "distillate",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S09",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "split",
+          "portId": "out2"
+        },
+        "tag": "S09 Reflux",
+        "target": {
+          "equipmentId": "reflux",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S10",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "reflux",
+          "portId": "out"
+        },
+        "tag": "S10 Reflux return",
+        "target": {
+          "equipmentId": "column",
+          "portId": "reflux"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S11",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "column",
+          "portId": "bottoms"
+        },
+        "tag": "S11 Sump liquid",
+        "target": {
+          "equipmentId": "reboiler",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S12",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "reboiler",
+          "portId": "vaporOut"
+        },
+        "tag": "S12 Boilup",
+        "target": {
+          "equipmentId": "column",
+          "portId": "boilup"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S13",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "reboiler",
+          "portId": "liquidOut"
+        },
+        "tag": "S13 Bottoms",
+        "target": {
+          "equipmentId": "bottoms",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 2.0
+        },
+        "id": "S14",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "cw",
+          "portId": "out"
+        },
+        "tag": "S14 Cooling supply",
+        "target": {
+          "equipmentId": "cond",
+          "portId": "utilityIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S15",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "cond",
+          "portId": "utilityOut"
+        },
+        "tag": "S15 Cooling return",
+        "target": {
+          "equipmentId": "cwout",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 0.1
+        },
+        "id": "S16",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "steam",
+          "portId": "out"
+        },
+        "tag": "S16 Steam supply",
+        "target": {
+          "equipmentId": "reboiler",
+          "portId": "utilityIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S17",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "reboiler",
+          "portId": "utilityOut"
+        },
+        "tag": "S17 Steam condensate",
+        "target": {
+          "equipmentId": "condensate",
+          "portId": "in"
+        },
+        "temperature": null
+      }
+    ]
+  },
+  "id": "gallery-advanced column",
+  "metadata": {
+    "attribution": {
+      "artwork": "Original PFDkit vector artwork; references support process concepts, not entered values.",
+      "creator": "PFDkit contributors",
+      "license": "MIT"
+    },
+    "references": [
+      {
+        "title": "ETH Zurich \u00b7 Distillation",
+        "url": "https://www.hyper-tvt.ethz.ch/distillation-page.html"
+      }
+    ],
+    "scope": "Sixteen illustrative stages with two feeds, vapor and liquid side draws, external total condenser, reflux drum and partial reboiler. Cooling and steam utility connections are explicit; duties, feed conditions and utility flows are entered examples, not calculated results.",
+    "valueStatus": "Illustrative input values; no mass/energy balance or thermodynamic calculation."
+  },
+  "presentation": {
+    "metadata": {},
+    "nodes": {
+      "bottoms": {
+        "metadata": {},
+        "x": 1200.0,
+        "y": 1000.0
+      },
+      "column": {
+        "metadata": {},
+        "x": 300.0,
+        "y": 500.0
+      },
+      "cond": {
+        "metadata": {},
+        "x": 900.0,
+        "y": 0.0
+      },
+      "condensate": {
+        "metadata": {},
+        "x": 900.0,
+        "y": 1250.0
+      },
+      "cw": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 0.0
+      },
+      "cwout": {
+        "metadata": {},
+        "x": 900.0,
+        "y": 250.0
+      },
+      "distillate": {
+        "metadata": {},
+        "x": 1800.0,
+        "y": 0.0
+      },
+      "drum": {
+        "metadata": {},
+        "x": 1200.0,
+        "y": 0.0
+      },
+      "feed1": {
+        "metadata": {},
+        "x": 0.0,
+        "y": 500.0
+      },
+      "feed2": {
+        "metadata": {},
+        "x": 0.0,
+        "y": 750.0
+      },
+      "liquid": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 750.0
+      },
+      "reboiler": {
+        "metadata": {},
+        "x": 900.0,
+        "y": 1000.0
+      },
+      "reflux": {
+        "metadata": {},
+        "x": 1200.0,
+        "y": 250.0
+      },
+      "split": {
+        "metadata": {},
+        "x": 1500.0,
+        "y": 0.0
+      },
+      "steam": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 1000.0
+      },
+      "vapor": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 250.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Advanced column \u00b7 multiple feeds and draws"
+}

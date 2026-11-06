@@ -1,0 +1,256 @@
+{
+  "education": {
+    "annotations": [],
+    "metadata": {},
+    "notes": "Illustrative filtration and rotary drying with separately connected filtrate, drying gas, dry product and exhaust. No solids balance, moisture content or duty is calculated. Illustrative input values; no mass/energy balance or thermodynamic calculation.",
+    "steps": []
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "slurry",
+        "metadata": {},
+        "tag": "F-601 Slurry",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "filter",
+        "metadata": {},
+        "tag": "FL-601 Filter",
+        "type": "filter"
+      },
+      {
+        "config": {},
+        "id": "filtrate",
+        "metadata": {},
+        "tag": "P-601 Filtrate",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "dryer",
+        "metadata": {},
+        "tag": "DR-601 Rotary dryer",
+        "type": "rotaryDryer"
+      },
+      {
+        "config": {},
+        "id": "air",
+        "metadata": {},
+        "tag": "F-602 Drying gas",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "product",
+        "metadata": {},
+        "tag": "P-602 Dry solids",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "exhaust",
+        "metadata": {},
+        "tag": "P-603 Exhaust gas",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 1.0
+        },
+        "id": "S01",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "slurry",
+          "portId": "out"
+        },
+        "tag": "S01 Slurry",
+        "target": {
+          "equipmentId": "filter",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 25.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S02",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "filter",
+          "portId": "liquidOut"
+        },
+        "tag": "S02 Filtrate",
+        "target": {
+          "equipmentId": "filtrate",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S03",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "filter",
+          "portId": "solidsOut"
+        },
+        "tag": "S03 Filter cake",
+        "target": {
+          "equipmentId": "dryer",
+          "portId": "feedIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S04",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "air",
+          "portId": "out"
+        },
+        "tag": "S04 Drying gas",
+        "target": {
+          "equipmentId": "dryer",
+          "portId": "gasIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S05",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "dryer",
+          "portId": "solidsOut"
+        },
+        "tag": "S05 Dry product",
+        "target": {
+          "equipmentId": "product",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S06",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "dryer",
+          "portId": "gasOut"
+        },
+        "tag": "S06 Exhaust",
+        "target": {
+          "equipmentId": "exhaust",
+          "portId": "in"
+        },
+        "temperature": null
+      }
+    ]
+  },
+  "id": "gallery-solids processing",
+  "metadata": {
+    "attribution": {
+      "artwork": "Original PFDkit vector artwork; references support process concepts, not entered values.",
+      "creator": "PFDkit contributors",
+      "license": "MIT"
+    },
+    "references": [
+      {
+        "title": "PFDkit \u00b7 Equipment catalog",
+        "url": "https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md"
+      }
+    ],
+    "scope": "Illustrative filtration and rotary drying with separately connected filtrate, drying gas, dry product and exhaust. No solids balance, moisture content or duty is calculated.",
+    "valueStatus": "Illustrative input values; no mass/energy balance or thermodynamic calculation."
+  },
+  "presentation": {
+    "metadata": {},
+    "nodes": {
+      "air": {
+        "metadata": {},
+        "x": 300.0,
+        "y": 250.0
+      },
+      "dryer": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 250.0
+      },
+      "exhaust": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 500.0
+      },
+      "filter": {
+        "metadata": {},
+        "x": 300.0,
+        "y": 0.0
+      },
+      "filtrate": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 0.0
+      },
+      "product": {
+        "metadata": {},
+        "x": 900.0,
+        "y": 250.0
+      },
+      "slurry": {
+        "metadata": {},
+        "x": 0.0,
+        "y": 0.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Solids processing \u00b7 filtration and drying"
+}

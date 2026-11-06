@@ -80,6 +80,137 @@ def distillation() -> Document:
     )
 
 
+def advanced_column() -> Document:
+    """Explicit auxiliaries, utilities and stage-based streams; no calculations."""
+    doc = build(
+        "Advanced column · multiple feeds and draws",
+        [
+            ("feed1", "feed", "F-401 Main feed", 0, 2, {}),
+            ("feed2", "feed", "F-402 Side feed", 0, 3, {}),
+            (
+                "column",
+                "column",
+                "C-401 Column",
+                1,
+                2,
+                {
+                    "stageCount": 16,
+                    "feedStage": 10,
+                    "feeds": [{"portId": "side-feed", "stage": 6}],
+                    "sideDraws": [
+                        {"portId": "vapor-draw", "stage": 4, "phase": "vapor"},
+                        {"portId": "liquid-draw", "stage": 12, "phase": "liquid"},
+                    ],
+                },
+            ),
+            ("vapor", "product", "P-401 Vapor draw", 2, 1, {}),
+            ("liquid", "product", "P-402 Liquid draw", 2, 3, {}),
+            (
+                "cond",
+                "condenser",
+                "E-401 Total condenser",
+                3,
+                0,
+                {"mode": "total", "dutyW": 20000},
+            ),
+            ("drum", "tank", "V-401 Reflux drum", 4, 0, {"orientation": "horizontal"}),
+            ("split", "splitter", "SP-401 Reflux split", 5, 0, {}),
+            ("distillate", "product", "D-401 Distillate", 6, 0, {}),
+            ("reflux", "pump", "P-403 Reflux pump", 4, 1, {}),
+            (
+                "reboiler",
+                "reboiler",
+                "E-402 Partial reboiler",
+                3,
+                4,
+                {"mode": "partial", "dutyW": 25000},
+            ),
+            ("bottoms", "product", "B-401 Bottoms", 4, 4, {}),
+            ("cw", "feed", "U-401 Cooling water", 2, 0, {}),
+            ("cwout", "product", "U-402 Cooling return", 3, 1, {}),
+            ("steam", "feed", "U-403 Steam", 2, 4, {}),
+            ("condensate", "product", "U-404 Condensate", 3, 5, {}),
+        ],
+        [
+            ("feed1", "out", "column", "feed", "S01 Main feed"),
+            ("feed2", "out", "column", "side-feed", "S02 Side feed"),
+            ("column", "vapor-draw", "vapor", "in", "S03 Vapor draw"),
+            ("column", "liquid-draw", "liquid", "in", "S04 Liquid draw"),
+            ("column", "overhead", "cond", "in", "S05 Overhead vapor"),
+            ("cond", "liquidOut", "drum", "in", "S06 Condensate"),
+            ("drum", "out", "split", "in", "S07 Drum liquid"),
+            ("split", "out1", "distillate", "in", "S08 Distillate"),
+            ("split", "out2", "reflux", "in", "S09 Reflux"),
+            ("reflux", "out", "column", "reflux", "S10 Reflux return"),
+            ("column", "bottoms", "reboiler", "in", "S11 Sump liquid"),
+            ("reboiler", "vaporOut", "column", "boilup", "S12 Boilup"),
+            ("reboiler", "liquidOut", "bottoms", "in", "S13 Bottoms"),
+            ("cw", "out", "cond", "utilityIn", "S14 Cooling supply"),
+            ("cond", "utilityOut", "cwout", "in", "S15 Cooling return"),
+            ("steam", "out", "reboiler", "utilityIn", "S16 Steam supply"),
+            ("reboiler", "utilityOut", "condensate", "in", "S17 Steam condensate"),
+        ],
+    )
+    doc = update_stream(
+        doc, "S02", temperature=Quantity(value=50, unit="degC", dimension="temperature")
+    )
+    doc = update_stream(
+        doc, "S14", flow_rate=Quantity(value=2, unit="kg/s", dimension="massFlow")
+    )
+    doc = update_stream(
+        doc, "S16", flow_rate=Quantity(value=0.1, unit="kg/s", dimension="massFlow")
+    )
+    return doc
+
+
+def gas_cleaning() -> Document:
+    return build(
+        "Gas cleaning · fan, baghouse and scrubber",
+        [
+            ("gas", "feed", "F-501 Dusty gas", 0, 0, {}),
+            ("fan", "fan", "FN-501 Fan", 1, 0, {"machineType": "centrifugal"}),
+            ("baghouse", "baghouse", "BH-501 Baghouse", 2, 0, {}),
+            ("scrubber", "wetScrubber", "SC-501 Wet scrubber", 3, 0, {}),
+            ("clean", "product", "P-501 Treated gas", 4, 0, {}),
+            ("dust", "product", "P-502 Captured dust", 2, 1, {}),
+            ("water", "feed", "F-502 Scrubbing water", 4, 1, {}),
+            ("spent", "product", "P-503 Spent liquid", 3, 1, {}),
+        ],
+        [
+            ("gas", "out", "fan", "in", "S01 Dusty gas"),
+            ("fan", "out", "baghouse", "gasIn", "S02 Gas to filter"),
+            ("baghouse", "gasOut", "scrubber", "gasIn", "S03 Filtered gas"),
+            ("baghouse", "solidsOut", "dust", "in", "S04 Dust"),
+            ("water", "out", "scrubber", "liquidIn", "S05 Water"),
+            ("scrubber", "gasOut", "clean", "in", "S06 Treated gas"),
+            ("scrubber", "liquidOut", "spent", "in", "S07 Spent liquid"),
+        ],
+    )
+
+
+def solids_drying() -> Document:
+    return build(
+        "Solids processing · filtration and drying",
+        [
+            ("slurry", "feed", "F-601 Slurry", 0, 0, {}),
+            ("filter", "filter", "FL-601 Filter", 1, 0, {}),
+            ("filtrate", "product", "P-601 Filtrate", 2, 0, {}),
+            ("dryer", "rotaryDryer", "DR-601 Rotary dryer", 2, 1, {}),
+            ("air", "feed", "F-602 Drying gas", 1, 1, {}),
+            ("product", "product", "P-602 Dry solids", 3, 1, {}),
+            ("exhaust", "product", "P-603 Exhaust gas", 2, 2, {}),
+        ],
+        [
+            ("slurry", "out", "filter", "in", "S01 Slurry"),
+            ("filter", "liquidOut", "filtrate", "in", "S02 Filtrate"),
+            ("filter", "solidsOut", "dryer", "feedIn", "S03 Filter cake"),
+            ("air", "out", "dryer", "gasIn", "S04 Drying gas"),
+            ("dryer", "solidsOut", "product", "in", "S05 Dry product"),
+            ("dryer", "gasOut", "exhaust", "in", "S06 Exhaust"),
+        ],
+    )
+
+
 def ethanol() -> Document:
     return build(
         "Ethanol · fermentation and distillation",
@@ -144,6 +275,27 @@ def ammonia() -> Document:
 
 def process_gallery():
     entries = [
+        (
+            "advanced-column",
+            advanced_column(),
+            "Sixteen illustrative stages with two feeds, vapor and liquid side draws, external total condenser, reflux drum and partial reboiler. Cooling and steam utility connections are explicit; duties, feed conditions and utility flows are entered examples, not calculated results.",
+            "ETH Zurich · Distillation",
+            "https://www.hyper-tvt.ethz.ch/distillation-page.html",
+        ),
+        (
+            "gas-cleaning",
+            gas_cleaning(),
+            "Schematic fan, baghouse and wet-scrubber train with material feeds and separate dust, treated gas and liquid products. No pressure drop, collection efficiency or emissions are calculated.",
+            "PFDkit · Equipment catalog",
+            "https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md",
+        ),
+        (
+            "solids-drying",
+            solids_drying(),
+            "Illustrative filtration and rotary drying with separately connected filtrate, drying gas, dry product and exhaust. No solids balance, moisture content or duty is calculated.",
+            "PFDkit · Equipment catalog",
+            "https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md",
+        ),
         (
             "distillation",
             distillation(),

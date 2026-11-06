@@ -2,15 +2,15 @@
 
 ## Equipment artwork styles
 
-The PFDkit editor's **Diagram style → Equipment symbols** control offers the original artwork plus **Precision Blueprint** and **Teaching Cross-Section**. The selected style is saved with the diagram and used in SVG, PNG and PDF exports. Both choices cover the 16 built-in types. Logical ports and stream connections are unchanged. These are original illustrative symbols, not certified standards artwork.
+The PFDkit editor's **Diagram style → Equipment symbols** control offers the original artwork plus **Precision Blueprint** and **Teaching Cross-Section**. The selected style is saved with the diagram and used in SVG, PNG and PDF exports. Both choices cover the 47 built-in types in the development source. Logical ports and stream connections are unchanged. These are original illustrative symbols, not certified standards artwork.
 
 [![Precision Blueprint symbol preview](symbol-precision.svg)](symbol-precision.svg)
 
 [![Teaching Cross-Section symbol preview](symbol-teaching.svg)](symbol-teaching.svg)
 
-Development update: the repository has 16 built-in types, adding `valve`, `checkValve`, `pressureReliefValve`, `pressureRegulator`, `flowRestriction` and `compressor` to the original ten. PyPI 0.1.0 still provides the original ten. See the [equipment catalog and expansion plan](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md); source installation is required for these additions until the next release.
+Development update: the repository has 47 built-in types, including external column auxiliaries and equipment for gas handling, heat transfer, separation, reaction, solids and environmental processes. PyPI 0.1.0 still provides the original ten. See the [equipment catalog and expansion plan](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md); source installation is required for these additions until the next release.
 
-Explore the [process gallery](https://kami80.github.io/PFDkit/#process-gallery): distillation, ethanol fermentation and ammonia synthesis, with editable Python, JSON and SVG downloads. [Markdown gallery guide](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GALLERY.md).
+Explore the [process gallery](https://kami80.github.io/PFDkit/#process-gallery): advanced distillation, gas cleaning, solids drying, ethanol fermentation and ammonia synthesis, with editable Python, JSON and SVG downloads. [Markdown gallery guide](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GALLERY.md).
 
 For step-by-step examples, including compositions and energy streams, see the [PFD guide](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/GUIDE.md). The [API reference](https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/API.md) covers public models, commands, registry, units and validation. Both are plain Markdown for readers and AI agents.
 
@@ -24,7 +24,7 @@ python -m pip install pfd-core
 
 ## Create, connect, save and reload
 
-The built-in registry provides `feed`, `product`, `pump`, `heatExchanger`, `separator`, `tank`, `mixer`, `splitter`, `column` and `reactor`. The quickstart below uses the first four process roles. IDs identify objects; editable tags identify them to the reader. Ports have stable local IDs, a direction, a material/energy kind, a connection capacity and optional drawing-side offsets. Mixer and splitter ports have fixed identities, including an optional third branch. The exchanger's tube and shell circuits are distinct. Definitions also expose category, keywords, supported views and symbol provenance; those do not imply numerical calculations.
+The original registry includes `feed`, `product`, `pump`, `heatExchanger`, `separator`, `tank`, `mixer`, `splitter`, `column` and `reactor`; the development catalog extends these as described above. The quickstart below uses the first four process roles. IDs identify objects; editable tags identify them to the reader. Ports have stable local IDs, a direction, a material/energy kind, a connection capacity and optional drawing-side offsets. Mixer and splitter ports have fixed identities, including an optional third branch. The exchanger's tube and shell circuits are distinct. Definitions also expose category, keywords, supported views and symbol provenance; those do not imply numerical calculations.
 
 ```python
 from pfd_core import (
@@ -505,7 +505,45 @@ This working catalog covers common chemical-process equipment and specialist fam
 
 ### Available now
 
-The development source provides 16 types: feed (`feed`), product (`product`), pump (`pump`), heat exchanger (`heatExchanger`), separator (`separator`), tank (`tank`), mixer (`mixer`), splitter (`splitter`), column (`column`), reactor (`reactor`), valve (`valve`), check valve (`checkValve`), pressure relief valve (`pressureReliefValve`), pressure reducing regulator (`pressureRegulator`), flow restriction/orifice (`flowRestriction`), and compressor (`compressor`).
+The development source provides 47 built-in types. The original ten and six initial flow-control/gas-compression additions remain available. The extended types and their stable port contracts are listed below. Absorption and stripping use the existing `column` type with the corresponding `service` setting; they are not separate equipment types. An optional port can remain unconnected, and a port's label does not imply that its phase or performance has been calculated.
+
+The expanded units are first-pass schematic models. They accept stream quantities; most offer a free-text configuration description, while blowers, fans, vacuum pumps, condensers and reboilers offer the specific configuration fields described by their registry schemas. The other new units do not yet provide detailed equipment sizing, subtype selection or numerical simulation.
+
+<!-- BEGIN EXTENDED PORT REFERENCE -->
+
+- **Blower** (`blower`): `in` (material in), `out` (material out), `power` (energy in, optional).
+- **Fan** (`fan`): `in` (material in), `out` (material out), `power` (energy in, optional).
+- **Vacuum pump** (`vacuumPump`): `in` (material in), `out` (material out), `power` (energy in, optional).
+- **Condenser** (`condenser`): `in` (material in), `vaporOut` (material out, optional), `liquidOut` (material out, optional), `utilityIn` (material in, optional), `utilityOut` (material out, optional).
+- **Reboiler** (`reboiler`): `in` (material in), `vaporOut` (material out, optional), `liquidOut` (material out, optional), `utilityIn` (material in, optional), `utilityOut` (material out, optional).
+- **Ejector / eductor** (`ejector`): `motiveIn` (material in), `suctionIn` (material in), `out` (material out).
+- **Turbine / expander** (`turbine`): `in` (material in), `out` (material out), `power` (energy out, optional).
+- **Fired heater** (`firedHeater`): `in` (material in), `out` (material out), `fuelIn` (material in), `flueOut` (material out).
+- **Boiler / steam generator** (`boiler`): `in` (material in), `out` (material out), `fuelIn` (material in), `flueOut` (material out).
+- **Cooling tower** (`coolingTower`): `waterIn` (material in), `waterOut` (material out), `airIn` (material in), `airOut` (material out).
+- **Evaporator** (`evaporator`): `in` (material in), `vaporOut` (material out), `liquidOut` (material out), `heat` (energy in, optional).
+- **Three-phase separator** (`threePhaseSeparator`): `in` (material in), `vaporOut` (material out), `lightOut` (material out), `heavyOut` (material out).
+- **Decanter** (`decanter`): `in` (material in), `lightOut` (material out), `heavyOut` (material out).
+- **Adsorber bed** (`adsorber`): `in` (material in), `out` (material out).
+- **Membrane separator** (`membraneSeparator`): `in` (material in), `permeateOut` (material out), `retentateOut` (material out).
+- **Crystallizer** (`crystallizer`): `in` (material in), `slurryOut` (material out), `vaporOut` (material out, optional), `heat` (energy in, optional).
+- **Cyclone separator** (`cyclone`): `in` (material in), `overflow` (material out), `underflow` (material out).
+- **Hydrocyclone** (`hydrocyclone`): `in` (material in), `overflow` (material out), `underflow` (material out).
+- **Clarifier / settler** (`clarifier`): `in` (material in), `overflow` (material out), `underflow` (material out).
+- **Filter** (`filter`): `in` (material in), `liquidOut` (material out), `solidsOut` (material out).
+- **Centrifuge** (`centrifuge`): `in` (material in), `liquidOut` (material out), `solidsOut` (material out), `power` (energy in, optional).
+- **Mill / grinder** (`mill`): `in` (material in), `out` (material out), `power` (energy in, optional).
+- **Hopper / silo** (`silo`): `in` (material in), `out` (material out), `vent` (material out, optional).
+- **Packed-bed reactor** (`packedBedReactor`): `in` (material in), `out` (material out), `heat` (energy in, optional).
+- **Fluidized-bed reactor** (`fluidizedBedReactor`): `feedIn` (material in), `gasIn` (material in), `gasOut` (material out), `solidsOut` (material out).
+- **Bioreactor / fermenter** (`bioreactor`): `feedIn` (material in), `gasIn` (material in, optional), `gasOut` (material out, optional), `out` (material out).
+- **Spray dryer** (`sprayDryer`): `feedIn` (material in), `gasIn` (material in), `gasOut` (material out), `solidsOut` (material out).
+- **Rotary dryer** (`rotaryDryer`): `feedIn` (material in), `solidsOut` (material out), `gasIn` (material in), `gasOut` (material out).
+- **Wet scrubber** (`wetScrubber`): `gasIn` (material in), `liquidIn` (material in), `gasOut` (material out), `liquidOut` (material out).
+- **Baghouse** (`baghouse`): `gasIn` (material in), `gasOut` (material out), `solidsOut` (material out).
+- **Flare** (`flare`): `in` (material in), `out` (material out).
+
+<!-- END EXTENDED PORT REFERENCE -->
 
 ### Implementation sequence
 
@@ -519,10 +557,10 @@ Each unchecked entry is a separate implementation task. Finish its port contract
 - [x] Pressure reducing regulator
 - [x] Flow restriction / orifice
 - [x] Compressor: centrifugal and reciprocating variants
-- [ ] Blower
-- [ ] Fan
-- [ ] Vacuum pump
-- [ ] Ejector / eductor
+- [x] Blower
+- [x] Fan
+- [x] Vacuum pump
+- [x] Ejector / eductor
 - [ ] Positive displacement pump variant
 - [ ] Pipe segment
 - [ ] Junction / manifold
@@ -535,53 +573,95 @@ Each unchecked entry is a separate implementation task. Finish its port contract
 - [ ] Plate exchanger variant
 - [ ] Double-pipe exchanger variant
 - [ ] Air cooler
-- [ ] Condenser equipment type
-- [ ] Reboiler equipment type
-- [ ] Fired heater / furnace
+- [x] Condenser equipment type
+- [x] Reboiler equipment type
+- [x] Fired heater / furnace
 - [ ] Electric heater
-- [ ] Boiler / steam generator
-- [ ] Cooling tower
+- [x] Boiler / steam generator
+- [x] Cooling tower
 - [ ] Chiller / refrigeration package
-- [ ] Evaporator
+- [x] Evaporator
 - [ ] Heat pump
 - [ ] Utility supply and return boundaries
 
 #### 3. Phase and mass-transfer separation
 
 - [ ] Flash drum variant
-- [ ] Three-phase separator
-- [ ] Decanter
+- [x] Three-phase separator
+- [x] Decanter
 - [ ] Knockout drum
 - [ ] Distillation column variant
-- [ ] Absorber
-- [ ] Stripper
+- [x] Absorber (column service configuration)
+- [x] Stripper (column service configuration)
 - [ ] Liquid-liquid extraction column
 - [ ] Mixer-settler
-- [ ] Adsorber bed
+- [x] Adsorber bed
 - [ ] Pressure-swing adsorption package
 - [ ] Ion-exchange bed
-- [ ] Membrane separator
+- [x] Membrane separator
 - [ ] Reverse-osmosis package
-- [ ] Crystallizer
+- [x] Crystallizer
+
+##### Advanced column systems
+
+The existing `column` already supports configurable stage-based feeds and liquid or
+vapor side draws, plus condenser/reboiler configuration and reflux/boilup ports.
+These are structural and illustrative features; the condenser and reboiler
+settings do not automatically create separate connected equipment or calculate
+separation performance. Extend this foundation with:
+
+- [x] External condenser and reflux drum arrangement with explicit overhead,
+      condensate, reflux and distillate streams; support total and partial condenser
+      arrangements where their port contracts are defined.
+- [x] External reboiler arrangement with explicit bottoms liquid, vapor return,
+      product and utility connections; define the ports for each supported variant.
+- [x] Multiple independently identified side feeds and liquid/vapor side draws,
+      with editable stage locations, clear labels and validation when stages change.
+- [ ] Column editor and explorer views for arranging and inspecting these streams
+      without hiding connections or overlapping labels; preserve existing port IDs
+      when configurations change.
+- [x] Both symbol styles and SVG, PNG and PDF exports for the column and its
+      auxiliary equipment, with consistent light and dark diagram backgrounds.
+- [x] Tested, documented examples: a distillation column with reflux and boilup,
+      and a multifeed column with multiple side products. Include runnable Python,
+      labeled diagrams and illustrative stream values.
+
+Model explicit auxiliaries as connected equipment so their streams remain
+inspectable. Keep stage counts and user-entered duties or flow values distinct
+from calculated results; no thermodynamic or hydraulic solution is implied.
+
+For absorption or stripping, use the existing column's `service` configuration.
+Disable the condenser and reboiler explorer illustrations when the process does
+not include them; these settings do not add or remove PFD equipment:
+
+```python
+from pfd_core import add_equipment, new_document, validate_document
+
+absorber_doc = add_equipment(
+    new_document("Absorption column"), "column", id="absorber",
+    config={"service": "absorption", "condenser": "none", "reboiler": "none"},
+)
+assert validate_document(absorber_doc).valid
+```
 
 #### 4. Solids handling and mechanical separation
 
-- [ ] Filter
+- [x] Filter
 - [ ] Filter press
 - [ ] Rotary vacuum filter
 - [ ] Cartridge / bag filter
-- [ ] Centrifuge
-- [ ] Cyclone
-- [ ] Hydrocyclone
-- [ ] Settler / clarifier
+- [x] Centrifuge
+- [x] Cyclone
+- [x] Hydrocyclone
+- [x] Settler / clarifier
 - [ ] Thickener
 - [ ] Screen / sieve
 - [ ] Crusher
-- [ ] Grinder / mill
+- [x] Grinder / mill
 - [ ] Screw conveyor
 - [ ] Belt conveyor
 - [ ] Bucket elevator
-- [ ] Hopper / silo
+- [x] Hopper / silo
 - [ ] Feeder
 - [ ] Pneumatic conveying package
 
@@ -590,35 +670,35 @@ Each unchecked entry is a separate implementation task. Finish its port contract
 - [ ] Batch reactor variant
 - [ ] Continuous stirred-tank reactor variant
 - [ ] Plug-flow reactor variant
-- [ ] Packed-bed catalytic reactor
-- [ ] Fluidized-bed reactor
+- [x] Packed-bed catalytic reactor
+- [x] Fluidized-bed reactor
 - [ ] Bubble column reactor
-- [ ] Fermenter / bioreactor
+- [x] Fermenter / bioreactor
 - [ ] Electrolyzer
 - [ ] Photoreactor
 - [ ] Static mixer-reactor
 
 #### 6. Drying, storage and environmental systems
 
-- [ ] Spray dryer
-- [ ] Rotary dryer
+- [x] Spray dryer
+- [x] Rotary dryer
 - [ ] Fluidized-bed dryer
 - [ ] Tray dryer
 - [ ] Vacuum dryer
 - [ ] Pressure vessel
 - [ ] Gas holder
 - [ ] Refrigerated storage tank
-- [ ] Baghouse
+- [x] Baghouse
 - [ ] Electrostatic precipitator
-- [ ] Wet scrubber
-- [ ] Flare
+- [x] Wet scrubber
+- [x] Flare
 - [ ] Thermal oxidizer / incinerator
 - [ ] Aeration basin
 - [ ] Dissolved-air flotation unit
 
 #### 7. Power and optional instrumentation
 
-- [ ] Turbine / expander
+- [x] Turbine / expander
 - [ ] Motor / drive
 - [ ] Generator
 - [ ] Electrical / heat source boundary
@@ -892,22 +972,98 @@ assert reciprocating_doc.engineering.streams == compressor_doc.engineering.strea
 print(reciprocating_doc.engineering.equipment[1].config)
 ```
 
-Flow restriction and compressor are development-source additions; PyPI 0.1.0 does not include them. Install from the source checkout until the next release. The next planned equipment is the blower, followed by the fan.
+Flow restriction, compressor and the expanded equipment above are development-source additions; PyPI 0.1.0 does not include them. Install from the source checkout until the next release.
 
 ## Process gallery
 
-Three end-to-end teaching flowsheets, within the boundaries described below. Each uses original PFDkit equipment artwork and real document connections. These are conceptual PFDs, not P&IDs or certified plant designs. The 1 kg/s and 25 degC inlet entries are arbitrary examples for learning the quantity API; no process conditions, phase splits, efficiencies, balances or sizing have been calculated.
+Six end-to-end teaching flowsheets, within the boundaries described below. Each uses original PFDkit equipment artwork and real document connections. These are conceptual PFDs, not P&IDs or certified plant designs. The 1 kg/s and 25 degC inlet entries are arbitrary examples for learning the quantity API; no process conditions, phase splits, efficiencies, balances or sizing have been calculated.
 
 ### Run and edit the examples
 
 Download [gallery_processes.py](https://kami80.github.io/PFDkit/gallery_processes.py), install the library, and run it in a working directory:
 
 ```sh
-python -m pip install pfd-core
+python -m pip install ./packages/pfd-core
 python gallery_processes.py
 ```
 
-The script writes `distillation.json`, `ethanol.json` and `ammonia.json`. Open these in PFDkit to inspect or edit them. All equipment, ports, configurations, stream labels and entered values are defined in the Python file. Calling `distillation()`, `ethanol()` or `ammonia()` returns a `Document` that can be changed with the graph commands in this guide.
+Run that command from a repository checkout: the new equipment requires the development source and is not present in PyPI 0.1.0. The script writes JSON files for all six examples. Open them in PFDkit to inspect or edit them. All equipment, ports, configurations, stream labels and entered values are defined in the Python file. The corresponding functions return editable `Document` objects.
+
+### Advanced column: multiple feeds and side products
+
+The 16-stage column has a main feed, an additional side feed, a vapor side draw and a liquid side draw. The overhead flows through a separate total condenser and reflux drum; a splitter and pump return reflux. A separate partial reboiler sends vapor back as boilup and liquid to the bottoms product. Cooling water and steam have their own material circuits. The entered duties (20 kW and 25 kW), feed conditions and utility flow rates are illustrative, not computed or balanced.
+
+[PFD JSON](https://kami80.github.io/PFDkit/advanced-column.json) · [SVG](https://kami80.github.io/PFDkit/advanced-column.svg) · [Python source](https://kami80.github.io/PFDkit/gallery_processes.py)
+
+To build a smaller version directly, create the devices and connect the
+stage-based ports just like the fixed ports:
+
+```python
+from pfd_core import Endpoint, add_equipment, connect, new_document, validate_document
+
+column_doc = new_document("Column with explicit auxiliaries")
+units = [
+    ("feed", "feed", 0, 1, {}),
+    ("side_feed", "feed", 0, 2, {}),
+    ("column", "column", 1, 1, {
+        "stageCount": 16, "feedStage": 10,
+        "feeds": [{"portId": "side-feed", "stage": 6}],
+        "sideDraws": [{"portId": "side-product", "stage": 12, "phase": "liquid"}],
+    }),
+    ("condenser", "condenser", 2, 0, {"mode": "total"}),
+    ("reboiler", "reboiler", 2, 2, {"mode": "partial"}),
+    ("distillate", "product", 3, 0, {}),
+    ("side_product", "product", 3, 1, {}),
+    ("bottoms", "product", 3, 2, {}),
+]
+for identity, kind, x, y, config in units:
+    column_doc = add_equipment(column_doc, kind, id=identity, x=x * 250, y=y * 200, config=config)
+connections = [
+    ("feed", "out", "column", "feed"),
+    ("side_feed", "out", "column", "side-feed"),
+    ("column", "side-product", "side_product", "in"),
+    ("column", "overhead", "condenser", "in"),
+    ("condenser", "liquidOut", "distillate", "in"),
+    ("column", "bottoms", "reboiler", "in"),
+    ("reboiler", "vaporOut", "column", "boilup"),
+    ("reboiler", "liquidOut", "bottoms", "in"),
+]
+for index, (source, outlet, target, inlet) in enumerate(connections, 1):
+    column_doc = connect(
+        column_doc, Endpoint(equipment_id=source, port_id=outlet),
+        Endpoint(equipment_id=target, port_id=inlet), id=f"stream-{index}",
+    )
+assert validate_document(column_doc).valid
+```
+
+This smaller example omits the reflux return and utility circuits. For the full
+example shown above, use the downloaded `gallery_processes.py`:
+
+```python
+from gallery_processes import advanced_column
+from pfd_core import Document, validate_document
+
+advanced_doc = advanced_column()
+assert validate_document(advanced_doc).valid
+assert validate_document(advanced_doc).physical_checks_performed == []
+assert Document.model_validate_json(advanced_doc.to_json()) == advanced_doc
+print(len(advanced_doc.engineering.equipment), "equipment;",
+      len(advanced_doc.engineering.streams), "streams")
+```
+
+Each `column.feeds` and `column.sideDraws` entry has a stable `portId` and stage. Side draws record a liquid or vapor label; they do not calculate phase composition. The condenser's `in`, `liquidOut`, `vaporOut`, `utilityIn` and `utilityOut` ports and the reboiler's equivalent ports are explicit. Optional outlets can remain unconnected in a draft; the chosen mode does not automatically produce a material balance or verify that its topology is physically feasible. The column's own condenser/reboiler settings are illustrative explorer metadata; they do not create or synchronize auxiliary units.
+
+### Gas cleaning
+
+A centrifugal fan sends gas through a baghouse and wet scrubber, with separate dust, water, treated gas and spent-liquid connections. Collection efficiency and emissions are not calculated.
+
+[PFD JSON](https://kami80.github.io/PFDkit/gas-cleaning.json) · [SVG](https://kami80.github.io/PFDkit/gas-cleaning.svg) · [Python source](https://kami80.github.io/PFDkit/gallery_processes.py)
+
+### Solids filtration and drying
+
+A filter separates labeled filtrate and cake paths; a rotary dryer has separate drying-gas and exhaust connections. Flow values and drying performance are not calculated.
+
+[PFD JSON](https://kami80.github.io/PFDkit/solids-drying.json) · [SVG](https://kami80.github.io/PFDkit/solids-drying.svg) · [Python source](https://kami80.github.io/PFDkit/gallery_processes.py)
 
 ### Binary distillation
 

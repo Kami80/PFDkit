@@ -1,0 +1,290 @@
+{
+  "education": {
+    "annotations": [],
+    "metadata": {},
+    "notes": "Schematic fan, baghouse and wet-scrubber train with material feeds and separate dust, treated gas and liquid products. No pressure drop, collection efficiency or emissions are calculated. Illustrative input values; no mass/energy balance or thermodynamic calculation.",
+    "steps": []
+  },
+  "engineering": {
+    "components": [],
+    "equipment": [
+      {
+        "config": {},
+        "id": "gas",
+        "metadata": {},
+        "tag": "F-501 Dusty gas",
+        "type": "feed"
+      },
+      {
+        "config": {
+          "machineType": "centrifugal"
+        },
+        "id": "fan",
+        "metadata": {},
+        "tag": "FN-501 Fan",
+        "type": "fan"
+      },
+      {
+        "config": {},
+        "id": "baghouse",
+        "metadata": {},
+        "tag": "BH-501 Baghouse",
+        "type": "baghouse"
+      },
+      {
+        "config": {},
+        "id": "scrubber",
+        "metadata": {},
+        "tag": "SC-501 Wet scrubber",
+        "type": "wetScrubber"
+      },
+      {
+        "config": {},
+        "id": "clean",
+        "metadata": {},
+        "tag": "P-501 Treated gas",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "dust",
+        "metadata": {},
+        "tag": "P-502 Captured dust",
+        "type": "product"
+      },
+      {
+        "config": {},
+        "id": "water",
+        "metadata": {},
+        "tag": "F-502 Scrubbing water",
+        "type": "feed"
+      },
+      {
+        "config": {},
+        "id": "spent",
+        "metadata": {},
+        "tag": "P-503 Spent liquid",
+        "type": "product"
+      }
+    ],
+    "sections": [],
+    "streams": [
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": {
+          "dimension": "massFlow",
+          "unit": "kg/s",
+          "value": 1.0
+        },
+        "id": "S01",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "gas",
+          "portId": "out"
+        },
+        "tag": "S01 Dusty gas",
+        "target": {
+          "equipmentId": "fan",
+          "portId": "in"
+        },
+        "temperature": {
+          "dimension": "temperature",
+          "unit": "degC",
+          "value": 25.0
+        }
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S02",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "fan",
+          "portId": "out"
+        },
+        "tag": "S02 Gas to filter",
+        "target": {
+          "equipmentId": "baghouse",
+          "portId": "gasIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S03",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "baghouse",
+          "portId": "gasOut"
+        },
+        "tag": "S03 Filtered gas",
+        "target": {
+          "equipmentId": "scrubber",
+          "portId": "gasIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S04",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "baghouse",
+          "portId": "solidsOut"
+        },
+        "tag": "S04 Dust",
+        "target": {
+          "equipmentId": "dust",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S05",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "water",
+          "portId": "out"
+        },
+        "tag": "S05 Water",
+        "target": {
+          "equipmentId": "scrubber",
+          "portId": "liquidIn"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S06",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "scrubber",
+          "portId": "gasOut"
+        },
+        "tag": "S06 Treated gas",
+        "target": {
+          "equipmentId": "clean",
+          "portId": "in"
+        },
+        "temperature": null
+      },
+      {
+        "composition": null,
+        "flowBasis": "mass",
+        "flowRate": null,
+        "id": "S07",
+        "kind": "material",
+        "metadata": {},
+        "pressure": null,
+        "properties": {},
+        "source": {
+          "equipmentId": "scrubber",
+          "portId": "liquidOut"
+        },
+        "tag": "S07 Spent liquid",
+        "target": {
+          "equipmentId": "spent",
+          "portId": "in"
+        },
+        "temperature": null
+      }
+    ]
+  },
+  "id": "gallery-gas cleaning",
+  "metadata": {
+    "attribution": {
+      "artwork": "Original PFDkit vector artwork; references support process concepts, not entered values.",
+      "creator": "PFDkit contributors",
+      "license": "MIT"
+    },
+    "references": [
+      {
+        "title": "PFDkit \u00b7 Equipment catalog",
+        "url": "https://github.com/Kami80/PFDkit/blob/main/packages/pfd-core/EQUIPMENT.md"
+      }
+    ],
+    "scope": "Schematic fan, baghouse and wet-scrubber train with material feeds and separate dust, treated gas and liquid products. No pressure drop, collection efficiency or emissions are calculated.",
+    "valueStatus": "Illustrative input values; no mass/energy balance or thermodynamic calculation."
+  },
+  "presentation": {
+    "metadata": {},
+    "nodes": {
+      "baghouse": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 0.0
+      },
+      "clean": {
+        "metadata": {},
+        "x": 1200.0,
+        "y": 0.0
+      },
+      "dust": {
+        "metadata": {},
+        "x": 600.0,
+        "y": 250.0
+      },
+      "fan": {
+        "metadata": {},
+        "x": 300.0,
+        "y": 0.0
+      },
+      "gas": {
+        "metadata": {},
+        "x": 0.0,
+        "y": 0.0
+      },
+      "scrubber": {
+        "metadata": {},
+        "x": 900.0,
+        "y": 0.0
+      },
+      "spent": {
+        "metadata": {},
+        "x": 900.0,
+        "y": 250.0
+      },
+      "water": {
+        "metadata": {},
+        "x": 1200.0,
+        "y": 250.0
+      }
+    },
+    "viewport": {
+      "x": 0.0,
+      "y": 0.0,
+      "zoom": 1.0
+    }
+  },
+  "schemaVersion": "1.0.0",
+  "title": "Gas cleaning \u00b7 fan, baghouse and scrubber"
+}
