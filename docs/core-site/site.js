@@ -113,7 +113,12 @@ modeButton.addEventListener("click", async () => {
   status.textContent = "Loading Markdown";
   try {
     if (!rawText) {
-      const response = await fetch("agent-guide.md");
+      const response = await fetch(
+        new URL("agent-guide.md", document.baseURI),
+        {
+          cache: "no-store",
+        },
+      );
       if (!response.ok) throw new Error("Guide unavailable");
       rawText = await response.text();
     }
@@ -131,9 +136,18 @@ modeButton.addEventListener("click", async () => {
     modeButton.title = "Switch to human view";
     window.scrollTo({ top: 0, behavior: "instant" });
     status.textContent = "Agent view ready";
-  } catch {
-    status.textContent =
-      "Markdown could not load. Try again or open agent-guide.md directly.";
+  } catch (error) {
+    // Browsers intentionally block fetch() from file:// pages. Keep the view
+    // useful in local checkouts by showing a clear source link instead of a
+    // blank panel; the deployed HTTPS site still loads the full guide inline.
+    main.innerHTML =
+      '<div class="eyebrow">DOCUMENTATION / MACHINE-READABLE</div><h1>Agent view</h1><p class="agent-warning">The browser blocks loading Markdown inline when this page is opened directly from the filesystem. Open the source below, or serve <code>docs/core-site</code> with a local web server for the full inline view.</p><div class="agent-toolbar"><a href="agent-guide.md" target="_blank" rel="noreferrer">Open agent-guide.md ↗</a></div>';
+    document.body.classList.add("agent-view");
+    setSidebar(true);
+    modeButton.setAttribute("aria-pressed", "true");
+    modeButton.setAttribute("aria-label", "Switch to human view");
+    modeButton.title = "Switch to human view";
+    status.textContent = "Agent source link ready";
   } finally {
     busy = false;
     modeButton.removeAttribute("aria-busy");

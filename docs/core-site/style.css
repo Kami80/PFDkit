@@ -430,6 +430,14 @@ pre .p {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+.agent-warning {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--muted);
+}
 .sidebar-closed .layout {
   display: block;
 }
